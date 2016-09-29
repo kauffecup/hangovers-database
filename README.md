@@ -1,5 +1,29 @@
 # Hangovers Database
 
+## Useful Links
+
+  - [bluemix](http://bluemix.net)
+  - [cloudant deployment](https://sage.cloudant.com/dashboard.html)
+
+## Arrangement Info
+
+  - song title
+  - arranger(s)
+  - original artist
+  - when written (original song??)
+  - when arranged
+  - when performed
+  - quality (useable/needs work/bad)
+  - genre
+  - type (handwritten original, copy of handwritten, copy of electronic, electronic)
+  - Concert
+  - alternate name
+  - CDs On
+  - Syllables?
+  - PDF (link to file)
+  - Finale (link to file)
+  - Youtube (link to the tube)
+
 ## Understanding, Configuring, and Building
 
 There are a few pre-configured npm scripts:
@@ -60,20 +84,9 @@ awesomeness. In dev mode, the `DevTools` react component loads and renders which
 provides a visual history of all the actions and allows you to go forwards and
 backwards in time. It also logs all the state changes.
 
-## Server Code Structure
+## Hooking up to Cloudant Backend
 
-All server code goes under the `server` directory.
+Cloudant docs [here](https://docs.cloudant.com/).
 
-The main `app` module currently only configures the Express server and sets up
-the routes.
-
-## Client Code Structure
-
-All client code goes under the `client` directory.
-
-This app is set up using the [Redux](http://redux.js.org/) architecture.
-It's pretty magical.
-
-The main React entry point is `client/index`. This will load in the other app
-components and manage state throughout the application. It also loads the main
-reducer from `reducers/Sage` and configures the store.
+To hook up to a cloudant backend, simply fill out the username and password in
+`config/cloudant.json`.

@@ -95,3 +95,18 @@ annoying to me, simply:
 ```sh
 git update-index --assume-unchanged config/cloudant.json
 ```
+
+## Deploying to Bluemix
+
+First, make sure you've installed the
+[Cloud Foundry CLI](https://console.ng.bluemix.net/docs/starters/install_cli.html).
+Then:
+
+```sh
+cf login
+cf target -o jdkaufma@us.ibm.com -s hangovers
+npm run build
+cf push sage
+```
+
+This'll look at `manifest.yml` and deploy this puppy.

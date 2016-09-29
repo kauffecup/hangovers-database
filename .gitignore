@@ -3,3 +3,4 @@ coverage
 build
 public/*.css
 *.log
+config/cloudant.json

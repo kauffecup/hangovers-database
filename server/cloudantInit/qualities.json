@@ -1,0 +1,14 @@
+[
+  {
+    "name": "bad",
+    "description": "super hard to read"
+  },
+  {
+    "name": "needs work",
+    "description": "get's the job done"
+  },
+  {
+    "name": "usable",
+    "description": "good to go"
+  }
+]

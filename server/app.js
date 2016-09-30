@@ -1,16 +1,15 @@
-/** Module dependencies. */
 const express = require('express');
 const bodyParser = require('body-parser');
 const logger = require('morgan');
 const paths = require('../config/paths');
-const { initialize } = require('./arrangementsDB');
+const SageDB = require('./SageDB');
 const cloudantConfig = require('../config/cloudant.json');
 
 const port = process.env.PORT || 3000;
 
 // configure the express server
 const app = express();
-initialize(cloudantConfig);
+const sageDB = new SageDB(cloudantConfig);
 
 // if we're developing, use webpack middleware for module hot reloading
 if (process.env.NODE_ENV === 'development') {

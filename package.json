@@ -6,6 +6,7 @@
     "start": "node server/app.js",
     "build": "node scripts/build.js",
     "dev": "better-npm-run dev",
+    "init": "node server/cloudantInit/init",
     "test": "node scripts/test.js --env=jsdom",
     "lint": "eslint --ignore-path .gitignore ."
   },

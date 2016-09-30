@@ -4,6 +4,7 @@
 
   - [bluemix](http://bluemix.net)
   - [cloudant deployment](https://sage.cloudant.com/dashboard.html)
+  - [build pipeline](https://hub.jazz.net/pipeline/jdkaufma/hangovers-database)
 
 ## Arrangement Info
 
@@ -110,3 +111,41 @@ cf push sage
 ```
 
 This'll look at `manifest.yml` and deploy this puppy.
+
+## Using Build pipeline
+
+Again, the build pipeline is
+[here](https://hub.jazz.net/pipeline/jdkaufma/hangovers-database). It's hooked
+up to the `master` branch of this repo. So pushing'll trigger a build and
+deploy.
+
+Because these are on a server somewhere else, here are the build and deploy
+scripts, so at least they're like sort of in source control, ya know?
+
+### Build Stage
+
+```sh
+#!/bin/bash
+node_version=v6.7.0
+install_name=node-v6.7.0-linux-x64
+if [ ! -e $install_name.tar.gz ]; then
+    wget "http://nodejs.org/dist/$node_version/$install_name.tar.gz"
+    echo 'Untarring'
+    tar xf $install_name.tar.gz
+fi
+NODE_6_INSTALL_DIR=`pwd`/$install_name/bin
+PATH=$NODE_6_INSTALL_DIR:$PATH
+node -v
+
+npm install
+npm run build
+```
+
+### Deploy Stage
+
+Make sure to select the target, org, space, and app. Then the actual script is:
+
+```sh
+#!/bin/bash
+cf push "${CF_APP}"
+```

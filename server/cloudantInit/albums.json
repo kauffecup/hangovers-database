@@ -1,0 +1,88 @@
+[
+  {
+    "name": "A Flight - EP",
+    "year": 2014,
+    "format": "album_format_digital"
+  },
+  {
+    "name": "Final Draught",
+    "year": 2013,
+    "format": "album_format_cd"
+  },
+  {
+    "name": "Three Sheets to the Wind",
+    "year": 2008,
+    "format": "album_format_cd"
+  },
+  {
+    "name": "Blackout",
+    "year": 2005,
+    "format": "album_format_cd"
+  },
+  {
+    "name": "Vintage",
+    "year": 2004,
+    "format": "album_format_cd"
+  },
+  {
+    "name": "Shot in the Dark",
+    "year": 2001,
+    "format": "album_format_cd"
+  },
+  {
+    "name": "Spirits",
+    "year": 1998,
+    "format": "album_format_cd"
+  },
+  {
+    "name": "Moonshine",
+    "year": 1996,
+    "format": "album_format_cd"
+  },
+  {
+    "name": "On the Rocks",
+    "year": 1994,
+    "format": "album_format_cd"
+  },
+  {
+    "name": "Behind Bars",
+    "year": 1989,
+    "format": "album_format_casette"
+  },
+  {
+    "name": "Cheers",
+    "year": 1986,
+    "format": "album_format_33_lp"
+  },
+  {
+    "name": "Hangin' Out",
+    "year": 1984,
+    "format": "album_format_33_lp"
+  },
+  {
+    "name": "Facetime (Single)",
+    "year": 1981,
+    "format": "album_format_45_rpm"
+  },
+  {
+    "name": "Facetime",
+    "year": 1981,
+    "format": "album_format_33_lp"
+  },
+  {
+    "name": "Slightly Sober",
+    "year": 1979,
+    "format": "album_format_33_lp"
+  },
+  {
+    "name": "Alma Mater",
+    "year": 1973,
+    "format": "album_format_33_lp",
+    "notes": "as The Leftovers"
+  },
+  {
+    "name": "The Hangovers",
+    "year": 1970,
+    "format": "album_format_33_lp"
+  }
+]

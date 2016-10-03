@@ -8,14 +8,16 @@ const SEMESTER_TYPE = 'semester';
 const ALBUM_TYPE = 'album';
 const CONCERT_TYPE = 'concert';
 // essentially enums
-const TYPE_TYPE = 'arrangement_type';
+const ARRANGEMENT_TYPE_TYPE = 'arrangement_type';
 const QUALITY_TYPE = 'quality';
+const ALBUM_FORMAT_TYPE = 'album_format';
+const CONCERT_TYPE_TYPE = 'concert_type';
 
 const getArrangementID = arrangement =>
   `${ARRANGEMENT_TYPE}_${arrangement.name.toLowerCase().replace(' ', '_')}`;
 
 const getArrangementTypeID = arrangementType =>
-  `${TYPE_TYPE}_${arrangementType.name.toLowerCase().replace(' ', '_')}`;
+  `${ARRANGEMENT_TYPE_TYPE}_${arrangementType.name.toLowerCase().replace(' ', '_')}`;
 
 const getHangoverID = hangover =>
   `${HANGOVER_TYPE}_${hangover.lastName.toLowerCase().replace(' ', '_')}_${hangover.firstName.toLowerCase().replace('.', '').replace(' ', '_')}`;
@@ -26,11 +28,17 @@ const getSemesterID = semester =>
 const getAlbumID = album =>
   `${ALBUM_TYPE}_${album.name.toLowerCase().replace(' ', '_')}`;
 
+const getAlbumFormatID = albumFormat =>
+  `${ALBUM_FORMAT_TYPE}_${albumFormat.name.toLowerCase().replace(' ', '_')}`;
+
 const getQualityID = quality =>
   `${QUALITY_TYPE}_${quality.name.toLowerCase().replace(' ', '_')}`;
 
 const getConcertID = concert =>
   `${CONCERT_TYPE}_${concert.name.toLowerCase().replace(' ', '_')}`;
+
+const getConcertTypeID = concertType =>
+  `${CONCERT_TYPE_TYPE}_${concertType.name.toLowerCase().replace(' ', '_')}`;
 
 module.exports = class SageDB {
   constructor(config, init) {
@@ -60,7 +68,7 @@ module.exports = class SageDB {
   }
 
   upsertArrangementType(arrangementType) {
-    return this._upsert(arrangementType, TYPE_TYPE, getArrangementTypeID(arrangementType));
+    return this._upsert(arrangementType, ARRANGEMENT_TYPE_TYPE, getArrangementTypeID(arrangementType));
   }
 
   upsertHangover(hangover) {
@@ -75,12 +83,20 @@ module.exports = class SageDB {
     return this._upsert(album, ALBUM_TYPE, getAlbumID(album));
   }
 
+  upsertAlbumFormat(albumFormat) {
+    return this._upsert(albumFormat, ALBUM_FORMAT_TYPE, getAlbumFormatID(albumFormat));
+  }
+
   upsertQuality(quality) {
     return this._upsert(quality, QUALITY_TYPE, getQualityID(quality));
   }
 
   upsertConcert(concert) {
     return this._upsert(concert, CONCERT_TYPE, getConcertID(concert));
+  }
+
+  upsertConcertType(concertType) {
+    return this._upsert(concertType, CONCERT_TYPE_TYPE, getConcertTypeID(concertType));
   }
 
   _upsert(doc, type, _id) {

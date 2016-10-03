@@ -14,31 +14,31 @@ const ALBUM_FORMAT_TYPE = 'album_format';
 const CONCERT_TYPE_TYPE = 'concert_type';
 
 const getArrangementID = arrangement =>
-  `${ARRANGEMENT_TYPE}_${arrangement.name.toLowerCase().replace(' ', '_')}`;
+  `${ARRANGEMENT_TYPE}_${arrangement.name.toLowerCase().replace(/\s/g, '_')}`;
 
 const getArrangementTypeID = arrangementType =>
-  `${ARRANGEMENT_TYPE_TYPE}_${arrangementType.name.toLowerCase().replace(' ', '_')}`;
+  `${ARRANGEMENT_TYPE_TYPE}_${arrangementType.name.toLowerCase().replace(/\s/g, '_')}`;
 
 const getHangoverID = hangover =>
-  `${HANGOVER_TYPE}_${hangover.lastName.toLowerCase().replace(' ', '_')}_${hangover.firstName.toLowerCase().replace('.', '').replace(' ', '_')}`;
+  `${HANGOVER_TYPE}_${hangover.lastName.toLowerCase().replace(/\s/g, '_')}_${hangover.firstName.toLowerCase().replace('.', '').replace(/\s/g, '_')}`;
 
 const getSemesterID = semester =>
   `${SEMESTER_TYPE}_${semester.year}_${semester.type.toLowerCase()}`;
 
 const getAlbumID = album =>
-  `${ALBUM_TYPE}_${album.name.toLowerCase().replace(' ', '_')}`;
+  `${ALBUM_TYPE}_${album.name.toLowerCase().replace(/\s/g, '_')}`;
 
 const getAlbumFormatID = albumFormat =>
-  `${ALBUM_FORMAT_TYPE}_${albumFormat.name.toLowerCase().replace(' ', '_')}`;
+  `${ALBUM_FORMAT_TYPE}_${albumFormat.name.toLowerCase().replace(/\s/g, '_')}`;
 
 const getQualityID = quality =>
-  `${QUALITY_TYPE}_${quality.name.toLowerCase().replace(' ', '_')}`;
+  `${QUALITY_TYPE}_${quality.name.toLowerCase().replace(/\s/g, '_')}`;
 
 const getConcertID = concert =>
-  `${CONCERT_TYPE}_${concert.name.toLowerCase().replace(' ', '_')}`;
+  `${CONCERT_TYPE}_${concert.name.toLowerCase().replace(/\s/g, '_')}`;
 
 const getConcertTypeID = concertType =>
-  `${CONCERT_TYPE_TYPE}_${concertType.name.toLowerCase().replace(' ', '_')}`;
+  `${CONCERT_TYPE_TYPE}_${concertType.name.toLowerCase().replace(/\s/g, '_')}`;
 
 module.exports = class SageDB {
   constructor(config, init) {
@@ -64,48 +64,51 @@ module.exports = class SageDB {
   }
 
   upsertArrangement(arrangement) {
-    return this._upsert(arrangement, ARRANGEMENT_TYPE, getArrangementID(arrangement));
+    return this._upsertType(arrangement, ARRANGEMENT_TYPE, getArrangementID(arrangement));
   }
 
   upsertArrangementType(arrangementType) {
-    return this._upsert(arrangementType, ARRANGEMENT_TYPE_TYPE, getArrangementTypeID(arrangementType));
+    return this._upsertType(arrangementType, ARRANGEMENT_TYPE_TYPE, getArrangementTypeID(arrangementType));
   }
 
   upsertHangover(hangover) {
-    return this._upsert(hangover, HANGOVER_TYPE, getHangoverID(hangover));
+    return this._upsertType(hangover, HANGOVER_TYPE, getHangoverID(hangover));
   }
 
   upsertSemester(semester) {
-    return this._upsert(semester, SEMESTER_TYPE, getSemesterID(semester));
+    return this._upsertType(semester, SEMESTER_TYPE, getSemesterID(semester));
   }
 
   upsertAlbum(album) {
-    return this._upsert(album, ALBUM_TYPE, getAlbumID(album));
+    return this._upsertType(album, ALBUM_TYPE, getAlbumID(album));
   }
 
   upsertAlbumFormat(albumFormat) {
-    return this._upsert(albumFormat, ALBUM_FORMAT_TYPE, getAlbumFormatID(albumFormat));
+    return this._upsertType(albumFormat, ALBUM_FORMAT_TYPE, getAlbumFormatID(albumFormat));
   }
 
   upsertQuality(quality) {
-    return this._upsert(quality, QUALITY_TYPE, getQualityID(quality));
+    return this._upsertType(quality, QUALITY_TYPE, getQualityID(quality));
   }
 
   upsertConcert(concert) {
-    return this._upsert(concert, CONCERT_TYPE, getConcertID(concert));
+    return this._upsertType(concert, CONCERT_TYPE, getConcertID(concert));
   }
 
   upsertConcertType(concertType) {
-    return this._upsert(concertType, CONCERT_TYPE_TYPE, getConcertTypeID(concertType));
+    return this._upsertType(concertType, CONCERT_TYPE_TYPE, getConcertTypeID(concertType));
   }
 
-  _upsert(doc, type, _id) {
-    const newDoc = Object.assign({}, doc, { _id, type });
-    return this._sageDB.getAsync(_id)
+  _upsertType(doc, type, _id) {
+    return this._upsert(Object.assign({}, doc, { _id, type }));
+  }
+
+  _upsert(doc) {
+    return this._sageDB.getAsync(doc._id)
       .then(returnedDoc =>
-        this._sageDB.insertAsync(Object.assign({}, newDoc, { _rev: returnedDoc._rev }))
+        this._sageDB.insertAsync(Object.assign({}, doc, { _rev: returnedDoc._rev }))
       ).catch(e =>
-        e.error === 'not_found' ? this._sageDB.insertAsync(newDoc) : e
+        e.error === 'not_found' ? this._sageDB.insertAsync(doc) : e
       );
   }
 };

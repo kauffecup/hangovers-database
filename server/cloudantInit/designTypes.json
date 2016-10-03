@@ -1,0 +1,33 @@
+{
+  "_id": "_design/types",
+  "views": {
+    "hangovers": {
+      "map": "function (doc) {\n  if (doc.type === 'hangover') {\n    emit(doc._id, 1); \n  }\n}"
+    },
+    "semesters": {
+      "map": "function (doc) {\n  if (doc.type === 'semester') {\n    emit(doc._id, 1); \n  }\n}"
+    },
+    "arrangements": {
+      "map": "function (doc) {\n  if (doc.type === 'arrangement') {\n    emit(doc._id, 1); \n  }\n}"
+    },
+    "albums": {
+      "map": "function (doc) {\n  if (doc.type === 'album') {\n    emit(doc._id, 1); \n  }\n}"
+    },
+    "concerts": {
+      "map": "function (doc) {\n  if (doc.type === 'concert') {\n    emit(doc._id, 1); \n  }\n}"
+    },
+    "album_formats": {
+      "map": "function (doc) {\n  if (doc.type === 'album_format') {\n    emit(doc._id, 1); \n  }\n}"
+    },
+    "arrangement_types": {
+      "map": "function (doc) {\n  if (doc.type === 'arrangement_type') {\n    emit(doc._id, 1); \n  }\n}"
+    },
+    "concert_types": {
+      "map": "function (doc) {\n  if (doc.type === 'concert_type') {\n    emit(doc._id, 1);\n  }\n}"
+    },
+    "qualities": {
+      "map": "function (doc) {\n  if (doc.type === 'quality') {\n    emit(doc._id, 1); \n  }\n}"
+    }
+  },
+  "language": "javascript"
+}

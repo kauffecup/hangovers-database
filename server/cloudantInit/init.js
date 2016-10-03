@@ -1,3 +1,4 @@
+const Promise = require('bluebird');
 const SageDB = require('../SageDB');
 const config = require('../../config/cloudant.json');
 const hangovers = require('./hangovers.json');
@@ -7,76 +8,66 @@ const albums = require('./albums.json');
 const albumFormats = require('./albumFormats.json');
 const concertTypes = require('./concertTypes.json');
 const concerts = require('./concerts.json');
+const designTypes = require('./designTypes.json');
 
 const sageDB = new SageDB(config);
 
-sageDB.initialize(config).then(() => {
-  // first we add all the semesters
+const CONCURRENCY = 3;
+
+sageDB.initialize(config).then(() =>
+  // first we add our design doc
+  sageDB._upsert(designTypes)
+).then(() => {
+  // then all the semesters
+  const semesterArray = [];
   for (let year = 1964; year <= 2020; year++) {
-    sageDB.upsertSemester({ year, type: 'fall' });
-    sageDB.upsertSemester({ year, type: 'spring' });
+    semesterArray.push({ year, type: 'fall' });
+    semesterArray.push({ year, type: 'spring' });
   }
-
+  return Promise.map(
+    semesterArray,
+    semester => sageDB.upsertSemester(semester),
+    { concurrency: CONCURRENCY }
+  );
+}).then(() => Promise.map(
   // next the types
-  arrangementTypes.forEach(at =>
-    sageDB.upsertArrangementType(at)
-      .catch((e) => {
-        console.log('arrangement type', at);
-        console.error(e);
-      })
-  );
-
+  arrangementTypes,
+  at => sageDB.upsertArrangementType(at),
+  { concurrency: CONCURRENCY }
+))
+.then(() => Promise.map(
   // next the qualities
-  qualities.forEach(q =>
-    sageDB.upsertQuality(q)
-      .catch((e) => {
-        console.log('quality', q);
-        console.error(e);
-      })
-  );
-
+  qualities,
+  q => sageDB.upsertQuality(q),
+  { concurrency: CONCURRENCY }
+))
+.then(() => Promise.map(
   // next the hangovers
-  hangovers.forEach(h =>
-    sageDB.upsertHangover(h)
-      .catch((e) => {
-        console.log('hangover', h);
-        console.error(e);
-      })
-  );
-
+    hangovers,
+    h => sageDB.upsertHangover(h),
+    { concurrency: CONCURRENCY }
+))
+.then(() => Promise.map(
   // next the albums
-  albums.forEach(a =>
-    sageDB.upsertAlbum(a)
-      .catch((e) => {
-        console.log('album', a);
-        console.error(e);
-      })
-  );
-
+  albums,
+  a => sageDB.upsertAlbum(a),
+  { concurrency: CONCURRENCY }
+))
+.then(() => Promise.map(
   // ...and the album formats
-  albumFormats.forEach(af =>
-    sageDB.upsertAlbumFormat(af)
-      .catch((e) => {
-        console.log('album format', af);
-        console.error(e);
-      })
-  );
-
+  albumFormats,
+  af => sageDB.upsertAlbumFormat(af),
+  { concurrency: CONCURRENCY }
+))
+.then(() => Promise.map(
   // the concert types
-  concertTypes.forEach(ct =>
-    sageDB.upsertConcertType(ct)
-      .catch((e) => {
-        console.log('concert type', ct);
-        console.error(e);
-      })
-  );
-
+  concertTypes,
+  ct => sageDB.upsertConcertType(ct),
+  { concurrency: CONCURRENCY }
+))
+.then(() => Promise.map(
   // lastly some concerts
-  concerts.forEach(c =>
-    sageDB.upsertConcert(c)
-      .catch((e) => {
-        console.log('concert', c);
-        console.error(e);
-      })
-  );
-});
+  concerts,
+  c => sageDB.upsertConcert(c),
+  { concurrency: CONCURRENCY }
+));

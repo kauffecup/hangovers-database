@@ -1,5 +1,30 @@
 # Hangovers Database
 
+welcome to Sage.
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+
+- [Useful Links](#useful-links)
+- [Arrangement Info](#arrangement-info)
+- [Understanding, Configuring, and Building](#understanding-configuring-and-building)
+  - [Install Dependencies](#install-dependencies)
+  - [Build (and run) the Production Bundle](#build-and-run-the-production-bundle)
+  - [Run in developer mode](#run-in-developer-mode)
+  - [Initialize and Seed the Database](#initialize-and-seed-the-database)
+  - [Test](#test)
+  - [Lint](#lint)
+  - [Generate the TOC](#generate-the-toc)
+- [A Note About Clientside Code Structure](#a-note-about-clientside-code-structure)
+- [Hooking up to Cloudant Backend](#hooking-up-to-cloudant-backend)
+- [Deploying to Bluemix](#deploying-to-bluemix)
+- [Using Build pipeline](#using-build-pipeline)
+  - [Build Stage](#build-stage)
+  - [Deploy Stage](#deploy-stage)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ## Useful Links
 
   - [bluemix](http://bluemix.net)
@@ -8,72 +33,101 @@
 
 ## Arrangement Info
 
-  - song title
-  - arranger(s)
-  - original artist
-  - when written (original song??)
-  - when arranged
-  - when performed
-  - quality (useable/needs work/bad)
-  - genre
-  - type (handwritten original, copy of handwritten, copy of electronic, electronic)
+  - Song Title
+  - Alternate Name
+  - Arranger(s)
+  - Original Artist
+  - When Written
+  - When Arranged
+  - When Performed
+  - Genre
+  - Quality of Arrangement (useable/needs work/bad)
+  - Type (handwritten original, copy of handwritten, copy of electronic, electronic)
   - Concert
-  - alternate name
-  - CDs On
-  - Syllables?
+  - Albums Appeared On
+  - Syllables (y/n)
   - PDF (link to file)
   - Finale (link to file)
   - Youtube (link to the tube)
 
 ## Understanding, Configuring, and Building
 
-There are a few pre-configured npm scripts:
+There are a few pre-configured npm scripts.
 
-  - `npm run build` uses webpack to build a minified bundle and minified css
-    file. These are placed in a `build` directory along with a copied + minified
-    `index.html` and whatever else found its way into `public`.
-  - `npm run start` starts in "production mode" (no hot reloading). This simply
-    spins up the server under `server/app.js`, serves
-    what's in the build directory.
-  - `npm run dev` is where the magic happens. This introduces the webpack dev
-    and hot middleware (the correct environment variables are set via `npm
-    better run`), which rebuilds the bundle on css or js changes and injects it
-    into the browser using magic. No reloading necessary! Also through the
-    powers of redux there's time travel so you can edit code on the fly and
-    go forwards and backwards with your actions.
-  - `npm run test` runs the tests!
-  - `npm run lint` lints the code!
+### Install Dependencies
 
-First you must:
+Before you do anything else, you'll need to:
 
 ```
 npm install
 ```
 
-Then, to run in production:
+### Build (and run) the Production Bundle
+
+To build a minifed JS bundle and minified CSS bundle uner the `build` directory,
+this is the script for you. It also will copy any resources (such as `inex.html`
+and the favicon) placed in the `public` directory and place them in `build`.
 
 ```sh
 npm run build
-npm run start
 ```
 
-To run in dev mode:
+Then to run the server and serve that directory, you'll spin up "production
+mode" (no hot reloading). This simply spins up the server under `server/app.js`,
+serves what's in the build directory, maintains the endpoints, and interfaces
+with the database.
+
+```sh
+npm start
+```
+
+### Run in developer mode
+
+This is where the magic happens. This introduces the webpack dev and hot
+middleware (the correct environment variables are set via `npm better run`),
+which rebuilds the bundle on css or js changes and injects it into the browser
+using magic. No reloading necessary! Also through the powers of redux there's
+time travel so you can edit code on the fly and go forwards and backwards with
+your actions. This is accomplished by loading in `server/appDevServer.js` and
+using that configured middleware in the express server.
 
 ```sh
 npm run dev
 ```
 
-To test:
+### Initialize and Seed the Database
+
+This makes sure the database exists and adds the "starter" docs: albums,
+concerts, hangovers, semesters, arrangement types, album formats, qualities,
+and a design doc to view each type on its own.
+
+```sh
+npm run init
+```
+
+### Test
+
+There currently are no tests. heh...
 
 ```sh
 npm run test
 ```
 
-To lint:
+### Lint
 
-```
+```sh
 npm run lint
 ```
+
+### Generate the TOC
+
+To generate the table of contents at the top of this README, ya just gotta:
+
+```sh
+npm run toc
+```
+
+## A Note About Clientside Code Structure
 
 To handle the discrepancies between running the client code in "dev mode" or
 "production mode", there are two helpers provided - `containers/Root.js` and

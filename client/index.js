@@ -6,9 +6,9 @@ import configureStore from './store/configureStore';
 // load our css. there probably is a better way to do this
 // but for now this is our move
 require('./style.less');
+require('react-select/dist/react-select.css');
 
 const store = configureStore();
 const rootElement = document.getElementById('root');
 
-// React.initializeTouchEvents(true);
 render(<Root store={store} />, rootElement);

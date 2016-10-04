@@ -1,8 +1,21 @@
 import React, { PropTypes } from 'react';
 import { Field, reduxForm } from 'redux-form';
+import Select from 'react-select';
 import normalizeFileList from '../normalizers/normalizeFileList';
 
-const AddArrangementForm = ({ handleSubmit, onSubmit }) =>
+const SelectWrapper = props =>
+  <Select
+    {...props}
+    onBlur={() => props.input.onBlur(props.input.value)}
+    value={props.input.value}
+    onChange={props.input.onChange}
+  />;
+
+SelectWrapper.propTypes = {
+  input: PropTypes.object,
+};
+
+const AddArrangementForm = ({ handleSubmit, onSubmit, arrangementTypes, qualities, keys }) =>
   <form onSubmit={handleSubmit(onSubmit)}>
     <h3>The Song</h3>
     <div>
@@ -32,7 +45,7 @@ const AddArrangementForm = ({ handleSubmit, onSubmit }) =>
     </div>
     <div>
       <label htmlFor="key">Key</label>
-      <Field name="key" component="input" type="text" />
+      <Field name="key" component={SelectWrapper} options={keys} />
     </div>
     <div>
       <label htmlFor="whenArranged">When Arranged</label>
@@ -40,11 +53,11 @@ const AddArrangementForm = ({ handleSubmit, onSubmit }) =>
     </div>
     <div>
       <label htmlFor="type">Type</label>
-      <Field name="type" component="input" type="text" />
+      <Field name="type" component={SelectWrapper} options={arrangementTypes} />
     </div>
     <div>
       <label htmlFor="quality">Quality of Arrangement</label>
-      <Field name="quality" component="input" type="text" />
+      <Field name="quality" component={SelectWrapper} options={qualities} />
     </div>
     <div>
       <label htmlFor="syllables">Syllables</label>
@@ -85,6 +98,9 @@ const AddArrangementForm = ({ handleSubmit, onSubmit }) =>
 AddArrangementForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
+  arrangementTypes: PropTypes.array.isRequired,
+  qualities: PropTypes.array.isRequired,
+  keys: PropTypes.array.isRequired,
 };
 
 export default reduxForm({

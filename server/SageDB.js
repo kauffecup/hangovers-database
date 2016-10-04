@@ -13,6 +13,8 @@ const QUALITY_TYPE = 'quality';
 const ALBUM_FORMAT_TYPE = 'album_format';
 const CONCERT_TYPE_TYPE = 'concert_type';
 
+const LIMIT = 20;
+
 const getArrangementID = arrangement =>
   `${ARRANGEMENT_TYPE}_${arrangement.name.toLowerCase().replace(/\s/g, '_')}`;
 
@@ -58,6 +60,50 @@ module.exports = class SageDB {
           reject(e);
         }
       });
+    });
+  }
+
+  getArrangements(limit, skip) {
+    return this._view('arrangements', limit, skip);
+  }
+
+  getArrangementTypes(limit, skip) {
+    return this._view('arrangement_types', limit, skip);
+  }
+
+  getHangovers(limit, skip) {
+    return this._view('hangovers', limit, skip);
+  }
+
+  getSemesters(limit, skip) {
+    return this._view('semesters', limit, skip);
+  }
+
+  getAlbums(limit, skip) {
+    return this._view('albums', limit, skip);
+  }
+
+  getAlbumFormats(limit, skip) {
+    return this._view('album_formats', limit, skip);
+  }
+
+  getQualities(limit, skip) {
+    return this._view('qualities', limit, skip);
+  }
+
+  getConcerts(limit, skip) {
+    return this._view('concerts', limit, skip);
+  }
+
+  getConcertTypes(limit, skip) {
+    return this._view('concert_types', limit, skip);
+  }
+
+  _view(type, limit = LIMIT, skip = 0) {
+    return this._sageDB.viewAsync('types', type, {
+      include_docs: true,
+      limit,
+      skip,
     });
   }
 

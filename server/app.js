@@ -1,3 +1,4 @@
+const Promise = require('bluebird');
 const express = require('express');
 const bodyParser = require('body-parser');
 const logger = require('morgan');
@@ -30,6 +31,28 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(paths.appBuild));
 
+/** GET: get the initial data necessary for form stuff */
+app.get('/initializeforms', (req, res) => {
+  Promise.join(
+    sageDB.getArrangementTypes(),
+    sageDB.getAlbumFormats(),
+    sageDB.getQualities(),
+    sageDB.getConcertTypes(),
+    (at, af, q, ct) => ({
+      arrangementTypes: at,
+      albumFormats: af,
+      qualities: q,
+      concertTypes: ct,
+    })
+  ).then((data) => {
+    res.json(data);
+  }).catch((e) => {
+    res.status(500);
+    res.error(e);
+  });
+});
+
+/** POST: Submit a new arrangement */
 app.post('/arrangementsubmit', upload.fields([
   { name: 'pdf', maxCount: 1 },
   { name: 'finale', maxCount: 1 },

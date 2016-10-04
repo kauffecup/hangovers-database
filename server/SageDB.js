@@ -104,7 +104,9 @@ module.exports = class SageDB {
       include_docs: true,
       limit,
       skip,
-    });
+    }).then(response => Object.assign({}, response, {
+      rows: response.rows.map(r => r.doc),
+    }));
   }
 
   upsertArrangement(arrangement) {

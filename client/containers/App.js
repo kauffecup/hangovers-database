@@ -38,10 +38,10 @@ class Sage extends Component {
           onSubmit={values => dispatch(submitArrangement(values))}
           keys={keys}
           arrangementTypes={arrangementTypes.map(at => ({
-            key: at.doc._id, label: `${at.doc.name} (${at.doc.description})`,
+            key: at._id, label: `${at.name} (${at.description})`,
           }))}
           qualities={qualities.map(q => ({
-            key: q.doc._id, label: `${q.doc.name} (${q.doc.description})`,
+            key: q._id, label: `${q.name} (${q.description})`,
           }))}
         />
       </div>

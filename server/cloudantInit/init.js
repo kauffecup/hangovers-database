@@ -8,10 +8,12 @@ const albums = require('./albums.json');
 const albumFormats = require('./albumFormats.json');
 const concertTypes = require('./concertTypes.json');
 const concerts = require('./concerts.json');
-const designTypes = require('./designTypes.json');
+const designTypes = require('./_designTypes.json');
 
 const sageDB = new SageDB(config);
 
+// limit the number of promises we have out at a given time. helpful when
+// writing hundreds of documents to the database
 const CONCURRENCY = 3;
 
 sageDB.initialize(config).then(() =>

@@ -41,11 +41,9 @@ const getConcertTypeID = concertType =>
   `${CONCERT_TYPE_TYPE}_${concertType.name.toLowerCase().replace(/\s/g, '_')}`;
 
 module.exports = class SageDB {
-  constructor(config, init) {
-    if (!init) {
-      const c = cloudant({ account: config.username, password: config.password });
-      this._sageDB = Promise.promisifyAll(c.use('sage'));
-    }
+  constructor(config) {
+    const c = cloudant({ account: config.username, password: config.password });
+    this._sageDB = Promise.promisifyAll(c.use('sage'));
   }
 
   initialize(config) {
@@ -53,7 +51,7 @@ module.exports = class SageDB {
       const c = cloudant({ account: config.username, password: config.password });
       c.db.create('sage', (e) => {
         if (!e || (e && e.error === 'file_exists')) {
-          this._lifecycleDB = Promise.promisifyAll(c.use('sage'));
+          this._sageDB = Promise.promisifyAll(c.use('sage'));
           resolve();
         } else {
           console.error(e);

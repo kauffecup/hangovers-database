@@ -1,10 +1,14 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import AddArrangementForm from '../components/AddArrangementForm';
+import {
+  submitArrangement,
+} from '../actions';
 
-const Sage = () => (
-  // eslint-disable-next-line
+const Sage = ({ dispatch }) => (
   <div className="sage">
-    Hello World
+    <h1>Sage</h1>
+    <AddArrangementForm onSubmit={values => dispatch(submitArrangement(values))} />
   </div>
 );
 

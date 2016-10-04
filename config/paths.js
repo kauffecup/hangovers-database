@@ -32,6 +32,7 @@ module.exports = {
   appIndexJs: resolveApp('client/index.js'),
   appPackageJson: resolveApp('package.json'),
   appSrc: resolveApp('client'),
+  tempFileUpload: resolveApp('temp'),
   testsSetup: resolveApp('src/setupTests.js'),
   appNodeModules: resolveApp('node_modules'),
   ownNodeModules: resolveApp('node_modules'),

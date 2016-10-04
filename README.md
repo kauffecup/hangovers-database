@@ -8,6 +8,10 @@ welcome to Sage.
 
 - [Useful Links](#useful-links)
 - [Arrangement Info](#arrangement-info)
+  - [the Song](#the-song)
+  - [the Arrangement Itself](#the-arrangement-itself)
+  - [Performances, etc](#performances-etc)
+  - [Files and such](#files-and-such)
 - [Understanding, Configuring, and Building](#understanding-configuring-and-building)
   - [Install Dependencies](#install-dependencies)
   - [Build (and run) the Production Bundle](#build-and-run-the-production-bundle)
@@ -33,19 +37,31 @@ welcome to Sage.
 
 ## Arrangement Info
 
+### the Song
+
   - Song Title
   - Alternate Name
-  - Arranger(s)
   - Original Artist
   - When Written
-  - When Arranged
-  - When Performed
   - Genre
+
+### the Arrangement Itself
+
+  - Arranger(s)
+  - Key
+  - When Arranged
   - Quality of Arrangement (useable/needs work/bad)
   - Type (handwritten original, copy of handwritten, copy of electronic, electronic)
+  - Syllables (y/n)
+
+### Performances, etc
+
+  - When Performed
   - Concert
   - Albums Appeared On
-  - Syllables (y/n)
+
+### Files and such
+
   - PDF (link to file)
   - Finale (link to file)
   - Youtube (link to the tube)

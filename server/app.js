@@ -38,11 +38,18 @@ app.get('/initializeforms', (req, res) => {
     sageDB.getAlbumFormats(),
     sageDB.getQualities(),
     sageDB.getConcertTypes(),
-    (at, af, q, ct) => ({
+    // this is fine until there are more than 200 of these bad boys
+    sageDB.getSemesters(200),
+    sageDB.getAlbums(200),
+    sageDB.getConcerts(200),
+    (at, af, q, ct, s, a, c) => ({
       arrangementTypes: at,
       albumFormats: af,
       qualities: q,
       concertTypes: ct,
+      semesters: s,
+      albums: a,
+      concerts: c,
     })
   ).then((data) => {
     res.json(data);

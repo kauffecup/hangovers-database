@@ -23,15 +23,16 @@ sageDB.initialize(config).then(() =>
   // then all the semesters
   const semesterArray = [];
   for (let year = 1964; year <= 2020; year++) {
-    semesterArray.push({ year, type: 'fall' });
-    semesterArray.push({ year, type: 'spring' });
+    semesterArray.push({ year, semester_type: 'fall' });
+    semesterArray.push({ year, semester_type: 'spring' });
   }
   return Promise.map(
     semesterArray,
     semester => sageDB.upsertSemester(semester),
     { concurrency: CONCURRENCY }
   );
-}).then(() => Promise.map(
+})
+.then(() => Promise.map(
   // next the types
   arrangementTypes,
   at => sageDB.upsertArrangementType(at),

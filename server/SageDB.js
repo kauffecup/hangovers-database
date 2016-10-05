@@ -25,7 +25,7 @@ const getHangoverID = hangover =>
   `${HANGOVER_TYPE}_${hangover.lastName.toLowerCase().replace(/\s/g, '_')}_${hangover.firstName.toLowerCase().replace('.', '').replace(/\s/g, '_')}`;
 
 const getSemesterID = semester =>
-  `${SEMESTER_TYPE}_${semester.year}_${semester.type.toLowerCase()}`;
+  `${SEMESTER_TYPE}_${semester.year}_${semester.semester_type.toLowerCase()}`;
 
 const getAlbumID = album =>
   `${ALBUM_TYPE}_${album.name.toLowerCase().replace(/\s/g, '_')}`;
@@ -61,6 +61,10 @@ module.exports = class SageDB {
         }
       });
     });
+  }
+
+  addIndex(index) {
+    return this._sageDB.indexAsync(index);
   }
 
   getArrangements(limit, skip) {

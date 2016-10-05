@@ -30,7 +30,13 @@ class Sage extends Component {
 
   render() {
     const { dispatch, app } = this.props;
-    const { arrangementTypes: { rows: arrangementTypes }, qualities: { rows: qualities } } = app;
+    const {
+      arrangementTypes: { rows: arrangementTypes },
+      qualities: { rows: qualities },
+      semesters: { rows: semesters },
+      albums: { rows: albums },
+      concerts: { rows: concerts },
+    } = app;
     return (
       <div className="sage">
         <h1>Sage</h1>
@@ -38,10 +44,19 @@ class Sage extends Component {
           onSubmit={values => dispatch(submitArrangement(values))}
           keys={keys}
           arrangementTypes={arrangementTypes.map(at => ({
-            key: at._id, label: `${at.name} (${at.description})`,
+            value: at._id, label: `${at.name} (${at.description})`,
           }))}
           qualities={qualities.map(q => ({
-            key: q._id, label: `${q.name} (${q.description})`,
+            value: q._id, label: `${q.name} (${q.description})`,
+          }))}
+          semesters={semesters.map(s => ({
+            value: s._id, label: `${s.semester_type} ${s.year}`,
+          }))}
+          albums={albums.map(a => ({
+            value: a._id, label: `${a.name} (${a.year})`,
+          }))}
+          concerts={concerts.map(c => ({
+            value: c._id, label: `${c.name}`,
           }))}
         />
       </div>

@@ -15,7 +15,16 @@ SelectWrapper.propTypes = {
   input: PropTypes.object,
 };
 
-const AddArrangementForm = ({ handleSubmit, onSubmit, arrangementTypes, qualities, keys }) =>
+const AddArrangementForm = ({
+  handleSubmit,
+  onSubmit,
+  arrangementTypes,
+  qualities,
+  keys,
+  semesters,
+  albums,
+  concerts,
+}) =>
   <form onSubmit={handleSubmit(onSubmit)}>
     <h3>The Song</h3>
     <div>
@@ -49,7 +58,7 @@ const AddArrangementForm = ({ handleSubmit, onSubmit, arrangementTypes, qualitie
     </div>
     <div>
       <label htmlFor="whenArranged">When Arranged</label>
-      <Field name="whenArranged" component="input" type="text" />
+      <Field name="whenArranged" component={SelectWrapper} options={semesters} />
     </div>
     <div>
       <label htmlFor="type">Type</label>
@@ -69,15 +78,15 @@ const AddArrangementForm = ({ handleSubmit, onSubmit, arrangementTypes, qualitie
     <h3>Performances</h3>
     <div>
       <label htmlFor="whenPerformed">What Semester Performed</label>
-      <Field name="whenPerformed" component="input" type="text" />
+      <Field name="whenPerformed" component={SelectWrapper} options={semesters} multi />
     </div>
     <div>
       <label htmlFor="concerts">Concerts Performed In</label>
-      <Field name="concerts" component="input" type="text" />
+      <Field name="concerts" component={SelectWrapper} options={concerts} multi />
     </div>
     <div>
       <label htmlFor="albums">Albums Appeared On</label>
-      <Field name="albums" component="input" type="text" />
+      <Field name="albums" component={SelectWrapper} options={albums} multi />
     </div>
     <h3>Files and Such</h3>
     <div>
@@ -101,6 +110,9 @@ AddArrangementForm.propTypes = {
   arrangementTypes: PropTypes.array.isRequired,
   qualities: PropTypes.array.isRequired,
   keys: PropTypes.array.isRequired,
+  semesters: PropTypes.array.isRequired,
+  albums: PropTypes.array.isRequired,
+  concerts: PropTypes.array.isRequired,
 };
 
 export default reduxForm({

@@ -2,10 +2,10 @@ const Promise = require('bluebird');
 const express = require('express');
 const bodyParser = require('body-parser');
 const logger = require('morgan');
-const paths = require('../config/paths');
-const SageDB = require('./SageDB');
-const cloudantConfig = require('../config/cloudant.json');
 const multer = require('multer');
+const paths = require('../config/paths');
+const cloudantConfig = require('../config/cloudantConfig');
+const SageDB = require('./SageDB');
 
 const port = process.env.PORT || 3000;
 

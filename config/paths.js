@@ -33,6 +33,7 @@ module.exports = {
   appPackageJson: resolveApp('package.json'),
   appSrc: resolveApp('client'),
   tempFileUpload: resolveApp('temp'),
+  cloudantConfig: resolveApp('config/cloudant.json'),
   testsSetup: resolveApp('src/setupTests.js'),
   appNodeModules: resolveApp('node_modules'),
   ownNodeModules: resolveApp('node_modules'),

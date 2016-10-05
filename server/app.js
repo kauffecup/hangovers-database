@@ -55,7 +55,7 @@ app.get('/initializeforms', (req, res) => {
     res.json(data);
   }).catch((e) => {
     res.status(500);
-    res.error(e);
+    res.json(e);
   });
 });
 
@@ -67,6 +67,16 @@ app.post('/arrangementsubmit', upload.fields([
   console.log(req.body);
   console.log(req.files);
   res.json({});
+});
+
+/** GET: Let's get some hangovers */
+app.get('/search/hangovers', ({ query: { hangover } }, res) => {
+  sageDB.searchHangovers(hangover)
+    .then(hangovers => res.json(hangovers))
+    .catch((e) => {
+      res.status(500);
+      res.json(e);
+    });
 });
 
 /** Start her up, boys */

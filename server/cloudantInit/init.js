@@ -9,6 +9,7 @@ const albumFormats = require('./albumFormats.json');
 const concertTypes = require('./concertTypes.json');
 const concerts = require('./concerts.json');
 const designTypes = require('./_designTypes.json');
+const designSearch = require('./_designSearch');
 
 const sageDB = new SageDB(config);
 
@@ -17,8 +18,10 @@ const sageDB = new SageDB(config);
 const CONCURRENCY = 3;
 
 sageDB.initialize(config).then(() =>
-  // first we add our design doc
+  // first we add our design docs
   sageDB._upsert(designTypes)
+).then(() =>
+  sageDB._upsert(designSearch)
 ).then(() => {
   // then all the semesters
   const semesterArray = [];

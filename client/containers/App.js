@@ -4,6 +4,7 @@ import AddArrangementForm from '../components/AddArrangementForm';
 import {
   initializeForms,
   submitArrangement,
+  searchHangovers,
 } from '../actions';
 
 // TODO: move these to database?
@@ -43,6 +44,7 @@ class Sage extends Component {
         <AddArrangementForm
           onSubmit={values => dispatch(submitArrangement(values))}
           keys={keys}
+          hangoversLoadOptions={searchHangovers}
           arrangementTypes={arrangementTypes.map(at => ({
             value: at._id, label: `${at.name} (${at.description})`,
           }))}

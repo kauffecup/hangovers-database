@@ -59,6 +59,7 @@ welcome to Sage.
   - When Performed
   - Concert
   - Albums Appeared On
+  - Soloist(s)
 
 ### Files and such
 

@@ -113,6 +113,14 @@ module.exports = class SageDB {
     }));
   }
 
+  searchHangovers(text) {
+    return this._sageDB.searchAsync('search', 'hangovers', {
+      q: `nameString:(${text}*)`,
+      limit: 20,
+      include_docs: true,
+    }).then(response => response.rows.map(r => r.doc));
+  }
+
   upsertArrangement(arrangement) {
     return this._upsertType(arrangement, ARRANGEMENT_TYPE, getArrangementID(arrangement));
   }

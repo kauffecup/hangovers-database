@@ -11,13 +11,26 @@ const SelectWrapper = props =>
     onChange={props.input.onChange}
   />;
 
+const AsyncWrapper = props =>
+  <Select.Async
+    {...props}
+    onBlur={() => props.input.onBlur(props.input.value)}
+    value={props.input.value}
+    onChange={props.input.onChange}
+  />;
+
 SelectWrapper.propTypes = {
+  input: PropTypes.object,
+};
+
+AsyncWrapper.propTypes = {
   input: PropTypes.object,
 };
 
 const AddArrangementForm = ({
   handleSubmit,
   onSubmit,
+  hangoversLoadOptions,
   arrangementTypes,
   qualities,
   keys,
@@ -50,7 +63,7 @@ const AddArrangementForm = ({
     <h3>The Arrangement</h3>
     <div>
       <label htmlFor="arrangers">Arranger(s)</label>
-      <Field name="arrangers" component="input" type="text" />
+      <Field name="arrangers" component={AsyncWrapper} loadOptions={hangoversLoadOptions} multi />
     </div>
     <div>
       <label htmlFor="key">Key</label>
@@ -88,6 +101,10 @@ const AddArrangementForm = ({
       <label htmlFor="albums">Albums Appeared On</label>
       <Field name="albums" component={SelectWrapper} options={albums} multi />
     </div>
+    <div>
+      <label htmlFor="soloists">Soloist(s)</label>
+      <Field name="soloists" component={AsyncWrapper} loadOptions={hangoversLoadOptions} multi />
+    </div>
     <h3>Files and Such</h3>
     <div>
       <label htmlFor="youtube">Youtube Link</label>
@@ -107,6 +124,7 @@ const AddArrangementForm = ({
 AddArrangementForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
+  hangoversLoadOptions: PropTypes.func.isRequired,
   arrangementTypes: PropTypes.array.isRequired,
   qualities: PropTypes.array.isRequired,
   keys: PropTypes.array.isRequired,

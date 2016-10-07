@@ -17,12 +17,24 @@ const hangoverIndexer = function (doc) {
   }
 };
 
+const artistIndexer = function (doc) {
+  if (typeof doc.type === 'string' && doc.type === 'artist') {
+    if (typeof doc.name === 'string') {
+      index('name', doc.name);
+    }
+  }
+};
+
 const ddoc = {
   _id: '_design/search',
   indexes: {
     hangovers: {
       analyzer: 'standard',
       index: hangoverIndexer,
+    },
+    artists: {
+      analyzer: 'standard',
+      index: artistIndexer,
     },
   },
 };

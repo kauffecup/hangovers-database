@@ -5,6 +5,7 @@ import {
   initializeForms,
   submitArrangement,
   searchHangovers,
+  searchArtists,
 } from '../actions';
 
 // TODO: move these to database?
@@ -46,6 +47,7 @@ class Sage extends Component {
           onSubmit={values => dispatch(submitArrangement(values))}
           keys={keys}
           hangoversLoadOptions={searchHangovers}
+          artistsLoadOptions={searchArtists}
           arrangementTypes={arrangementTypes.map(at => ({
             value: at._id, label: `${at.name} (${at.description})`,
           }))}

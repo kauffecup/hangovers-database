@@ -30,6 +30,9 @@
     },
     "genres": {
       "map": "function (doc) {\n  if (doc.type === 'genre') {\n    emit(doc._id, 1); \n  }\n}"
+    },
+    "artists": {
+      "map": "function (doc) {\n  if (doc.type === 'artist') {\n    emit(doc._id, 1); \n  }\n}"
     }
   },
   "language": "javascript"

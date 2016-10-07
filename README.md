@@ -41,8 +41,8 @@ welcome to Sage.
 
   - Song Title
   - Alternate Name
-  - Original Artist
-  - When Written
+  - Original Artist(s)
+  - Year Released
   - Genre
 
 ### the Arrangement Itself
@@ -57,7 +57,7 @@ welcome to Sage.
 ### Performances, etc
 
   - Semester(s) Performed
-  - Concert(s)
+  - Concert(s) Featured In
   - Album(s) Appeared On
   - Soloist(s)
 

@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { Field, reduxForm } from 'redux-form';
-import Select from 'react-select';
+import Select, { AsyncCreatable, Async } from 'react-select';
 import normalizeFileList from '../normalizers/normalizeFileList';
 
 const SelectWrapper = props =>
@@ -12,7 +12,15 @@ const SelectWrapper = props =>
   />;
 
 const AsyncWrapper = props =>
-  <Select.Async
+  <Async
+    {...props}
+    onBlur={() => props.input.onBlur(props.input.value)}
+    value={props.input.value}
+    onChange={props.input.onChange}
+  />;
+
+const CreatableWrapper = props =>
+  <AsyncCreatable
     {...props}
     onBlur={() => props.input.onBlur(props.input.value)}
     value={props.input.value}
@@ -27,10 +35,15 @@ AsyncWrapper.propTypes = {
   input: PropTypes.object,
 };
 
+CreatableWrapper.propTypes = {
+  input: PropTypes.object,
+};
+
 const AddArrangementForm = ({
   handleSubmit,
   onSubmit,
   hangoversLoadOptions,
+  artistsLoadOptions,
   arrangementTypes,
   qualities,
   keys,
@@ -51,10 +64,10 @@ const AddArrangementForm = ({
     </div>
     <div>
       <label htmlFor="originalArtist">Original Artist(s)</label>
-      <Field name="originalArtist" component="input" type="text" />
+      <Field name="originalArtist" component={CreatableWrapper} loadOptions={artistsLoadOptions} multi />
     </div>
     <div>
-      <label htmlFor="whenWritten">What Year Written</label>
+      <label htmlFor="whenWritten">Year Released</label>
       <Field name="whenWritten" component="input" type="text" />
     </div>
     <div>
@@ -95,11 +108,11 @@ const AddArrangementForm = ({
       <Field name="whenPerformed" component={SelectWrapper} options={semesters} multi />
     </div>
     <div>
-      <label htmlFor="concerts">Concerts Performed In</label>
+      <label htmlFor="concerts">Concert(s) Featured In</label>
       <Field name="concerts" component={SelectWrapper} options={concerts} multi />
     </div>
     <div>
-      <label htmlFor="albums">Albums Appeared On</label>
+      <label htmlFor="albums">Album(s) Appeared On</label>
       <Field name="albums" component={SelectWrapper} options={albums} multi />
     </div>
     <div>
@@ -126,6 +139,7 @@ AddArrangementForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
   hangoversLoadOptions: PropTypes.func.isRequired,
+  artistsLoadOptions: PropTypes.func.isRequired,
   arrangementTypes: PropTypes.array.isRequired,
   qualities: PropTypes.array.isRequired,
   keys: PropTypes.array.isRequired,

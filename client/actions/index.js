@@ -22,6 +22,19 @@ export function searchHangovers(hangover) {
     }));
 }
 
+export function searchArtists(artist) {
+  if (!artist) {
+    return Promise.resolve({ options: [] });
+  }
+  return fetch(`/search/artists?${stringify({ artist: artist.trim() })}`)
+    .then(response => response.json())
+    .then(hangovers => ({
+      options: hangovers.map(a => ({
+        value: a._id, label: a.name,
+      })),
+    }));
+}
+
 export function initializeForms() {
   return (dispatch) => {
     dispatch({ type: INITIALIZE_FORMS });

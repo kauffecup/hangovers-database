@@ -8,6 +8,7 @@ const albums = require('./albums.json');
 const albumFormats = require('./albumFormats.json');
 const concertTypes = require('./concertTypes.json');
 const concerts = require('./concerts.json');
+const artists = require('./artists.json');
 const genres = require('./genres.json');
 const designTypes = require('./_designTypes.json');
 const designSearch = require('./_designSearch');
@@ -49,5 +50,7 @@ sageDB.initialize(config).then(() => sageDB._upsert(designTypes))
   .then(() => Promise.map(concertTypes, ct => sageDB.upsertConcertType(ct), opts))
   // some concerts
   .then(() => Promise.map(concerts, c => sageDB.upsertConcert(c), opts))
+  // a silly list of artists
+  .then(() => Promise.map(artists, a => sageDB.upsertArtist(a), opts))
   // lastly, genres.
   .then(() => Promise.map(genres, g => sageDB.upsertGenre(g), opts));

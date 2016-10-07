@@ -81,6 +81,16 @@ app.get('/search/hangovers', ({ query: { hangover } }, res) => {
     });
 });
 
+/** GET: Let's get some artists */
+app.get('/search/artists', ({ query: { artist } }, res) => {
+  sageDB.searchArtists(artist)
+    .then(artists => res.json(artists))
+    .catch((e) => {
+      res.status(500);
+      res.json(e);
+    });
+});
+
 /** Start her up, boys */
 app.listen(app.get('port'), () => {
   console.log(`Express server listening on port ${app.get('port')}`);

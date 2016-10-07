@@ -6,46 +6,14 @@ import {
 
 const initialState = {
   initialLoading: false,
-  arrangementTypes: {
-    total_rows: 0,
-    offset: 0,
-    rows: [],
-  },
-  albumFormats: {
-    total_rows: 0,
-    offset: 0,
-    rows: [],
-  },
-  qualities: {
-    total_rows: 0,
-    offset: 0,
-    rows: [],
-  },
-  concertTypes: {
-    total_rows: 0,
-    offset: 0,
-    rows: [],
-  },
-  semesters: {
-    total_rows: 0,
-    offset: 0,
-    rows: [],
-  },
-  albums: {
-    total_rows: 0,
-    offset: 0,
-    rows: [],
-  },
-  concerts: {
-    total_rows: 0,
-    offset: 0,
-    rows: [],
-  },
-  genres: {
-    total_rows: 0,
-    offset: 0,
-    rows: [],
-  },
+  arrangementTypes: [],
+  albumFormats: [],
+  qualities: [],
+  concertTypes: [],
+  semesters: [],
+  albums: [],
+  concerts: [],
+  genres: [],
 };
 
 export default function reduce(state = initialState, action) {
@@ -58,14 +26,14 @@ export default function reduce(state = initialState, action) {
     case INITIALIZE_FORMS_SUCCESS:
       return Object.assign({}, state, {
         initialLoading: false,
-        arrangementTypes: Object.assign({}, state.arrangementTypes, action.data.arrangementTypes),
-        albumFormats: Object.assign({}, state.albumFormats, action.data.albumFormats),
-        qualities: Object.assign({}, state.qualities, action.data.qualities),
-        concertTypes: Object.assign({}, state.concertTypes, action.data.concertTypes),
-        semesters: Object.assign({}, state.semesters, action.data.semesters),
-        albums: Object.assign({}, state.albums, action.data.albums),
-        concerts: Object.assign({}, state.concerts, action.data.concerts),
-        genres: Object.assign({}, state.genres, action.data.genres),
+        arrangementTypes: action.data.arrangementTypes.rows,
+        albumFormats: action.data.albumFormats.rows,
+        qualities: action.data.qualities.rows,
+        concertTypes: action.data.concertTypes.rows,
+        semesters: action.data.semesters.rows,
+        albums: action.data.albums.rows,
+        concerts: action.data.concerts.rows,
+        genres: action.data.genres.rows,
       });
 
     case INITIALIZE_FORMS_FAILURE:

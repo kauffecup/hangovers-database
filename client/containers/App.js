@@ -32,14 +32,7 @@ class Sage extends Component {
 
   render() {
     const { dispatch, app } = this.props;
-    const {
-      arrangementTypes: { rows: arrangementTypes },
-      qualities: { rows: qualities },
-      semesters: { rows: semesters },
-      albums: { rows: albums },
-      concerts: { rows: concerts },
-      genres: { rows: genres },
-    } = app;
+    const { arrangementTypes, qualities, semesters, albums, concerts, genres } = app;
     return (
       <div className="sage">
         <h1>Sage</h1>

@@ -37,6 +37,7 @@ class Sage extends Component {
       semesters: { rows: semesters },
       albums: { rows: albums },
       concerts: { rows: concerts },
+      genres: { rows: genres },
     } = app;
     return (
       <div className="sage">
@@ -59,6 +60,9 @@ class Sage extends Component {
           }))}
           concerts={concerts.map(c => ({
             value: c._id, label: `${c.name}`,
+          }))}
+          genres={genres.map(g => ({
+            value: g._id, label: `${g.name}`,
           }))}
         />
       </div>

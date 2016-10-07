@@ -34,15 +34,16 @@ app.use(express.static(paths.appBuild));
 /** GET: get the initial data necessary for form stuff */
 app.get('/initializeforms', (req, res) => {
   Promise.join(
-    sageDB.getArrangementTypes(),
-    sageDB.getAlbumFormats(),
-    sageDB.getQualities(),
-    sageDB.getConcertTypes(),
     // this is fine until there are more than 200 of these bad boys
+    sageDB.getArrangementTypes(200),
+    sageDB.getAlbumFormats(200),
+    sageDB.getQualities(200),
+    sageDB.getConcertTypes(200),
     sageDB.getSemesters(200),
     sageDB.getAlbums(200),
     sageDB.getConcerts(200),
-    (at, af, q, ct, s, a, c) => ({
+    sageDB.getGenres(200),
+    (at, af, q, ct, s, a, c, g) => ({
       arrangementTypes: at,
       albumFormats: af,
       qualities: q,
@@ -50,6 +51,7 @@ app.get('/initializeforms', (req, res) => {
       semesters: s,
       albums: a,
       concerts: c,
+      genres: g,
     })
   ).then((data) => {
     res.json(data);

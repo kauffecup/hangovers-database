@@ -7,6 +7,7 @@ const HANGOVER_TYPE = 'hangover';
 const SEMESTER_TYPE = 'semester';
 const ALBUM_TYPE = 'album';
 const CONCERT_TYPE = 'concert';
+const GENRE_TYPE = 'genre';
 // essentially enums
 const ARRANGEMENT_TYPE_TYPE = 'arrangement_type';
 const QUALITY_TYPE = 'quality';
@@ -41,6 +42,9 @@ const getConcertID = concert =>
 
 const getConcertTypeID = concertType =>
   `${CONCERT_TYPE_TYPE}_${concertType.name.toLowerCase().replace(/\s/g, '_')}`;
+
+const getGenreID = genre =>
+  `${GENRE_TYPE}_${genre.name.toLowerCase().replace(/\s/g, '_')}`;
 
 module.exports = class SageDB {
   constructor(config) {
@@ -103,6 +107,10 @@ module.exports = class SageDB {
     return this._view('concert_types', limit, skip);
   }
 
+  getGenres(limit, skip) {
+    return this._view('genres', limit, skip);
+  }
+
   _view(type, limit = LIMIT, skip = 0) {
     return this._sageDB.viewAsync('types', type, {
       include_docs: true,
@@ -155,6 +163,10 @@ module.exports = class SageDB {
 
   upsertConcertType(concertType) {
     return this._upsertType(concertType, CONCERT_TYPE_TYPE, getConcertTypeID(concertType));
+  }
+
+  upsertGenre(genre) {
+    return this._upsertType(genre, GENRE_TYPE, getGenreID(genre));
   }
 
   _upsertType(doc, type, _id) {

@@ -27,6 +27,9 @@
     },
     "qualities": {
       "map": "function (doc) {\n  if (doc.type === 'quality') {\n    emit(doc._id, 1); \n  }\n}"
+    },
+    "genres": {
+      "map": "function (doc) {\n  if (doc.type === 'genre') {\n    emit(doc._id, 1); \n  }\n}"
     }
   },
   "language": "javascript"

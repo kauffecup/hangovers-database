@@ -37,6 +37,7 @@ const AddArrangementForm = ({
   semesters,
   albums,
   concerts,
+  genres,
 }) =>
   <form onSubmit={handleSubmit(onSubmit)}>
     <h3>The Song</h3>
@@ -53,12 +54,12 @@ const AddArrangementForm = ({
       <Field name="originalArtist" component="input" type="text" />
     </div>
     <div>
-      <label htmlFor="whenWritten">When Written</label>
+      <label htmlFor="whenWritten">What Year Written</label>
       <Field name="whenWritten" component="input" type="text" />
     </div>
     <div>
       <label htmlFor="genre">Genre</label>
-      <Field name="genre" component="input" type="text" />
+      <Field name="genre" component={SelectWrapper} options={genres} />
     </div>
     <h3>The Arrangement</h3>
     <div>
@@ -90,7 +91,7 @@ const AddArrangementForm = ({
     </div>
     <h3>Performances</h3>
     <div>
-      <label htmlFor="whenPerformed">What Semester Performed</label>
+      <label htmlFor="whenPerformed">Semester(s) Performed</label>
       <Field name="whenPerformed" component={SelectWrapper} options={semesters} multi />
     </div>
     <div>
@@ -131,6 +132,7 @@ AddArrangementForm.propTypes = {
   semesters: PropTypes.array.isRequired,
   albums: PropTypes.array.isRequired,
   concerts: PropTypes.array.isRequired,
+  genres: PropTypes.array.isRequired,
 };
 
 export default reduxForm({

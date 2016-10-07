@@ -41,6 +41,11 @@ const initialState = {
     offset: 0,
     rows: [],
   },
+  genres: {
+    total_rows: 0,
+    offset: 0,
+    rows: [],
+  },
 };
 
 export default function reduce(state = initialState, action) {
@@ -60,6 +65,7 @@ export default function reduce(state = initialState, action) {
         semesters: Object.assign({}, state.semesters, action.data.semesters),
         albums: Object.assign({}, state.albums, action.data.albums),
         concerts: Object.assign({}, state.concerts, action.data.concerts),
+        genres: Object.assign({}, state.genres, action.data.genres),
       });
 
     case INITIALIZE_FORMS_FAILURE:

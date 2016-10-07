@@ -56,9 +56,9 @@ welcome to Sage.
 
 ### Performances, etc
 
-  - When Performed
-  - Concert
-  - Albums Appeared On
+  - Semester(s) Performed
+  - Concert(s)
+  - Album(s) Appeared On
   - Soloist(s)
 
 ### Files and such

@@ -8,22 +8,6 @@ import {
   searchArtists,
 } from '../actions';
 
-// TODO: move these to database?
-const keys = [
-  { key: 'key_a', label: 'A' },
-  { key: 'key_b_b', label: 'Bb' },
-  { key: 'key_b', label: 'B' },
-  { key: 'key_c', label: 'C' },
-  { key: 'key_c_#', label: 'C#' },
-  { key: 'key_d', label: 'D' },
-  { key: 'key_e_b', label: 'Eb' },
-  { key: 'key_e', label: 'E' },
-  { key: 'key_f', label: 'F' },
-  { key: 'key_f_#', label: 'F#' },
-  { key: 'key_g', label: 'G' },
-  { key: 'key_a_b', label: 'Ab' },
-];
-
 class Sage extends Component {
   componentDidMount() {
     const { dispatch } = this.props;
@@ -32,13 +16,12 @@ class Sage extends Component {
 
   render() {
     const { dispatch, app } = this.props;
-    const { arrangementTypes, qualities, semesters, albums, concerts, genres } = app;
+    const { arrangementTypes, qualities, semesters, albums, concerts, genres, keys } = app;
     return (
       <div className="sage">
         <h1>Sage</h1>
         <AddArrangementForm
           onSubmit={values => dispatch(submitArrangement(values))}
-          keys={keys}
           hangoversLoadOptions={searchHangovers}
           artistsLoadOptions={searchArtists}
           arrangementTypes={arrangementTypes.map(at => ({
@@ -58,6 +41,9 @@ class Sage extends Component {
           }))}
           genres={genres.map(g => ({
             value: g._id, label: `${g.name}`,
+          }))}
+          keys={keys.map(k => ({
+            value: k._id, label: k.name,
           }))}
         />
       </div>

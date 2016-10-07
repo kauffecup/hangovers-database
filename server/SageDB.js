@@ -14,6 +14,7 @@ const ARRANGEMENT_TYPE_TYPE = 'arrangement_type';
 const QUALITY_TYPE = 'quality';
 const ALBUM_FORMAT_TYPE = 'album_format';
 const CONCERT_TYPE_TYPE = 'concert_type';
+const KEY_TYPE = 'key';
 
 const LIMIT = 20;
 
@@ -49,6 +50,9 @@ const getGenreID = genre =>
 
 const getArtistID = artist =>
   `${ARTIST_TYPE}_${artist.name.toLowerCase().replace(/\s/g, '_')}`;
+
+const getKeyID = key =>
+  `${KEY_TYPE}_${key.name.toLowerCase().replace(/\s/g, '_')}`;
 
 module.exports = class SageDB {
   constructor(config) {
@@ -119,6 +123,10 @@ module.exports = class SageDB {
     return this._view('artists', limit, skip);
   }
 
+  getKeys(limit, skip) {
+    return this._view('keys', limit, skip);
+  }
+
   _view(type, limit = LIMIT, skip = 0) {
     return this._sageDB.viewAsync('types', type, {
       include_docs: true,
@@ -187,6 +195,10 @@ module.exports = class SageDB {
 
   upsertArtist(artist) {
     return this._upsertType(artist, ARTIST_TYPE, getArtistID(artist));
+  }
+
+  upsertKey(key) {
+    return this._upsertType(key, KEY_TYPE, getKeyID(key));
   }
 
   _upsertType(doc, type, _id) {

@@ -43,7 +43,8 @@ app.get('/initializeforms', (req, res) => {
     sageDB.getAlbums(200),
     sageDB.getConcerts(200),
     sageDB.getGenres(200),
-    (at, af, q, ct, s, a, c, g) => ({
+    sageDB.getKeys(200),
+    (at, af, q, ct, s, a, c, g, k) => ({
       arrangementTypes: at,
       albumFormats: af,
       qualities: q,
@@ -52,6 +53,7 @@ app.get('/initializeforms', (req, res) => {
       albums: a,
       concerts: c,
       genres: g,
+      keys: k,
     })
   ).then((data) => {
     res.json(data);

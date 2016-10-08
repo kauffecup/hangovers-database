@@ -4,70 +4,55 @@ import Select, { AsyncCreatable, Async } from 'react-select';
 import normalizeFileList from '../normalizers/normalizeFileList';
 import validate from '../normalizers/validate';
 
-const RenderField = ({ input, label, type, name, meta: { touched, error } }) => // eslint-disable-line
+const _RenderField = ({ input, label, type }) =>
+  <input {...input} placeholder={label} type={type} />;
+
+const _RenderBinary = ({ name }) =>
   <div>
-    <label htmlFor={name}>{label}</label>
-    <input {...input} placeholder={label} type={type} />
-    {touched && error && <span>{error}</span>}
+    <label htmlFor={name}><Field name={name} component="input" type="radio" value="yes" />Yes</label>
+    <label htmlFor={name}><Field name={name} component="input" type="radio" value="no" />No</label>
   </div>;
 
-const RenderBinary = ({ input, label, type, name, meta: { touched, error } }) => // eslint-disable-line
-  <div>
-    <label htmlFor={name}>{label}</label>
-    <div>
-      <label htmlFor={name}><Field name={name} component="input" type="radio" value="yes" />Yes</label>
-      <label htmlFor={name}><Field name={name} component="input" type="radio" value="no" />No</label>
-    </div>
-    {touched && error && <span>{error}</span>}
-  </div>;
+const _RenderSelect = props =>
+  <Select
+    {...props}
+    onBlur={() => props.input.onBlur(props.input.value)}
+    value={props.input.value}
+    onChange={props.input.onChange}
+  />;
 
-const RenderSelect = (props) => {
-  const { input, label, type, name, meta: { touched, error } } = props; // eslint-disable-line
+const _RenderAsync = props =>
+  <Async
+    {...props}
+    onBlur={() => props.input.onBlur(props.input.value)}
+    value={props.input.value}
+    onChange={props.input.onChange}
+  />;
+
+const _RenderCreatableAsync = props =>
+  <AsyncCreatable
+    {...props}
+    onBlur={() => props.input.onBlur(props.input.value)}
+    value={props.input.value}
+    onChange={props.input.onChange}
+  />;
+
+const _Render = Component => (props) => {
+  const { label, type, name, meta: { touched, error } } = props; // eslint-disable-line
   return (
     <div>
       <label htmlFor={name}>{label}</label>
-      <Select
-        {...props}
-        onBlur={() => input.onBlur(input.value)}
-        value={input.value}
-        onChange={input.onChange}
-      />
-      {touched && error && <span>{error}</span>}
+      <Component {...props} />
+      {touched && error && <div>{error}</div>}
     </div>
   );
 };
 
-const RenderAsync = (props) => {
-  const { input, label, type, name, meta: { touched, error } } = props; // eslint-disable-line
-  return (
-    <div>
-      <label htmlFor={name}>{label}</label>
-      <Async
-        {...props}
-        onBlur={() => input.onBlur(input.value)}
-        value={input.value}
-        onChange={input.onChange}
-      />
-      {touched && error && <span>{error}</span>}
-    </div>
-  );
-};
-
-const RenderCreatableAsync = (props) => {
-  const { input, label, type, name, meta: { touched, error } } = props; // eslint-disable-line
-  return (
-    <div>
-      <label htmlFor={name}>{label}</label>
-      <AsyncCreatable
-        {...props}
-        onBlur={() => input.onBlur(input.value)}
-        value={input.value}
-        onChange={input.onChange}
-      />
-      {touched && error && <span>{error}</span>}
-    </div>
-  );
-};
+const RenderField = _Render(_RenderField);
+const RenderBinary = _Render(_RenderBinary);
+const RenderSelect = _Render(_RenderSelect);
+const RenderAsync = _Render(_RenderAsync);
+const RenderCreatableAsync = _Render(_RenderCreatableAsync);
 
 const AddArrangementForm = ({
   handleSubmit,
@@ -120,6 +105,28 @@ AddArrangementForm.propTypes = {
   albums: PropTypes.array.isRequired,
   concerts: PropTypes.array.isRequired,
   genres: PropTypes.array.isRequired,
+};
+
+_RenderField.propTypes = {
+  input: PropTypes.object.isRequired,
+  label: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+};
+
+_RenderBinary.propTypes = {
+  name: PropTypes.string.isRequired,
+};
+
+_RenderSelect.propTypes = {
+  input: PropTypes.object.isRequired,
+};
+
+_RenderAsync.propTypes = {
+  input: PropTypes.object.isRequired,
+};
+
+_RenderCreatableAsync.propTypes = {
+  input: PropTypes.object.isRequired,
 };
 
 export default reduxForm({

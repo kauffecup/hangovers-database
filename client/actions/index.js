@@ -1,4 +1,5 @@
 import { stringify } from 'query-string';
+import { hangoverAdapter, artistAdapter } from '../normalizers/normalizeFormData';
 
 export const ARRANGEMENT_FORM = 'addArrangement';
 
@@ -15,11 +16,7 @@ export function searchHangovers(hangover) {
   }
   return fetch(`/search/hangovers?${stringify({ hangover: hangover.trim() })}`)
     .then(response => response.json())
-    .then(hangovers => ({
-      options: hangovers.map(h => ({
-        value: h._id, label: `${h.firstName} ${h.lastName}`,
-      })),
-    }));
+    .then(hangovers => ({ options: hangovers.map(hangoverAdapter) }));
 }
 
 export function searchArtists(artist) {
@@ -28,11 +25,7 @@ export function searchArtists(artist) {
   }
   return fetch(`/search/artists?${stringify({ artist: artist.trim() })}`)
     .then(response => response.json())
-    .then(hangovers => ({
-      options: hangovers.map(a => ({
-        value: a._id, label: a.name,
-      })),
-    }));
+    .then(hangovers => ({ options: hangovers.map(artistAdapter) }));
 }
 
 export function initializeForms() {

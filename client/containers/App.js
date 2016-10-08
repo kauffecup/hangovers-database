@@ -2,6 +2,15 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import AddArrangementForm from '../components/AddArrangementForm';
 import {
+  arrangementAdapter,
+  qualityAdapter,
+  semesterAdapter,
+  albumAdapter,
+  concertAdapter,
+  genreAdapter,
+  keyAdapter,
+} from '../normalizers/normalizeFormData';
+import {
   initializeForms,
   submitArrangement,
   searchHangovers,
@@ -24,27 +33,13 @@ class Sage extends Component {
           onSubmit={values => dispatch(submitArrangement(values))}
           hangoversLoadOptions={searchHangovers}
           artistsLoadOptions={searchArtists}
-          arrangementTypes={arrangementTypes.map(at => ({
-            value: at._id, label: `${at.name} (${at.description})`,
-          }))}
-          qualities={qualities.map(q => ({
-            value: q._id, label: `${q.name} (${q.description})`,
-          }))}
-          semesters={semesters.map(s => ({
-            value: s._id, label: `${s.semester_type} ${s.year}`,
-          }))}
-          albums={albums.map(a => ({
-            value: a._id, label: `${a.name} (${a.year})`,
-          }))}
-          concerts={concerts.map(c => ({
-            value: c._id, label: `${c.name}`,
-          }))}
-          genres={genres.map(g => ({
-            value: g._id, label: `${g.name}`,
-          }))}
-          keys={keys.map(k => ({
-            value: k._id, label: k.name,
-          }))}
+          arrangementTypes={arrangementTypes.map(arrangementAdapter)}
+          qualities={qualities.map(qualityAdapter)}
+          semesters={semesters.map(semesterAdapter)}
+          albums={albums.map(albumAdapter)}
+          concerts={concerts.map(concertAdapter)}
+          genres={genres.map(genreAdapter)}
+          keys={keys.map(keyAdapter)}
         />
       </div>
     );

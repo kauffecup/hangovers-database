@@ -2,41 +2,71 @@ import React, { PropTypes } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import Select, { AsyncCreatable, Async } from 'react-select';
 import normalizeFileList from '../normalizers/normalizeFileList';
+import validate from '../normalizers/validate';
 
-const SelectWrapper = props =>
-  <Select
-    {...props}
-    onBlur={() => props.input.onBlur(props.input.value)}
-    value={props.input.value}
-    onChange={props.input.onChange}
-  />;
+const RenderField = ({ input, label, type, name, meta: { touched, error } }) => // eslint-disable-line
+  <div>
+    <label htmlFor={name}>{label}</label>
+    <input {...input} placeholder={label} type={type} />
+    {touched && error && <span>{error}</span>}
+  </div>;
 
-const AsyncWrapper = props =>
-  <Async
-    {...props}
-    onBlur={() => props.input.onBlur(props.input.value)}
-    value={props.input.value}
-    onChange={props.input.onChange}
-  />;
+const RenderBinary = ({ input, label, type, name, meta: { touched, error } }) => // eslint-disable-line
+  <div>
+    <label htmlFor={name}>{label}</label>
+    <div>
+      <label htmlFor={name}><Field name={name} component="input" type="radio" value="yes" />Yes</label>
+      <label htmlFor={name}><Field name={name} component="input" type="radio" value="no" />No</label>
+    </div>
+    {touched && error && <span>{error}</span>}
+  </div>;
 
-const CreatableWrapper = props =>
-  <AsyncCreatable
-    {...props}
-    onBlur={() => props.input.onBlur(props.input.value)}
-    value={props.input.value}
-    onChange={props.input.onChange}
-  />;
-
-SelectWrapper.propTypes = {
-  input: PropTypes.object,
+const RenderSelect = (props) => {
+  const { input, label, type, name, meta: { touched, error } } = props; // eslint-disable-line
+  return (
+    <div>
+      <label htmlFor={name}>{label}</label>
+      <Select
+        {...props}
+        onBlur={() => input.onBlur(input.value)}
+        value={input.value}
+        onChange={input.onChange}
+      />
+      {touched && error && <span>{error}</span>}
+    </div>
+  );
 };
 
-AsyncWrapper.propTypes = {
-  input: PropTypes.object,
+const RenderAsync = (props) => {
+  const { input, label, type, name, meta: { touched, error } } = props; // eslint-disable-line
+  return (
+    <div>
+      <label htmlFor={name}>{label}</label>
+      <Async
+        {...props}
+        onBlur={() => input.onBlur(input.value)}
+        value={input.value}
+        onChange={input.onChange}
+      />
+      {touched && error && <span>{error}</span>}
+    </div>
+  );
 };
 
-CreatableWrapper.propTypes = {
-  input: PropTypes.object,
+const RenderCreatableAsync = (props) => {
+  const { input, label, type, name, meta: { touched, error } } = props; // eslint-disable-line
+  return (
+    <div>
+      <label htmlFor={name}>{label}</label>
+      <AsyncCreatable
+        {...props}
+        onBlur={() => input.onBlur(input.value)}
+        value={input.value}
+        onChange={input.onChange}
+      />
+      {touched && error && <span>{error}</span>}
+    </div>
+  );
 };
 
 const AddArrangementForm = ({
@@ -54,84 +84,27 @@ const AddArrangementForm = ({
 }) =>
   <form onSubmit={handleSubmit(onSubmit)}>
     <h3>The Song</h3>
-    <div>
-      <label htmlFor="arrangementName">Name</label>
-      <Field name="arrangementName" component="input" type="text" />
-    </div>
-    <div>
-      <label htmlFor="alternateName">Alternate Name</label>
-      <Field name="alternateName" component="input" type="text" />
-    </div>
-    <div>
-      <label htmlFor="originalArtist">Original Artist(s)</label>
-      <Field name="originalArtist" component={CreatableWrapper} loadOptions={artistsLoadOptions} multi />
-    </div>
-    <div>
-      <label htmlFor="whenWritten">Year Released</label>
-      <Field name="whenWritten" component="input" type="text" />
-    </div>
-    <div>
-      <label htmlFor="genre">Genre</label>
-      <Field name="genre" component={SelectWrapper} options={genres} />
-    </div>
+    <Field label="Name" name="arrangementName" component={RenderField} type="text" />
+    <Field label="Alternate Name" name="alternateName" component={RenderField} type="text" />
+    <Field label="Original Artist(s)" name="originalArtist" component={RenderCreatableAsync} loadOptions={artistsLoadOptions} multi />
+    <Field label="Year Released" name="whenWritten" component={RenderField} type="text" />
+    <Field label="Genre" name="genre" component={RenderSelect} options={genres} />
     <h3>The Arrangement</h3>
-    <div>
-      <label htmlFor="arrangers">Arranger(s)</label>
-      <Field name="arrangers" component={AsyncWrapper} loadOptions={hangoversLoadOptions} multi />
-    </div>
-    <div>
-      <label htmlFor="key">Key</label>
-      <Field name="key" component={SelectWrapper} options={keys} />
-    </div>
-    <div>
-      <label htmlFor="whenArranged">When Arranged</label>
-      <Field name="whenArranged" component={SelectWrapper} options={semesters} />
-    </div>
-    <div>
-      <label htmlFor="type">Type</label>
-      <Field name="type" component={SelectWrapper} options={arrangementTypes} />
-    </div>
-    <div>
-      <label htmlFor="quality">Quality of Arrangement</label>
-      <Field name="quality" component={SelectWrapper} options={qualities} />
-    </div>
-    <div>
-      <label htmlFor="syllables">Syllables</label>
-      <div>
-        <label htmlFor="syllables"><Field name="syllables" component="input" type="radio" value="yes" />Yes</label>
-        <label htmlFor="syllables"><Field name="syllables" component="input" type="radio" value="no" />No</label>
-      </div>
-    </div>
+    <Field label="Arranger(s)" name="arrangers" component={RenderAsync} loadOptions={hangoversLoadOptions} multi />
+    <Field label="Key" name="key" component={RenderSelect} options={keys} />
+    <Field label="When Arranged" name="whenArranged" component={RenderSelect} options={semesters} />
+    <Field label="Type" name="type" component={RenderSelect} options={arrangementTypes} />
+    <Field label="Quality of Arrangement" name="quality" component={RenderSelect} options={qualities} />
+    <Field label="Syllables" name="syllables" component={RenderBinary} />
     <h3>Performances</h3>
-    <div>
-      <label htmlFor="whenPerformed">Semester(s) Performed</label>
-      <Field name="whenPerformed" component={SelectWrapper} options={semesters} multi />
-    </div>
-    <div>
-      <label htmlFor="concerts">Concert(s) Featured In</label>
-      <Field name="concerts" component={SelectWrapper} options={concerts} multi />
-    </div>
-    <div>
-      <label htmlFor="albums">Album(s) Appeared On</label>
-      <Field name="albums" component={SelectWrapper} options={albums} multi />
-    </div>
-    <div>
-      <label htmlFor="soloists">Soloist(s)</label>
-      <Field name="soloists" component={AsyncWrapper} loadOptions={hangoversLoadOptions} multi />
-    </div>
+    <Field label="Semester(s) Performed" name="whenPerformed" component={RenderSelect} options={semesters} multi />
+    <Field label="Concert(s) Featured In" name="concerts" component={RenderSelect} options={concerts} multi />
+    <Field label="Album(s) Appeared On" name="albums" component={RenderSelect} options={albums} multi />
+    <Field label="Soloist(s)" name="soloists" component={RenderAsync} loadOptions={hangoversLoadOptions} multi />
     <h3>Files and Such</h3>
-    <div>
-      <label htmlFor="youtube">Youtube Link</label>
-      <Field name="youtube" component="input" type="text" />
-    </div>
-    <div>
-      <label htmlFor="pdf">PDF</label>
-      <Field name="pdf" component="input" type="file" normalize={normalizeFileList} />
-    </div>
-    <div>
-      <label htmlFor="finale">Finale</label>
-      <Field name="finale" component="input" type="file" normalize={normalizeFileList} />
-    </div>
+    <Field label="Youtube Link" name="youtube" component={RenderField} type="text" />
+    <Field label="PDF" name="pdf" component={RenderField} type="file" normalize={normalizeFileList} />
+    <Field label="Finale" name="finale" component={RenderField} type="file" normalize={normalizeFileList} />
     <button type="submit">Submit</button>
   </form>;
 
@@ -151,4 +124,5 @@ AddArrangementForm.propTypes = {
 
 export default reduxForm({
   form: 'addArrangement',
+  validate,
 })(AddArrangementForm);

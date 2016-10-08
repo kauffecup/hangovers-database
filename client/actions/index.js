@@ -1,5 +1,5 @@
 import { stringify } from 'query-string';
-import { hangoverAdapter, artistAdapter } from '../normalizers/normalizeFormData';
+import { hangoverAdapter, artistAdapter } from '../normalizers/adaptFormData';
 
 export const ARRANGEMENT_FORM = 'addArrangement';
 

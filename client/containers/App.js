@@ -9,7 +9,7 @@ import {
   concertAdapter,
   genreAdapter,
   keyAdapter,
-} from '../normalizers/normalizeFormData';
+} from '../normalizers/adaptFormData';
 import {
   initializeForms,
   submitArrangement,

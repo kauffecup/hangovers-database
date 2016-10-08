@@ -36,6 +36,10 @@ export default (values) => {
     errors.arrangers = REQUIRED_ERROR;
   }
 
+  if (!values.key) {
+    errors.key = REQUIRED_ERROR;
+  }
+
   if (!values.type) {
     errors.type = REQUIRED_ERROR;
   }
@@ -52,7 +56,7 @@ export default (values) => {
     errors.youtube = 'Enter a valid YouTube url';
   }
 
-  if (!values.pdf) {
+  if (!values.pdf || !values.pdf.length) {
     errors.pdf = REQUIRED_ERROR;
   }
 

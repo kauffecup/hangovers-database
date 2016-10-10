@@ -7,6 +7,7 @@ import RenderField from './RenderField';
 import RenderBinary from './RenderBinary';
 import RenderSelect from './RenderSelect';
 import RenderAsync from './RenderAsync';
+import Button from './Button';
 
 const AddArrangementForm = ({
   handleSubmit,
@@ -44,7 +45,7 @@ const AddArrangementForm = ({
     <Field label="Youtube Link" name="youtube" component={RenderField} type="text" />
     <Field label="PDF" name="pdf" component={RenderField} type="file" normalize={normalizeFileList} />
     <Field label="Finale" name="finale" component={RenderField} type="file" normalize={normalizeFileList} />
-    <button type="submit">Submit</button>
+    <Button type="submit" text="Submit" />
   </form>;
 
 AddArrangementForm.propTypes = {

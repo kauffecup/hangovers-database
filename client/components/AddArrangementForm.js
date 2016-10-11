@@ -8,6 +8,7 @@ import RenderField from './RenderField';
 import RenderBinary from './RenderBinary';
 import RenderSelect from './RenderSelect';
 import RenderAsync from './RenderAsync';
+import RenderDropzone from './RenderDropzone';
 import Button from './Button';
 
 const AddArrangementForm = ({
@@ -52,8 +53,8 @@ const AddArrangementForm = ({
     <Field label="Soloist(s)" name="soloists" component={RenderAsync} loadOptions={hangoversLoadOptions} multi />
     <h3>Files and Such</h3>
     <div className={css(styles['double-row'])}>
-      <Field label="PDF" name="pdf" component={RenderField} type="file" normalize={normalizeFileList} styles={styles['double-row-child']} />
-      <Field label="Finale" name="finale" component={RenderField} type="file" normalize={normalizeFileList} styles={styles['double-row-child']} />
+      <Field label="PDF" name="pdf" component={RenderDropzone} normalize={normalizeFileList} styles={styles['double-row-child']} />
+      <Field label="Finale" name="finale" component={RenderDropzone} normalize={normalizeFileList} styles={styles['double-row-child']} />
     </div>
     <Field label="Youtube Link" name="youtube" component={RenderField} type="text" />
     <Field label="Spotify Link" name="spotifyLink" component={RenderField} type="text" />

@@ -24,13 +24,13 @@ class Sage extends Component {
   }
 
   render() {
-    const { dispatch, app } = this.props;
+    const { app } = this.props;
     const { arrangementTypes, qualities, semesters, albums, concerts, genres, keys } = app;
     return (
       <div className="sage">
         <h1>Sage</h1>
         <AddArrangementForm
-          onSubmit={values => dispatch(submitArrangement(values))}
+          onSubmit={values => submitArrangement(values)}
           hangoversLoadOptions={searchHangovers}
           artistsLoadOptions={searchArtists}
           arrangementTypes={arrangementTypes.map(arrangementAdapter)}

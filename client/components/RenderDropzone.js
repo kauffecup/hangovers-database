@@ -8,29 +8,26 @@ const _RenderDropzone = (props) => {
   const text = hasFile ? `To replace ${props.input.value.name}, drop a file here, or click to select one to upload.`
     : 'Try dropping a file here, or click to select one to upload.';
   return (
-    <div className={css(styles['drop-container'])}>
+    <div className={css(styles.dropContainer)}>
       <Dropzone
         name={props.name}
         onDrop={props.input.onChange}
         onBlur={() => props.input.onBlur(props.input.value)}
         multiple={false}
         className={css(styles.dropzone)}
-        activeClassName={css(styles['active-dropzone'])}
+        activeClassName={css(styles.activeDropzone)}
       >
         <div>{text}</div>
       </Dropzone>
-      { props.input.value ?
-        <div>
-          {props.input.value.name}
-        </div>
-        : null
-      }
+      {props.input.value ? <div>
+        {props.input.value.name}
+      </div> : null}
     </div>
   );
 };
 
 const styles = StyleSheet.create({
-  'drop-container': {
+  dropContainer: {
     flex: 1,
   },
   dropzone: {
@@ -45,7 +42,7 @@ const styles = StyleSheet.create({
     padding: '0px 40px',
     cursor: 'pointer',
   },
-  'active-dropzone': {
+  activeDropzone: {
     border: '1px solid #3f51b5',
     backgroundColor: '#eee',
     color: '#000',

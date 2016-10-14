@@ -54,10 +54,17 @@ const getArtistID = artist =>
 const getKeyID = key =>
   `${KEY_TYPE}_${key.name.toLowerCase().replace(/\s/g, '_')}`;
 
+const fileAdapt = (f, name, dot) => ({
+  name: `${name.toLowerCase().replace(/\s/g, '_')}.${dot}`,
+  content_type: f.mimetype,
+  data: f.buffer,
+});
+
 module.exports = class SageDB {
   constructor(config) {
     const c = cloudant({ account: config.username, password: config.password });
     this._sageDB = Promise.promisifyAll(c.use('sage'));
+    this._sageDBMulti = Promise.promisifyAll(this._sageDB.multipart);
   }
 
   initialize(config) {
@@ -128,7 +135,6 @@ module.exports = class SageDB {
    * Upserts for given doc types. If the doc is already in the database, update
    * it, if not create a new one.
    */
-  upsertArrangement(a) { return this._upsertType(a, ARRANGEMENT_TYPE, getArrangementID(a)); }
   upsertArrangementType(at) { return this._upsertType(at, ARRANGEMENT_TYPE_TYPE, getArrangementTypeID(at)); }
   upsertHangover(h) { return this._upsertType(h, HANGOVER_TYPE, getHangoverID(h)); }
   upsertSemester(s) { return this._upsertType(s, SEMESTER_TYPE, getSemesterID(s)); }
@@ -140,10 +146,29 @@ module.exports = class SageDB {
   upsertGenre(g) { return this._upsertType(g, GENRE_TYPE, getGenreID(g)); }
   upsertArtist(a) { return this._upsertType(a, ARTIST_TYPE, getArtistID(a)); }
   upsertKey(k) { return this._upsertType(k, KEY_TYPE, getKeyID(k)); }
+  upsertArrangement(arrangement, files = {}) {
+    const filesToUpload = [];
+    if (files.pdf && files.pdf.length) {
+      filesToUpload.push(fileAdapt(files.pdf[0], arrangement.name, 'pdf'));
+    }
+    if (files.finale && files.finale.length) {
+      filesToUpload.push(fileAdapt(files.finale[0], arrangement.name, 'mus'));
+    }
+    // time to upsert
+    if (filesToUpload.length) {
+      return this._upsertTypeWithFiles(arrangement, filesToUpload, ARRANGEMENT_TYPE, getArrangementID(arrangement));
+    }
+    return this._upsertType(arrangement, ARRANGEMENT_TYPE, getArrangementID(arrangement));
+  }
 
   /** Format the call to _upsert for the above doc types */
   _upsertType(doc, type, _id) {
     return this._upsert(Object.assign({}, doc, { _id, type }));
+  }
+
+  /** Format the call to _upsertWithFiles for the above doc types */
+  _upsertTypeWithFiles(doc, files, type, _id) {
+    return this._upsertWithFiles(Object.assign({}, doc, { _id, type }), files, _id);
   }
 
   /** Handle the upserting logic for cloudant */
@@ -153,6 +178,17 @@ module.exports = class SageDB {
         this._sageDB.insertAsync(Object.assign({}, doc, { _rev: returnedDoc._rev }))
       ).catch(e =>
         e.error === 'not_found' ? this._sageDB.insertAsync(doc) : e
+      );
+  }
+
+  /** Handles upserting logic for docs with files */
+  _upsertWithFiles(doc, files) {
+    console.log('files', files);
+    return this._sageDB.getAsync(doc._id)
+      .then(returnedDoc =>
+        this._sageDBMulti.insertAsync(Object.assign({}, doc, { _rev: returnedDoc._rev }), files, doc._id)
+      ).catch(e =>
+        e.error === 'not_found' ? this._sageDBMulti.insertAsync(doc, files, doc._id) : e
       );
   }
 };

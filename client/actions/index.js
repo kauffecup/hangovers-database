@@ -1,4 +1,5 @@
 import { stringify } from 'query-string';
+import { SubmissionError } from 'redux-form';
 import { hangoverAdapter, artistAdapter } from '../normalizers/adaptFormData';
 
 export const ARRANGEMENT_FORM = 'addArrangement';
@@ -39,15 +40,13 @@ export function initializeForms() {
 }
 
 export function submitArrangement(values) {
-  return (dispatch) => {
-    dispatch({ type: ARRANGEMENT_SUBMIT });
-    const formData = new FormData();
-    for (const key of Object.keys(values)) {
-      formData.append(key, values[key]);
-    }
-    fetch('/arrangementsubmit', { method: 'POST', body: formData })
-      .then(response => response.json())
-      .then(data => dispatch({ type: ARRANGEMENT_SUBMIT_SUCCESS, data }))
-      .catch(error => dispatch({ type: ARRANGEMENT_SUBMIT_FAILURE, error }));
-  };
+  const formData = new FormData();
+  for (const key of Object.keys(values)) {
+    formData.append(key, values[key]);
+  }
+  fetch('/arrangementsubmit', { method: 'POST', body: formData })
+    .then(response => response.json())
+    .catch((error) => {
+      throw new SubmissionError(error);
+    });
 }

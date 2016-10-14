@@ -14,7 +14,8 @@ const app = express();
 const sageDB = new SageDB(cloudantConfig);
 
 // configure file uploader
-const upload = multer({ dest: paths.tempFileUpload });
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
 
 // if we're developing, use webpack middleware for module hot reloading
 if (process.env.NODE_ENV === 'development') {
@@ -67,10 +68,13 @@ app.get('/initializeforms', (req, res) => {
 app.post('/arrangementsubmit', upload.fields([
   { name: 'pdf', maxCount: 1 },
   { name: 'finale', maxCount: 1 },
-]), (req, res) => {
-  console.log(req.body);
-  console.log(req.files);
-  res.json({});
+]), ({ body, files }, res) => {
+  sageDB.upsertArrangement(body, files)
+    .then(() => res.json({}))
+    .catch((e) => {
+      res.status(500);
+      res.json(e);
+    });
 });
 
 /** GET: Let's get some hangovers */

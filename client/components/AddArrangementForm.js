@@ -27,7 +27,7 @@ const AddArrangementForm = ({
   <form onSubmit={handleSubmit(onSubmit)}>
     <h3>The Song</h3>
     <div className={css(styles['double-row'])}>
-      <Field label="Name" name="arrangementName" component={RenderField} type="text" styles={styles['double-row-child']} />
+      <Field label="Name" name="name" component={RenderField} type="text" styles={styles['double-row-child']} />
       <Field label="Alternate Name" name="alternateName" component={RenderField} type="text" styles={styles['double-row-child']} />
     </div>
     <Field label="Original Artist(s)" name="originalArtist" component={RenderCreatableAsync} loadOptions={artistsLoadOptions} multi />

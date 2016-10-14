@@ -79,54 +79,25 @@ module.exports = class SageDB {
     return this._sageDB.indexAsync(index);
   }
 
-  getArrangements(limit, skip) {
-    return this._view('arrangements', limit, skip);
-  }
+  /**
+   * Getters for all the types defined above. Each method returns a promise that
+   * resolves with the response from cloudant. We do processing on the rows to
+   * return the doc.
+   */
+  getArrangements(limit, skip) { return this._view('arrangements', limit, skip); }
+  getArrangementTypes(limit, skip) { return this._view('arrangement_types', limit, skip); }
+  getHangovers(limit, skip) { return this._view('hangovers', limit, skip); }
+  getSemesters(limit, skip) { return this._view('semesters', limit, skip); }
+  getAlbums(limit, skip) { return this._view('albums', limit, skip); }
+  getAlbumFormats(limit, skip) { return this._view('album_formats', limit, skip); }
+  getQualities(limit, skip) { return this._view('qualities', limit, skip); }
+  getConcerts(limit, skip) { return this._view('concerts', limit, skip); }
+  getConcertTypes(limit, skip) { return this._view('concert_types', limit, skip); }
+  getGenres(limit, skip) { return this._view('genres', limit, skip); }
+  getArtists(limit, skip) { return this._view('artists', limit, skip); }
+  getKeys(limit, skip) { return this._view('keys', limit, skip); }
 
-  getArrangementTypes(limit, skip) {
-    return this._view('arrangement_types', limit, skip);
-  }
-
-  getHangovers(limit, skip) {
-    return this._view('hangovers', limit, skip);
-  }
-
-  getSemesters(limit, skip) {
-    return this._view('semesters', limit, skip);
-  }
-
-  getAlbums(limit, skip) {
-    return this._view('albums', limit, skip);
-  }
-
-  getAlbumFormats(limit, skip) {
-    return this._view('album_formats', limit, skip);
-  }
-
-  getQualities(limit, skip) {
-    return this._view('qualities', limit, skip);
-  }
-
-  getConcerts(limit, skip) {
-    return this._view('concerts', limit, skip);
-  }
-
-  getConcertTypes(limit, skip) {
-    return this._view('concert_types', limit, skip);
-  }
-
-  getGenres(limit, skip) {
-    return this._view('genres', limit, skip);
-  }
-
-  getArtists(limit, skip) {
-    return this._view('artists', limit, skip);
-  }
-
-  getKeys(limit, skip) {
-    return this._view('keys', limit, skip);
-  }
-
+  /** Helper method for above getters */
   _view(type, limit = LIMIT, skip = 0) {
     return this._sageDB.viewAsync('types', type, {
       include_docs: true,
@@ -153,58 +124,29 @@ module.exports = class SageDB {
     }).then(response => response.rows.map(r => r.doc));
   }
 
-  upsertArrangement(arrangement) {
-    return this._upsertType(arrangement, ARRANGEMENT_TYPE, getArrangementID(arrangement));
-  }
+  /**
+   * Upserts for given doc types. If the doc is already in the database, update
+   * it, if not create a new one.
+   */
+  upsertArrangement(a) { return this._upsertType(a, ARRANGEMENT_TYPE, getArrangementID(a)); }
+  upsertArrangementType(at) { return this._upsertType(at, ARRANGEMENT_TYPE_TYPE, getArrangementTypeID(at)); }
+  upsertHangover(h) { return this._upsertType(h, HANGOVER_TYPE, getHangoverID(h)); }
+  upsertSemester(s) { return this._upsertType(s, SEMESTER_TYPE, getSemesterID(s)); }
+  upsertAlbum(a) { return this._upsertType(a, ALBUM_TYPE, getAlbumID(a)); }
+  upsertAlbumFormat(af) { return this._upsertType(af, ALBUM_FORMAT_TYPE, getAlbumFormatID(af)); }
+  upsertQuality(q) { return this._upsertType(q, QUALITY_TYPE, getQualityID(q)); }
+  upsertConcert(c) { return this._upsertType(c, CONCERT_TYPE, getConcertID(c)); }
+  upsertConcertType(ct) { return this._upsertType(ct, CONCERT_TYPE_TYPE, getConcertTypeID(ct)); }
+  upsertGenre(g) { return this._upsertType(g, GENRE_TYPE, getGenreID(g)); }
+  upsertArtist(a) { return this._upsertType(a, ARTIST_TYPE, getArtistID(a)); }
+  upsertKey(k) { return this._upsertType(k, KEY_TYPE, getKeyID(k)); }
 
-  upsertArrangementType(arrangementType) {
-    return this._upsertType(arrangementType, ARRANGEMENT_TYPE_TYPE, getArrangementTypeID(arrangementType));
-  }
-
-  upsertHangover(hangover) {
-    return this._upsertType(hangover, HANGOVER_TYPE, getHangoverID(hangover));
-  }
-
-  upsertSemester(semester) {
-    return this._upsertType(semester, SEMESTER_TYPE, getSemesterID(semester));
-  }
-
-  upsertAlbum(album) {
-    return this._upsertType(album, ALBUM_TYPE, getAlbumID(album));
-  }
-
-  upsertAlbumFormat(albumFormat) {
-    return this._upsertType(albumFormat, ALBUM_FORMAT_TYPE, getAlbumFormatID(albumFormat));
-  }
-
-  upsertQuality(quality) {
-    return this._upsertType(quality, QUALITY_TYPE, getQualityID(quality));
-  }
-
-  upsertConcert(concert) {
-    return this._upsertType(concert, CONCERT_TYPE, getConcertID(concert));
-  }
-
-  upsertConcertType(concertType) {
-    return this._upsertType(concertType, CONCERT_TYPE_TYPE, getConcertTypeID(concertType));
-  }
-
-  upsertGenre(genre) {
-    return this._upsertType(genre, GENRE_TYPE, getGenreID(genre));
-  }
-
-  upsertArtist(artist) {
-    return this._upsertType(artist, ARTIST_TYPE, getArtistID(artist));
-  }
-
-  upsertKey(key) {
-    return this._upsertType(key, KEY_TYPE, getKeyID(key));
-  }
-
+  /** Format the call to _upsert for the above doc types */
   _upsertType(doc, type, _id) {
     return this._upsert(Object.assign({}, doc, { _id, type }));
   }
 
+  /** Handle the upserting logic for cloudant */
   _upsert(doc) {
     return this._sageDB.getAsync(doc._id)
       .then(returnedDoc =>

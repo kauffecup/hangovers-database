@@ -15,6 +15,8 @@ const QUALITY_TYPE = 'quality';
 const ALBUM_FORMAT_TYPE = 'album_format';
 const CONCERT_TYPE_TYPE = 'concert_type';
 const KEY_TYPE = 'key';
+// form data info
+const NEW_IDENTIFIER = 'new:';
 
 const LIMIT = 20;
 
@@ -147,18 +149,32 @@ module.exports = class SageDB {
   upsertArtist(a) { return this._upsertType(a, ARTIST_TYPE, getArtistID(a)); }
   upsertKey(k) { return this._upsertType(k, KEY_TYPE, getKeyID(k)); }
   upsertArrangement(arrangement, files = {}) {
+    const toUpload = Object.assign({}, arrangement);
     const filesToUpload = [];
     if (files.pdf && files.pdf.length) {
-      filesToUpload.push(fileAdapt(files.pdf[0], arrangement.name, 'pdf'));
+      filesToUpload.push(fileAdapt(files.pdf[0], toUpload.name, 'pdf'));
     }
     if (files.finale && files.finale.length) {
-      filesToUpload.push(fileAdapt(files.finale[0], arrangement.name, 'mus'));
+      filesToUpload.push(fileAdapt(files.finale[0], toUpload.name, 'mus'));
+    }
+    // TODO: it would be nice to generalize these somehow
+    toUpload.syllables = toUpload.syllables === 'true';
+    if (toUpload.originalArtists && Array.isArray(toUpload.originalArtists)) {
+      toUpload.originalArtists = toUpload.originalArtists.map((oa) => {
+        if (oa.indexOf(NEW_IDENTIFIER) > -1) {
+          const artistName = oa.substring(oa.indexOf(NEW_IDENTIFIER) + NEW_IDENTIFIER.length);
+          const artist = { name: artistName };
+          this.upsertArtist(artist);
+          return getArtistID(artist);
+        }
+        return oa;
+      });
     }
     // time to upsert
     if (filesToUpload.length) {
-      return this._upsertTypeWithFiles(arrangement, filesToUpload, ARRANGEMENT_TYPE, getArrangementID(arrangement));
+      return this._upsertTypeWithFiles(toUpload, filesToUpload, ARRANGEMENT_TYPE, getArrangementID(toUpload));
     }
-    return this._upsertType(arrangement, ARRANGEMENT_TYPE, getArrangementID(arrangement));
+    return this._upsertType(toUpload, ARRANGEMENT_TYPE, getArrangementID(toUpload));
   }
 
   /** Format the call to _upsert for the above doc types */

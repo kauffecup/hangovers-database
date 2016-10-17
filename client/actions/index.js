@@ -42,7 +42,15 @@ export function initializeForms() {
 export function submitArrangement(values) {
   const formData = new FormData();
   for (const key of Object.keys(values)) {
-    formData.append(key, values[key]);
+    if (values[key]) {
+      if (Array.isArray(values[key])) {
+        for (let i = 0; i < values[key].length; i++) {
+          formData.append(key, values[key][i]);
+        }
+      } else {
+        formData.append(key, values[key]);
+      }
+    }
   }
   fetch('/arrangementsubmit', { method: 'POST', body: formData })
     .then(response => response.json())

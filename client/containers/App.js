@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import adaptSubmit from '../normalizers/adaptSubmit';
 import AddArrangementForm from '../components/AddArrangementForm';
 import {
   arrangementAdapter,
@@ -30,7 +31,7 @@ class Sage extends Component {
       <div className="sage">
         <h1>Sage</h1>
         <AddArrangementForm
-          onSubmit={values => submitArrangement(values)}
+          onSubmit={values => submitArrangement(adaptSubmit(values))}
           hangoversLoadOptions={searchHangovers}
           artistsLoadOptions={searchArtists}
           arrangementTypes={arrangementTypes.map(arrangementAdapter)}

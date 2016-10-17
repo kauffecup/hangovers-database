@@ -30,7 +30,7 @@ const AddArrangementForm = ({
       <Field label="Name" name="name" component={RenderField} type="text" styles={styles['double-row-child']} />
       <Field label="Alternate Name" name="alternateName" component={RenderField} type="text" styles={styles['double-row-child']} />
     </div>
-    <Field label="Original Artist(s)" name="originalArtist" component={RenderCreatableAsync} loadOptions={artistsLoadOptions} multi />
+    <Field label="Original Artist(s)" name="originalArtists" component={RenderCreatableAsync} loadOptions={artistsLoadOptions} multi />
     <div className={css(styles['double-row'])}>
       <Field label="Genre" name="genre" component={RenderSelect} options={genres} styles={styles['double-row-child']} />
       <Field label="Year Released" name="whenWritten" component={RenderField} type="text" styles={styles['double-row-child']} />

@@ -3,7 +3,7 @@ import youtubeRegex from 'youtube-regex';
 /**
  * Fields are:
  *   song:
- *     arrangementName, alternateName, originalArtist, whenWritten, genre
+ *     name, alternateName, originalArtists, whenWritten, genre
  *   arrangements:
  *     arrangers, key, whenArranged, type, quality, syllables
  *   performance:
@@ -20,16 +20,16 @@ const REQUIRED_ERROR = 'Required';
  */
 export default (values) => {
   const errors = {};
-  if (!values.arrangementName) {
-    errors.arrangementName = REQUIRED_ERROR;
+  if (!values.name) {
+    errors.name = REQUIRED_ERROR;
   }
 
   if (values.whenWritten && !/^[12][0-9]{3}$/.test(values.whenWritten)) {
     errors.whenWritten = 'Enter a valid 4 digit year';
   }
 
-  if (!values.originalArtist) {
-    errors.originalArtist = REQUIRED_ERROR;
+  if (!values.originalArtists) {
+    errors.originalArtists = REQUIRED_ERROR;
   }
 
   if (!values.arrangers || !values.arrangers.length) {

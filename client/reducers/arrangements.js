@@ -9,6 +9,7 @@ const initialState = {
   arrangementList: [],
   currentOffset: 0,
   totalRows: 0,
+  arrangementMap: {},
 };
 
 export default function reduce(state = initialState, action) {
@@ -18,13 +19,19 @@ export default function reduce(state = initialState, action) {
         loading: true,
       });
 
-    case GET_ARRANGEMENTS_SUCCESS:
+    case GET_ARRANGEMENTS_SUCCESS: {
+      const am = {};
+      for (const arrangement of action.data.rows) {
+        am[arrangement._id] = arrangement;
+      }
       return Object.assign({}, state, {
         loading: false,
         arrangementList: action.data.rows,
         currentOffset: action.data.offset,
         totalRows: action.data.total_rows,
+        arrangementMap: Object.assign({}, state.arrangementMap, am),
       });
+    }
 
     case GET_ARRANGEMENTS_FAILURE:
       return Object.assign({}, state, {

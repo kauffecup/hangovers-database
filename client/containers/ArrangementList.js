@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { InfiniteLoader, List, AutoSizer } from 'react-virtualized';
+import { Link } from 'react-router';
 import { StyleSheet, css } from 'aphrodite';
 import { getArrangements } from '../actions';
 
@@ -18,6 +19,7 @@ const ArrangementList = ({ loading, arrangementList, currentOffset, totalRows, d
   // Render a history item or a loading indicator.
   const rowRenderer = ({ index, key, style }) => // eslint-disable-line
     <div key={key} style={style}>
+      <Link to={`/arrangement/${arrangementList[index]._id}`}>{arrangementList[index].name}</Link>
       <li>{arrangementList[index].name}</li>
     </div>;
 
@@ -61,7 +63,7 @@ ArrangementList.propTypes = {
   totalRows: PropTypes.number.isRequired,
 };
 
-// for now, we don't need any state
+// for now, we want the arrangement state
 const mapStateToProps = state => state.arrangements;
 
 // Wrap the component to inject dispatch and state into it

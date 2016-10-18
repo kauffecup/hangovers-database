@@ -10,6 +10,9 @@ export const INITIALIZE_FORMS_FAILURE = 'INITIALIZE_FORMS_FAILURE';
 export const ARRANGEMENT_SUBMIT = 'ARRANGEMENT_SUBMIT';
 export const ARRANGEMENT_SUBMIT_SUCCESS = 'ARRANGEMENT_SUBMIT_SUCCESS';
 export const ARRANGEMENT_SUBMIT_FAILURE = 'ARRANGEMENT_SUBMIT_FAILURE';
+export const GET_ARRANGEMENTS = 'GET_ARRANGEMENTS';
+export const GET_ARRANGEMENTS_SUCCESS = 'GET_ARRANGEMENTS_SUCCESS';
+export const GET_ARRANGEMENTS_FAILURE = 'GET_ARRANGEMENTS_FAILURE';
 
 export function searchHangovers(hangover) {
   if (!hangover) {
@@ -36,6 +39,16 @@ export function initializeForms() {
       .then(response => response.json())
       .then(data => dispatch({ type: INITIALIZE_FORMS_SUCCESS, data }))
       .catch(error => dispatch({ type: INITIALIZE_FORMS_FAILURE, error }));
+  };
+}
+
+export function getArrangements(skip) {
+  return (dispatch) => {
+    dispatch({ type: GET_ARRANGEMENTS });
+    fetch(`/arrangements?${stringify({ skip })}`)
+      .then(response => response.json())
+      .then(data => dispatch({ type: GET_ARRANGEMENTS_SUCCESS, data }))
+      .catch(error => dispatch({ type: GET_ARRANGEMENTS_FAILURE, error }));
   };
 }
 

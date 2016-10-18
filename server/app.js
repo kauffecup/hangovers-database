@@ -64,6 +64,16 @@ app.get('/initializeforms', (req, res) => {
   });
 });
 
+/** Get the arrangements in the database */
+app.get('/arrangements', ({ query: { limit, skip } }, res) => {
+  sageDB.getArrangements(limit, skip)
+    .then(arrangements => res.json(arrangements))
+    .catch((e) => {
+      res.status(500);
+      res.json(e);
+    });
+});
+
 /** POST: Submit a new arrangement */
 app.post('/arrangementsubmit', upload.fields([
   { name: 'pdf', maxCount: 1 },

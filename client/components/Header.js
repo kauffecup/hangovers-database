@@ -24,4 +24,4 @@ Header.propTypes = {
   children: PropTypes.object,
 };
 
-module.exports = Header;
+export default Header;

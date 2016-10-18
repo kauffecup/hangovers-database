@@ -27,4 +27,4 @@ Button.propTypes = {
   text: PropTypes.string,
 };
 
-module.exports = Button;
+export default Button;

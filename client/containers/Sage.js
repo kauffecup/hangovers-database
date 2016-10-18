@@ -1,12 +1,13 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { initializeForms } from '../actions';
+import { initializeForms, getArrangements } from '../actions';
 import Header from '../components/Header';
 
 class Sage extends Component {
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch(initializeForms());
+    dispatch(getArrangements());
   }
 
   render() {
@@ -22,7 +23,7 @@ class Sage extends Component {
 
 Sage.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  children: PropTypes.array,
+  children: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
 };
 
 // for now, we don't need any state

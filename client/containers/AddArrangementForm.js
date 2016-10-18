@@ -97,5 +97,6 @@ const mapStateToProps = state => state;
 // Wrap the component to inject dispatch and state into it
 export default connect(mapStateToProps)(reduxForm({
   form: 'addArrangement',
+  destroyOnUnmount: false,
   validate,
 })(AddArrangementForm));

@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { initializeForms } from '../actions';
+import Header from '../components/Header';
 
 class Sage extends Component {
   componentDidMount() {
@@ -12,7 +13,7 @@ class Sage extends Component {
     const { children } = this.props;
     return (
       <div className="sage">
-        <h1>Sage</h1>
+        <Header />
         { children }
       </div>
     );

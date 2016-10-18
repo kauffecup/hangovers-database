@@ -1,59 +1,17 @@
-import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
-import adaptSubmit from '../normalizers/adaptSubmit';
-import AddArrangementForm from '../components/AddArrangementForm';
-import {
-  arrangementAdapter,
-  qualityAdapter,
-  semesterAdapter,
-  albumAdapter,
-  concertAdapter,
-  genreAdapter,
-  keyAdapter,
-} from '../normalizers/adaptFormData';
-import {
-  initializeForms,
-  submitArrangement,
-  searchHangovers,
-  searchArtists,
-} from '../actions';
+import React, { PropTypes } from 'react';
+import { Router, Route } from 'react-router';
+import AddArrangementForm from './AddArrangementForm';
+import Sage from './Sage';
 
-class Sage extends Component {
-  componentDidMount() {
-    const { dispatch } = this.props;
-    dispatch(initializeForms());
-  }
+const App = ({ history }) =>
+  <Router history={history}>
+    <Route path="/" component={Sage}>
+      <Route path="submitform" component={AddArrangementForm} />
+    </Route>
+  </Router>;
 
-  render() {
-    const { app } = this.props;
-    const { arrangementTypes, qualities, semesters, semesterMap, albums, concerts, genres, keys } = app;
-    return (
-      <div className="sage">
-        <h1>Sage</h1>
-        <AddArrangementForm
-          onSubmit={values => submitArrangement(adaptSubmit(values))}
-          hangoversLoadOptions={searchHangovers}
-          artistsLoadOptions={searchArtists}
-          arrangementTypes={arrangementTypes.map(arrangementAdapter)}
-          qualities={qualities.map(qualityAdapter)}
-          semesters={semesters.map(semesterAdapter)}
-          albums={albums.map(a => albumAdapter(a, semesterMap))}
-          concerts={concerts.map(c => concertAdapter(c, semesterMap))}
-          genres={genres.map(genreAdapter)}
-          keys={keys.map(keyAdapter)}
-        />
-      </div>
-    );
-  }
-}
-
-Sage.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-  app: PropTypes.object,
+App.propTypes = {
+  history: PropTypes.object.isRequired,
 };
 
-// for now, we want it all!
-const select = state => state;
-
-// Wrap the component to inject dispatch and state into it
-export default connect(select)(Sage);
+export default App;

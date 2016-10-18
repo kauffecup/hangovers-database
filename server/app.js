@@ -107,6 +107,11 @@ app.get('/search/artists', ({ query: { artist } }, res) => {
     });
 });
 
+/** For everything else, serve the index */
+app.get('*', (req, res) => {
+  res.sendFile(paths.buildHtml);
+});
+
 /** Start her up, boys */
 app.listen(app.get('port'), () => {
   console.log(`Express server listening on port ${app.get('port')}`);

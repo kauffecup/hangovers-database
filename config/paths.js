@@ -32,6 +32,7 @@ module.exports = {
   appIndexJs: resolveApp('client/index.js'),
   appPackageJson: resolveApp('package.json'),
   appSrc: resolveApp('client'),
+  buildHtml: resolveApp('build/index.html'),
   cloudantConfig: resolveApp('config/cloudant.json'),
   testsSetup: resolveApp('src/setupTests.js'),
   appNodeModules: resolveApp('node_modules'),

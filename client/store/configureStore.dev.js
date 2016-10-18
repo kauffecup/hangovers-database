@@ -1,7 +1,9 @@
 import { createStore, applyMiddleware, compose } from 'redux';
+import { routerMiddleware } from 'react-router-redux';
 import thunk from 'redux-thunk';
 import createLogger from 'redux-logger';
-import StockApp from '../reducers';
+import history from './history';
+import SageApp from '../reducers';
 import DevTools from '../containers/DevTools';
 
 // create a store that has redux-thunk middleware, and dev tooling enabled.
@@ -11,12 +13,13 @@ import DevTools from '../containers/DevTools';
 // backwards in time using magic
 const createDevStoreWithMiddleware = compose(
   applyMiddleware(thunk),
+  applyMiddleware(routerMiddleware(history)),
   applyMiddleware(createLogger()),
   DevTools.instrument()
 )(createStore);
 
 export default function configureStore() {
-  const store = createDevStoreWithMiddleware(StockApp);
+  const store = createDevStoreWithMiddleware(SageApp);
 
   // enable webpack hot module replacement for reducers
   if (module.hot) {

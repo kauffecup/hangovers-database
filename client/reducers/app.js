@@ -11,6 +11,7 @@ const initialState = {
   qualities: [],
   concertTypes: [],
   semesters: [],
+  semesterMap: {},
   albums: [],
   concerts: [],
   genres: [],
@@ -24,7 +25,11 @@ export default function reduce(state = initialState, action) {
         initialLoading: true,
       });
 
-    case INITIALIZE_FORMS_SUCCESS:
+    case INITIALIZE_FORMS_SUCCESS: {
+      const sMap = {};
+      for (const semester of action.data.semesters.rows) {
+        sMap[semester._id] = semester;
+      }
       return Object.assign({}, state, {
         initialLoading: false,
         arrangementTypes: action.data.arrangementTypes.rows,
@@ -32,11 +37,13 @@ export default function reduce(state = initialState, action) {
         qualities: action.data.qualities.rows,
         concertTypes: action.data.concertTypes.rows,
         semesters: action.data.semesters.rows,
+        semesterMap: sMap,
         albums: action.data.albums.rows,
         concerts: action.data.concerts.rows,
         genres: action.data.genres.rows,
         keys: action.data.keys.rows,
       });
+    }
 
     case INITIALIZE_FORMS_FAILURE:
       return Object.assign({}, state, {

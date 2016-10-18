@@ -10,12 +10,12 @@ export const semesterAdapter = s => ({
   value: s._id, label: `${s.semester_type} ${s.year}`,
 });
 
-export const albumAdapter = a => ({
-  value: a._id, label: `${a.name} (${a.year})`,
+export const albumAdapter = (a, sMap) => ({
+  value: a._id, label: `${a.name} (${sMap[a.semester].year})`,
 });
 
-export const concertAdapter = c => ({
-  value: c._id, label: `${c.name}`,
+export const concertAdapter = (c, sMap) => ({
+  value: c._id, label: `${c.name} ${sMap[c.semester].year}`,
 });
 
 export const genreAdapter = g => ({

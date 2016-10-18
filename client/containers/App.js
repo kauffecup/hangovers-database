@@ -26,7 +26,7 @@ class Sage extends Component {
 
   render() {
     const { app } = this.props;
-    const { arrangementTypes, qualities, semesters, albums, concerts, genres, keys } = app;
+    const { arrangementTypes, qualities, semesters, semesterMap, albums, concerts, genres, keys } = app;
     return (
       <div className="sage">
         <h1>Sage</h1>
@@ -37,8 +37,8 @@ class Sage extends Component {
           arrangementTypes={arrangementTypes.map(arrangementAdapter)}
           qualities={qualities.map(qualityAdapter)}
           semesters={semesters.map(semesterAdapter)}
-          albums={albums.map(albumAdapter)}
-          concerts={concerts.map(concertAdapter)}
+          albums={albums.map(a => albumAdapter(a, semesterMap))}
+          concerts={concerts.map(c => concertAdapter(c, semesterMap))}
           genres={genres.map(genreAdapter)}
           keys={keys.map(keyAdapter)}
         />

@@ -1,10 +1,14 @@
 import React, { PropTypes } from 'react';
 import { Provider } from 'react-redux';
-import MyApp from './App';
+import App from '../containers/App';
+import DevTools from './DevTools';
 
 const Root = ({ store, history }) => (
   <Provider store={store}>
-    <MyApp history={history} />
+    <div>
+      <App history={history} />
+      <DevTools />
+    </div>
   </Provider>
 );
 

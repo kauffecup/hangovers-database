@@ -4,7 +4,7 @@ import thunk from 'redux-thunk';
 import createLogger from 'redux-logger';
 import history from './history';
 import SageApp from '../reducers';
-import DevTools from '../containers/DevTools';
+import DevTools from './DevTools';
 
 // create a store that has redux-thunk middleware, and dev tooling enabled.
 // the logger middleware logs the previous state, the action, and the next

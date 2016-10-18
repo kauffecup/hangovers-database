@@ -3,16 +3,16 @@
 const hangoverIndexer = function (doc) {
   if (typeof doc.type === 'string' && doc.type === 'hangover') {
     if (typeof doc.firstName === 'string') {
-      index('firstName', doc.firstName);
+      index('firstName', doc.firstName.toLowerCase());
     }
     if (typeof doc.lastName === 'string') {
-      index('lastName', doc.lastName);
+      index('lastName', doc.lastName.toLowerCase());
     }
     if (typeof doc.graduationSemester === 'string') {
-      index('graduationSemester', doc.graduationSemester);
+      index('graduationSemester', doc.graduationSemester.toLowerCase());
     }
     if (typeof doc.firstName === 'string' && typeof doc.lastName === 'string') {
-      index('nameString', '' + doc.firstName + ' ' + doc.lastName); // eslint-disable-line
+      index('nameString', ('' + doc.firstName + ' ' + doc.lastName).toLowerCase()); // eslint-disable-line
     }
   }
 };
@@ -20,7 +20,7 @@ const hangoverIndexer = function (doc) {
 const artistIndexer = function (doc) {
   if (typeof doc.type === 'string' && doc.type === 'artist') {
     if (typeof doc.name === 'string') {
-      index('name', doc.name);
+      index('name', doc.name.toLowerCase());
     }
   }
 };

@@ -117,17 +117,17 @@ module.exports = class SageDB {
     }));
   }
 
-  searchHangovers(text) {
+  searchHangovers(text = '') {
     return this._sageDB.searchAsync('search', 'hangovers', {
-      q: `nameString:(${text}*)`,
+      q: `nameString:(${text.toLowerCase()}*)`,
       limit: 20,
       include_docs: true,
     }).then(response => response.rows.map(r => r.doc));
   }
 
-  searchArtists(text) {
+  searchArtists(text = '') {
     return this._sageDB.searchAsync('search', 'artists', {
-      q: `name:(${text}*)`,
+      q: `name:(${text.toLowerCase()}*)`,
       limit: 20,
       include_docs: true,
     }).then(response => response.rows.map(r => r.doc));
@@ -159,8 +159,16 @@ module.exports = class SageDB {
     }
     // TODO: it would be nice to generalize these somehow
     toUpload.syllables = toUpload.syllables === 'true';
-    if (toUpload.originalArtists && Array.isArray(toUpload.originalArtists)) {
-      toUpload.originalArtists = toUpload.originalArtists.map((oa) => {
+    const arrayFields = ['albums', 'arrangers', 'concerts', 'soloists', 'whenPerformed'];
+    for (const arrayField of arrayFields) {
+      if (toUpload[arrayField]) {
+        toUpload[arrayField] = [].concat(toUpload[arrayField]);
+      }
+    }
+    if (toUpload.originalArtists) {
+      toUpload.originalArtists = [].concat(toUpload.originalArtists).map((oa) => {
+        console.log(oa);
+        console.log(oa.indexOf(NEW_IDENTIFIER));
         if (oa.indexOf(NEW_IDENTIFIER) > -1) {
           const artistName = oa.substring(oa.indexOf(NEW_IDENTIFIER) + NEW_IDENTIFIER.length);
           const artist = { name: artistName };
@@ -199,7 +207,6 @@ module.exports = class SageDB {
 
   /** Handles upserting logic for docs with files */
   _upsertWithFiles(doc, files) {
-    console.log('files', files);
     return this._sageDB.getAsync(doc._id)
       .then(returnedDoc =>
         this._sageDBMulti.insertAsync(Object.assign({}, doc, { _rev: returnedDoc._rev }), files, doc._id)

@@ -5,12 +5,12 @@ import { StyleSheet, css } from 'aphrodite';
 import normalizeFileList from '../normalizers/normalizeFileList';
 import adaptSubmit from '../normalizers/adaptSubmit';
 import validate from '../normalizers/validate';
-import RenderCreatableAsync from '../components/RenderCreatableAsync';
-import RenderField from '../components/RenderField';
-import RenderBinary from '../components/RenderBinary';
-import RenderSelect from '../components/RenderSelect';
-import RenderAsync from '../components/RenderAsync';
-import RenderDropzone from '../components/RenderDropzone';
+import RenderCreatableAsync from '../components/form/RenderCreatableAsync';
+import RenderField from '../components/form/RenderField';
+import RenderBinary from '../components/form/RenderBinary';
+import RenderSelect from '../components/form/RenderSelect';
+import RenderAsync from '../components/form/RenderAsync';
+import RenderDropzone from '../components/form/RenderDropzone';
 import Button from '../components/Button';
 import {
   submitArrangement,

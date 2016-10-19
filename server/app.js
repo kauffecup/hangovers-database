@@ -64,6 +64,32 @@ app.get('/initializeforms', (req, res) => {
   });
 });
 
+/** Get the full arrangement doc */
+app.get('/fullarrangement', ({ query: { arrangementID } }, res) => {
+  sageDB.getFullArrangement(arrangementID)
+    .then(a => res.json(a))
+    .catch((e) => {
+      res.status(500);
+      res.json(e);
+    });
+});
+
+/** Get a file from the database */
+app.get('/arrangementfile', ({ query: { arrangementID, attachmentID, type } }, res) => {
+  sageDB.getArrangementAttachment(arrangementID, attachmentID)
+    .then((buffer) => {
+      res.set({
+        'Content-Disposition': `attachment; filename="${attachmentID}"`,
+        'Content-Type': type,
+      });
+      res.send(buffer);
+    })
+    .catch((e) => {
+      res.status(500);
+      res.json(e);
+    });
+});
+
 /** Get the arrangements in the database */
 app.get('/arrangements', ({ query: { limit, skip } }, res) => {
   sageDB.getArrangements(limit, skip)

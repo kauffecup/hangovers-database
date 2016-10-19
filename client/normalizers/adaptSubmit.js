@@ -1,5 +1,5 @@
 /** Fields that are of the form {value, label} for displaying a pretty label for a given key */
-const objectFields = ['genre', 'key', 'type', 'quality', 'whenArranged'];
+const objectFields = ['arrangementType', 'genre', 'key', 'quality', 'whenArranged'];
 /** Fields that are arrays of the above datatype */
 const objectArrayFields = ['albums', 'arrangers', 'concerts', 'soloists', 'whenPerformed'];
 /** Fields that are "yes"/"no" that we want to convert into booleans */

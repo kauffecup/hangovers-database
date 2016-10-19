@@ -67,6 +67,7 @@ module.exports = class SageDB {
     const c = cloudant({ account: config.username, password: config.password });
     this._sageDB = Promise.promisifyAll(c.use('sage'));
     this._sageDBMulti = Promise.promisifyAll(this._sageDB.multipart);
+    this._sageDBAttachment = Promise.promisifyAll(this._sageDB.attachment);
   }
 
   initialize(config) {
@@ -86,6 +87,40 @@ module.exports = class SageDB {
 
   addIndex(index) {
     return this._sageDB.indexAsync(index);
+  }
+
+  /**
+   * Here we get the arrangement metadata along with all the original docs for
+   * various fields (for example we fetch the full hangover for arrangers or soloists
+   * instead of just the `hangover_jonathan_kaufman` field) and combine them into
+   * one doc. Resolve with that one!
+   */
+  getFullArrangement(arrangementID) {
+    return this._sageDB.viewAsync('types', 'arrangement_full', {
+      include_docs: true,
+      startKey: [arrangementID],
+      endKey: [arrangementID, {}, {}],
+      limit: 200,
+    }).then(({ rows }) => {
+      const doc = rows[0].doc; // TODO: is this always true?
+      // this seems rather hacky, but uhh looks like it works!
+      // likely because the keys are constructed from the original doc?
+      for (let i = 1; i < rows.length; i++) {
+        const rowKey = rows[i].key;
+        const rowDoc = rows[i].doc;
+        if (rowKey.length === 2) {
+          doc[rowKey[1]] = rowDoc;
+        } else if (rowKey.length === 3) {
+          doc[rowKey[1]][rowKey[2]] = rowDoc;
+        }
+      }
+      return doc;
+    });
+  }
+
+  /** Get an attachment (file) from the database. Resolves with a buffer. */
+  getArrangementAttachment(arrangementID, attachmentID) {
+    return this._sageDBAttachment.getAsync(arrangementID, attachmentID);
   }
 
   /**
@@ -120,7 +155,7 @@ module.exports = class SageDB {
   searchHangovers(text = '') {
     return this._sageDB.searchAsync('search', 'hangovers', {
       q: `nameString:(${text.toLowerCase()}*)`,
-      limit: 20,
+      limit: LIMIT,
       include_docs: true,
     }).then(response => response.rows.map(r => r.doc));
   }
@@ -128,7 +163,7 @@ module.exports = class SageDB {
   searchArtists(text = '') {
     return this._sageDB.searchAsync('search', 'artists', {
       q: `name:(${text.toLowerCase()}*)`,
-      limit: 20,
+      limit: LIMIT,
       include_docs: true,
     }).then(response => response.rows.map(r => r.doc));
   }

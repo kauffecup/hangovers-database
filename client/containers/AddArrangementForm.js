@@ -56,7 +56,7 @@ const AddArrangementForm = ({ app, handleSubmit }) => {
         <Field label="Syllables" name="syllables" component={RenderBinary} styles={styles['double-row-child']} />
       </div>
       <div className={css(styles['double-row'])}>
-        <Field label="Type" name="type" component={RenderSelect} options={arrangementTypes} styles={styles['double-row-child']} />
+        <Field label="Type" name="arrangementType" component={RenderSelect} options={arrangementTypes} styles={styles['double-row-child']} />
         <Field label="Quality of Arrangement" name="quality" component={RenderSelect} options={qualities} styles={styles['double-row-child']} />
       </div>
       <h3>Performances</h3>

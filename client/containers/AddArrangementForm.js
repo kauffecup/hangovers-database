@@ -12,6 +12,7 @@ import RenderSelect from '../components/form/RenderSelect';
 import RenderAsync from '../components/form/RenderAsync';
 import RenderDropzone from '../components/form/RenderDropzone';
 import Button from '../components/Button';
+import { BERMUDA_GRAY, PADDING_UNIT } from '../StyleConstants';
 import {
   submitArrangement,
   searchHangovers,
@@ -37,8 +38,8 @@ const AddArrangementForm = ({ app, handleSubmit }) => {
   const genres = g.map(genreAdapter);
   const keys = k.map(keyAdapter);
   return (
-    <form onSubmit={handleSubmit(values => submitArrangement(adaptSubmit(values)))}>
-      <h3>The Song</h3>
+    <form className={css(styles.form)} onSubmit={handleSubmit(values => submitArrangement(adaptSubmit(values)))}>
+      <h3 className={css(styles.categoryLabel)}>The Song</h3>
       <div className={css(styles.row)}>
         <Field label="Name" name="name" component={RenderField} type="text" styles={styles.rowChild} />
         <Field label="Alternate Name" name="alternateName" component={RenderField} type="text" styles={styles.rowChild} />
@@ -48,7 +49,7 @@ const AddArrangementForm = ({ app, handleSubmit }) => {
         <Field label="Genre" name="genre" component={RenderSelect} options={genres} styles={styles.rowChild} />
         <Field label="Year Released" name="whenWritten" component={RenderField} type="text" styles={styles.rowChild} />
       </div>
-      <h3>The Arrangement</h3>
+      <h3 className={css(styles.categoryLabel)}>The Arrangement</h3>
       <Field label="Arranger(s)" name="arrangers" component={RenderAsync} loadOptions={searchHangovers} multi />
       <Field label="When Arranged" name="whenArranged" component={RenderSelect} options={semesters} />
       <div className={css(styles.row)}>
@@ -59,12 +60,12 @@ const AddArrangementForm = ({ app, handleSubmit }) => {
         <Field label="Type" name="arrangementType" component={RenderSelect} options={arrangementTypes} styles={styles.rowChild} />
         <Field label="Quality of Arrangement" name="quality" component={RenderSelect} options={qualities} styles={styles.rowChild} />
       </div>
-      <h3>Performances</h3>
+      <h3 className={css(styles.categoryLabel)}>Performances</h3>
       <Field label="Semester(s) Performed" name="whenPerformed" component={RenderSelect} options={semesters} multi />
       <Field label="Concert(s) Featured In" name="concerts" component={RenderSelect} options={concerts} multi />
       <Field label="Album(s) Appeared On" name="albums" component={RenderSelect} options={albums} multi />
       <Field label="Soloist(s)" name="soloists" component={RenderAsync} loadOptions={searchHangovers} multi />
-      <h3>Files and Such</h3>
+      <h3 className={css(styles.categoryLabel)}>Files and Such</h3>
       <div className={css(styles.row)}>
         <Field label="PDF" name="pdf" component={RenderDropzone} normalize={normalizeFileList} styles={styles.rowChild} />
         <Field label="Finale" name="finale" component={RenderDropzone} normalize={normalizeFileList} styles={styles.rowChild} />
@@ -81,6 +82,14 @@ const AddArrangementForm = ({ app, handleSubmit }) => {
 };
 
 const styles = StyleSheet.create({
+  form: {
+    flex: 1,
+    'overflow-y': 'auto',
+  },
+  categoryLabel: {
+    color: BERMUDA_GRAY,
+    'margin-left': `${PADDING_UNIT}px`,
+  },
   row: {
     display: 'flex',
   },

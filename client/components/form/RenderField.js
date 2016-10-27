@@ -19,6 +19,9 @@ const styles = StyleSheet.create({
     height: '100%',
     border: 'none',
     padding: '0px 10px',
+    'font-family': '\'Lato\', sans-serif',
+    'font-weight': 'lighter',
+    'font-size': '1em',
   },
 });
 

@@ -1,22 +1,24 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import { StyleSheet, css } from 'aphrodite';
+import { FIORD, PADDING_UNIT } from '../StyleConstants';
 
 const Header = () =>
   <div className={css(styles.header)}>
-    <h1><Link to="/">Sage</Link></h1>
-    <ul className={css(styles.menu)}>
-      <li><Link to="/submitform">Add Arrangement</Link></li>
-    </ul>
+    <h1><Link className={css(styles.title)} to="/">Sage</Link></h1>
   </div>;
 
 const styles = StyleSheet.create({
   header: {
-    background: '#3f51b5',
+    background: '#fff',
     display: 'flex',
+    height: '80px',
+    'align-items': 'center',
+    padding: `0px ${PADDING_UNIT}px`,
   },
-  menu: {
-    display: 'flex',
+  title: {
+    color: FIORD,
+    'text-decoration': 'none',
   },
 });
 

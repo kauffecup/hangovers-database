@@ -4,6 +4,7 @@ import { InfiniteLoader, List, AutoSizer } from 'react-virtualized';
 import { Link } from 'react-router';
 import { StyleSheet, css } from 'aphrodite';
 import { getArrangements } from '../actions';
+import { ARRANGEMENT_HEIGHT, PADDING_UNIT } from '../StyleConstants';
 
 const ArrangementList = ({ loading, arrangementList, currentOffset, totalRows, dispatch }) => {
   const hasNextPage = currentOffset + arrangementList.length < totalRows;
@@ -19,12 +20,13 @@ const ArrangementList = ({ loading, arrangementList, currentOffset, totalRows, d
   // Render a history item or a loading indicator.
   const rowRenderer = ({ index, key, style }) => // eslint-disable-line
     <div key={key} style={style}>
-      <Link to={`/arrangement/${arrangementList[index]._id}`}>{arrangementList[index].name}</Link>
-      <li>{arrangementList[index].name}</li>
+      <div className={css(styles.arrangement)}>
+        <Link to={`/arrangement/${arrangementList[index]._id}`}>{arrangementList[index].name}</Link>
+      </div>
     </div>;
 
   return (
-    <li className={css(styles.arrangementList)}>
+    <div className={css(styles.arrangementList)}>
       <InfiniteLoader
         isRowLoaded={isRowLoaded}
         loadMoreRows={loadMoreRows}
@@ -40,18 +42,23 @@ const ArrangementList = ({ loading, arrangementList, currentOffset, totalRows, d
                 rowCount={arrangementList.length}
                 width={width}
                 height={height}
-                rowHeight={200}
+                rowHeight={ARRANGEMENT_HEIGHT}
               />
             ) : null}
           </AutoSizer>
         )}
       </InfiniteLoader>
-    </li>
+    </div>
   );
 };
 
 const styles = StyleSheet.create({
   arrangementList: {
+    flex: 1,
+    padding: `${PADDING_UNIT}px`,
+  },
+  arrangement: {
+    height: `${ARRANGEMENT_HEIGHT}px`,
   },
 });
 

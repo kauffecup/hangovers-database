@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { StyleSheet, css } from 'aphrodite';
 import { stringify } from 'query-string';
 import { getArrangement } from '../actions';
+import { PADDING_UNIT } from '../StyleConstants';
 
 const Field = ({ title, text, children }) => children || typeof text === 'string' ? // eslint-disable-line
   <div>
@@ -76,6 +77,9 @@ class Arrangement extends Component {
 
 const styles = StyleSheet.create({
   arrangement: {
+    flex: 1,
+    'overflow-y': 'auto',
+    padding: `${PADDING_UNIT}px`,
   },
 });
 

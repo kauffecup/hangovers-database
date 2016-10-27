@@ -65,7 +65,10 @@ welcome to Sage.
 
   - PDF (link to file)
   - Finale (link to file)
+  - MP# (link to file)
   - Youtube (link to the tube)
+  - Spotify Link for original song
+  - Spotify Link for hangovers version
 
 ## Understanding, Configuring, and Building
 
@@ -147,8 +150,8 @@ npm run toc
 ## A Note About Clientside Code Structure
 
 To handle the discrepancies between running the client code in "dev mode" or
-"production mode", there are two helpers provided - `containers/Root.js` and
-`store/configureStore.js`. These modules conditionally load the `.dev` or
+"production mode", there are two helpers provided - `boilerplate/Root.js` and
+`boilerplate/configureStore.js`. These modules conditionally load the `.dev` or
 `.prod` extension of their respective file depending on the environment
 variables when webpack is running. The only difference in the respective
 versions are loading the necessary tooling for the dev/debugging redux

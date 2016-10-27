@@ -205,8 +205,6 @@ module.exports = class SageDB {
     }
     if (toUpload.originalArtists) {
       toUpload.originalArtists = [].concat(toUpload.originalArtists).map((oa) => {
-        console.log(oa);
-        console.log(oa.indexOf(NEW_IDENTIFIER));
         if (oa.indexOf(NEW_IDENTIFIER) > -1) {
           const artistName = oa.substring(oa.indexOf(NEW_IDENTIFIER) + NEW_IDENTIFIER.length);
           const artist = { name: artistName };

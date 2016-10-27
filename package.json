@@ -54,7 +54,7 @@
     "react-redux": "^4.4.5",
     "react-router": "^2.8.1",
     "react-router-redux": "^4.0.6",
-    "react-select": "^1.0.0-rc.2",
+    "react-select": "git+https://github.com/kauffecup/react-select.git#keep-input-case-with-build-files",
     "react-virtualized": "^8.1.1",
     "redux": "^3.6.0",
     "redux-form": "^6.0.5",

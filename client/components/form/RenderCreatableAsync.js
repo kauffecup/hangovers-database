@@ -8,6 +8,7 @@ const _RenderCreatableAsync = props =>
     onBlur={() => props.input.onBlur(props.input.value)}
     value={props.input.value}
     onChange={props.input.onChange}
+    keepInputCase
   />;
 
 _RenderCreatableAsync.propTypes = {

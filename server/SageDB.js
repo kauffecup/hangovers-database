@@ -192,6 +192,9 @@ module.exports = class SageDB {
     if (files.finale && files.finale.length) {
       filesToUpload.push(fileAdapt(files.finale[0], toUpload.name, 'mus'));
     }
+    if (files.mp3 && files.mp3.length) {
+      filesToUpload.push(fileAdapt(files.mp3[0], toUpload.name, 'mp3'));
+    }
     // TODO: it would be nice to generalize these somehow
     toUpload.syllables = toUpload.syllables === 'true';
     const arrayFields = ['albums', 'arrangers', 'concerts', 'soloists', 'whenPerformed'];

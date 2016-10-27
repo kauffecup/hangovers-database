@@ -67,8 +67,8 @@ class Arrangement extends Component {
           </Field>
         ) : null}
         <ArrangementField title="Youtube Link" field="youtube" arrangement={arrangement} />
-        <ArrangementField title="Spotify Link" field="spotifyLink" arrangement={arrangement} />
-        <ArrangementField title="Spotify URI" field="spotifyURI" arrangement={arrangement} />
+        <ArrangementField title="Spotify Link (Original Song)" field="spotifyOriginalLink" arrangement={arrangement} />
+        <ArrangementField title="Spotify Link (Hangovers Version)" field="spotifyHangoverLink" arrangement={arrangement} />
       </div>
     );
   }

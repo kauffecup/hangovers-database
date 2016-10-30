@@ -1,17 +1,15 @@
 import React, { PropTypes } from 'react';
-import { connect } from 'react-redux';
-import { Field, reduxForm } from 'redux-form';
+import { Field } from 'redux-form';
 import { StyleSheet, css } from 'aphrodite';
 import normalizeFileList from '../normalizers/normalizeFileList';
 import adaptSubmit from '../normalizers/adaptSubmit';
-import validate from '../normalizers/validate';
-import RenderCreatableAsync from '../components/form/RenderCreatableAsync';
-import RenderField from '../components/form/RenderField';
-import RenderBinary from '../components/form/RenderBinary';
-import RenderSelect from '../components/form/RenderSelect';
-import RenderAsync from '../components/form/RenderAsync';
-import RenderDropzone from '../components/form/RenderDropzone';
-import Button from '../components/Button';
+import RenderCreatableAsync from './form/RenderCreatableAsync';
+import RenderField from './form/RenderField';
+import RenderBinary from './form/RenderBinary';
+import RenderSelect from './form/RenderSelect';
+import RenderAsync from './form/RenderAsync';
+import RenderDropzone from './form/RenderDropzone';
+import Button from './Button';
 import { BERMUDA_GRAY, PADDING_UNIT } from '../StyleConstants';
 import {
   submitArrangement,
@@ -19,7 +17,7 @@ import {
   searchArtists,
 } from '../actions';
 import {
-  arrangementAdapter,
+  arrangementTypeAdapter,
   qualityAdapter,
   semesterAdapter,
   albumAdapter,
@@ -30,7 +28,7 @@ import {
 
 const AddArrangementForm = ({ app, handleSubmit }) => {
   const { semesterMap, arrangementTypes: at, qualities: q, semesters: s, albums: al, concerts: co, genres: g, keys: k } = app;
-  const arrangementTypes = at.map(arrangementAdapter);
+  const arrangementTypes = at.map(arrangementTypeAdapter);
   const qualities = q.map(qualityAdapter);
   const semesters = s.map(semesterAdapter);
   const albums = al.map(a => albumAdapter(a, semesterMap));
@@ -103,12 +101,4 @@ AddArrangementForm.propTypes = {
   app: PropTypes.object.isRequired,
 };
 
-// for now, we want it all!
-const mapStateToProps = state => state;
-
-// Wrap the component to inject dispatch and state into it
-export default connect(mapStateToProps)(reduxForm({
-  form: 'addArrangement',
-  destroyOnUnmount: false,
-  validate,
-})(AddArrangementForm));
+export default AddArrangementForm;

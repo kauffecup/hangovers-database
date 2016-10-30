@@ -1,34 +1,37 @@
 import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite';
-import { BRIGHT_TURQUOISE } from '../StyleConstants';
+import { Link } from 'react-router';
+import { LIGHT_ORCHID } from '../StyleConstants';
 
-const Button = ({ type, onClick, text }) =>
-  <button type={type} onClick={onClick || (() => {})} className={css(styles.button)}>{text}</button>;
+const Button = ({ text, path }) =>
+  <button className={css(styles.button)}><Link className={css(styles.link)} to={path}>{text}</Link></button>;
 
 const styles = StyleSheet.create({
   button: {
-    background: BRIGHT_TURQUOISE,
-    color: '#fff',
+    background: LIGHT_ORCHID,
     'box-shadow': '0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12)',
     'border-radius': '2px',
     'min-width': '64px',
     padding: '0 16px',
-    'text-transform': 'uppercase',
     outline: 'none',
     border: 'none',
     cursor: 'pointer',
-    'line-height': '36px',
     'vertical-align': 'middle',
+  },
+  link: {
+    color: '#fff',
+    'text-transform': 'uppercase',
+    'line-height': '36px',
     'font-family': '\'Lato\', sans-serif',
     'font-weight': 'lighter',
     'font-size': '1em',
+    'text-decoration': 'none',
   },
 });
 
 Button.propTypes = {
-  type: PropTypes.string,
-  onClick: PropTypes.func,
   text: PropTypes.string,
+  path: PropTypes.string,
 };
 
 export default Button;

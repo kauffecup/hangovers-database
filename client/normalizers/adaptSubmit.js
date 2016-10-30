@@ -8,6 +8,8 @@ const binaryFields = ['syllables'];
 const newFields = [];
 /** Fields that are arrays of the above datatype */
 const newArrayFields = ['originalArtists'];
+/** Fields that are files */
+const fileFields = ['finale', 'mp3', 'pdf'];
 
 /** Helper methods for adapting the datatypes into what the backend is expecting */
 const adaptObject = o => o && o.value;
@@ -15,6 +17,7 @@ const adaptObjectArray = oa => oa && oa.length && oa.map(adaptObject);
 const adaptBinary = b => b && b === 'yes';
 const adaptNew = n => n && (n.value === n.label ? `new:${n.value}` : n.value); // allows the server to identify a new value
 const adaptNewArray = na => na && na.length && na.map(adaptNew);
+const adaptFile = f => (f && f.inCloudant) ? f.name : f;
 
 /**
  * Our adapter function. Iterate over the fields and the form and adapt the data
@@ -41,6 +44,10 @@ export default (values) => {
 
   for (const newArrayField of newArrayFields) {
     adaptedValues[newArrayField] = adaptNewArray(values[newArrayField]);
+  }
+
+  for (const fileField of fileFields) {
+    adaptedValues[fileField] = adaptFile(values[fileField]);
   }
 
   return Object.assign({}, values, adaptedValues);

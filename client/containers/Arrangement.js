@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { StyleSheet, css } from 'aphrodite';
 import { stringify } from 'query-string';
 import { getArrangement } from '../actions';
+import PathButton from '../components/PathButton';
 import { PADDING_UNIT } from '../StyleConstants';
 
 const Field = ({ title, text, children }) => children || typeof text === 'string' ? // eslint-disable-line
@@ -35,6 +36,7 @@ class Arrangement extends Component {
     }
     return (
       <div className={css(styles.arrangement)}>
+        <PathButton text="edit" path={`/edit/${id}`} />
         <h2>{arrangement.name}</h2>
         <h3>The Song</h3>
         <ArrangementField field="alternateName" arrangement={arrangement} />

@@ -1,6 +1,6 @@
 import { stringify } from 'query-string';
 import { SubmissionError } from 'redux-form';
-import { hangoverAdapter, artistAdapter } from '../normalizers/adaptFormData';
+import { hangoverAdapter, artistAdapter, fullArrangementAdapter } from '../normalizers/adaptFormData';
 
 export const ARRANGEMENT_FORM = 'addArrangement';
 
@@ -16,6 +16,9 @@ export const GET_ARRANGEMENTS_FAILURE = 'GET_ARRANGEMENTS_FAILURE';
 export const GET_ARRANGEMENT = 'GET_ARRANGEMENT';
 export const GET_ARRANGEMENT_SUCCESS = 'GET_ARRANGEMENT_SUCCESS';
 export const GET_ARRANGEMENT_FAILURE = 'GET_ARRANGEMENT_FAILURE';
+export const GET_EDIT_ARRANGEMENT = 'GET_EDIT_ARRANGEMENT';
+export const GET_EDIT_ARRANGEMENT_SUCCESS = 'GET_EDIT_ARRANGEMENT_SUCCESS';
+export const GET_EDIT_ARRANGEMENT_FAILURE = 'GET_EDIT_ARRANGEMENT_FAILURE';
 
 export function searchHangovers(hangover) {
   if (!hangover) {
@@ -52,6 +55,16 @@ export function getArrangement(arrangementID) {
       .then(response => response.json())
       .then(data => dispatch({ type: GET_ARRANGEMENT_SUCCESS, data }))
       .catch(error => dispatch({ type: GET_ARRANGEMENT_FAILURE, error }));
+  };
+}
+
+export function getEditArrangementData(arrangementID) {
+  return (dispatch) => {
+    dispatch({ type: GET_EDIT_ARRANGEMENT });
+    fetch(`/fullarrangement?${stringify({ arrangementID })}`)
+      .then(response => response.json())
+      .then(data => dispatch({ type: GET_EDIT_ARRANGEMENT_SUCCESS, data: fullArrangementAdapter(data) }))
+      .catch(error => dispatch({ type: GET_EDIT_ARRANGEMENT_FAILURE, error }));
   };
 }
 

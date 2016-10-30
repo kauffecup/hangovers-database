@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import { Link } from 'react-router';
 import { StyleSheet, css } from 'aphrodite';
 import { FIORD, PADDING_UNIT } from '../StyleConstants';
@@ -21,9 +21,5 @@ const styles = StyleSheet.create({
     'text-decoration': 'none',
   },
 });
-
-Header.propTypes = {
-  children: PropTypes.object,
-};
 
 export default Header;

@@ -196,13 +196,24 @@ module.exports = class SageDB {
       filesToUpload.push(fileAdapt(files.mp3[0], toUpload.name, 'mp3'));
     }
     // TODO: it would be nice to generalize these somehow
+    // make sure booleans are actually booleans
     toUpload.syllables = toUpload.syllables === 'true';
+    // if these fields are in the arrangement object and not the files object it
+    // means we're editing and they are unchanged
+    const fileFields = ['finale', 'mp3', 'pdf', '_attachments'];
+    for (const fileField of fileFields) {
+      delete toUpload[fileField];
+    }
+    // make sure array fields are actually arrays - if there's only a single key
+    // it'll be treated as a string
     const arrayFields = ['albums', 'arrangers', 'concerts', 'soloists', 'whenPerformed'];
     for (const arrayField of arrayFields) {
       if (toUpload[arrayField]) {
         toUpload[arrayField] = [].concat(toUpload[arrayField]);
       }
     }
+    // in this field we allow the user to define a new artist. if that's what's
+    // going down, strip the new identifier and create a new artist object
     if (toUpload.originalArtists) {
       toUpload.originalArtists = [].concat(toUpload.originalArtists).map((oa) => {
         if (oa.indexOf(NEW_IDENTIFIER) > -1) {
@@ -216,36 +227,42 @@ module.exports = class SageDB {
     }
     // time to upsert
     if (filesToUpload.length) {
-      return this._upsertTypeWithFiles(toUpload, filesToUpload, ARRANGEMENT_TYPE, getArrangementID(toUpload));
+      return this._upsertTypeWithFiles(toUpload, filesToUpload, ARRANGEMENT_TYPE, getArrangementID(toUpload), true);
     }
-    return this._upsertType(toUpload, ARRANGEMENT_TYPE, getArrangementID(toUpload));
+    return this._upsertType(toUpload, ARRANGEMENT_TYPE, getArrangementID(toUpload), true);
   }
 
   /** Format the call to _upsert for the above doc types */
-  _upsertType(doc, type, _id) {
-    return this._upsert(Object.assign({}, doc, { _id, type }));
+  _upsertType(doc, type, _id, merge) {
+    return this._upsert(Object.assign({}, doc, { _id, type }), merge);
   }
 
   /** Format the call to _upsertWithFiles for the above doc types */
-  _upsertTypeWithFiles(doc, files, type, _id) {
-    return this._upsertWithFiles(Object.assign({}, doc, { _id, type }), files, _id);
+  _upsertTypeWithFiles(doc, files, type, _id, merge) {
+    return this._upsertWithFiles(Object.assign({}, doc, { _id, type }), files, _id, merge);
   }
 
   /** Handle the upserting logic for cloudant */
-  _upsert(doc) {
+  _upsert(doc, merge) {
     return this._sageDB.getAsync(doc._id)
       .then(returnedDoc =>
-        this._sageDB.insertAsync(Object.assign({}, doc, { _rev: returnedDoc._rev }))
+        this._sageDB.insertAsync(
+          Object.assign({}, merge ? returnedDoc : {}, doc, { _rev: returnedDoc._rev })
+        )
       ).catch(e =>
         e.error === 'not_found' ? this._sageDB.insertAsync(doc) : e
       );
   }
 
   /** Handles upserting logic for docs with files */
-  _upsertWithFiles(doc, files) {
+  _upsertWithFiles(doc, files, merge) {
     return this._sageDB.getAsync(doc._id)
       .then(returnedDoc =>
-        this._sageDBMulti.insertAsync(Object.assign({}, doc, { _rev: returnedDoc._rev }), files, doc._id)
+        this._sageDBMulti.insertAsync(
+          Object.assign({}, merge ? returnedDoc : {}, doc, { _rev: returnedDoc._rev }),
+          files,
+          doc._id
+        )
       ).catch(e =>
         e.error === 'not_found' ? this._sageDBMulti.insertAsync(doc, files, doc._id) : e
       );

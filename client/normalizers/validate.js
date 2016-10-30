@@ -1,4 +1,5 @@
 import youtubeRegex from 'youtube-regex';
+import { arrangementExists } from '../actions';
 
 /**
  * Fields are:
@@ -9,7 +10,7 @@ import youtubeRegex from 'youtube-regex';
  *   performance:
  *     whenPerformed, concerts, albums, soloists
  *   files and such:
- *     youtube, pdf, finale
+ *     youtube, pdf, finale, mp3, spotifyOriginalLink, spotifyHangoverLink
  */
 
 const REQUIRED_ERROR = 'Required';
@@ -62,5 +63,16 @@ export default (values) => {
     errors.pdf = 'PDF must be a... pdf';
   }
 
+  if (values.mp3 && values.mp3.type !== 'audio/mp3') {
+    errors.mp3 = 'mp3 must be a... mp3';
+  }
+
   return errors;
 };
+
+export const asyncValidate = values =>
+  arrangementExists(values.name).then((exists) => {
+    if (exists) {
+      throw { name: 'Arrangement already exists in database.' }; // eslint-disable-line
+    }
+  });

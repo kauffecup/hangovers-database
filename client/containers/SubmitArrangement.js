@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
-import validate from '../normalizers/validate';
+import validate, { asyncValidate } from '../normalizers/validate';
 import AddArrangementForm from '../components/AddArrangementForm';
 
 // for now, we want it all!
@@ -14,4 +14,6 @@ export default connect(mapStateToProps)(reduxForm({
   form: 'addArrangement',
   destroyOnUnmount: false,
   validate,
+  asyncValidate,
+  asyncBlurFields: ['name'],
 })(AddArrangementForm));

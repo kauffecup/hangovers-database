@@ -118,6 +118,15 @@ module.exports = class SageDB {
     });
   }
 
+  /** Resolves with true if an arrangement exists, false otherwise */
+  arrangementExists(name = '') {
+    return new Promise((resolve, reject) =>
+      this._sageDB.getAsync(getArrangementID({ name }))
+        .then(() => resolve(true))
+        .catch(e => e.error === 'not_found' ? resolve(false) : reject(e))
+    );
+  }
+
   /** Get an attachment (file) from the database. Resolves with a buffer. */
   getArrangementAttachment(arrangementID, attachmentID) {
     return this._sageDBAttachment.getAsync(arrangementID, attachmentID);

@@ -38,6 +38,11 @@ export function searchArtists(artist) {
     .then(hangovers => ({ options: hangovers.map(artistAdapter) }));
 }
 
+export function arrangementExists(name) {
+  return fetch(`/arrangementexists?${stringify({ name })}`)
+    .then(response => response.json());
+}
+
 export function initializeForms() {
   return (dispatch) => {
     dispatch({ type: INITIALIZE_FORMS });

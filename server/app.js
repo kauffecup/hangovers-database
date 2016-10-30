@@ -114,6 +114,15 @@ app.post('/arrangementsubmit', upload.fields([
     });
 });
 
+app.get('/arrangementexists', ({ query: { name } }, res) => {
+  sageDB.arrangementExists(name)
+    .then(exists => res.json(exists))
+    .catch((e) => {
+      res.status(500);
+      res.json(e);
+    });
+});
+
 /** GET: Let's get some hangovers */
 app.get('/search/hangovers', ({ query: { hangover } }, res) => {
   sageDB.searchHangovers(hangover)

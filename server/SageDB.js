@@ -96,12 +96,16 @@ module.exports = class SageDB {
    * one doc. Resolve with that one!
    */
   getFullArrangement(arrangementID) {
+    console.log(arrangementID);
     return this._sageDB.viewAsync('types', 'arrangement_full', {
       include_docs: true,
-      startKey: [arrangementID],
-      endKey: [arrangementID, {}, {}],
+      startkey: [arrangementID],
+      endkey: [arrangementID, {}, {}],
       limit: 200,
     }).then(({ rows }) => {
+      if (!rows || !rows.length) {
+        throw new Error('No arrangement found');
+      }
       const doc = rows[0].doc; // TODO: is this always true?
       // this seems rather hacky, but uhh looks like it works!
       // likely because the keys are constructed from the original doc?

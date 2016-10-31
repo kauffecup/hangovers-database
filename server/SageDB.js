@@ -96,7 +96,6 @@ module.exports = class SageDB {
    * one doc. Resolve with that one!
    */
   getFullArrangement(arrangementID) {
-    console.log(arrangementID);
     return this._sageDB.viewAsync('types', 'arrangement_full', {
       include_docs: true,
       startkey: [arrangementID],
@@ -211,6 +210,7 @@ module.exports = class SageDB {
     // TODO: it would be nice to generalize these somehow
     // make sure booleans are actually booleans
     toUpload.syllables = toUpload.syllables === 'true';
+    toUpload.active = toUpload.active === 'true';
     // if these fields are in the arrangement object and not the files object it
     // means we're editing and they are unchanged
     const fileFields = ['finale', 'mp3', 'pdf', '_attachments'];

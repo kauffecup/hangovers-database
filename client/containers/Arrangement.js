@@ -50,6 +50,7 @@ class Arrangement extends Component {
         <ArrangementObjectField title="type" field="arrangementType" parse={at => `${at.name} (${at.description})`} arrangement={arrangement} />
         <ArrangementObjectField title="quality" field="quality" parse={q => `${q.name} (${q.description})`} arrangement={arrangement} />
         <h3>Performances</h3>
+        <Field text={arrangement.active ? 'active' : 'not active'} />
         <ArrangementObjectArrayField title="semester(s) performed" field="whenPerformed" map={s => `${s.semester_type} ${s.year}`} arrangement={arrangement} />
         <ArrangementObjectArrayField title="concert(s) performed" field="concerts" arrangement={arrangement} />
         <ArrangementObjectArrayField title="album(s) on" field="albums" arrangement={arrangement} />

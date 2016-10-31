@@ -1,3 +1,6 @@
+export const activeAdapter = a =>
+  a && typeof a === 'boolean' ? 'yes' : 'no';
+
 export const albumAdapter = (a = {}, sMap = {}) => ({
   value: a._id, label: `${a.name} ${sMap[a.semester] ? sMap[a.semester].year : ''}`.trim(),
 });
@@ -53,6 +56,7 @@ export const syllableAdapter = s =>
   s && typeof s === 'boolean' ? 'yes' : 'no';
 
 export const fullArrangementAdapter = (a = {}) => Object.assign({}, a, {
+  active: activeAdapter(a.active),
   albums: (a.albums || []).map(albumAdapter),
   arrangers: (a.arrangers || []).map(hangoverAdapter),
   arrangementType: arrangementTypeAdapter(a.arrangementType),

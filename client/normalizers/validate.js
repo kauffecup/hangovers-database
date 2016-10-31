@@ -8,7 +8,7 @@ import { arrangementExists } from '../actions';
  *   arrangements:
  *     arrangers, key, whenArranged, type, quality, syllables
  *   performance:
- *     whenPerformed, concerts, albums, soloists
+ *     active, whenPerformed, concerts, albums, soloists
  *   files and such:
  *     youtube, pdf, finale, mp3, spotifyOriginalLink, spotifyHangoverLink
  */
@@ -50,6 +50,10 @@ export default (values) => {
   }
 
   if (!values.syllables) {
+    errors.syllables = REQUIRED_ERROR;
+  }
+
+  if (!values.active) {
     errors.syllables = REQUIRED_ERROR;
   }
 

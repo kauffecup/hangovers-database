@@ -3,7 +3,7 @@ const objectFields = ['arrangementType', 'genre', 'key', 'quality', 'whenArrange
 /** Fields that are arrays of the above datatype */
 const objectArrayFields = ['albums', 'arrangers', 'concerts', 'soloists', 'whenPerformed'];
 /** Fields that are "yes"/"no" that we want to convert into booleans */
-const binaryFields = ['syllables'];
+const binaryFields = ['active', 'syllables'];
 /** Fields that allow the user to define new input dynamically */
 const newFields = [];
 /** Fields that are arrays of the above datatype */

@@ -59,6 +59,7 @@ const AddArrangementForm = ({ app, handleSubmit }) => {
         <Field label="Quality of Arrangement" name="quality" component={RenderSelect} options={qualities} styles={styles.rowChild} />
       </div>
       <h3 className={css(styles.categoryLabel)}>Performances</h3>
+      <Field label="Active" name="active" component={RenderBinary} />
       <Field label="Semester(s) Performed" name="whenPerformed" component={RenderSelect} options={semesters} multi />
       <Field label="Concert(s) Featured In" name="concerts" component={RenderSelect} options={concerts} multi />
       <Field label="Album(s) Appeared On" name="albums" component={RenderSelect} options={albums} multi />

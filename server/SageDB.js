@@ -1,67 +1,11 @@
 const Promise = require('bluebird');
 const cloudant = require('cloudant');
-const { binaryFields, fileFields, objectArrayFields } = require('../shared/FormConstants');
-
-// top level objects
-const ARRANGEMENT_TYPE = 'arrangement';
-const HANGOVER_TYPE = 'hangover';
-const SEMESTER_TYPE = 'semester';
-const ALBUM_TYPE = 'album';
-const CONCERT_TYPE = 'concert';
-const GENRE_TYPE = 'genre';
-const ARTIST_TYPE = 'artist';
-// essentially enums
-const ARRANGEMENT_TYPE_TYPE = 'arrangement_type';
-const QUALITY_TYPE = 'quality';
-const ALBUM_FORMAT_TYPE = 'album_format';
-const CONCERT_TYPE_TYPE = 'concert_type';
-const KEY_TYPE = 'key';
-// form data info
-const NEW_IDENTIFIER = 'new:';
+const types = require('./cloudantHelpers/DBTypes');
+const idgen = require('./cloudantHelpers/IDGenerators');
+const { adaptFiles, adaptArrangement } = require('./cloudantHelpers/Adapters');
+const { fileFields } = require('../shared/FormConstants');
 
 const LIMIT = 20;
-
-const getArrangementID = arrangement =>
-  `${ARRANGEMENT_TYPE}_${arrangement.name.toLowerCase().replace(/\s/g, '_')}`;
-
-const getArrangementTypeID = arrangementType =>
-  `${ARRANGEMENT_TYPE_TYPE}_${arrangementType.name.toLowerCase().replace(/\s/g, '_')}`;
-
-const getHangoverID = hangover =>
-  `${HANGOVER_TYPE}_${hangover.lastName.toLowerCase().replace(/\s/g, '_')}_${hangover.firstName.toLowerCase().replace('.', '').replace(/\s/g, '_')}`;
-
-const getSemesterID = semester =>
-  `${SEMESTER_TYPE}_${semester.year}_${semester.semester_type.toLowerCase()}`;
-
-const getAlbumID = album =>
-  `${ALBUM_TYPE}_${album.name.toLowerCase().replace(/\s/g, '_')}`;
-
-const getAlbumFormatID = albumFormat =>
-  `${ALBUM_FORMAT_TYPE}_${albumFormat.name.toLowerCase().replace(/\s/g, '_')}`;
-
-const getQualityID = quality =>
-  `${QUALITY_TYPE}_${quality.name.toLowerCase().replace(/\s/g, '_')}`;
-
-const getConcertID = concert =>
-  `${CONCERT_TYPE}_${concert.name.toLowerCase().replace(/\s/g, '_')}`;
-
-const getConcertTypeID = concertType =>
-  `${CONCERT_TYPE_TYPE}_${concertType.name.toLowerCase().replace(/\s/g, '_')}`;
-
-const getGenreID = genre =>
-  `${GENRE_TYPE}_${genre.name.toLowerCase().replace(/\s/g, '_')}`;
-
-const getArtistID = artist =>
-  `${ARTIST_TYPE}_${artist.name.toLowerCase().replace(/\s/g, '_')}`;
-
-const getKeyID = key =>
-  `${KEY_TYPE}_${key.name.toLowerCase().replace(/\s/g, '_')}`;
-
-const fileAdapt = (f, name, dot) => ({
-  name: `${name.toLowerCase().replace(/\s/g, '_')}.${dot}`,
-  content_type: f.mimetype,
-  data: f.buffer,
-});
 
 module.exports = class SageDB {
   constructor(config) {
@@ -125,7 +69,7 @@ module.exports = class SageDB {
   /** Resolves with true if an arrangement exists, false otherwise */
   arrangementExists(name = '') {
     return new Promise((resolve, reject) =>
-      this._sageDB.getAsync(getArrangementID({ name }))
+      this._sageDB.getAsync(idgen.getArrangementID({ name }))
         .then(() => resolve(true))
         .catch(e => e.error === 'not_found' ? resolve(false) : reject(e))
     );
@@ -185,91 +129,60 @@ module.exports = class SageDB {
    * Upserts for given doc types. If the doc is already in the database, update
    * it, if not create a new one.
    */
-  upsertArrangementType(at) { return this._upsertType(at, ARRANGEMENT_TYPE_TYPE, getArrangementTypeID(at)); }
-  upsertHangover(h) { return this._upsertType(h, HANGOVER_TYPE, getHangoverID(h)); }
-  upsertSemester(s) { return this._upsertType(s, SEMESTER_TYPE, getSemesterID(s)); }
-  upsertAlbum(a) { return this._upsertType(a, ALBUM_TYPE, getAlbumID(a)); }
-  upsertAlbumFormat(af) { return this._upsertType(af, ALBUM_FORMAT_TYPE, getAlbumFormatID(af)); }
-  upsertQuality(q) { return this._upsertType(q, QUALITY_TYPE, getQualityID(q)); }
-  upsertConcert(c) { return this._upsertType(c, CONCERT_TYPE, getConcertID(c)); }
-  upsertConcertType(ct) { return this._upsertType(ct, CONCERT_TYPE_TYPE, getConcertTypeID(ct)); }
-  upsertGenre(g) { return this._upsertType(g, GENRE_TYPE, getGenreID(g)); }
-  upsertArtist(a) { return this._upsertType(a, ARTIST_TYPE, getArtistID(a)); }
-  upsertKey(k) { return this._upsertType(k, KEY_TYPE, getKeyID(k)); }
+  upsertArrangementType(at) { return this._upsertType(at, types.ARRANGEMENT_TYPE_TYPE, idgen.getArrangementTypeID(at)); }
+  upsertHangover(h) { return this._upsertType(h, types.HANGOVER_TYPE, idgen.getHangoverID(h)); }
+  upsertSemester(s) { return this._upsertType(s, types.SEMESTER_TYPE, idgen.getSemesterID(s)); }
+  upsertAlbum(a) { return this._upsertType(a, types.ALBUM_TYPE, idgen.getAlbumID(a)); }
+  upsertAlbumFormat(af) { return this._upsertType(af, types.ALBUM_FORMAT_TYPE, idgen.getAlbumFormatID(af)); }
+  upsertQuality(q) { return this._upsertType(q, types.QUALITY_TYPE, idgen.getQualityID(q)); }
+  upsertConcert(c) { return this._upsertType(c, types.CONCERT_TYPE, idgen.getConcertID(c)); }
+  upsertConcertType(ct) { return this._upsertType(ct, types.CONCERT_TYPE_TYPE, idgen.getConcertTypeID(ct)); }
+  upsertGenre(g) { return this._upsertType(g, types.GENRE_TYPE, idgen.getGenreID(g)); }
+  upsertArtist(a) { return this._upsertType(a, types.ARTIST_TYPE, idgen.getArtistID(a)); }
+  upsertKey(k) { return this._upsertType(k, types.KEY_TYPE, idgen.getKeyID(k)); }
   upsertArrangement(arrangement, files = {}) {
-    const toUpload = Object.assign({}, arrangement);
-    const filesToUpload = [];
-    if (files.pdf && files.pdf.length) {
-      filesToUpload.push(fileAdapt(files.pdf[0], toUpload.name, 'pdf'));
-    }
-    if (files.finale && files.finale.length) {
-      filesToUpload.push(fileAdapt(files.finale[0], toUpload.name, 'mus'));
-    }
-    if (files.mp3 && files.mp3.length) {
-      filesToUpload.push(fileAdapt(files.mp3[0], toUpload.name, 'mp3'));
-    }
-    // make sure booleans are actually booleans
-    for (const binaryField of binaryFields) {
-      toUpload[binaryField] = toUpload[binaryField] === 'true';
-    }
-    // if these fields are in the arrangement object and not the files object it
-    // means we're editing and they are unchanged
-    for (const fileField of [...fileFields, '_attachments']) {
-      delete toUpload[fileField];
-    }
-    // make sure array fields are actually arrays - if there's only a single key
-    // it'll be treated as a string
-    for (const arrayField of objectArrayFields) {
-      if (toUpload[arrayField]) {
-        toUpload[arrayField] = [].concat(toUpload[arrayField]);
-      }
-    }
-    // in this field we allow the user to define a new artist. if that's what's
-    // going down, strip the new identifier and create a new artist object
-    if (toUpload.originalArtists) {
-      toUpload.originalArtists = [].concat(toUpload.originalArtists).map((oa) => {
-        if (oa.indexOf(NEW_IDENTIFIER) > -1) {
-          const artistName = oa.substring(oa.indexOf(NEW_IDENTIFIER) + NEW_IDENTIFIER.length);
-          const artist = { name: artistName };
-          this.upsertArtist(artist);
-          return getArtistID(artist);
-        }
-        return oa;
-      });
-    }
+    let filesToUpload = adaptFiles(files, arrangement.name);
+    const fetchServerSideFiles = fileFields
+      .map(field => !!arrangement[field])
+      .reduce((prev, cur) => prev || cur, false);
+    const toUpload = adaptArrangement(arrangement, artist => this.upsertArtist(artist));
+    const prom = fetchServerSideFiles ? Promise.resolve([]) : Promise.resolve([]);
     // if we're updating an arrangement such that one of its newly changed fields
     // will change the ID of the document, we delete the old doc and create a new
     // one. otherwise we simply upsert. in either case we have to call different
     // methods if we're also adding files.
-    const arrID = getArrangementID(toUpload);
+    const arrID = idgen.getArrangementID(toUpload);
     const deleteAndReAdd = (toUpload._id && toUpload._rev) && (toUpload._id !== arrID);
-    if (deleteAndReAdd) {
-      if (filesToUpload.length) {
-        return this._destroyAndAddWithFiles(toUpload, arrID, filesToUpload);
+    return prom.then((otherFiles) => {
+      filesToUpload = [...filesToUpload, ...otherFiles];
+      if (deleteAndReAdd) {
+        if (filesToUpload.length) {
+          return this._destroyAndAddWithFiles(toUpload, arrID, filesToUpload);
+        }
+        return this._destroyAndAdd(toUpload, arrID);
+      } else if (filesToUpload.length) {
+        return this._upsertTypeWithFiles(toUpload, filesToUpload, types.ARRANGEMENT_TYPE, arrID);
       }
-      return this._destroyAndAdd(toUpload, arrID);
-    } else if (filesToUpload.length) {
-      return this._upsertTypeWithFiles(toUpload, filesToUpload, ARRANGEMENT_TYPE, arrID, true);
-    }
-    return this._upsertType(toUpload, ARRANGEMENT_TYPE, arrID, true);
+      return this._upsertType(toUpload, types.ARRANGEMENT_TYPE, arrID);
+    });
   }
 
   /** Format the call to _upsert for the above doc types */
-  _upsertType(doc, type, _id, merge) {
-    return this._upsert(Object.assign({}, doc, { _id, type }), merge);
+  _upsertType(doc, type, _id) {
+    return this._upsert(Object.assign({}, doc, { _id, type }));
   }
 
   /** Format the call to _upsertWithFiles for the above doc types */
-  _upsertTypeWithFiles(doc, files, type, _id, merge) {
-    return this._upsertWithFiles(Object.assign({}, doc, { _id, type }), files, _id, merge);
+  _upsertTypeWithFiles(doc, files, type, _id) {
+    return this._upsertWithFiles(Object.assign({}, doc, { _id, type }), files, _id);
   }
 
   /** Handle the upserting logic for cloudant */
-  _upsert(doc, merge) {
+  _upsert(doc) {
     return this._sageDB.getAsync(doc._id)
       .then(returnedDoc =>
         this._sageDB.insertAsync(
-          Object.assign({}, merge ? returnedDoc : {}, doc, { _rev: returnedDoc._rev })
+          Object.assign({}, doc, { _rev: returnedDoc._rev })
         )
       ).catch(e =>
         e.error === 'not_found' ? this._sageDB.insertAsync(doc) : e
@@ -277,11 +190,11 @@ module.exports = class SageDB {
   }
 
   /** Handles upserting logic for docs with files */
-  _upsertWithFiles(doc, files, merge) {
+  _upsertWithFiles(doc, files) {
     return this._sageDB.getAsync(doc._id)
       .then(returnedDoc =>
         this._sageDBMulti.insertAsync(
-          Object.assign({}, merge ? returnedDoc : {}, doc, { _rev: returnedDoc._rev }),
+          Object.assign({}, doc, { _rev: returnedDoc._rev }),
           files,
           doc._id
         )

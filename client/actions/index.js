@@ -1,5 +1,6 @@
 import { stringify } from 'query-string';
 import { reset, SubmissionError } from 'redux-form';
+import { push } from 'react-router-redux';
 import { hangoverAdapter, artistAdapter, fullArrangementAdapter } from '../normalizers/adaptFormData';
 
 export const ARRANGEMENT_FORM = 'addArrangement';
@@ -106,13 +107,31 @@ export function addArrangement(values) {
   return dispatch =>
     submitArrangement(values)
       .then((json) => {
+        // on success we show a happy message and head back to the home page
+        dispatch(setBanner('Successfully added arrangement', BANNER_SUCCESS));
+        dispatch(push('/'));
         dispatch(reset(ARRANGEMENT_FORM));
         return json;
+      }).catch((e) => {
+        // on failure we show a sad message but stay here in case user wants to resubmit
+        dispatch(setBanner('Failed to add arrangement', BANNER_ERROR));
+        return e;
       });
 }
 
 export function editArrangement(values) {
-  return submitArrangement(values);
+  return dispatch =>
+    submitArrangement(values)
+      .then((json) => {
+        // on success we show a happy message and head back to the home page
+        dispatch(setBanner('Successfully edited arrangement', BANNER_SUCCESS));
+        dispatch(push('/'));
+        return json;
+      }).catch((e) => {
+        // on failure we show a sad message but stay here in case user wants to resubmit
+        dispatch(setBanner('Failed to edit arrangement', BANNER_ERROR));
+        return e;
+      });
 }
 
 function submitArrangement(values) {

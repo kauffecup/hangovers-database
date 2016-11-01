@@ -56,20 +56,20 @@ export const syllableAdapter = s =>
   s && typeof s === 'boolean' ? 'yes' : 'no';
 
 export const fullArrangementAdapter = (a = {}) => Object.assign({}, a, {
-  active: a.active && activeAdapter(a.active),
+  active: (typeof a.active !== 'undefined') && activeAdapter(a.active),
   albums: (a.albums || []).map(albumAdapter),
   arrangers: (a.arrangers || []).map(hangoverAdapter),
-  arrangementType: a.arrangementType && arrangementTypeAdapter(a.arrangementType),
+  arrangementType: (typeof a.arrangementType !== 'undefined') && arrangementTypeAdapter(a.arrangementType),
   concerts: (a.concerts || []).map(concertAdapter),
   finale: attatchmentAdapter(a._attachments, 'mus'),
-  genre: a.genre && genreAdapter(a.genre),
-  key: a.key && keyAdapter(a.key),
+  genre: (typeof a.genre !== 'undefined') && genreAdapter(a.genre),
+  key: (typeof a.key !== 'undefined') && keyAdapter(a.key),
   mp3: attatchmentAdapter(a._attachments, 'mp3'),
   originalArtists: (a.originalArtists || []).map(artistAdapter),
   pdf: attatchmentAdapter(a._attachments, 'pdf'),
-  quality: a.quality && qualityAdapter(a.quality),
+  quality: (typeof a.quality !== 'undefined') && qualityAdapter(a.quality),
   soloists: (a.soloists || []).map(hangoverAdapter),
-  syllables: a.syllables && syllableAdapter(a.syllables),
-  whenArranged: a.whenArranged && semesterAdapter(a.whenArranged),
+  syllables: (typeof a.syllables !== 'undefined') && syllableAdapter(a.syllables),
+  whenArranged: (typeof a.whenArranged !== 'undefined') && semesterAdapter(a.whenArranged),
   whenPerformed: (a.whenPerformed || []).map(semesterAdapter),
 });

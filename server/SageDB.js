@@ -294,7 +294,7 @@ module.exports = class SageDB {
   _destroyAndAdd(doc, newID) {
     const newDoc = Object.assign({}, doc, { _id: newID });
     delete newDoc._rev;
-    return this._destroy(doc._id, doc._rev)
+    return this.destroy(doc._id, doc._rev)
       .then(() => this._sageDB.insertAsync(newDoc));
   }
 
@@ -302,12 +302,12 @@ module.exports = class SageDB {
   _destroyAndAddWithFiles(doc, newID, files) {
     const newDoc = Object.assign({}, doc, { _id: newID });
     delete newDoc._rev;
-    return this._destroy(doc._id, doc._rev)
+    return this.destroy(doc._id, doc._rev)
       .then(() => this._sageDBMulti.insertAsync(newDoc, files, newDoc._id));
   }
 
   /** Destroy a doc */
-  _destroy(id, rev) {
+  destroy(id, rev) {
     return this._sageDB.destroyAsync(id, rev);
   }
 };

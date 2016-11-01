@@ -25,7 +25,7 @@ import {
   keyAdapter,
 } from '../normalizers/adaptFormData';
 
-const SubmitArrangementForm = ({ app, submit, handleSubmit }) => {
+const SubmitArrangementForm = ({ app, submit, handleSubmit, handleDelete, id, rev }) => {
   const { semesterMap, arrangementTypes: at, qualities: q, semesters: s, albums: al, concerts: co, genres: g, keys: k } = app;
   const arrangementTypes = at.map(arrangementTypeAdapter);
   const qualities = q.map(qualityAdapter);
@@ -75,6 +75,7 @@ const SubmitArrangementForm = ({ app, submit, handleSubmit }) => {
         <Field label="Spotify Link (Hangovers Version)" name="spotifyHangoverLink" component={RenderField} type="text" styles={styles.rowChild} />
       </div>
       <Button type="submit" text="Submit" />
+      {handleDelete && id && rev ? <Button text="Delete" handleClick={() => handleDelete(id, rev)} error type="button" /> : null}
     </form>
   );
 };
@@ -98,8 +99,11 @@ const styles = StyleSheet.create({
 
 SubmitArrangementForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
+  handleDelete: PropTypes.func,
   submit: PropTypes.func.isRequired,
   app: PropTypes.object.isRequired,
+  id: PropTypes.string,
+  rev: PropTypes.string,
 };
 
 export default SubmitArrangementForm;

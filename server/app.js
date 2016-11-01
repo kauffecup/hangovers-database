@@ -114,9 +114,20 @@ app.post('/arrangementsubmit', upload.fields([
     });
 });
 
+/** GET: see if an arrangement exists */
 app.get('/arrangementexists', ({ query: { name } }, res) => {
   sageDB.arrangementExists(name)
     .then(exists => res.json(exists))
+    .catch((e) => {
+      res.status(500);
+      res.json(e);
+    });
+});
+
+/** DELETE: a document from the database */
+app.delete('/destroy', ({ query: { _id, _rev } }, res) => {
+  sageDB.destroy(_id, _rev)
+    .then(() => res.json({}))
     .catch((e) => {
       res.status(500);
       res.json(e);

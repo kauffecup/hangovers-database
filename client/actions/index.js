@@ -96,6 +96,20 @@ export function getArrangements(skip) {
   };
 }
 
+export function destroyDocument(_id, _rev) {
+  return dispatch =>
+    _myFetch(`/destroy?${stringify({ _id, _rev })}`, { method: 'DELETE' })
+      .then(() => {
+        // on success we show a happy message and head back to the home page
+        dispatch(setBanner('Successfully deleted that!', BANNER_SUCCESS));
+        dispatch(push('/'));
+      }).catch((e) => {
+        // on failure we show a sad message but stay here in case user wants to try again
+        dispatch(setBanner('Failed to delete that!', BANNER_ERROR));
+        return e;
+      });
+}
+
 export function addArrangement(values) {
   return dispatch =>
     submitArrangement(values)

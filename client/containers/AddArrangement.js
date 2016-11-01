@@ -1,7 +1,16 @@
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
+import { addArrangement } from '../actions';
 import validate, { asyncValidate } from '../normalizers/validate';
-import AddArrangementForm from '../components/AddArrangementForm';
+import SubmitArrangementForm from '../components/SubmitArrangementForm';
+
+const AddArrangement = props =>
+  <SubmitArrangementForm {...props} submit={values => props.dispatch(addArrangement(values))} />;
+
+AddArrangement.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+};
 
 // for now, we want it all!
 // we want the app state
@@ -16,4 +25,4 @@ export default connect(mapStateToProps)(reduxForm({
   validate,
   asyncValidate,
   asyncBlurFields: ['name'],
-})(AddArrangementForm));
+})(AddArrangement));

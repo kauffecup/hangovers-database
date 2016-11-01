@@ -12,7 +12,6 @@ import RenderDropzone from './form/RenderDropzone';
 import Button from './Button';
 import { BERMUDA_GRAY, PADDING_UNIT } from '../StyleConstants';
 import {
-  submitArrangement,
   searchHangovers,
   searchArtists,
 } from '../actions';
@@ -26,7 +25,7 @@ import {
   keyAdapter,
 } from '../normalizers/adaptFormData';
 
-const AddArrangementForm = ({ app, handleSubmit }) => {
+const SubmitArrangementForm = ({ app, submit, handleSubmit }) => {
   const { semesterMap, arrangementTypes: at, qualities: q, semesters: s, albums: al, concerts: co, genres: g, keys: k } = app;
   const arrangementTypes = at.map(arrangementTypeAdapter);
   const qualities = q.map(qualityAdapter);
@@ -36,7 +35,7 @@ const AddArrangementForm = ({ app, handleSubmit }) => {
   const genres = g.map(genreAdapter);
   const keys = k.map(keyAdapter);
   return (
-    <form className={css(styles.form)} onSubmit={handleSubmit(values => submitArrangement(adaptSubmit(values)))}>
+    <form className={css(styles.form)} onSubmit={handleSubmit(values => submit(adaptSubmit(values)))}>
       <h3 className={css(styles.categoryLabel)}>The Song</h3>
       <div className={css(styles.row)}>
         <Field label="Name" name="name" component={RenderField} type="text" styles={styles.rowChild} />
@@ -97,9 +96,10 @@ const styles = StyleSheet.create({
   },
 });
 
-AddArrangementForm.propTypes = {
+SubmitArrangementForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
+  submit: PropTypes.func.isRequired,
   app: PropTypes.object.isRequired,
 };
 
-export default AddArrangementForm;
+export default SubmitArrangementForm;

@@ -1,8 +1,9 @@
 import { stringify } from 'query-string';
-import { SubmissionError } from 'redux-form';
+import { reset, SubmissionError } from 'redux-form';
 import { hangoverAdapter, artistAdapter, fullArrangementAdapter } from '../normalizers/adaptFormData';
 
 export const ARRANGEMENT_FORM = 'addArrangement';
+export const EDIT_FORM = 'editArrangement';
 
 export const INITIALIZE_FORMS = 'INITIALIZE_FORMS';
 export const INITIALIZE_FORMS_SUCCESS = 'INITIALIZE_FORMS_SUCCESS';
@@ -83,7 +84,20 @@ export function getArrangements(skip) {
   };
 }
 
-export function submitArrangement(values) {
+export function addArrangement(values) {
+  return dispatch =>
+    submitArrangement(values)
+      .then((json) => {
+        dispatch(reset(ARRANGEMENT_FORM));
+        return json;
+      });
+}
+
+export function editArrangement(values) {
+  return submitArrangement(values);
+}
+
+function submitArrangement(values) {
   const formData = new FormData();
   for (const key of Object.keys(values)) {
     if (values[key]) {
@@ -96,7 +110,7 @@ export function submitArrangement(values) {
       }
     }
   }
-  fetch('/arrangementsubmit', { method: 'POST', body: formData })
+  return fetch('/arrangementsubmit', { method: 'POST', body: formData })
     .then(response => response.json())
     .catch((error) => {
       throw new SubmissionError(error);

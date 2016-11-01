@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
-import { getEditArrangementData } from '../actions';
+import { getEditArrangementData, editArrangement } from '../actions';
 import validate from '../normalizers/validate';
-import AddArrangementForm from '../components/AddArrangementForm';
+import SubmitArrangementForm from '../components/SubmitArrangementForm';
 
 class EditArrangement extends Component {
   componentDidMount() {
@@ -12,7 +12,8 @@ class EditArrangement extends Component {
   }
 
   render() {
-    return <AddArrangementForm {...this.props} />;
+    const { dispatch } = this.props;
+    return <SubmitArrangementForm {...this.props} submit={values => dispatch(editArrangement(values))} />;
   }
 }
 

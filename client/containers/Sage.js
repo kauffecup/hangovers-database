@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, css } from 'aphrodite';
-import { closeBanner, initializeForms, getArrangements } from '../actions';
+import { closeBanner, initializeForms } from '../actions';
 import { CATSKILL_WHITE, NAVBAR_WIDTH } from '../StyleConstants';
 import Header from '../components/Header';
 import NavBar from '../components/NavBar';
@@ -11,7 +11,6 @@ class Sage extends Component {
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch(initializeForms());
-    dispatch(getArrangements());
   }
 
   render() {

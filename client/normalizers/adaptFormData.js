@@ -5,7 +5,7 @@ export const albumAdapter = (a = {}, sMap = {}) => ({
   value: a._id, label: `${a.name} ${sMap[a.semester] ? sMap[a.semester].year : ''}`.trim(),
 });
 
-export const arrangementTypeAdapter = at => ({
+export const arrangementTypeAdapter = (at = {}) => ({
   value: at._id, label: `${at.name} (${at.description})`,
 });
 

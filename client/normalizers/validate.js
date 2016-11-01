@@ -54,7 +54,7 @@ export default (values) => {
   }
 
   if (!values.active) {
-    errors.syllables = REQUIRED_ERROR;
+    errors.active = REQUIRED_ERROR;
   }
 
   if (values.youtube && !youtubeRegex().test(values.youtube)) {

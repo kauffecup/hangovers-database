@@ -5,6 +5,10 @@ import { hangoverAdapter, artistAdapter, fullArrangementAdapter } from '../norma
 export const ARRANGEMENT_FORM = 'addArrangement';
 export const EDIT_FORM = 'editArrangement';
 
+export const SET_BANNER = 'SET_BANNER';
+export const BANNER_SUCCESS = 'BANNER_SUCCESS';
+export const BANNER_ERROR = 'BANNER_ERROR';
+export const CLOSE_BANNER = 'CLOSE_BANNER';
 export const INITIALIZE_FORMS = 'INITIALIZE_FORMS';
 export const INITIALIZE_FORMS_SUCCESS = 'INITIALIZE_FORMS_SUCCESS';
 export const INITIALIZE_FORMS_FAILURE = 'INITIALIZE_FORMS_FAILURE';
@@ -20,6 +24,10 @@ export const GET_ARRANGEMENT_FAILURE = 'GET_ARRANGEMENT_FAILURE';
 export const GET_EDIT_ARRANGEMENT = 'GET_EDIT_ARRANGEMENT';
 export const GET_EDIT_ARRANGEMENT_SUCCESS = 'GET_EDIT_ARRANGEMENT_SUCCESS';
 export const GET_EDIT_ARRANGEMENT_FAILURE = 'GET_EDIT_ARRANGEMENT_FAILURE';
+
+// Here be some network functions. they probably don't belong here because they
+// aren't technically actions! howeverrrrr the actions that use network functions
+// define them all here so maybe they do? who knows
 
 export function searchHangovers(hangover) {
   if (!hangover) {
@@ -42,6 +50,16 @@ export function searchArtists(artist) {
 export function arrangementExists(name) {
   return fetch(`/arrangementexists?${stringify({ name })}`)
     .then(response => response.json());
+}
+
+// OK. here are some actual actions. like with types and whatnot.
+
+export function setBanner(text, type) {
+  return { type: SET_BANNER, text, bannerType: type };
+}
+
+export function closeBanner() {
+  return { type: CLOSE_BANNER };
 }
 
 export function initializeForms() {

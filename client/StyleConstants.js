@@ -19,6 +19,7 @@ export const MALIBU = '#87BCFF';
 export const BRIGHT_TURQUOISE = '#27E1ED';
 
 // greens
+export const PEPPERMINT = '#E6F6E3';
 export const ATLANTIS = '#A0D045';
 
 export const NAVBAR_WIDTH = 80;

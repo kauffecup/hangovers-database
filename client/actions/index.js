@@ -34,8 +34,7 @@ export function searchHangovers(hangover) {
   if (!hangover) {
     return Promise.resolve({ options: [] });
   }
-  return fetch(`/search/hangovers?${stringify({ hangover: hangover.trim() })}`)
-    .then(response => response.json())
+  return _myFetch(`/search/hangovers?${stringify({ hangover: hangover.trim() })}`)
     .then(hangovers => ({ options: hangovers.map(hangoverAdapter) }));
 }
 
@@ -43,14 +42,12 @@ export function searchArtists(artist) {
   if (!artist) {
     return Promise.resolve({ options: [] });
   }
-  return fetch(`/search/artists?${stringify({ artist: artist.trim() })}`)
-    .then(response => response.json())
+  return _myFetch(`/search/artists?${stringify({ artist: artist.trim() })}`)
     .then(hangovers => ({ options: hangovers.map(artistAdapter) }));
 }
 
 export function arrangementExists(name) {
-  return fetch(`/arrangementexists?${stringify({ name })}`)
-    .then(response => response.json());
+  return _myFetch(`/arrangementexists?${stringify({ name })}`);
 }
 
 // OK. here are some actual actions. like with types and whatnot.
@@ -66,8 +63,7 @@ export function closeBanner() {
 export function initializeForms() {
   return (dispatch) => {
     dispatch({ type: INITIALIZE_FORMS });
-    fetch('/initializeforms')
-      .then(response => response.json())
+    _myFetch('/initializeforms')
       .then(data => dispatch({ type: INITIALIZE_FORMS_SUCCESS, data }))
       .catch(error => dispatch({ type: INITIALIZE_FORMS_FAILURE, error }));
   };
@@ -76,8 +72,7 @@ export function initializeForms() {
 export function getArrangement(arrangementID) {
   return (dispatch) => {
     dispatch({ type: GET_ARRANGEMENT });
-    fetch(`/fullarrangement?${stringify({ arrangementID })}`)
-      .then(response => response.json())
+    _myFetch(`/fullarrangement?${stringify({ arrangementID })}`)
       .then(data => dispatch({ type: GET_ARRANGEMENT_SUCCESS, data }))
       .catch(error => dispatch({ type: GET_ARRANGEMENT_FAILURE, error }));
   };
@@ -86,8 +81,7 @@ export function getArrangement(arrangementID) {
 export function getEditArrangementData(arrangementID) {
   return (dispatch) => {
     dispatch({ type: GET_EDIT_ARRANGEMENT });
-    fetch(`/fullarrangement?${stringify({ arrangementID })}`)
-      .then(response => response.json())
+    _myFetch(`/fullarrangement?${stringify({ arrangementID })}`)
       .then(data => dispatch({ type: GET_EDIT_ARRANGEMENT_SUCCESS, data: fullArrangementAdapter(data) }))
       .catch(error => dispatch({ type: GET_EDIT_ARRANGEMENT_FAILURE, error }));
   };
@@ -96,8 +90,7 @@ export function getEditArrangementData(arrangementID) {
 export function getArrangements(skip) {
   return (dispatch) => {
     dispatch({ type: GET_ARRANGEMENTS });
-    fetch(`/arrangements?${stringify({ skip })}`)
-      .then(response => response.json())
+    _myFetch(`/arrangements?${stringify({ skip })}`)
       .then(data => dispatch({ type: GET_ARRANGEMENTS_SUCCESS, data }))
       .catch(error => dispatch({ type: GET_ARRANGEMENTS_FAILURE, error }));
   };
@@ -147,9 +140,18 @@ function submitArrangement(values) {
       }
     }
   }
-  return fetch('/arrangementsubmit', { method: 'POST', body: formData })
-    .then(response => response.json())
+  return _myFetch('/arrangementsubmit', { method: 'POST', body: formData })
     .catch((error) => {
       throw new SubmissionError(error);
+    });
+}
+
+function _myFetch(endpoint, opts) {
+  return fetch(endpoint, opts)
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      }
+      throw response;
     });
 }

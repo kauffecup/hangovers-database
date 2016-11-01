@@ -238,11 +238,31 @@ module.exports = class SageDB {
         return oa;
       });
     }
-    // time to upsert
-    if (filesToUpload.length) {
-      return this._upsertTypeWithFiles(toUpload, filesToUpload, ARRANGEMENT_TYPE, getArrangementID(toUpload), true);
+    // if the arrangement already as an _id and a _rev but the _is different then
+    // the newly calculated one, we delete the doc and re add it instead of upserting.
+    // this is because we want the _ids when sorted alphabetically to reflect the
+    // arrangements sorted alphabetically
+    const arrID = getArrangementID(toUpload);
+    const deleteAndReAdd = (toUpload._id && toUpload._rev) && (toUpload._id !== arrID);
+    if (deleteAndReAdd) {
+      if (filesToUpload.length) {
+        return this._sageDB.destroyAsync(toUpload._id, toUpload._rev)
+          .then(() => {
+            delete toUpload._rev;
+            return this._upsertTypeWithFiles(toUpload, filesToUpload, ARRANGEMENT_TYPE, arrID, true);
+          });
+      }
+      return this._sageDB.destroyAsync(toUpload._id, toUpload._rev)
+        .then(() => {
+          delete toUpload._rev;
+          return this._upsertType(toUpload, ARRANGEMENT_TYPE, arrID, true);
+        });
+    // if we're here it means we aren't changing a field that'll affect the
+    // _id of this arrangement. you know what that means. time to upsert.
+    } else if (filesToUpload.length) {
+      return this._upsertTypeWithFiles(toUpload, filesToUpload, ARRANGEMENT_TYPE, arrID, true);
     }
-    return this._upsertType(toUpload, ARRANGEMENT_TYPE, getArrangementID(toUpload), true);
+    return this._upsertType(toUpload, ARRANGEMENT_TYPE, arrID, true);
   }
 
   /** Format the call to _upsert for the above doc types */

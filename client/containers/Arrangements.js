@@ -6,29 +6,29 @@ import { StyleSheet, css } from 'aphrodite';
 import { getArrangements } from '../actions';
 import { ARRANGEMENT_HEIGHT, PADDING_UNIT } from '../StyleConstants';
 
-class ArrangementList extends Component {
+class Arrangements extends Component {
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch(getArrangements());
   }
 
   render() {
-    const { loading, arrangementList, currentOffset, totalRows, dispatch } = this.props;
-    const hasNextPage = currentOffset + arrangementList.length < totalRows;
-    const loadNextPage = () => dispatch(getArrangements(arrangementList.length));
+    const { loading, list, totalRows, dispatch } = this.props;
+    const hasNextPage = list.length < totalRows;
+    const loadNextPage = () => dispatch(getArrangements(list.length));
 
     // Only load 1 "page" of items at a time.
     // Pass an empty callback to InfiniteLoader in case it asks us to load more than once.
     const loadMoreRows = loading ? () => {} : loadNextPage;
 
     // Every row is loaded except for our loading indicator row.
-    const isRowLoaded = ({ index }) => !hasNextPage || index < arrangementList.length;
+    const isRowLoaded = ({ index }) => !hasNextPage || index < list.length;
 
     // Render a history item or a loading indicator.
     const rowRenderer = ({ index, key, style }) => // eslint-disable-line
       <div key={key} style={style}>
         <div className={css(styles.arrangement)}>
-          <Link to={`/arrangement/${arrangementList[index]._id}`}>{arrangementList[index].name}</Link>
+          <Link to={`/arrangement/${list[index]._id}`}>{list[index].name}</Link>
         </div>
       </div>;
 
@@ -46,7 +46,7 @@ class ArrangementList extends Component {
                   ref={registerChild}
                   onRowsRendered={onRowsRendered}
                   rowRenderer={rowRenderer}
-                  rowCount={arrangementList.length}
+                  rowCount={list.length}
                   width={width}
                   height={height}
                   rowHeight={ARRANGEMENT_HEIGHT}
@@ -70,11 +70,10 @@ const styles = StyleSheet.create({
   },
 });
 
-ArrangementList.propTypes = {
+Arrangements.propTypes = {
   dispatch: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
-  arrangementList: PropTypes.array.isRequired,
-  currentOffset: PropTypes.number.isRequired,
+  list: PropTypes.array.isRequired,
   totalRows: PropTypes.number.isRequired,
 };
 
@@ -82,4 +81,4 @@ ArrangementList.propTypes = {
 const mapStateToProps = state => state.arrangements;
 
 // Wrap the component to inject dispatch and state into it
-export default connect(mapStateToProps)(ArrangementList);
+export default connect(mapStateToProps)(Arrangements);

@@ -91,9 +91,19 @@ app.get('/arrangementfile', ({ query: { arrangementID, attachmentID, type } }, r
 });
 
 /** Get the arrangements in the database */
-app.get('/arrangements', ({ query: { limit, skip } }, res) => {
+app.get('/list/arrangements', ({ query: { limit, skip } }, res) => {
   sageDB.getArrangements(limit, skip)
     .then(arrangements => res.json(arrangements))
+    .catch((e) => {
+      res.status(500);
+      res.json(e);
+    });
+});
+
+/** Get the hangovers in the database */
+app.get('/list/hangovers', ({ query: { limit, skip } }, res) => {
+  sageDB.getHangovers(limit, skip)
+    .then(hangovers => res.json(hangovers))
     .catch((e) => {
       res.status(500);
       res.json(e);

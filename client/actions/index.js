@@ -25,6 +25,9 @@ export const GET_ARRANGEMENT_FAILURE = 'GET_ARRANGEMENT_FAILURE';
 export const GET_EDIT_ARRANGEMENT = 'GET_EDIT_ARRANGEMENT';
 export const GET_EDIT_ARRANGEMENT_SUCCESS = 'GET_EDIT_ARRANGEMENT_SUCCESS';
 export const GET_EDIT_ARRANGEMENT_FAILURE = 'GET_EDIT_ARRANGEMENT_FAILURE';
+export const GET_HANGOVERS = 'GET_HANGOVERS';
+export const GET_HANGOVERS_SUCCESS = 'GET_HANGOVERS_SUCCESS';
+export const GET_HANGOVERS_FAILURE = 'GET_HANGOVERS_FAILURE';
 
 // Here be some network functions. they probably don't belong here because they
 // aren't technically actions! howeverrrrr the actions that use network functions
@@ -90,9 +93,18 @@ export function getEditArrangementData(arrangementID) {
 export function getArrangements(skip) {
   return (dispatch) => {
     dispatch({ type: GET_ARRANGEMENTS });
-    _myFetch(`/arrangements?${stringify({ skip })}`)
+    _myFetch(`/list/arrangements?${stringify({ skip })}`)
       .then(data => dispatch({ type: GET_ARRANGEMENTS_SUCCESS, data }))
       .catch(error => dispatch({ type: GET_ARRANGEMENTS_FAILURE, error }));
+  };
+}
+
+export function getHangovers(skip) {
+  return (dispatch) => {
+    dispatch({ type: GET_HANGOVERS });
+    _myFetch(`/list/hangovers?${stringify({ skip })}`)
+      .then(data => dispatch({ type: GET_HANGOVERS_SUCCESS, data }))
+      .catch(error => dispatch({ type: GET_HANGOVERS_FAILURE, error }));
   };
 }
 

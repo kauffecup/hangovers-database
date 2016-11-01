@@ -5,6 +5,7 @@ import app from './app';
 import arrangement from './arrangement';
 import arrangements from './arrangements';
 import banner from './banner';
+import hangovers from './hangovers';
 import { GET_EDIT_ARRANGEMENT_SUCCESS } from '../actions';
 
 export default combineReducers({
@@ -12,6 +13,7 @@ export default combineReducers({
   arrangement,
   arrangements,
   banner,
+  hangovers,
   routing: routerReducer,
   form: formReducer.plugin({
     editArrangement: (state, action) => {

@@ -1,5 +1,6 @@
 const Promise = require('bluebird');
 const cloudant = require('cloudant');
+const { binaryFields, fileFields, objectArrayFields } = require('../shared/FormConstants');
 
 // top level objects
 const ARRANGEMENT_TYPE = 'arrangement';
@@ -207,20 +208,18 @@ module.exports = class SageDB {
     if (files.mp3 && files.mp3.length) {
       filesToUpload.push(fileAdapt(files.mp3[0], toUpload.name, 'mp3'));
     }
-    // TODO: it would be nice to generalize these somehow
     // make sure booleans are actually booleans
-    toUpload.syllables = toUpload.syllables === 'true';
-    toUpload.active = toUpload.active === 'true';
+    for (const binaryField of binaryFields) {
+      toUpload[binaryField] = toUpload[binaryField] === 'true';
+    }
     // if these fields are in the arrangement object and not the files object it
     // means we're editing and they are unchanged
-    const fileFields = ['finale', 'mp3', 'pdf', '_attachments'];
-    for (const fileField of fileFields) {
+    for (const fileField of [...fileFields, '_attachments']) {
       delete toUpload[fileField];
     }
     // make sure array fields are actually arrays - if there's only a single key
     // it'll be treated as a string
-    const arrayFields = ['albums', 'arrangers', 'concerts', 'soloists', 'whenPerformed'];
-    for (const arrayField of arrayFields) {
+    for (const arrayField of objectArrayFields) {
       if (toUpload[arrayField]) {
         toUpload[arrayField] = [].concat(toUpload[arrayField]);
       }
@@ -238,27 +237,17 @@ module.exports = class SageDB {
         return oa;
       });
     }
-    // if the arrangement already as an _id and a _rev but the _is different then
-    // the newly calculated one, we delete the doc and re add it instead of upserting.
-    // this is because we want the _ids when sorted alphabetically to reflect the
-    // arrangements sorted alphabetically
+    // if we're updating an arrangement such that one of its newly changed fields
+    // will change the ID of the document, we delete the old doc and create a new
+    // one. otherwise we simply upsert. in either case we have to call different
+    // methods if we're also adding files.
     const arrID = getArrangementID(toUpload);
     const deleteAndReAdd = (toUpload._id && toUpload._rev) && (toUpload._id !== arrID);
     if (deleteAndReAdd) {
       if (filesToUpload.length) {
-        return this._sageDB.destroyAsync(toUpload._id, toUpload._rev)
-          .then(() => {
-            delete toUpload._rev;
-            return this._upsertTypeWithFiles(toUpload, filesToUpload, ARRANGEMENT_TYPE, arrID, true);
-          });
+        return this._destroyAndAddWithFiles(toUpload, arrID, filesToUpload);
       }
-      return this._sageDB.destroyAsync(toUpload._id, toUpload._rev)
-        .then(() => {
-          delete toUpload._rev;
-          return this._upsertType(toUpload, ARRANGEMENT_TYPE, arrID, true);
-        });
-    // if we're here it means we aren't changing a field that'll affect the
-    // _id of this arrangement. you know what that means. time to upsert.
+      return this._destroyAndAdd(toUpload, arrID);
     } else if (filesToUpload.length) {
       return this._upsertTypeWithFiles(toUpload, filesToUpload, ARRANGEMENT_TYPE, arrID, true);
     }
@@ -299,5 +288,26 @@ module.exports = class SageDB {
       ).catch(e =>
         e.error === 'not_found' ? this._sageDBMulti.insertAsync(doc, files, doc._id) : e
       );
+  }
+
+  /** Destroy an existing doc and add it with a new ID */
+  _destroyAndAdd(doc, newID) {
+    const newDoc = Object.assign({}, doc, { _id: newID });
+    delete newDoc._rev;
+    return this._destroy(doc._id, doc._rev)
+      .then(() => this._sageDB.insertAsync(newDoc));
+  }
+
+  /** Destroy an existing doc and add it with a new ID and some files */
+  _destroyAndAddWithFiles(doc, newID, files) {
+    const newDoc = Object.assign({}, doc, { _id: newID });
+    delete newDoc._rev;
+    return this._destroy(doc._id, doc._rev)
+      .then(() => this._sageDBMulti.insertAsync(newDoc, files, newDoc._id));
+  }
+
+  /** Destroy a doc */
+  _destroy(id, rev) {
+    return this._sageDB.destroyAsync(id, rev);
   }
 };

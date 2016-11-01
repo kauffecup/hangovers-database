@@ -1,15 +1,11 @@
-/** Fields that are of the form {value, label} for displaying a pretty label for a given key */
-const objectFields = ['arrangementType', 'genre', 'key', 'quality', 'whenArranged'];
-/** Fields that are arrays of the above datatype */
-const objectArrayFields = ['albums', 'arrangers', 'concerts', 'soloists', 'whenPerformed'];
-/** Fields that are "yes"/"no" that we want to convert into booleans */
-const binaryFields = ['active', 'syllables'];
-/** Fields that allow the user to define new input dynamically */
-const newFields = [];
-/** Fields that are arrays of the above datatype */
-const newArrayFields = ['originalArtists'];
-/** Fields that are files */
-const fileFields = ['finale', 'mp3', 'pdf'];
+import {
+  objectFields,
+  objectArrayFields,
+  binaryFields,
+  newFields,
+  newArrayFields,
+  fileFields,
+} from '../../shared/FormConstants';
 
 /** Helper methods for adapting the datatypes into what the backend is expecting */
 const adaptObject = o => o && o.value;

@@ -110,6 +110,16 @@ app.get('/list/hangovers', ({ query: { limit, skip } }, res) => {
     });
 });
 
+/** Get the artists in the database */
+app.get('/list/artists', ({ query: { limit, skip } }, res) => {
+  sageDB.getArtists(limit, skip)
+    .then(artists => res.json(artists))
+    .catch((e) => {
+      res.status(500);
+      res.json(e);
+    });
+});
+
 /** POST: Submit a new arrangement */
 app.post('/arrangementsubmit', upload.fields([
   { name: 'pdf', maxCount: 1 },

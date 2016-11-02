@@ -28,6 +28,9 @@ export const GET_EDIT_ARRANGEMENT_FAILURE = 'GET_EDIT_ARRANGEMENT_FAILURE';
 export const GET_HANGOVERS = 'GET_HANGOVERS';
 export const GET_HANGOVERS_SUCCESS = 'GET_HANGOVERS_SUCCESS';
 export const GET_HANGOVERS_FAILURE = 'GET_HANGOVERS_FAILURE';
+export const GET_ARTISTS = 'GET_ARTISTS';
+export const GET_ARTISTS_SUCCESS = 'GET_ARTISTS_SUCCESS';
+export const GET_ARTISTS_FAILURE = 'GET_ARTISTS_FAILURE';
 
 // Here be some network functions. they probably don't belong here because they
 // aren't technically actions! howeverrrrr the actions that use network functions
@@ -105,6 +108,15 @@ export function getHangovers(skip) {
     _myFetch(`/list/hangovers?${stringify({ skip })}`)
       .then(data => dispatch({ type: GET_HANGOVERS_SUCCESS, data }))
       .catch(error => dispatch({ type: GET_HANGOVERS_FAILURE, error }));
+  };
+}
+
+export function getArtists(skip) {
+  return (dispatch) => {
+    dispatch({ type: GET_ARTISTS });
+    _myFetch(`/list/artists?${stringify({ skip })}`)
+      .then(data => dispatch({ type: GET_ARTISTS_SUCCESS, data }))
+      .catch(error => dispatch({ type: GET_ARTISTS_FAILURE, error }));
   };
 }
 

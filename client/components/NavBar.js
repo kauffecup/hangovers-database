@@ -4,10 +4,11 @@ import { StyleSheet, css } from 'aphrodite';
 import { NAVBAR_WIDTH, BERMUDA_GRAY, HEATHER } from '../StyleConstants';
 import menuSVG from '../icons/menu.svg';
 import homeSVG from '../icons/home.svg';
-import audioSVG from '../icons/audio.svg';
+import musicSVG from '../icons/music.svg';
 import calendarSVG from '../icons/calendar.svg';
 import manSVG from '../icons/man.svg';
-import speechbubbleSVG from '../icons/speechbubble.svg';
+import loudspeakerSVG from '../icons/loudspeaker.svg';
+import headphonesSVG from '../icons/headphones.svg';
 import plusSVG from '../icons/plus.svg';
 
 const NavBar = () =>
@@ -15,10 +16,11 @@ const NavBar = () =>
     <ul>
       <Link to="/"><li className={css(styles.iconLink)} dangerouslySetInnerHTML={{ __html: menuSVG }} /></Link>
       <Link to="/"><li className={css(styles.iconLink)} dangerouslySetInnerHTML={{ __html: homeSVG }} /></Link>
-      <Link to="/"><li className={css(styles.iconLink)} dangerouslySetInnerHTML={{ __html: audioSVG }} /></Link>
+      <Link to="/"><li className={css(styles.iconLink)} dangerouslySetInnerHTML={{ __html: musicSVG }} /></Link>
       <Link to="/hangovers"><li className={css(styles.iconLink)} dangerouslySetInnerHTML={{ __html: manSVG }} /></Link>
       <Link to="/semesters"><li className={css(styles.iconLink)} dangerouslySetInnerHTML={{ __html: calendarSVG }} /></Link>
-      <Link to="/concerts"><li className={css(styles.iconLink)} dangerouslySetInnerHTML={{ __html: speechbubbleSVG }} /></Link>
+      <Link to="/concerts"><li className={css(styles.iconLink)} dangerouslySetInnerHTML={{ __html: loudspeakerSVG }} /></Link>
+      <Link to="/artists"><li className={css(styles.iconLink)} dangerouslySetInnerHTML={{ __html: headphonesSVG }} /></Link>
       <Link to="/submitform"><li className={css(styles.iconLink)} dangerouslySetInnerHTML={{ __html: plusSVG }} /></Link>
     </ul>
   </nav>;

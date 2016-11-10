@@ -1,5 +1,5 @@
 applications:
-- buildpack: sdk-for-nodejs
+- buildpack: https://github.com/kauffecup/nodejs-buildpack.git#yarn
   command: npm run start
   path: .
   instances: 1

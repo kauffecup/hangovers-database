@@ -79,8 +79,11 @@ There are a few pre-configured npm scripts.
 Before you do anything else, you'll need to:
 
 ```
-npm install
+npm install -g yarn
+yarn install
 ```
+
+(If you don't want to use yarn for whatever reason, `npm install` will work).
 
 ### Build (and run) the Production Bundle
 

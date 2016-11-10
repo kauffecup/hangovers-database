@@ -203,18 +203,39 @@ scripts, so at least they're like sort of in source control, ya know?
 
 ```sh
 #!/bin/bash
-node_version=v6.7.0
-install_name=node-v6.7.0-linux-x64
+node_version=v6.9.0
+install_name=node-v6.9.0-linux-x64
 if [ ! -e $install_name.tar.gz ]; then
-    wget "http://nodejs.org/dist/$node_version/$install_name.tar.gz"
-    echo 'Untarring'
-    tar xf $install_name.tar.gz
+  wget "http://nodejs.org/dist/$node_version/$install_name.tar.gz"
+  echo "Untarring"
+  tar xf $install_name.tar.gz
 fi
 NODE_6_INSTALL_DIR=`pwd`/$install_name/bin
 PATH=$NODE_6_INSTALL_DIR:$PATH
 node -v
 
-npm install
+echo "Downloading and installing yarn..."
+yarn_url="https://yarnpkg.com/latest.tar.gz"
+yarn_dir=`pwd`/yarn
+
+code=$(curl "$yarn_url" -L --silent --fail --retry 5 --retry-max-time 15 -o /tmp/yarn.tar.gz --write-out "%{http_code}")
+if [ "$code" != "200" ]; then
+  echo "Unable to download yarn: $code" && false
+fi
+rm -rf $yarn_dir
+mkdir -p "$yarn_dir"
+# https://github.com/yarnpkg/yarn/issues/770
+if tar --version | grep -q 'gnu'; then
+  tar xzf /tmp/yarn.tar.gz -C "$yarn_dir" --strip 1 --warning=no-unknown-keyword
+else
+  tar xzf /tmp/yarn.tar.gz -C "$yarn_dir" --strip 1
+fi
+chmod +x $yarn_dir/bin/*
+
+PATH=$yarn_dir/bin:$PATH
+echo "Installed yarn $(yarn --version)"
+
+yarn install
 npm run build
 ```
 

@@ -6,6 +6,7 @@ import artists from './artists';
 import arrangement from './arrangement';
 import arrangements from './arrangements';
 import banner from './banner';
+import hangover from './hangover';
 import hangovers from './hangovers';
 import { GET_EDIT_ARRANGEMENT_SUCCESS } from '../actions';
 
@@ -15,6 +16,7 @@ export default combineReducers({
   arrangement,
   arrangements,
   banner,
+  hangover,
   hangovers,
   routing: routerReducer,
   form: formReducer.plugin({

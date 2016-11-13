@@ -6,6 +6,7 @@ import Arrangements from './Arrangements';
 import Arrangement from './Arrangement';
 import Artists from './Artists';
 import Sage from './Sage';
+import Hangover from './Hangover';
 import Hangovers from './Hangovers';
 import Semesters from './Semesters';
 import Concerts from './Concerts';
@@ -15,6 +16,7 @@ const App = ({ history }) =>
     <Route path="/" component={Sage}>
       <IndexRoute component={Arrangements} />
       <Route path="hangovers" component={Hangovers} />
+      <Route path="hangovers/:id" component={Hangover} />
       <Route path="semesters" component={Semesters} />
       <Route path="concerts" component={Concerts} />
       <Route path="artists" component={Artists} />

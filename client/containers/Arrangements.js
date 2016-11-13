@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { InfiniteLoader, List, AutoSizer } from 'react-virtualized';
-import { Link } from 'react-router';
 import { StyleSheet, css } from 'aphrodite';
+import ArrangementLink from '../components/links/ArrangementLink';
 import { getArrangements } from '../actions';
 import { ARRANGEMENT_HEIGHT, PADDING_UNIT } from '../StyleConstants';
 
@@ -28,7 +28,7 @@ class Arrangements extends Component {
     const rowRenderer = ({ index, key, style }) => // eslint-disable-line
       <div key={key} style={style}>
         <div className={css(styles.arrangement)}>
-          <Link to={`/arrangement/${list[index]._id}`}>{list[index].name}</Link>
+          <ArrangementLink {...list[index]} />
         </div>
       </div>;
 

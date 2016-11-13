@@ -66,6 +66,40 @@ module.exports = class SageDB {
     });
   }
 
+  /**
+   * Here we get a hangover metadata along with the original docs for the
+   * arrangements this hangover either arranged or soloed. We have some cleanup
+   * logic for combining the arrangements and soloists into a clean array.
+   */
+  getFullHangover(hangoverID) {
+    return this._sageDB.viewAsync('types', 'hangover_full', {
+      include_docs: true,
+      startkey: [hangoverID],
+      endkey: [hangoverID, {}],
+      limit: 200,
+    }).then(({ rows }) => {
+      if (!rows || !rows.length) {
+        throw new Error('No hangover found');
+      }
+      const doc = rows[0].doc;  // TODO: is this always true? see above method
+      const docArrays = {};
+      for (let i = 1; i < rows.length; i++) {
+        const rowKey = rows[i].key;
+        const rowDoc = rows[i].doc;
+        if (rowKey.length === 2) {
+          if (!docArrays[rowKey[1]]) {
+            docArrays[rowKey[1]] = [];
+          }
+          docArrays[rowKey[1]].push(rowDoc);
+        }
+      }
+      for (const arrayName of Object.keys(docArrays)) {
+        doc[arrayName] = docArrays[arrayName];
+      }
+      return doc;
+    });
+  }
+
   /** Resolves with true if an arrangement exists, false otherwise */
   arrangementExists(name = '') {
     return new Promise((resolve, reject) =>

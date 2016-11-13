@@ -65,8 +65,18 @@ app.get('/initializeforms', (req, res) => {
 });
 
 /** Get the full arrangement doc */
-app.get('/fullarrangement', ({ query: { arrangementID } }, res) => {
+app.get('/full/arrangement', ({ query: { arrangementID } }, res) => {
   sageDB.getFullArrangement(arrangementID)
+    .then(a => res.json(a))
+    .catch((e) => {
+      res.status(500);
+      res.json(e);
+    });
+});
+
+/** Get the full hangover doc */
+app.get('/full/hangover', ({ query: { hangoverID } }, res) => {
+  sageDB.getFullHangover(hangoverID)
     .then(a => res.json(a))
     .catch((e) => {
       res.status(500);

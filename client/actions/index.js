@@ -22,6 +22,9 @@ export const GET_ARRANGEMENTS_FAILURE = 'GET_ARRANGEMENTS_FAILURE';
 export const GET_ARRANGEMENT = 'GET_ARRANGEMENT';
 export const GET_ARRANGEMENT_SUCCESS = 'GET_ARRANGEMENT_SUCCESS';
 export const GET_ARRANGEMENT_FAILURE = 'GET_ARRANGEMENT_FAILURE';
+export const GET_HANGOVER = 'GET_HANGOVER';
+export const GET_HANGOVER_SUCCESS = 'GET_HANGOVER_SUCCESS';
+export const GET_HANGOVER_FAILURE = 'GET_HANGOVER_FAILURE';
 export const GET_EDIT_ARRANGEMENT = 'GET_EDIT_ARRANGEMENT';
 export const GET_EDIT_ARRANGEMENT_SUCCESS = 'GET_EDIT_ARRANGEMENT_SUCCESS';
 export const GET_EDIT_ARRANGEMENT_FAILURE = 'GET_EDIT_ARRANGEMENT_FAILURE';
@@ -78,9 +81,18 @@ export function initializeForms() {
 export function getArrangement(arrangementID) {
   return (dispatch) => {
     dispatch({ type: GET_ARRANGEMENT });
-    _myFetch(`/fullarrangement?${stringify({ arrangementID })}`)
+    _myFetch(`/full/arrangement?${stringify({ arrangementID })}`)
       .then(data => dispatch({ type: GET_ARRANGEMENT_SUCCESS, data }))
       .catch(error => dispatch({ type: GET_ARRANGEMENT_FAILURE, error }));
+  };
+}
+
+export function getHangover(hangoverID) {
+  return (dispatch) => {
+    dispatch({ type: GET_HANGOVER });
+    _myFetch(`/full/hangover?${stringify({ hangoverID })}`)
+      .then(data => dispatch({ type: GET_HANGOVER_SUCCESS, data }))
+      .catch(error => dispatch({ type: GET_HANGOVER_FAILURE, error }));
   };
 }
 

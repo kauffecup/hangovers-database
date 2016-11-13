@@ -39,6 +39,9 @@
     },
     "arrangement_full": {
       "map": "function (doc) {\n  if (doc.type === 'arrangement') {\n    emit([doc._id]);\n\n    var singleFields = ['arrangementType', 'genre', 'key', 'quality', 'whenArranged'];\n    singleFields.forEach(function(field) {\n      if (typeof doc[field] === 'string') {\n        emit([doc._id, field], {_id: doc[field]});\n      }\n    });\n    \n    var multiFields = ['albums', 'arrangers', 'concerts', 'originalArtists', 'soloists', 'whenPerformed'];\n    multiFields.forEach(function(field) {\n      if (doc[field] && doc[field].length) {\n        for (var i = 0; i < doc[field].length; i++) {\n          emit([doc._id, field, i], {_id: doc[field][i]});\n        }\n      }\n    })\n  }\n}"
+    },
+    "hangover_full": {
+      "map": "function (doc) {\n  if (doc.type === 'hangover') {\n    emit([doc._id]);\n  } else if (doc.type === 'arrangement') {\n    var multiFields = ['arrangers', 'soloists'];\n    multiFields.forEach(function(field) {\n      if (doc[field] && doc[field].length) {\n        for (var i = 0; i < doc[field].length; i++) {\n          emit([doc[field][i], field], { _id: doc._id });\n        }\n      }\n    })\n  }\n}"
     }
   },
   "language": "javascript"

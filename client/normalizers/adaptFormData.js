@@ -36,8 +36,10 @@ export const genreAdapter = (g = {}) => ({
   value: g._id, label: `${g.name}`,
 });
 
+export const hangoverFormatter = (h = {}) => `${h.firstName} ${h.lastName}`;
+
 export const hangoverAdapter = (h = {}) => ({
-  value: h._id, label: `${h.firstName} ${h.lastName}`,
+  value: h._id, label: hangoverFormatter(h),
 });
 
 export const keyAdapter = (k = {}) => ({

@@ -64,45 +64,21 @@ app.get('/initializeforms', (req, res) => {
   });
 });
 
-/** Get the full arrangement doc */
-app.get('/full/arrangement', ({ query: { arrangementID } }, res) => {
-  sageDB.getFullArrangement(arrangementID)
+/** Get the full doc */
+const getFull = (id, method, res) =>
+  sageDB[method](id)
     .then(a => res.json(a))
     .catch((e) => {
       res.status(500);
       res.json(e);
     });
-});
 
-/** Get the full hangover doc */
-app.get('/full/hangover', ({ query: { hangoverID } }, res) => {
-  sageDB.getFullHangover(hangoverID)
-    .then(a => res.json(a))
-    .catch((e) => {
-      res.status(500);
-      res.json(e);
-    });
-});
-
-/** Get the full semester doc */
-app.get('/full/semester', ({ query: { semesterID } }, res) => {
-  sageDB.getFullSemester(semesterID)
-    .then(a => res.json(a))
-    .catch((e) => {
-      res.status(500);
-      res.json(e);
-    });
-});
-
-/** Get the full concert doc */
-app.get('/full/concert', ({ query: { concertID } }, res) => {
-  sageDB.getFullConcert(concertID)
-    .then(a => res.json(a))
-    .catch((e) => {
-      res.status(500);
-      res.json(e);
-    });
-});
+/** Endpoints that use the above helper **/
+app.get('/full/arrangement', ({ query: { arrangementID } }, res) => getFull(arrangementID, 'getFullArrangement', res));
+app.get('/full/hangover', ({ query: { hangoverID } }, res) => getFull(hangoverID, 'getFullHangover', res));
+app.get('/full/semester', ({ query: { semesterID } }, res) => getFull(semesterID, 'getFullSemester', res));
+app.get('/full/concert', ({ query: { concertID } }, res) => getFull(concertID, 'getFullConcert', res));
+app.get('/full/album', ({ query: { albumID } }, res) => getFull(albumID, 'getFullAlbum', res));
 
 /** Get a file from the database */
 app.get('/arrangementfile', ({ query: { arrangementID, attachmentID, type } }, res) => {

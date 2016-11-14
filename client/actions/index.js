@@ -31,6 +31,9 @@ export const GET_SEMESTER_FAILURE = 'GET_SEMESTER_FAILURE';
 export const GET_CONCERT = 'GET_CONCERT';
 export const GET_CONCERT_SUCCESS = 'GET_CONCERT_SUCCESS';
 export const GET_CONCERT_FAILURE = 'GET_CONCERT_FAILURE';
+export const GET_ALBUM = 'GET_ALBUM';
+export const GET_ALBUM_SUCCESS = 'GET_ALBUM_SUCCESS';
+export const GET_ALBUM_FAILURE = 'GET_ALBUM_FAILURE';
 export const GET_EDIT_ARRANGEMENT = 'GET_EDIT_ARRANGEMENT';
 export const GET_EDIT_ARRANGEMENT_SUCCESS = 'GET_EDIT_ARRANGEMENT_SUCCESS';
 export const GET_EDIT_ARRANGEMENT_FAILURE = 'GET_EDIT_ARRANGEMENT_FAILURE';
@@ -118,6 +121,15 @@ export function getConcert(concertID) {
     _myFetch(`/full/concert?${stringify({ concertID })}`)
       .then(data => dispatch({ type: GET_CONCERT_SUCCESS, data }))
       .catch(error => dispatch({ type: GET_CONCERT_FAILURE, error }));
+  };
+}
+
+export function getAlbum(albumID) {
+  return (dispatch) => {
+    dispatch({ type: GET_ALBUM });
+    _myFetch(`/full/album?${stringify({ albumID })}`)
+      .then(data => dispatch({ type: GET_ALBUM_SUCCESS, data }))
+      .catch(error => dispatch({ type: GET_ALBUM_FAILURE, error }));
   };
 }
 

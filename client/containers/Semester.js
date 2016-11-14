@@ -1,6 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, css } from 'aphrodite';
+import AlbumLink from '../components/links/AlbumLink';
 import ArrangementLink from '../components/links/ArrangementLink';
 import ConcertLink from '../components/links/ConcertLink';
 import HangoverLink from '../components/links/HangoverLink';
@@ -36,7 +37,7 @@ class Semester extends Component {
         ) : '...nothin'}
         <h3>Albums</h3>
         {semester.albums && semester.albums.length ? semester.albums.map(a =>
-          <span>{a.name}</span>
+          <AlbumLink {...a} />
         ) : '...nothin'}
         <h3>Hangovers Graduated</h3>
         {semester.graduatingHangs && semester.graduatingHangs.length ? semester.graduatingHangs.map(h =>

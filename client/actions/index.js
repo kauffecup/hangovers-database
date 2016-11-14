@@ -124,7 +124,7 @@ export function getConcert(concertID) {
 export function getEditArrangementData(arrangementID) {
   return (dispatch) => {
     dispatch({ type: GET_EDIT_ARRANGEMENT });
-    _myFetch(`/fullarrangement?${stringify({ arrangementID })}`)
+    _myFetch(`/full/arrangement?${stringify({ arrangementID })}`)
       .then(data => dispatch({ type: GET_EDIT_ARRANGEMENT_SUCCESS, data: fullArrangementAdapter(data) }))
       .catch(error => dispatch({ type: GET_EDIT_ARRANGEMENT_FAILURE, error }));
   };

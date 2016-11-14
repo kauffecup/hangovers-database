@@ -2,6 +2,7 @@ import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, css } from 'aphrodite';
 import ArrangementLink from '../components/links/ArrangementLink';
+import SemesterLink from '../components/links/SemesterLink';
 import { getHangover } from '../actions';
 import { hangoverFormatter } from '../normalizers/adaptFormData';
 import { PADDING_UNIT } from '../StyleConstants';
@@ -20,6 +21,12 @@ class Hangover extends Component {
     return (
       <div className={css(styles.arrangement)}>
         <h2>{hangoverFormatter(hangover)}</h2>
+        {hangover.graduationSemester && hangover.graduationSemester.length ?
+          <div>
+            <span>Graduated</span>
+            <SemesterLink {...hangover.graduationSemester[0]} />
+          </div>
+        : null}
         <h3>Arranged</h3>
         {hangover.arrangers && hangover.arrangers.length ? hangover.arrangers.map(a =>
           <ArrangementLink key={a._id} {...a} />

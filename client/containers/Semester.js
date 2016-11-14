@@ -33,6 +33,10 @@ class Semester extends Component {
         {semester.whenPerformed && semester.whenPerformed.length ? semester.whenPerformed.map(s =>
           <ArrangementLink key={s._id} {...s} />
         ) : '...nothin'}
+        <h3>Albums</h3>
+        {semester.albums && semester.albums.length ? semester.albums.map(a =>
+          <span>{a.name}</span>
+        ) : '...nothin'}
         <h3>Hangovers Graduated</h3>
         {semester.graduatingHangs && semester.graduatingHangs.length ? semester.graduatingHangs.map(h =>
           <HangoverLink key={h._id} {...h} />

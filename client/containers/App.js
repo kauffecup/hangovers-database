@@ -5,6 +5,7 @@ import EditArrangement from './EditArrangement';
 import Arrangements from './Arrangements';
 import Arrangement from './Arrangement';
 import Artists from './Artists';
+import Albums from './Albums';
 import Sage from './Sage';
 import Hangover from './Hangover';
 import Hangovers from './Hangovers';
@@ -23,6 +24,7 @@ const App = ({ history }) =>
       <Route path="semesters/:id" component={Semester} />
       <Route path="concerts" component={Concerts} />
       <Route path="concerts/:id" component={Concert} />
+      <Route path="albums" component={Albums} />
       <Route path="artists" component={Artists} />
       <Route path="submitform" component={AddArrangement} />
       <Route path="edit/:id" component={EditArrangement} />

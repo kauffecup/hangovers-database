@@ -1,8 +1,10 @@
 export const activeAdapter = a =>
   a && typeof a === 'boolean' ? 'yes' : 'no';
 
+export const albumFormatter = (a = {}, y = '') => `${a.name} ${y}`.trim();
+
 export const albumAdapter = (a = {}, sMap = {}) => ({
-  value: a._id, label: `${a.name} ${sMap[a.semester] ? sMap[a.semester].year : ''}`.trim(),
+  value: a._id, label: albumFormatter(a, sMap && sMap[a.semester] && sMap[a.semester].year),
 });
 
 export const arrangementTypeAdapter = (at = {}) => ({

@@ -42,6 +42,9 @@
     },
     "hangover_full": {
       "map": "function (doc) {\n  if (doc.type === 'hangover') {\n    emit([doc._id]);\n  } else if (doc.type === 'arrangement') {\n    var multiFields = ['arrangers', 'soloists'];\n    multiFields.forEach(function(field) {\n      if (doc[field] && doc[field].length) {\n        for (var i = 0; i < doc[field].length; i++) {\n          emit([doc[field][i], field], { _id: doc._id });\n        }\n      }\n    })\n  }\n}"
+    },
+    "semester_full": {
+      "map": "function (doc) {\n  if (doc.type === 'semester') {\n    emit([doc._id]);\n  } else if (doc.type === 'arrangement') {\n    var singleFields = ['whenArranged'];\n    singleFields.forEach(function(field) {\n      if (doc[field]) {\n        emit([doc[field], field], { _id: doc._id });\n      }\n    });\n    \n    var multiFields = ['whenPerformed'];\n    multiFields.forEach(function(field) {\n      if (doc[field] && doc[field].length) {\n        for (var i = 0; i < doc[field].length; i++) {\n          emit([doc[field][i], field], { _id: doc._id });\n        }\n      }\n    })\n  } else if (doc.type === 'album') {\n    if (doc.semester) {\n      emit([doc.semester, 'albums'], { _id: doc._id });\n    }\n  } else if (doc.type === 'concert') {\n    if (doc.semester) {\n      emit([doc.semester, 'concerts'], { _id: doc._id });\n    }\n  } else if (doc.type === 'hangover') {\n    if (doc.graduationSemester) {\n      emit([doc.graduationSemester, 'graduatingHangs'], { _id: doc._id });\n    }\n  }\n}"
     }
   },
   "language": "javascript"

@@ -8,6 +8,7 @@ import Artists from './Artists';
 import Sage from './Sage';
 import Hangover from './Hangover';
 import Hangovers from './Hangovers';
+import Semester from './Semester';
 import Semesters from './Semesters';
 import Concerts from './Concerts';
 
@@ -18,6 +19,7 @@ const App = ({ history }) =>
       <Route path="hangovers" component={Hangovers} />
       <Route path="hangovers/:id" component={Hangover} />
       <Route path="semesters" component={Semesters} />
+      <Route path="semesters/:id" component={Semester} />
       <Route path="concerts" component={Concerts} />
       <Route path="artists" component={Artists} />
       <Route path="submitform" component={AddArrangement} />

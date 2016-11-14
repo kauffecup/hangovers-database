@@ -5,6 +5,7 @@ import { stringify } from 'query-string';
 import { getArrangement } from '../actions';
 import PathButton from '../components/PathButton';
 import HangoverLink from '../components/links/HangoverLink';
+import SemesterLink from '../components/links/SemesterLink';
 import { PADDING_UNIT } from '../StyleConstants';
 
 const Field = ({ title, text, children }) => children || typeof text === 'string' ? // eslint-disable-line
@@ -24,7 +25,7 @@ const ObjectField = ({ arrangement, field, title, parse }) => // eslint-disable-
 const ObjectArrayField = ({ arrangement, field, title, map }) => // eslint-disable-line
   <Field title={title} text={arrangement[field] && arrangement[field].map(map || (a => a.name)).join(', ')} />;
 
-const ObjectComponentField = ({ arrangement, field, title, map }) => // eslint-disable-line
+const ObjectComponentArrayField = ({ arrangement, field, title, map }) => // eslint-disable-line
   <Field title={title}>{arrangement[field] && arrangement[field].length ? arrangement[field].map(map) : null}</Field>;
 
 class Arrangement extends Component {
@@ -48,17 +49,19 @@ class Arrangement extends Component {
         <ObjectField title="genre" field="genre" arrangement={arrangement} />
         <ArrangementField field="whenWritten" arrangement={arrangement} />
         <h3>The Arrangement</h3>
-        <ObjectComponentField title="arranged by" field="arrangers" map={h => <HangoverLink key={h._id} {...h} />} arrangement={arrangement} />
-        <ObjectField title="arranged" field="whenArranged" parse={s => `${s.semester_type} ${s.year}`} arrangement={arrangement} />
+        <ObjectComponentArrayField title="arranged by" field="arrangers" map={h => <HangoverLink key={h._id} {...h} />} arrangement={arrangement} />
+        <Field title="arranged">{arrangement.whenArranged ?
+          <SemesterLink {...arrangement.whenArranged} />
+        : null}</Field>
         <Field text={arrangement.syllables ? 'has syllables' : 'doesn\'t have syllables'} />
         <ObjectField title="type" field="arrangementType" parse={at => `${at.name} (${at.description})`} arrangement={arrangement} />
         <ObjectField title="quality" field="quality" parse={q => `${q.name} (${q.description})`} arrangement={arrangement} />
         <h3>Performances</h3>
         <Field text={arrangement.active ? 'active' : 'not active'} />
-        <ObjectArrayField title="semester(s) performed" field="whenPerformed" map={s => `${s.semester_type} ${s.year}`} arrangement={arrangement} />
+        <ObjectComponentArrayField title="semester(s) performed" field="whenPerformed" map={s => <SemesterLink key={s._id} {...s} />} arrangement={arrangement} />
         <ObjectArrayField title="concert(s) performed" field="concerts" arrangement={arrangement} />
         <ObjectArrayField title="album(s) on" field="albums" arrangement={arrangement} />
-        <ObjectComponentField title="soloist(s)" field="soloists" map={h => <HangoverLink key={h._id} {...h} />} arrangement={arrangement} />
+        <ObjectComponentArrayField title="soloist(s)" field="soloists" map={h => <HangoverLink key={h._id} {...h} />} arrangement={arrangement} />
         <h3>Files and Such</h3>
         {arrangement._attachments ? Object.keys(arrangement._attachments).map(aid =>
           <Field>

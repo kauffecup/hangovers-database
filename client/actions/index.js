@@ -25,6 +25,9 @@ export const GET_ARRANGEMENT_FAILURE = 'GET_ARRANGEMENT_FAILURE';
 export const GET_HANGOVER = 'GET_HANGOVER';
 export const GET_HANGOVER_SUCCESS = 'GET_HANGOVER_SUCCESS';
 export const GET_HANGOVER_FAILURE = 'GET_HANGOVER_FAILURE';
+export const GET_SEMESTER = 'GET_SEMESTER';
+export const GET_SEMESTER_SUCCESS = 'GET_SEMESTER_SUCCESS';
+export const GET_SEMESTER_FAILURE = 'GET_SEMESTER_FAILURE';
 export const GET_EDIT_ARRANGEMENT = 'GET_EDIT_ARRANGEMENT';
 export const GET_EDIT_ARRANGEMENT_SUCCESS = 'GET_EDIT_ARRANGEMENT_SUCCESS';
 export const GET_EDIT_ARRANGEMENT_FAILURE = 'GET_EDIT_ARRANGEMENT_FAILURE';
@@ -93,6 +96,16 @@ export function getHangover(hangoverID) {
     _myFetch(`/full/hangover?${stringify({ hangoverID })}`)
       .then(data => dispatch({ type: GET_HANGOVER_SUCCESS, data }))
       .catch(error => dispatch({ type: GET_HANGOVER_FAILURE, error }));
+  };
+}
+
+
+export function getSemester(semesterID) {
+  return (dispatch) => {
+    dispatch({ type: GET_SEMESTER });
+    _myFetch(`/full/semester?${stringify({ semesterID })}`)
+      .then(data => dispatch({ type: GET_SEMESTER_SUCCESS, data }))
+      .catch(error => dispatch({ type: GET_SEMESTER_FAILURE, error }));
   };
 }
 

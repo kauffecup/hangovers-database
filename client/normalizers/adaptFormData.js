@@ -50,8 +50,10 @@ export const qualityAdapter = (q = {}) => ({
   value: q._id, label: `${q.name} (${q.description})`,
 });
 
+export const semesterFormatter = (s = {}) => `${s.semester_type} ${s.year}`;
+
 export const semesterAdapter = (s = {}) => ({
-  value: s._id, label: `${s.semester_type} ${s.year}`,
+  value: s._id, label: semesterFormatter(s),
 });
 
 export const syllableAdapter = s =>

@@ -84,6 +84,15 @@ app.get('/full/hangover', ({ query: { hangoverID } }, res) => {
     });
 });
 
+/** Get the full semester doc */
+app.get('/full/semester', ({ query: { semesterID } }, res) => {
+  sageDB.getFullSemester(semesterID)
+    .then(a => res.json(a))
+    .catch((e) => {
+      res.status(500);
+      res.json(e);
+    });
+});
 /** Get a file from the database */
 app.get('/arrangementfile', ({ query: { arrangementID, attachmentID, type } }, res) => {
   sageDB.getArrangementAttachment(arrangementID, attachmentID)

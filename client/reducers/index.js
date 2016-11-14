@@ -8,6 +8,7 @@ import arrangements from './arrangements';
 import banner from './banner';
 import hangover from './hangover';
 import hangovers from './hangovers';
+import semester from './semester';
 import { GET_EDIT_ARRANGEMENT_SUCCESS } from '../actions';
 
 export default combineReducers({
@@ -18,6 +19,7 @@ export default combineReducers({
   banner,
   hangover,
   hangovers,
+  semester,
   routing: routerReducer,
   form: formReducer.plugin({
     editArrangement: (state, action) => {

@@ -67,21 +67,27 @@ module.exports = class SageDB {
   }
 
   /**
-   * Here we get a hangover metadata along with the original docs for the
-   * arrangements this hangover either arranged or soloed. We have some cleanup
-   * logic for combining the arrangements and soloists into a clean array.
+   * Getters for retrieving a "full" object and rolling up similar key fields
+   * into an array.
    */
-  getFullHangover(hangoverID) {
-    return this._sageDB.viewAsync('types', 'hangover_full', {
+  getFullHangover(hangoverID) { return this._getFullArrayRollup(hangoverID, 'hangover_full'); }
+  getFullSemester(semesterID) { return this._getFullArrayRollup(semesterID, 'semester_full'); }
+
+  /**
+   * Here we get a document's metadata along with the original docs for  any ids
+   * it might link to. We have some cleanup logic for combining into a clean array.
+   */
+  _getFullArrayRollup(id, view) {
+    return this._sageDB.viewAsync('types', view, {
       include_docs: true,
-      startkey: [hangoverID],
-      endkey: [hangoverID, {}],
+      startkey: [id],
+      endkey: [id, {}],
       limit: 200,
     }).then(({ rows }) => {
       if (!rows || !rows.length) {
-        throw new Error('No hangover found');
+        throw new Error('I still haven\'t found what I\'m looking for');
       }
-      const doc = rows[0].doc;  // TODO: is this always true? see above method
+      const doc = rows[0].doc;  // TODO: is this always true?
       const docArrays = {};
       for (let i = 1; i < rows.length; i++) {
         const rowKey = rows[i].key;

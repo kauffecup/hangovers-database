@@ -1,15 +1,15 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
 import { List, AutoSizer } from 'react-virtualized';
 import { StyleSheet, css } from 'aphrodite';
+import SemesterLink from '../components/links/SemesterLink';
 import { PADDING_UNIT, SEMESTER_HEIGHT } from '../StyleConstants';
 
 const Semesters = ({ semesters }) => {
   const rowRenderer = ({ index, key, style }) => // eslint-disable-line
     <div key={key} style={style}>
       <div className={css(styles.semester)}>
-        <Link to={`/semester/${semesters[index]._id}`}>{`${semesters[index].semester_type} ${semesters[index].year}`}</Link>
+        <SemesterLink {...semesters[index]} />
       </div>
     </div>;
 

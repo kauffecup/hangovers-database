@@ -51,6 +51,9 @@
     },
     "album_full": {
       "map": "function (doc) {\n  if (doc.type === 'album') {\n    emit([doc._id]);\n    if (doc.semester) {\n      emit([doc._id, 'semester'], { _id: doc.semester });\n    }\n  } else if (doc.type === 'arrangement') {\n    if (doc.albums && doc.albums.length) {\n      for (var i = 0; i < doc.concerts.length; i++) {\n        emit([doc.albums[i], 'trackList'], { _id: doc._id });\n      }\n    }\n  }\n}"
+    },
+    "artist_full": {
+      "map": "function (doc) {\n  if (doc.type === 'artist') {\n    emit([doc._id]);\n  } else if (doc.type === 'arrangement') {\n    if (doc.originalArtists && doc.originalArtists.length) {\n      for (var i = 0; i < doc.originalArtists.length; i++) {\n        emit([doc.originalArtists[i], 'arrangements'], { _id: doc._id });\n      }\n    }\n  }\n}"
     }
   },
   "language": "javascript"

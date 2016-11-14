@@ -79,6 +79,7 @@ app.get('/full/hangover', ({ query: { hangoverID } }, res) => getFull(hangoverID
 app.get('/full/semester', ({ query: { semesterID } }, res) => getFull(semesterID, 'getFullSemester', res));
 app.get('/full/concert', ({ query: { concertID } }, res) => getFull(concertID, 'getFullConcert', res));
 app.get('/full/album', ({ query: { albumID } }, res) => getFull(albumID, 'getFullAlbum', res));
+app.get('/full/artist', ({ query: { artistID } }, res) => getFull(artistID, 'getFullArtist', res));
 
 /** Get a file from the database */
 app.get('/arrangementfile', ({ query: { arrangementID, attachmentID, type } }, res) => {

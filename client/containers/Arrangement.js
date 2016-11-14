@@ -5,6 +5,7 @@ import { stringify } from 'query-string';
 import { getArrangement } from '../actions';
 import PathButton from '../components/PathButton';
 import AlbumLink from '../components/links/AlbumLink';
+import ArtistLink from '../components/links/ArtistLink';
 import ConcertLink from '../components/links/ConcertLink';
 import HangoverLink from '../components/links/HangoverLink';
 import SemesterLink from '../components/links/SemesterLink';
@@ -23,9 +24,6 @@ const ArrangementField = ({ arrangement, field, title }) => // eslint-disable-li
 
 const ObjectField = ({ arrangement, field, title, parse }) => // eslint-disable-line
   <Field title={title} text={arrangement[field] && (parse || (a => a.name))(arrangement[field])} />;
-
-const ObjectArrayField = ({ arrangement, field, title, map }) => // eslint-disable-line
-  <Field title={title} text={arrangement[field] && arrangement[field].map(map || (a => a.name)).join(', ')} />;
 
 const ObjectComponentArrayField = ({ arrangement, field, title, map }) => // eslint-disable-line
   <Field title={title}>{arrangement[field] && arrangement[field].length ? arrangement[field].map(map) : null}</Field>;
@@ -47,7 +45,7 @@ class Arrangement extends Component {
         <h2>{arrangement.name}</h2>
         <h3>The Song</h3>
         <ArrangementField field="alternateName" arrangement={arrangement} />
-        <ObjectArrayField title="originally performed by" field="originalArtists" arrangement={arrangement} />
+        <ObjectComponentArrayField title="originally performed by" field="originalArtists" map={a => <ArtistLink key={a._id} {...a} />} arrangement={arrangement} />
         <ObjectField title="genre" field="genre" arrangement={arrangement} />
         <ArrangementField field="whenWritten" arrangement={arrangement} />
         <h3>The Arrangement</h3>

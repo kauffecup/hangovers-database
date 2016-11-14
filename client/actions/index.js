@@ -34,6 +34,9 @@ export const GET_CONCERT_FAILURE = 'GET_CONCERT_FAILURE';
 export const GET_ALBUM = 'GET_ALBUM';
 export const GET_ALBUM_SUCCESS = 'GET_ALBUM_SUCCESS';
 export const GET_ALBUM_FAILURE = 'GET_ALBUM_FAILURE';
+export const GET_ARTIST = 'GET_ARTIST';
+export const GET_ARTIST_SUCCESS = 'GET_ARTIST_SUCCESS';
+export const GET_ARTIST_FAILURE = 'GET_ARTIST_FAILURE';
 export const GET_EDIT_ARRANGEMENT = 'GET_EDIT_ARRANGEMENT';
 export const GET_EDIT_ARRANGEMENT_SUCCESS = 'GET_EDIT_ARRANGEMENT_SUCCESS';
 export const GET_EDIT_ARRANGEMENT_FAILURE = 'GET_EDIT_ARRANGEMENT_FAILURE';
@@ -94,6 +97,7 @@ export const getHangover = hangoverID => actionFetch('/full/hangover', GET_HANGO
 export const getSemester = semesterID => actionFetch('/full/semester', GET_SEMESTER, GET_SEMESTER_SUCCESS, GET_SEMESTER_FAILURE, { semesterID });
 export const getConcert = concertID => actionFetch('/full/concert', GET_CONCERT, GET_CONCERT_SUCCESS, GET_CONCERT_FAILURE, { concertID });
 export const getAlbum = albumID => actionFetch('/full/album', GET_ALBUM, GET_ALBUM_SUCCESS, GET_ALBUM_FAILURE, { albumID });
+export const getArtist = artistID => actionFetch('/full/artist', GET_ARTIST, GET_ARTIST_SUCCESS, GET_ARTIST_FAILURE, { artistID });
 
 /** Actions for getting paged lists */
 export const getArrangements = skip => actionFetch('/list/arrangements', GET_ARRANGEMENTS, GET_ARRANGEMENTS_SUCCESS, GET_ARRANGEMENTS_FAILURE, { skip });

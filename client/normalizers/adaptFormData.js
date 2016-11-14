@@ -11,8 +11,10 @@ export const arrangementTypeAdapter = (at = {}) => ({
   value: at._id, label: `${at.name} (${at.description})`,
 });
 
+export const artistFormatter = (a = {}) => a.name;
+
 export const artistAdapter = (a = {}) => ({
-  value: a._id, label: a.name,
+  value: a._id, label: artistFormatter(a),
 });
 
 export const attatchmentAdapter = (a = {}, type = '') => {

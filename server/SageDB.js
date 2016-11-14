@@ -74,6 +74,7 @@ module.exports = class SageDB {
   getFullSemester(semesterID) { return this._getFullArrayRollup(semesterID, 'semester_full'); }
   getFullConcert(concertID) { return this._getFullArrayRollup(concertID, 'concert_full'); }
   getFullAlbum(albumID) { return this._getFullArrayRollup(albumID, 'album_full'); }
+  getFullArtist(artistID) { return this._getFullArrayRollup(artistID, 'artist_full'); }
 
   /**
    * Here we get a document's metadata along with the original docs for  any ids

@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { InfiniteLoader, List, AutoSizer } from 'react-virtualized';
-import { Link } from 'react-router';
 import { StyleSheet, css } from 'aphrodite';
+import ArtistLink from '../components/links/ArtistLink';
 import { getArtists } from '../actions';
 import { ARTIST_HEIGHT, PADDING_UNIT } from '../StyleConstants';
 
@@ -28,7 +28,7 @@ class Hangovers extends Component {
     const rowRenderer = ({ index, key, style }) => // eslint-disable-line
       <div key={key} style={style}>
         <div className={css(styles.artist)}>
-          <Link to={`/artist/${list[index]._id}`}>{list[index].name}</Link>
+          <ArtistLink {...list[index]} />
         </div>
       </div>;
 

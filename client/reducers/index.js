@@ -3,6 +3,7 @@ import { reducer as formReducer } from 'redux-form';
 import { routerReducer } from 'react-router-redux';
 import app from './app';
 import album from './album';
+import artist from './artist';
 import artists from './artists';
 import arrangement from './arrangement';
 import arrangements from './arrangements';
@@ -16,6 +17,7 @@ import { GET_EDIT_ARRANGEMENT_SUCCESS } from '../actions';
 export default combineReducers({
   app,
   album,
+  artist,
   artists,
   arrangement,
   arrangements,

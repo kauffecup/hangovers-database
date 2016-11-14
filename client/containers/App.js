@@ -7,6 +7,7 @@ import Arrangement from './Arrangement';
 import Artists from './Artists';
 import Album from './Album';
 import Albums from './Albums';
+import Artist from './Artist';
 import Sage from './Sage';
 import Hangover from './Hangover';
 import Hangovers from './Hangovers';
@@ -28,6 +29,7 @@ const App = ({ history }) =>
       <Route path="albums" component={Albums} />
       <Route path="albums/:id" component={Album} />
       <Route path="artists" component={Artists} />
+      <Route path="artists/:id" component={Artist} />
       <Route path="submitform" component={AddArrangement} />
       <Route path="edit/:id" component={EditArrangement} />
       <Route path="arrangement/:id" component={Arrangement} />

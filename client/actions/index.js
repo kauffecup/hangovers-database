@@ -78,60 +78,27 @@ export function closeBanner() {
   return { type: CLOSE_BANNER };
 }
 
-export function initializeForms() {
-  return (dispatch) => {
-    dispatch({ type: INITIALIZE_FORMS });
-    _myFetch('/initializeforms')
-      .then(data => dispatch({ type: INITIALIZE_FORMS_SUCCESS, data }))
-      .catch(error => dispatch({ type: INITIALIZE_FORMS_FAILURE, error }));
-  };
-}
+/** Helper action for everything that follows this basic format */
+const actionFetch = (endpoint, START, SUCCESS, FAILURE, params) => (dispatch) => {
+  dispatch({ type: START });
+  return _myFetch(`${endpoint}${params ? `?${stringify(params)}` : ''}`)
+    .then(data => dispatch({ type: SUCCESS, data }))
+    .catch(error => dispatch({ type: FAILURE, error }));
+};
 
-export function getArrangement(arrangementID) {
-  return (dispatch) => {
-    dispatch({ type: GET_ARRANGEMENT });
-    _myFetch(`/full/arrangement?${stringify({ arrangementID })}`)
-      .then(data => dispatch({ type: GET_ARRANGEMENT_SUCCESS, data }))
-      .catch(error => dispatch({ type: GET_ARRANGEMENT_FAILURE, error }));
-  };
-}
+export const initializeForms = () => actionFetch('/initializeforms', INITIALIZE_FORMS, INITIALIZE_FORMS_SUCCESS, INITIALIZE_FORMS_FAILURE);
 
-export function getHangover(hangoverID) {
-  return (dispatch) => {
-    dispatch({ type: GET_HANGOVER });
-    _myFetch(`/full/hangover?${stringify({ hangoverID })}`)
-      .then(data => dispatch({ type: GET_HANGOVER_SUCCESS, data }))
-      .catch(error => dispatch({ type: GET_HANGOVER_FAILURE, error }));
-  };
-}
+/** Actions for getting full top level objects */
+export const getArrangement = arrangementID => actionFetch('/full/arrangement', GET_ARRANGEMENT, GET_ARRANGEMENT_SUCCESS, GET_ARRANGEMENT_FAILURE, { arrangementID });
+export const getHangover = hangoverID => actionFetch('/full/hangover', GET_HANGOVER, GET_HANGOVER_SUCCESS, GET_HANGOVER_FAILURE, { hangoverID });
+export const getSemester = semesterID => actionFetch('/full/semester', GET_SEMESTER, GET_SEMESTER_SUCCESS, GET_SEMESTER_FAILURE, { semesterID });
+export const getConcert = concertID => actionFetch('/full/concert', GET_CONCERT, GET_CONCERT_SUCCESS, GET_CONCERT_FAILURE, { concertID });
+export const getAlbum = albumID => actionFetch('/full/album', GET_ALBUM, GET_ALBUM_SUCCESS, GET_ALBUM_FAILURE, { albumID });
 
-
-export function getSemester(semesterID) {
-  return (dispatch) => {
-    dispatch({ type: GET_SEMESTER });
-    _myFetch(`/full/semester?${stringify({ semesterID })}`)
-      .then(data => dispatch({ type: GET_SEMESTER_SUCCESS, data }))
-      .catch(error => dispatch({ type: GET_SEMESTER_FAILURE, error }));
-  };
-}
-
-export function getConcert(concertID) {
-  return (dispatch) => {
-    dispatch({ type: GET_CONCERT });
-    _myFetch(`/full/concert?${stringify({ concertID })}`)
-      .then(data => dispatch({ type: GET_CONCERT_SUCCESS, data }))
-      .catch(error => dispatch({ type: GET_CONCERT_FAILURE, error }));
-  };
-}
-
-export function getAlbum(albumID) {
-  return (dispatch) => {
-    dispatch({ type: GET_ALBUM });
-    _myFetch(`/full/album?${stringify({ albumID })}`)
-      .then(data => dispatch({ type: GET_ALBUM_SUCCESS, data }))
-      .catch(error => dispatch({ type: GET_ALBUM_FAILURE, error }));
-  };
-}
+/** Actions for getting paged lists */
+export const getArrangements = skip => actionFetch('/list/arrangements', GET_ARRANGEMENTS, GET_ARRANGEMENTS_SUCCESS, GET_ARRANGEMENTS_FAILURE, { skip });
+export const getHangovers = skip => actionFetch('/list/hangovers', GET_HANGOVERS, GET_HANGOVERS_SUCCESS, GET_HANGOVERS_FAILURE, { skip });
+export const getArtists = skip => actionFetch('/list/artists', GET_ARTISTS, GET_ARTISTS_SUCCESS, GET_ARTISTS_FAILURE, { skip });
 
 export function getEditArrangementData(arrangementID) {
   return (dispatch) => {
@@ -139,33 +106,6 @@ export function getEditArrangementData(arrangementID) {
     _myFetch(`/full/arrangement?${stringify({ arrangementID })}`)
       .then(data => dispatch({ type: GET_EDIT_ARRANGEMENT_SUCCESS, data: fullArrangementAdapter(data) }))
       .catch(error => dispatch({ type: GET_EDIT_ARRANGEMENT_FAILURE, error }));
-  };
-}
-
-export function getArrangements(skip) {
-  return (dispatch) => {
-    dispatch({ type: GET_ARRANGEMENTS });
-    _myFetch(`/list/arrangements?${stringify({ skip })}`)
-      .then(data => dispatch({ type: GET_ARRANGEMENTS_SUCCESS, data }))
-      .catch(error => dispatch({ type: GET_ARRANGEMENTS_FAILURE, error }));
-  };
-}
-
-export function getHangovers(skip) {
-  return (dispatch) => {
-    dispatch({ type: GET_HANGOVERS });
-    _myFetch(`/list/hangovers?${stringify({ skip })}`)
-      .then(data => dispatch({ type: GET_HANGOVERS_SUCCESS, data }))
-      .catch(error => dispatch({ type: GET_HANGOVERS_FAILURE, error }));
-  };
-}
-
-export function getArtists(skip) {
-  return (dispatch) => {
-    dispatch({ type: GET_ARTISTS });
-    _myFetch(`/list/artists?${stringify({ skip })}`)
-      .then(data => dispatch({ type: GET_ARTISTS_SUCCESS, data }))
-      .catch(error => dispatch({ type: GET_ARTISTS_FAILURE, error }));
   };
 }
 

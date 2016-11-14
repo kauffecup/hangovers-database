@@ -1,15 +1,15 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
 import { List, AutoSizer } from 'react-virtualized';
 import { StyleSheet, css } from 'aphrodite';
+import ConcertLink from '../components/links/ConcertLink';
 import { PADDING_UNIT, CONCERT_HEIGHT } from '../StyleConstants';
 
 const Concerts = ({ concerts, semesterMap }) => {
   const rowRenderer = ({ index, key, style }) => // eslint-disable-line
     <div key={key} style={style}>
       <div className={css(styles.concert)}>
-        <Link to={`/concert/${concerts[index]._id}`}>{`${concerts[index].name} ${semesterMap[concerts[index].semester].year}`}</Link>
+        <ConcertLink {...concerts[index]} year={semesterMap[concerts[index].semester].year} />
       </div>
     </div>;
 

@@ -2,6 +2,7 @@ import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, css } from 'aphrodite';
 import ArrangementLink from '../components/links/ArrangementLink';
+import ConcertLink from '../components/links/ConcertLink';
 import HangoverLink from '../components/links/HangoverLink';
 import { getSemester } from '../actions';
 import { semesterFormatter } from '../normalizers/adaptFormData';
@@ -27,7 +28,7 @@ class Semester extends Component {
         ) : '...nothin'}
         <h3>Concerts</h3>
         {semester.concerts && semester.concerts.length ? semester.concerts.map(c =>
-          <span>{c.name}</span>
+          <ConcertLink key={c._id} {...c} />
         ) : '...nothin'}
         <h3>Songs Performed</h3>
         {semester.whenPerformed && semester.whenPerformed.length ? semester.whenPerformed.map(s =>

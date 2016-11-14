@@ -6,6 +6,7 @@ import artists from './artists';
 import arrangement from './arrangement';
 import arrangements from './arrangements';
 import banner from './banner';
+import concert from './concert';
 import hangover from './hangover';
 import hangovers from './hangovers';
 import semester from './semester';
@@ -17,6 +18,7 @@ export default combineReducers({
   arrangement,
   arrangements,
   banner,
+  concert,
   hangover,
   hangovers,
   semester,

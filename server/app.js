@@ -93,6 +93,17 @@ app.get('/full/semester', ({ query: { semesterID } }, res) => {
       res.json(e);
     });
 });
+
+/** Get the full concert doc */
+app.get('/full/concert', ({ query: { concertID } }, res) => {
+  sageDB.getFullConcert(concertID)
+    .then(a => res.json(a))
+    .catch((e) => {
+      res.status(500);
+      res.json(e);
+    });
+});
+
 /** Get a file from the database */
 app.get('/arrangementfile', ({ query: { arrangementID, attachmentID, type } }, res) => {
   sageDB.getArrangementAttachment(arrangementID, attachmentID)

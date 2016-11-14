@@ -28,6 +28,9 @@ export const GET_HANGOVER_FAILURE = 'GET_HANGOVER_FAILURE';
 export const GET_SEMESTER = 'GET_SEMESTER';
 export const GET_SEMESTER_SUCCESS = 'GET_SEMESTER_SUCCESS';
 export const GET_SEMESTER_FAILURE = 'GET_SEMESTER_FAILURE';
+export const GET_CONCERT = 'GET_CONCERT';
+export const GET_CONCERT_SUCCESS = 'GET_CONCERT_SUCCESS';
+export const GET_CONCERT_FAILURE = 'GET_CONCERT_FAILURE';
 export const GET_EDIT_ARRANGEMENT = 'GET_EDIT_ARRANGEMENT';
 export const GET_EDIT_ARRANGEMENT_SUCCESS = 'GET_EDIT_ARRANGEMENT_SUCCESS';
 export const GET_EDIT_ARRANGEMENT_FAILURE = 'GET_EDIT_ARRANGEMENT_FAILURE';
@@ -106,6 +109,15 @@ export function getSemester(semesterID) {
     _myFetch(`/full/semester?${stringify({ semesterID })}`)
       .then(data => dispatch({ type: GET_SEMESTER_SUCCESS, data }))
       .catch(error => dispatch({ type: GET_SEMESTER_FAILURE, error }));
+  };
+}
+
+export function getConcert(concertID) {
+  return (dispatch) => {
+    dispatch({ type: GET_CONCERT });
+    _myFetch(`/full/concert?${stringify({ concertID })}`)
+      .then(data => dispatch({ type: GET_CONCERT_SUCCESS, data }))
+      .catch(error => dispatch({ type: GET_CONCERT_FAILURE, error }));
   };
 }
 

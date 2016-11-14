@@ -28,8 +28,10 @@ export const attatchmentAdapter = (a = {}, type = '') => {
   return null;
 };
 
+export const concertFormatter = (c = {}, y = '') => `${c.name} ${y}`.trim();
+
 export const concertAdapter = (c = {}, sMap = {}) => ({
-  value: c._id, label: `${c.name} ${sMap[c.semester] ? sMap[c.semester].year : ''}`.trim(),
+  value: c._id, label: concertFormatter(c, sMap && sMap[c.semester] && sMap[c.semester].year),
 });
 
 export const genreAdapter = (g = {}) => ({

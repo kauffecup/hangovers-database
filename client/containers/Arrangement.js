@@ -4,6 +4,7 @@ import { StyleSheet, css } from 'aphrodite';
 import { stringify } from 'query-string';
 import { getArrangement } from '../actions';
 import PathButton from '../components/PathButton';
+import ConcertLink from '../components/links/ConcertLink';
 import HangoverLink from '../components/links/HangoverLink';
 import SemesterLink from '../components/links/SemesterLink';
 import { PADDING_UNIT } from '../StyleConstants';
@@ -59,7 +60,7 @@ class Arrangement extends Component {
         <h3>Performances</h3>
         <Field text={arrangement.active ? 'active' : 'not active'} />
         <ObjectComponentArrayField title="semester(s) performed" field="whenPerformed" map={s => <SemesterLink key={s._id} {...s} />} arrangement={arrangement} />
-        <ObjectArrayField title="concert(s) performed" field="concerts" arrangement={arrangement} />
+        <ObjectComponentArrayField title="concert(s) performed" field="concerts" map={c => <ConcertLink key={c._id} {...c} />} arrangement={arrangement} />
         <ObjectArrayField title="album(s) on" field="albums" arrangement={arrangement} />
         <ObjectComponentArrayField title="soloist(s)" field="soloists" map={h => <HangoverLink key={h._id} {...h} />} arrangement={arrangement} />
         <h3>Files and Such</h3>

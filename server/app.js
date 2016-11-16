@@ -97,35 +97,19 @@ app.get('/arrangementfile', ({ query: { arrangementID, attachmentID, type } }, r
     });
 });
 
-/** Get the arrangements in the database */
-app.get('/list/arrangements', ({ query: { limit, skip } }, res) => {
-  sageDB.getArrangements(limit, skip)
-    .then(arrangements => res.json(arrangements))
+/** Get a paged list of documents */
+const getList = (limit, skip, method, res) =>
+  sageDB[method](limit, skip)
+    .then(p => res.json(p))
     .catch((e) => {
       res.status(500);
       res.json(e);
     });
-});
 
-/** Get the hangovers in the database */
-app.get('/list/hangovers', ({ query: { limit, skip } }, res) => {
-  sageDB.getHangovers(limit, skip)
-    .then(hangovers => res.json(hangovers))
-    .catch((e) => {
-      res.status(500);
-      res.json(e);
-    });
-});
-
-/** Get the artists in the database */
-app.get('/list/artists', ({ query: { limit, skip } }, res) => {
-  sageDB.getArtists(limit, skip)
-    .then(artists => res.json(artists))
-    .catch((e) => {
-      res.status(500);
-      res.json(e);
-    });
-});
+/** Endpoints that use the above helper */
+app.get('/list/arrangements', ({ query: { limit, skip } }, res) => getList(limit, skip, 'getArrangements', res));
+app.get('/list/hangovers', ({ query: { limit, skip } }, res) => getList(limit, skip, 'getHangovers', res));
+app.get('/list/artists', ({ query: { limit, skip } }, res) => getList(limit, skip, 'getArtists', res));
 
 /** POST: Submit a new arrangement */
 app.post('/arrangementsubmit', upload.fields([

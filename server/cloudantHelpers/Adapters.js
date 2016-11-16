@@ -3,14 +3,16 @@ const { getArtistID } = require('./IDGenerators');
 
 const NEW_IDENTIFIER = 'new:';
 
+
 /**
- * Adapt a file into a cloudant friendly file
- */
-const fileAdapt = (f, name, dot) => ({
-  name: `${name.toLowerCase().replace(/\s/g, '_')}.${dot}`,
-  content_type: f.mimetype,
-  data: f.buffer,
+* Adapt a file into a cloudant friendly file
+*/
+const adaptFile = (data, arrangementName, contentType, dot) => ({
+  name: `${arrangementName.toLowerCase().replace(/\s/g, '_')}.${dot}`,
+  content_type: contentType,
+  data,
 });
+const fileAdapt = (f, name, dot) => adaptFile(f.buffer, name, f.mimetype, dot);
 
 /**
  * Adapt a files object with pdf/mus/mp3 keys into cloudant friendly files
@@ -67,6 +69,6 @@ const adaptArrangement = (arrangement, upsertArtist) => {
   return toUpload;
 };
 
-module.exports.fileAdapt = fileAdapt;
+module.exports.adaptFile = adaptFile;
 module.exports.adaptFiles = adaptFiles;
 module.exports.adaptArrangement = adaptArrangement;

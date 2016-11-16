@@ -2,7 +2,7 @@ const Promise = require('bluebird');
 const cloudant = require('cloudant');
 const types = require('./cloudantHelpers/DBTypes');
 const idgen = require('./cloudantHelpers/IDGenerators');
-const { adaptFiles, adaptArrangement } = require('./cloudantHelpers/Adapters');
+const { adaptFile, adaptFiles, adaptArrangement } = require('./cloudantHelpers/Adapters');
 const { fileFields } = require('../shared/FormConstants');
 
 const LIMIT = 20;
@@ -185,18 +185,33 @@ module.exports = class SageDB {
   upsertKey(k) { return this._upsertType(k, types.KEY_TYPE, idgen.getKeyID(k)); }
   upsertArrangement(arrangement, files = {}) {
     let filesToUpload = adaptFiles(files, arrangement.name);
-    const fetchServerSideFiles = fileFields
-      .map(field => !!arrangement[field])
-      .reduce((prev, cur) => prev || cur, false);
+    const alreadyInDB = arrangement._id && arrangement._rev;
+    // ok, this is a bit of a mess, but i swear it's necessary. if we're editing
+    // this arrangement and it already has files in the database, we have to fetch
+    // them and re-add them. this is annoying and there definitely exists a way to
+    // not do this (probably). we do it this way especially if we're renaming the
+    // arrangement as there's no way to transfer attachments directly. so anyway,
+    // we fetch the existing files by looking in the arrangement file fields which'll
+    // be of the format `${attachmentID},${content_type}`. we then format the object
+    // to be the same as what's returned in adaptFiles
+    const filesProm = alreadyInDB ? Promise.map(
+      [...fileFields].map(field => arrangement[field]).filter(fileInfo => !!fileInfo),
+      (fileInfo) => {
+        const [attachmentID, type] = fileInfo.split(',');
+        const split = attachmentID.split('.');
+        const dot = split[split.length - 1];
+        return this.getArrangementAttachment(arrangement._id, attachmentID)
+          .then(buffer => adaptFile(buffer, arrangement.name, type, dot));
+      }
+    ) : Promise.resolve([]);
     const toUpload = adaptArrangement(arrangement, artist => this.upsertArtist(artist));
-    const prom = fetchServerSideFiles ? Promise.resolve([]) : Promise.resolve([]);
     // if we're updating an arrangement such that one of its newly changed fields
     // will change the ID of the document, we delete the old doc and create a new
     // one. otherwise we simply upsert. in either case we have to call different
     // methods if we're also adding files.
     const arrID = idgen.getArrangementID(toUpload);
-    const deleteAndReAdd = (toUpload._id && toUpload._rev) && (toUpload._id !== arrID);
-    return prom.then((otherFiles) => {
+    const deleteAndReAdd = alreadyInDB && (toUpload._id !== arrID);
+    return filesProm.then((otherFiles) => {
       filesToUpload = [...filesToUpload, ...otherFiles];
       if (deleteAndReAdd) {
         if (filesToUpload.length) {

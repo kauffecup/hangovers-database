@@ -13,7 +13,7 @@ const adaptObjectArray = oa => oa && oa.length && oa.map(adaptObject);
 const adaptBinary = b => b && b === 'yes';
 const adaptNew = n => n && (n.value === n.label ? `new:${n.value}` : n.value); // allows the server to identify a new value
 const adaptNewArray = na => na && na.length && na.map(adaptNew);
-const adaptFile = f => (f && f.inCloudant) ? f.name : f;
+const adaptFile = f => (f && f.inCloudant) ? `${f.name},${f.type}` : f;
 
 /**
  * Our adapter function. Iterate over the fields and the form and adapt the data

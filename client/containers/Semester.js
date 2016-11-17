@@ -23,6 +23,11 @@ class Semester extends Component {
     return (
       <div className={css(styles.arrangement)}>
         <h2>{semesterFormatter(semester)}</h2>
+        {semester.md && semester.md.length ?
+          <div>
+            <span>MD</span><HangoverLink {...semester.md[0]} />
+          </div>
+        : null}
         <h3>Arrangements</h3>
         {semester.whenArranged && semester.whenArranged.length ? semester.whenArranged.map(a =>
           <ArrangementLink key={a._id} {...a} />

@@ -1,6 +1,7 @@
 const Promise = require('bluebird');
 const SageDB = require('../SageDB');
 const config = require('../../config/cloudant.json');
+const semesters = require('./semesters.json');
 const hangovers = require('./hangovers.json');
 const arrangementTypes = require('./arrangementTypes.json');
 const qualities = require('./qualities.json');
@@ -23,19 +24,8 @@ const opts = { concurrency: CONCURRENCY };
 // first we add our design docs
 sageDB.initialize(config).then(() => sageDB._upsert(designTypes))
   .then(() => sageDB._upsert(designSearch))
-  .then(() => {
-    // then all the semesters
-    const semesterArray = [];
-    for (let year = 1964; year <= 2020; year++) {
-      semesterArray.push({ year, semester_type: 'fall' });
-      semesterArray.push({ year, semester_type: 'spring' });
-    }
-    return Promise.map(
-      semesterArray,
-      semester => sageDB.upsertSemester(semester),
-      opts
-    );
-  })
+  // some semesters
+  .then(() => Promise.map(semesters, s => sageDB.upsertSemester(s), opts))
   // next the types
   .then(() => Promise.map(arrangementTypes, at => sageDB.upsertArrangementType(at), opts))
   // next the qualities

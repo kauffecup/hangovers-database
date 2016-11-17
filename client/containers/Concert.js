@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { StyleSheet, css } from 'aphrodite';
 import ArrangementLink from '../components/links/ArrangementLink';
 import SemesterLink from '../components/links/SemesterLink';
+import HangoverLink from '../components/links/HangoverLink';
 import { getConcert } from '../actions';
 import { concertFormatter } from '../normalizers/adaptFormData';
 import { PADDING_UNIT } from '../StyleConstants';
@@ -23,6 +24,11 @@ class Concert extends Component {
         <h2>{concertFormatter(concert)}</h2>
         {concert.semester && concert.semester.length ?
           <SemesterLink {...concert.semester[0]} />
+        : null}
+        {concert.md && concert.md.length ?
+          <div>
+            <span>MD</span><HangoverLink {...concert.md[0]} />
+          </div>
         : null}
         <h3>Set List</h3>
         {concert.setList && concert.setList.length ? concert.setList.map(a =>

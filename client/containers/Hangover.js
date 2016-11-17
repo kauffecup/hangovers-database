@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { StyleSheet, css } from 'aphrodite';
 import ArrangementLink from '../components/links/ArrangementLink';
 import SemesterLink from '../components/links/SemesterLink';
+import ConcertLink from '../components/links/ConcertLink';
 import { getHangover } from '../actions';
 import { hangoverFormatter } from '../normalizers/adaptFormData';
 import { PADDING_UNIT } from '../StyleConstants';
@@ -25,6 +26,20 @@ class Hangover extends Component {
           <div>
             <span>Graduated</span>
             <SemesterLink {...hangover.graduationSemester[0]} />
+          </div>
+        : null}
+        {hangover.semestersMDed && hangover.semestersMDed.length ?
+          <div>
+            <span>MDed</span>{hangover.semestersMDed.map(s =>
+              <SemesterLink key={s._id} {...s} />
+            )}
+          </div>
+        : null}
+        {hangover.concertsMDed && hangover.concertsMDed.length ?
+          <div>
+            <span>MDed</span>{hangover.concertsMDed.map(c =>
+              <ConcertLink key={c._id} {...c} />
+            )}
           </div>
         : null}
         <h3>Arranged</h3>

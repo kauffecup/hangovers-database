@@ -4,7 +4,7 @@ import { arrangementExists } from '../actions';
 /**
  * Fields are:
  *   song:
- *     name, alternateName, originalArtists, whenWritten, genre
+ *     name, abbreviation, originalArtists, whenWritten, genre
  *   arrangements:
  *     arrangers, key, whenArranged, arrangementType, quality, syllables
  *   performance:

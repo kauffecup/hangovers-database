@@ -44,7 +44,7 @@ class Arrangement extends Component {
         <PathButton text="edit" path={`/edit/${id}`} />
         <h2>{arrangement.name}</h2>
         <h3>The Song</h3>
-        <ArrangementField field="alternateName" arrangement={arrangement} />
+        <ArrangementField field="abbreviation" arrangement={arrangement} />
         <ObjectComponentArrayField title="originally performed by" field="originalArtists" map={a => <ArtistLink key={a._id} {...a} />} arrangement={arrangement} />
         <ObjectField title="genre" field="genre" arrangement={arrangement} />
         <ArrangementField field="whenWritten" arrangement={arrangement} />

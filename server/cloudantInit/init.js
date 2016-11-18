@@ -4,7 +4,6 @@ const config = require('../../config/cloudant.json');
 const semesters = require('./semesters.json');
 const hangovers = require('./hangovers.json');
 const arrangementTypes = require('./arrangementTypes.json');
-const qualities = require('./qualities.json');
 const albums = require('./albums.json');
 const albumFormats = require('./albumFormats.json');
 const concertTypes = require('./concertTypes.json');
@@ -28,8 +27,6 @@ sageDB.initialize(config).then(() => sageDB._upsert(designTypes))
   .then(() => Promise.map(semesters, s => sageDB.upsertSemester(s), opts))
   // next the types
   .then(() => Promise.map(arrangementTypes, at => sageDB.upsertArrangementType(at), opts))
-  // next the qualities
-  .then(() => Promise.map(qualities, q => sageDB.upsertQuality(q), opts))
   // next the hangovers
   .then(() => Promise.map(hangovers, h => sageDB.upsertHangover(h), opts))
   // next the albums

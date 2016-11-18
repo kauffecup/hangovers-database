@@ -6,7 +6,7 @@ import { arrangementExists } from '../actions';
  *   song:
  *     name, abbreviation, originalArtists, whenWritten, genre
  *   arrangements:
- *     arrangers, key, whenArranged, arrangementType, quality, syllables
+ *     arrangers, key, whenArranged, arrangementType, syllables
  *   performance:
  *     active, whenPerformed, concerts, albums, soloists
  *   files and such:
@@ -43,10 +43,6 @@ export default (values) => {
 
   if (!values.arrangementType) {
     errors.arrangementType = REQUIRED_ERROR;
-  }
-
-  if (!values.quality) {
-    errors.quality = REQUIRED_ERROR;
   }
 
   if (!values.syllables) {

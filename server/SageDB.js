@@ -134,7 +134,6 @@ module.exports = class SageDB {
   getSemesters(limit, skip) { return this._view('semesters', limit, skip); }
   getAlbums(limit, skip) { return this._view('albums', limit, skip); }
   getAlbumFormats(limit, skip) { return this._view('album_formats', limit, skip); }
-  getQualities(limit, skip) { return this._view('qualities', limit, skip); }
   getConcerts(limit, skip) { return this._view('concerts', limit, skip); }
   getConcertTypes(limit, skip) { return this._view('concert_types', limit, skip); }
   getGenres(limit, skip) { return this._view('genres', limit, skip); }
@@ -177,7 +176,6 @@ module.exports = class SageDB {
   upsertSemester(s) { return this._upsertType(s, types.SEMESTER_TYPE, idgen.getSemesterID(s)); }
   upsertAlbum(a) { return this._upsertType(a, types.ALBUM_TYPE, idgen.getAlbumID(a)); }
   upsertAlbumFormat(af) { return this._upsertType(af, types.ALBUM_FORMAT_TYPE, idgen.getAlbumFormatID(af)); }
-  upsertQuality(q) { return this._upsertType(q, types.QUALITY_TYPE, idgen.getQualityID(q)); }
   upsertConcert(c) { return this._upsertType(c, types.CONCERT_TYPE, idgen.getConcertID(c)); }
   upsertConcertType(ct) { return this._upsertType(ct, types.CONCERT_TYPE_TYPE, idgen.getConcertTypeID(ct)); }
   upsertGenre(g) { return this._upsertType(g, types.GENRE_TYPE, idgen.getGenreID(g)); }

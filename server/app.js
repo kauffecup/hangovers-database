@@ -38,7 +38,6 @@ app.get('/initializeforms', (req, res) => {
     // this is fine until there are more than 200 of these bad boys
     sageDB.getArrangementTypes(200),
     sageDB.getAlbumFormats(200),
-    sageDB.getQualities(200),
     sageDB.getConcertTypes(200),
     sageDB.getSemesters(200),
     sageDB.getAlbums(200),
@@ -48,7 +47,6 @@ app.get('/initializeforms', (req, res) => {
     (at, af, q, ct, s, a, c, g, k) => ({
       arrangementTypes: at,
       albumFormats: af,
-      qualities: q,
       concertTypes: ct,
       semesters: s,
       albums: a,

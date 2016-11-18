@@ -17,7 +17,6 @@ import {
 } from '../actions';
 import {
   arrangementTypeAdapter,
-  qualityAdapter,
   semesterAdapter,
   albumAdapter,
   concertAdapter,
@@ -26,9 +25,8 @@ import {
 } from '../normalizers/adaptFormData';
 
 const SubmitArrangementForm = ({ app, submit, handleSubmit, handleDelete, id, rev }) => {
-  const { semesterMap, arrangementTypes: at, qualities: q, semesters: s, albums: al, concerts: co, genres: g, keys: k } = app;
+  const { semesterMap, arrangementTypes: at, semesters: s, albums: al, concerts: co, genres: g, keys: k } = app;
   const arrangementTypes = at.map(arrangementTypeAdapter);
-  const qualities = q.map(qualityAdapter);
   const semesters = s.map(semesterAdapter);
   const albums = al.map(a => albumAdapter(a, semesterMap));
   const concerts = co.map(c => concertAdapter(c, semesterMap));
@@ -48,14 +46,13 @@ const SubmitArrangementForm = ({ app, submit, handleSubmit, handleDelete, id, re
       </div>
       <h3 className={css(styles.categoryLabel)}>The Arrangement</h3>
       <Field label="Arranger(s)" name="arrangers" component={RenderAsync} loadOptions={searchHangovers} multi />
-      <Field label="When Arranged" name="whenArranged" component={RenderSelect} options={semesters} />
       <div className={css(styles.row)}>
+        <Field label="When Arranged" name="whenArranged" component={RenderSelect} options={semesters} styles={styles.rowChild} />
         <Field label="Key" name="key" component={RenderSelect} options={keys} styles={styles.rowChild} />
-        <Field label="Syllables" name="syllables" component={RenderBinary} styles={styles.rowChild} />
       </div>
       <div className={css(styles.row)}>
         <Field label="Type" name="arrangementType" component={RenderSelect} options={arrangementTypes} styles={styles.rowChild} />
-        <Field label="Quality of Arrangement" name="quality" component={RenderSelect} options={qualities} styles={styles.rowChild} />
+        <Field label="Syllables" name="syllables" component={RenderBinary} styles={styles.rowChild} />
       </div>
       <h3 className={css(styles.categoryLabel)}>Performances</h3>
       <Field label="Active" name="active" component={RenderBinary} />

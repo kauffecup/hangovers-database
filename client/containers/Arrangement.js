@@ -55,7 +55,6 @@ class Arrangement extends Component {
         : null}</Field>
         <Field text={arrangement.syllables ? 'has syllables' : 'doesn\'t have syllables'} />
         <ObjectField title="type" field="arrangementType" parse={at => `${at.name} (${at.description})`} arrangement={arrangement} />
-        <ObjectField title="quality" field="quality" parse={q => `${q.name} (${q.description})`} arrangement={arrangement} />
         <h3>Performances</h3>
         <Field text={arrangement.active ? 'active' : 'not active'} />
         <ObjectComponentArrayField title="semester(s) performed" field="whenPerformed" map={s => <SemesterLink key={s._id} {...s} />} arrangement={arrangement} />

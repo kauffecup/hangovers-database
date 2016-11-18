@@ -18,9 +18,6 @@ module.exports.getAlbumID = album =>
 module.exports.getAlbumFormatID = albumFormat =>
   `${types.ALBUM_FORMAT_TYPE}_${albumFormat.name.toLowerCase().replace(/\s/g, '_')}`;
 
-module.exports.getQualityID = quality =>
-  `${types.QUALITY_TYPE}_${quality.name.toLowerCase().replace(/\s/g, '_')}`;
-
 module.exports.getConcertID = concert =>
   `${types.CONCERT_TYPE}_${concert.name.toLowerCase().replace(/\s/g, '_')}`;
 

@@ -8,7 +8,6 @@ module.exports.GENRE_TYPE = 'genre';
 module.exports.ARTIST_TYPE = 'artist';
 // essentially enums
 module.exports.ARRANGEMENT_TYPE_TYPE = 'arrangement_type';
-module.exports.QUALITY_TYPE = 'quality';
 module.exports.ALBUM_FORMAT_TYPE = 'album_format';
 module.exports.CONCERT_TYPE_TYPE = 'concert_type';
 module.exports.KEY_TYPE = 'key';

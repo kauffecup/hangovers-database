@@ -52,10 +52,6 @@ export const keyAdapter = (k = {}) => ({
   value: k._id, label: k.name,
 });
 
-export const qualityAdapter = (q = {}) => ({
-  value: q._id, label: `${q.name} (${q.description})`,
-});
-
 export const semesterFormatter = (s = {}) => `${s.semester_type} ${s.year}`;
 
 export const semesterAdapter = (s = {}) => ({
@@ -77,7 +73,6 @@ export const fullArrangementAdapter = (a = {}) => Object.assign({}, a, {
   mp3: attatchmentAdapter(a._attachments, 'mp3'),
   originalArtists: (a.originalArtists || []).map(artistAdapter),
   pdf: attatchmentAdapter(a._attachments, 'pdf'),
-  quality: (typeof a.quality !== 'undefined') && qualityAdapter(a.quality),
   soloists: (a.soloists || []).map(hangoverAdapter),
   syllables: (typeof a.syllables !== 'undefined') && syllableAdapter(a.syllables),
   whenArranged: (typeof a.whenArranged !== 'undefined') && semesterAdapter(a.whenArranged),

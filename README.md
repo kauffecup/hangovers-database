@@ -40,7 +40,7 @@ welcome to Sage.
 ### the Song
 
   - Song Title
-  - Alternate Name
+  - Abbreviation
   - Original Artist(s)
   - Year Released
   - Genre
@@ -50,12 +50,12 @@ welcome to Sage.
   - Arranger(s)
   - Key
   - When Arranged
-  - Quality of Arrangement (useable/needs work/bad)
   - Type (handwritten original, copy of handwritten, copy of electronic, electronic)
   - Syllables (y/n)
 
 ### Performances, etc
 
+  - Active
   - Semester(s) Performed
   - Concert(s) Featured In
   - Album(s) Appeared On
@@ -65,7 +65,7 @@ welcome to Sage.
 
   - PDF (link to file)
   - Finale (link to file)
-  - MP# (link to file)
+  - MP3 (link to file)
   - Youtube (link to the tube)
   - Spotify Link for original song
   - Spotify Link for hangovers version

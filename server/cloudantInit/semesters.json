@@ -122,47 +122,56 @@
   {
     "year": 1980,
     "semester_type": "fall",
-    "md": "hangover_wardner_jon"
+    "md": "hangover_wardner_jon",
+    "bm": "hangover_polk_mike"
   },
   {
     "year": 1981,
     "semester_type": "spring",
-    "md": "hangover_hess_phil"
+    "md": "hangover_hess_phil",
+    "bm": "hangover_hansen_john"
   },
   {
     "year": 1981,
     "semester_type": "fall",
-    "md": "hangover_hess_phil"
+    "md": "hangover_hess_phil",
+    "bm": "hangover_hansen_john"
   },
   {
     "year": 1982,
     "semester_type": "spring",
-    "md": "hangover_mack_robert"
+    "md": "hangover_mack_robert",
+    "bm": "hangover_sherwood_peter"
   },
   {
     "year": 1982,
     "semester_type": "fall",
-    "md": "hangover_mack_robert"
+    "md": "hangover_mack_robert",
+    "bm": "hangover_sherwood_peter"
   },
   {
     "year": 1983,
     "semester_type": "spring",
-    "md": "hangover_mack_robert"
+    "md": "hangover_mack_robert",
+    "bm": "hangover_sherwood_peter"
   },
   {
     "year": 1983,
     "semester_type": "fall",
-    "md": "hangover_mack_robert"
+    "md": "hangover_mack_robert",
+    "bm": "hangover_sherwood_peter"
   },
   {
     "year": 1984,
     "semester_type": "spring",
-    "md": "hangover_schiller_ronald"
+    "md": "hangover_schiller_ronald",
+    "bm": "hangover_zimmerman_scott"
   },
   {
     "year": 1984,
     "semester_type": "fall",
-    "md": "hangover_schiller_ronald"
+    "md": "hangover_schiller_ronald",
+    "bm": "hangover_zimmerman_scott"
   },
   {
     "year": 1985,
@@ -182,62 +191,74 @@
   {
     "year": 1986,
     "semester_type": "fall",
-    "md": "hangover_becker_scott"
+    "md": "hangover_becker_scott",
+    "bm": "hangover_briglin_timothy"
   },
   {
     "year": 1987,
     "semester_type": "spring",
-    "md": "hangover_becker_scott"
+    "md": "hangover_becker_scott",
+    "bm": "hangover_briglin_timothy"
   },
   {
     "year": 1987,
     "semester_type": "fall",
-    "md": "hangover_becker_scott"
+    "md": "hangover_becker_scott",
+    "bm": "hangover_houggy_david"
   },
   {
     "year": 1988,
     "semester_type": "spring",
-    "md": "hangover_schloss_randall"
+    "md": "hangover_becker_scott",
+    "bm": "hangover_houggy_david"
   },
   {
     "year": 1988,
     "semester_type": "fall",
-    "md": "hangover_schloss_randall"
+    "md": "hangover_schloss_randall",
+    "bm": "hangover_seligman_joel"
   },
   {
     "year": 1989,
     "semester_type": "spring",
-    "md": "hangover_schloss_randall"
+    "md": "hangover_schloss_randall",
+    "bm": "hangover_seligman_joel"
   },
   {
     "year": 1989,
     "semester_type": "fall",
-    "md": "hangover_schloss_randall"
+    "md": "hangover_schloss_randall",
+    "bm": "hangover_seligman_joel"
   },
   {
     "year": 1990,
     "semester_type": "spring",
-    "md": "hangover_schloss_randall"
+    "md": "hangover_schloss_randall",
+    "bm": "hangover_seligman_joel"
   },
   {
     "year": 1990,
     "semester_type": "fall",
-    "md": "hangover_mount_david"
+    "md": "hangover_mount_david",
+    "bm": "hangover_willett_andrew"
   },
   {
     "year": 1991,
     "semester_type": "spring",
-    "md": "hangover_mount_david"
+    "md": "hangover_mount_david",
+    "bm": "hangover_willett_andrew"
   },
   {
     "year": 1991,
     "semester_type": "fall",
-    "md": "hangover_peters_eric"
+    "md": "hangover_peters_eric",
+    "bm": "hangover_banino_michael"
   },
   {
     "year": 1992,
     "semester_type": "spring",
-    "md": "hangover_peters_eric"
+    "md": "hangover_peters_eric",
+    "bm": "hangover_banino_michael"
   },
   {
     "year": 1992,
@@ -252,12 +273,14 @@
   {
     "year": 1993,
     "semester_type": "fall",
-    "md": "hangover_chu_brian"
+    "md": "hangover_chu_brian",
+    "bm": "hangover_trogolo_mike"
   },
   {
     "year": 1994,
     "semester_type": "spring",
-    "md": "hangover_chu_brian"
+    "md": "hangover_chu_brian",
+    "bm": "hangover_trogolo_mike"
   },
   {
     "year": 1994,
@@ -277,211 +300,285 @@
   {
     "year": 1996,
     "semester_type": "spring",
-    "md": "hangover_trogolo_mike"
+    "md": "hangover_trogolo_mike",
+    "bm": "hangover_hsieh_i-sah"
   },
   {
     "year": 1996,
     "semester_type": "fall",
-    "md": "hangover_mendez_carib"
+    "md": "hangover_mendez_carib",
+    "bm": "hangover_hsieh_i-sah"
   },
   {
     "year": 1997,
     "semester_type": "spring",
-    "md": "hangover_brose_alex"
+    "md": "hangover_brose_alexander",
+    "bm": "hangover_lee_derrick"
   },
   {
     "year": 1997,
     "semester_type": "fall",
-    "md": "hangover_brose_alex"
+    "md": "hangover_brose_alexander",
+    "bm": "hangover_lee_derrick"
   },
   {
     "year": 1998,
     "semester_type": "spring",
-    "md": "hangover_farouk_adam"
+    "md": "hangover_farouk_adam",
+    "bm": "hangover_lee_derrick"
   },
   {
     "year": 1998,
     "semester_type": "fall",
-    "md": "hangover_farouk_adam"
+    "md": "hangover_farouk_adam",
+    "bm": "hangover_lee_derrick"
   },
   {
     "year": 1999,
     "semester_type": "spring",
-    "md": "hangover_gregorio_joe"
+    "md": "hangover_gregorio_joe",
+    "bm": "hangover_bradford_sam",
+    "president": "hangover_mandala_nicholas"
   },
   {
     "year": 1999,
     "semester_type": "fall",
-    "md": "hangover_gregorio_joe"
+    "md": "hangover_gregorio_joe",
+    "bm": "hangover_bradford_sam",
+    "president": "hangover_mandala_nicholas"
   },
   {
     "year": 2000,
     "semester_type": "spring",
-    "md": "hangover_wildeman_chris"
+    "md": "hangover_wildeman_chris",
+    "bm": "hangover_goldin_andy",
+    "president": "hangover_bradford_sam"
   },
   {
     "year": 2000,
     "semester_type": "fall",
-    "md": "hangover_wildeman_chris"
+    "md": "hangover_wildeman_chris",
+    "bm": "hangover_goldin_andy",
+    "president": "hangover_bradford_sam"
   },
   {
     "year": 2001,
     "semester_type": "spring",
-    "md": "hangover_meakem_bill"
+    "md": "hangover_meakem_bill",
+    "bm": "hangover_noble_chris",
+    "president": "hangover_wildeman_chris"
   },
   {
     "year": 2001,
     "semester_type": "fall",
-    "md": "hangover_meakem_bill"
+    "md": "hangover_meakem_bill",
+    "bm": "hangover_noble_chris",
+    "president": "hangover_wildeman_chris"
   },
   {
     "year": 2002,
     "semester_type": "spring",
-    "md": "hangover_goldin_andy"
+    "md": "hangover_goldin_andy",
+    "president": "hangover_noble_chris"
   },
   {
     "year": 2002,
     "semester_type": "fall",
-    "md": "hangover_goldin_andy"
+    "md": "hangover_goldin_andy",
+    "president": "hangover_noble_chris"
   },
   {
     "year": 2003,
     "semester_type": "spring",
-    "md": "hangover_bindman_jevon"
+    "md": "hangover_bindman_jevon",
+    "president": "hangover_bindman_dylan"
   },
   {
     "year": 2003,
     "semester_type": "fall",
-    "md": "hangover_bindman_jevon"
+    "md": "hangover_bindman_jevon",
+    "president": "hangover_bindman_dylan"
   },
   {
     "year": 2004,
     "semester_type": "spring",
-    "md": "hangover_mccarl_clayton"
+    "md": "hangover_mccarl_clayton",
+    "bm": "hangover_kim_david",
+    "president": "hangover_markant_doug"
   },
   {
     "year": 2004,
     "semester_type": "fall",
-    "md": "hangover_mccarl_clayton"
+    "md": "hangover_mccarl_clayton",
+    "bm": "hangover_kim_david",
+    "president": "hangover_markant_doug"
   },
   {
     "year": 2005,
     "semester_type": "spring",
-    "md": "hangover_burns_zach"
+    "md": "hangover_burns_zach",
+    "bm": "hangover_vitanza_justin",
+    "president": "hangover_leuthold_doug"
   },
   {
     "year": 2005,
     "semester_type": "fall",
-    "md": "hangover_burns_zach"
+    "md": "hangover_burns_zach",
+    "bm": "hangover_vitanza_justin",
+    "president": "hangover_leuthold_doug"
   },
   {
     "year": 2006,
     "semester_type": "spring",
-    "md": "hangover_welker_steve"
+    "md": "hangover_welker_steve",
+    "bm": "hangover_wright_bill",
+    "president": "hangover_vitanza_justin"
   },
   {
     "year": 2006,
     "semester_type": "fall",
-    "md": "hangover_welker_steve"
+    "md": "hangover_welker_steve",
+    "bm": "hangover_wright_bill",
+    "president": "hangover_vitanza_justin"
   },
   {
     "year": 2007,
     "semester_type": "spring",
-    "md": "hangover_welker_steve"
+    "md": "hangover_welker_steve",
+    "bm": "hangover_rosenfield_ben",
+    "president": "hangover_piel_adam"
   },
   {
     "year": 2007,
     "semester_type": "fall",
-    "md": "hangover_welker_steve"
+    "md": "hangover_welker_steve",
+    "bm": "hangover_rosenfield_ben",
+    "president": "hangover_piel_adam"
   },
   {
     "year": 2008,
     "semester_type": "spring",
-    "md": "hangover_rosenfield_ben"
+    "md": "hangover_rosenfield_ben",
+    "bm": "hangover_eng_jeff",
+    "president": "hangover_shannon_eric"
   },
   {
     "year": 2008,
     "semester_type": "fall",
-    "md": "hangover_rosenfield_ben"
+    "md": "hangover_rosenfield_ben",
+    "bm": "hangover_eng_jeff",
+    "president": "hangover_shannon_eric"
   },
   {
     "year": 2009,
     "semester_type": "spring",
-    "md": "hangover_goldin_ian"
+    "md": "hangover_goldin_ian",
+    "bm": "hangover_perlmutter_ben",
+    "president": "hangover_cloutier_dan"
   },
   {
     "year": 2009,
     "semester_type": "fall",
-    "md": "hangover_goldin_ian"
+    "md": "hangover_goldin_ian",
+    "bm": "hangover_perlmutter_ben",
+    "president": "hangover_cloutier_dan"
   },
   {
     "year": 2010,
     "semester_type": "spring",
-    "md": "hangover_goldin_ian"
+    "md": "hangover_goldin_ian",
+    "bm": ["hangover_cloutier_dan", "hangover_toth_jordan"],
+    "president": "hangover_veit_ben"
   },
   {
     "year": 2010,
     "semester_type": "fall",
-    "md": "hangover_goldin_ian"
+    "md": "hangover_goldin_ian",
+    "bm": ["hangover_cloutier_dan", "hangover_toth_jordan"],
+    "president": "hangover_veit_ben"
   },
   {
     "year": 2011,
     "semester_type": "spring",
-    "md": "hangover_breslin_sam"
+    "md": "hangover_breslin_sam",
+    "bm": "hangover_kuhr_dan",
+    "president": "hangover_kaufman_jonathan"
   },
   {
     "year": 2011,
     "semester_type": "fall",
-    "md": "hangover_breslin_sam"
+    "md": "hangover_breslin_sam",
+    "bm": "hangover_kuhr_dan",
+    "president": "hangover_kaufman_jonathan"
   },
   {
     "year": 2012,
     "semester_type": "spring",
-    "md": "hangover_kaufman_jonathan"
+    "md": "hangover_kaufman_jonathan",
+    "bm": "hangover_skroce_matthew",
+    "president": "hangover_lowell_warren"
   },
   {
     "year": 2012,
     "semester_type": "fall",
-    "md": "hangover_kaufman_jonathan"
+    "md": "hangover_kaufman_jonathan",
+    "bm": "hangover_skroce_matthew",
+    "president": "hangover_gross_michael"
   },
   {
     "year": 2013,
     "semester_type": "spring",
-    "md": "hangover_alur_roshun"
+    "md": "hangover_alur_roshun",
+    "bm": "hangover_smith_ryan",
+    "president": "hangover_wu_ben"
   },
   {
     "year": 2013,
     "semester_type": "fall",
-    "md": "hangover_alur_roshun"
+    "md": "hangover_alur_roshun",
+    "bm": "hangover_smith_ryan",
+    "president": "hangover_wu_ben"
   },
   {
     "year": 2014,
     "semester_type": "spring",
-    "md": "hangover_kelly_christian"
+    "md": "hangover_kelly_christian",
+    "bm": "hangover_hare_scott",
+    "president": "hangover_yetter_evan"
   },
   {
     "year": 2014,
     "semester_type": "fall",
-    "md": "hangover_kelly_christian"
+    "md": "hangover_kelly_christian",
+    "bm": "hangover_hare_scott",
+    "president": "hangover_yetter_evan"
   },
   {
     "year": 2015,
     "semester_type": "spring",
-    "md": "hangover_yetter_evan"
+    "md": "hangover_yetter_evan",
+    "bm": "hangover_morrissey_donny",
+    "president": "hangover_phil_charles"
   },
   {
     "year": 2015,
     "semester_type": "fall",
-    "md": "hangover_yetter_evan"
+    "md": "hangover_yetter_evan",
+    "bm": "hangover_hare_scott",
+    "president": "hangover_phil_charles"
   },
   {
     "year": 2016,
     "semester_type": "spring",
-    "md": "hangover_lassman_jonathan"
+    "md": "hangover_lassman_jonathan",
+    "bm": "hangover_kashdan_nathan",
+    "president": "hangover_noh_jae"
   },
   {
     "year": 2016,
     "semester_type": "fall",
-    "md": "hangover_lassman_jonathan"
+    "md": "hangover_lassman_jonathan",
+    "bm": "hangover_kashdan_nathan",
+    "president": "hangover_noh_jae"
   }
 ]

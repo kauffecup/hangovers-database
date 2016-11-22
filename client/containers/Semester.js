@@ -4,7 +4,7 @@ import { StyleSheet, css } from 'aphrodite';
 import AlbumLink from '../components/links/AlbumLink';
 import ArrangementLink from '../components/links/ArrangementLink';
 import ConcertLink from '../components/links/ConcertLink';
-import HangoverLink from '../components/links/HangoverLink';
+import HangoverList from '../components/lists/HangoverList';
 import { getSemester } from '../actions';
 import { semesterFormatter } from '../normalizers/adaptFormData';
 import { PADDING_UNIT } from '../StyleConstants';
@@ -23,11 +23,9 @@ class Semester extends Component {
     return (
       <div className={css(styles.arrangement)}>
         <h2>{semesterFormatter(semester)}</h2>
-        {semester.md && semester.md.length ?
-          <div>
-            <span>MD</span><HangoverLink {...semester.md[0]} />
-          </div>
-        : null}
+        <HangoverList title="MD" hangovers={semester.md} />
+        <HangoverList title="BM" hangovers={semester.bm} />
+        <HangoverList title="President" hangovers={semester.president} />
         <h3>Arrangements</h3>
         {semester.whenArranged && semester.whenArranged.length ? semester.whenArranged.map(a =>
           <ArrangementLink key={a._id} {...a} />
@@ -45,9 +43,7 @@ class Semester extends Component {
           <AlbumLink {...a} />
         ) : '...nothin'}
         <h3>Hangovers Graduated</h3>
-        {semester.graduatingHangs && semester.graduatingHangs.length ? semester.graduatingHangs.map(h =>
-          <HangoverLink key={h._id} {...h} />
-        ) : '...nothin'}
+        <HangoverList hangovers={semester.graduatingHangs} />
       </div>
     );
   }

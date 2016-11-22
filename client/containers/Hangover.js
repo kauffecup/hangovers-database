@@ -2,8 +2,8 @@ import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, css } from 'aphrodite';
 import ArrangementLink from '../components/links/ArrangementLink';
-import SemesterLink from '../components/links/SemesterLink';
 import ConcertLink from '../components/links/ConcertLink';
+import SemesterList from '../components/lists/SemesterList';
 import { getHangover } from '../actions';
 import { hangoverFormatter } from '../normalizers/adaptFormData';
 import { PADDING_UNIT } from '../StyleConstants';
@@ -22,19 +22,10 @@ class Hangover extends Component {
     return (
       <div className={css(styles.arrangement)}>
         <h2>{hangoverFormatter(hangover)}</h2>
-        {hangover.graduationSemester && hangover.graduationSemester.length ?
-          <div>
-            <span>Graduated</span>
-            <SemesterLink {...hangover.graduationSemester[0]} />
-          </div>
-        : null}
-        {hangover.semestersMDed && hangover.semestersMDed.length ?
-          <div>
-            <span>MDed</span>{hangover.semestersMDed.map(s =>
-              <SemesterLink key={s._id} {...s} />
-            )}
-          </div>
-        : null}
+        <SemesterList title="Graduated" semesters={hangover.graduationSemester} />
+        <SemesterList title="MDed" semesters={hangover.semestersMDed} />
+        <SemesterList title="BMed" semesters={hangover.semestersBMed} />
+        <SemesterList title="Presided" semesters={hangover.semestersPresided} />
         {hangover.concertsMDed && hangover.concertsMDed.length ?
           <div>
             <span>MDed</span>{hangover.concertsMDed.map(c =>

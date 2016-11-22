@@ -56,10 +56,12 @@ module.exports = class SageDB {
       for (let i = 1; i < rows.length; i++) {
         const rowKey = rows[i].key;
         const rowDoc = rows[i].doc;
-        if (rowKey.length === 2) {
-          doc[rowKey[1]] = rowDoc;
-        } else if (rowKey.length === 3) {
-          doc[rowKey[1]][rowKey[2]] = rowDoc;
+        if (rowDoc) {
+          if (rowKey.length === 2) {
+            doc[rowKey[1]] = rowDoc;
+          } else if (rowKey.length === 3) {
+            doc[rowKey[1]][rowKey[2]] = rowDoc;
+          }
         }
       }
       return doc;
@@ -77,7 +79,7 @@ module.exports = class SageDB {
   getFullArtist(artistID) { return this._getFullArrayRollup(artistID, 'artist_full'); }
 
   /**
-   * Here we get a document's metadata along with the original docs for  any ids
+   * Here we get a document's metadata along with the original docs for any ids
    * it might link to. We have some cleanup logic for combining into a clean array.
    */
   _getFullArrayRollup(id, view) {
@@ -95,7 +97,7 @@ module.exports = class SageDB {
       for (let i = 1; i < rows.length; i++) {
         const rowKey = rows[i].key;
         const rowDoc = rows[i].doc;
-        if (rowKey.length === 2) {
+        if (rowDoc && rowKey.length === 2) {
           if (!docArrays[rowKey[1]]) {
             docArrays[rowKey[1]] = [];
           }

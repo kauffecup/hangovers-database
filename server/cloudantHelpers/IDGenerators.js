@@ -31,4 +31,4 @@ module.exports.getArtistID = artist =>
   `${types.ARTIST_TYPE}_${artist.name.toLowerCase().replace(/\s/g, '_')}`;
 
 module.exports.getKeyID = key =>
-  `${types.KEY_TYPE}_${key.name.toLowerCase().replace(/\s/g, '_')}`;
+  `${types.KEY_TYPE}_${key.name.toLowerCase().replace(/\s/g, '_')}_${key.tonality.toLowerCase().replace(/\s/g, '_')}`;

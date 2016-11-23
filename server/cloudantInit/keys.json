@@ -1,65 +1,170 @@
 [
   {
-    "name": "Ab"
+    "name": "Ab",
+    "tonality": "major"
   },
   {
-    "name": "A"
+    "name": "Ab",
+    "tonality": "minor"
   },
   {
-    "name": "A#"
+    "name": "A",
+    "tonality": "major"
   },
   {
-    "name": "Bb"
+    "name": "A",
+    "tonality": "minor"
   },
   {
-    "name": "B"
+    "name": "A#",
+    "tonality": "major"
   },
   {
-    "name": "B#"
+    "name": "A#",
+    "tonality": "minor"
   },
   {
-    "name": "Cb"
+    "name": "Bb",
+    "tonality": "major"
   },
   {
-    "name": "C"
+    "name": "Bb",
+    "tonality": "minor"
   },
   {
-    "name": "C#"
+    "name": "B",
+    "tonality": "major"
   },
   {
-    "name": "Db"
+    "name": "B",
+    "tonality": "minor"
   },
   {
-    "name": "D"
+    "name": "B#",
+    "tonality": "major"
   },
   {
-    "name": "D#"
+    "name": "B#",
+    "tonality": "minor"
   },
   {
-    "name": "Eb"
+    "name": "Cb",
+    "tonality": "major"
   },
   {
-    "name": "E"
+    "name": "Cb",
+    "tonality": "minor"
   },
   {
-    "name": "E#"
+    "name": "C",
+    "tonality": "major"
   },
   {
-    "name": "Fb"
+    "name": "C",
+    "tonality": "minor"
   },
   {
-    "name": "F"
+    "name": "C#",
+    "tonality": "major"
   },
   {
-    "name": "F#"
+    "name": "C#",
+    "tonality": "minor"
   },
   {
-    "name": "Gb"
+    "name": "Db",
+    "tonality": "major"
   },
   {
-    "name": "G"
+    "name": "Db",
+    "tonality": "minor"
   },
   {
-    "name": "G#"
+    "name": "D",
+    "tonality": "major"
+  },
+  {
+    "name": "D",
+    "tonality": "minor"
+  },
+  {
+    "name": "D#",
+    "tonality": "major"
+  },
+  {
+    "name": "D#",
+    "tonality": "minor"
+  },
+  {
+    "name": "Eb",
+    "tonality": "major"
+  },
+  {
+    "name": "Eb",
+    "tonality": "minor"
+  },
+  {
+    "name": "E",
+    "tonality": "major"
+  },
+  {
+    "name": "E",
+    "tonality": "minor"
+  },
+  {
+    "name": "E#",
+    "tonality": "major"
+  },
+  {
+    "name": "E#",
+    "tonality": "minor"
+  },
+  {
+    "name": "Fb",
+    "tonality": "major"
+  },
+  {
+    "name": "Fb",
+    "tonality": "minor"
+  },
+  {
+    "name": "F",
+    "tonality": "major"
+  },
+  {
+    "name": "F",
+    "tonality": "minor"
+  },
+  {
+    "name": "F#",
+    "tonality": "major"
+  },
+  {
+    "name": "F#",
+    "tonality": "minor"
+  },
+  {
+    "name": "Gb",
+    "tonality": "major"
+  },
+  {
+    "name": "Gb",
+    "tonality": "minor"
+  },
+  {
+    "name": "G",
+    "tonality": "major"
+  },
+  {
+    "name": "G",
+    "tonality": "minor"
+  },
+  {
+    "name": "G#",
+    "tonality": "major"
+  },
+  {
+    "name": "G#",
+    "tonality": "minor"
   }
 ]

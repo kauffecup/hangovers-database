@@ -9,6 +9,7 @@ import ArtistList from '../components/lists/ArtistList';
 import ConcertList from '../components/lists/ConcertList';
 import HangoverList from '../components/lists/HangoverList';
 import SemesterList from '../components/lists/SemesterList';
+import { keyFormatter } from '../normalizers/adaptFormData';
 import { PADDING_UNIT } from '../StyleConstants';
 
 const Field = ({ title, text,  }) => typeof text === 'string' ? // eslint-disable-line
@@ -40,6 +41,7 @@ class Arrangement extends Component {
         <Field text={arrangement.whenWritten} />
         <h3>The Arrangement</h3>
         <HangoverList title="arranged by" hangovers={arrangement.arrangers} />
+        <Field text={keyFormatter(arrangement.key)} />
         <SemesterList title="arranged" semesters={[arrangement.whenArranged]} />
         <Field text={arrangement.syllables ? 'has syllables' : 'doesn\'t have syllables'} />
         <Field text={arrangement.arrangementType && `${arrangement.arrangementType.name} (${arrangement.arrangementType.description})`} />

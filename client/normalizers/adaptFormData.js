@@ -48,8 +48,10 @@ export const hangoverAdapter = (h = {}) => ({
   value: h._id, label: hangoverFormatter(h),
 });
 
+export const keyFormatter = (k = {}) => `${k.name} ${k.tonality}`;
+
 export const keyAdapter = (k = {}) => ({
-  value: k._id, label: k.name,
+  value: k._id, label: keyFormatter(k),
 });
 
 export const semesterFormatter = (s = {}) => `${s.semester_type} ${s.year}`;

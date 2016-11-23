@@ -35,7 +35,7 @@ class Arrangement extends Component {
         <PathButton text="edit" path={`/edit/${id}`} />
         <h2>{arrangement.name}</h2>
         <h3>The Song</h3>
-        <Field text={arrangement.abbreviation} />
+        <Field text={arrangement.alternateName} />
         <ArtistList title="originally performed by" artists={arrangement.originalArtists} />
         <Field text={arrangement.genre && arrangement.genre.name} />
         <Field text={arrangement.whenWritten} />

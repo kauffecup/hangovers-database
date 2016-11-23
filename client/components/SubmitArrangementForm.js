@@ -37,7 +37,7 @@ const SubmitArrangementForm = ({ app, submit, handleSubmit, handleDelete, id, re
       <h3 className={css(styles.categoryLabel)}>The Song</h3>
       <div className={css(styles.row)}>
         <Field label="Name" name="name" component={RenderField} type="text" autoComplete="off" styles={styles.rowChild} />
-        <Field label="Abbreviation" name="abbreviation" component={RenderField} type="text" autoComplete="off" styles={styles.rowChild} />
+        <Field label="Abbreviation/Hangs Name" name="alternateName" component={RenderField} type="text" autoComplete="off" styles={styles.rowChild} />
       </div>
       <Field label="Original Artist(s)" name="originalArtists" component={RenderCreatableAsync} loadOptions={searchArtists} multi />
       <div className={css(styles.row)}>

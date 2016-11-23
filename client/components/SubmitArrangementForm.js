@@ -36,13 +36,13 @@ const SubmitArrangementForm = ({ app, submit, handleSubmit, handleDelete, id, re
     <form className={css(styles.form)} onSubmit={handleSubmit(values => submit(adaptSubmit(values)))}>
       <h3 className={css(styles.categoryLabel)}>The Song</h3>
       <div className={css(styles.row)}>
-        <Field label="Name" name="name" component={RenderField} type="text" styles={styles.rowChild} />
-        <Field label="Abbreviation" name="abbreviation" component={RenderField} type="text" styles={styles.rowChild} />
+        <Field label="Name" name="name" component={RenderField} type="text" autoComplete="off" styles={styles.rowChild} />
+        <Field label="Abbreviation" name="abbreviation" component={RenderField} type="text" autoComplete="off" styles={styles.rowChild} />
       </div>
       <Field label="Original Artist(s)" name="originalArtists" component={RenderCreatableAsync} loadOptions={searchArtists} multi />
       <div className={css(styles.row)}>
         <Field label="Genre" name="genre" component={RenderSelect} options={genres} styles={styles.rowChild} />
-        <Field label="Year Released" name="whenWritten" component={RenderField} type="text" styles={styles.rowChild} />
+        <Field label="Year Released" name="whenWritten" component={RenderField} type="text" autoComplete="off" styles={styles.rowChild} />
       </div>
       <h3 className={css(styles.categoryLabel)}>The Arrangement</h3>
       <Field label="Arranger(s)" name="arrangers" component={RenderAsync} loadOptions={searchHangovers} multi />
@@ -66,10 +66,10 @@ const SubmitArrangementForm = ({ app, submit, handleSubmit, handleDelete, id, re
         <Field label="Finale" name="finale" component={RenderDropzone} normalize={normalizeFileList} styles={styles.rowChild} />
         <Field label="mp3" name="mp3" component={RenderDropzone} normalize={normalizeFileList} styles={styles.rowChild} />
       </div>
-      <Field label="Youtube Link" name="youtube" component={RenderField} type="text" />
+      <Field label="Youtube Link" name="youtube" component={RenderField} type="text" autoComplete="off" />
       <div className={css(styles.row)}>
-        <Field label="Spotify Link (Original Song)" name="spotifyOriginalLink" component={RenderField} type="text" styles={styles.rowChild} />
-        <Field label="Spotify Link (Hangovers Version)" name="spotifyHangoverLink" component={RenderField} type="text" styles={styles.rowChild} />
+        <Field label="Spotify Link (Original Song)" name="spotifyOriginalLink" component={RenderField} type="text" autoComplete="off" styles={styles.rowChild} />
+        <Field label="Spotify Link (Hangovers Version)" name="spotifyHangoverLink" component={RenderField} type="text" autoComplete="off" styles={styles.rowChild} />
       </div>
       <Button type="submit" text="Submit" />
       {handleDelete && id && rev ? <Button text="Delete" handleClick={() => handleDelete(id, rev)} error type="button" /> : null}

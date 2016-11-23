@@ -2,13 +2,13 @@ import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite';
 import _Render from './_Render';
 
-const _RenderField = ({ input, label, type, className }) =>
-  <div className={`${className} ${css(styles['input-wrapper'])}`}>
-    <input {...input} placeholder={label} type={type} className={css(styles.input)} />
+const _RenderField = ({ input, label, type, className, autoComplete }) =>
+  <div className={`${className} ${css(styles.inputWrapper)}`}>
+    <input {...input} placeholder={label} type={type} autoComplete={autoComplete} className={css(styles.input)} />
   </div>;
 
 const styles = StyleSheet.create({
-  'input-wrapper': {
+  inputWrapper: {
     display: 'flex',
     height: '36px',
     border: '1px solid #d9d9d9',
@@ -30,6 +30,7 @@ _RenderField.propTypes = {
   label: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   className: PropTypes.string,
+  autoComplete: PropTypes.string,
 };
 
 export default _Render(_RenderField);

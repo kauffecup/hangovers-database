@@ -33,14 +33,6 @@ export default (values) => {
     errors.originalArtists = REQUIRED_ERROR;
   }
 
-  if (!values.arrangers || !values.arrangers.length) {
-    errors.arrangers = REQUIRED_ERROR;
-  }
-
-  if (!values.key) {
-    errors.key = REQUIRED_ERROR;
-  }
-
   if (!values.arrangementType) {
     errors.arrangementType = REQUIRED_ERROR;
   }

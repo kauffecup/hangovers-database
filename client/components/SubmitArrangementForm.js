@@ -66,7 +66,7 @@ const SubmitArrangementForm = ({ app, submit, handleSubmit, handleDelete, id, re
         <Field label="Finale" name="finale" component={RenderDropzone} normalize={normalizeFileList} styles={styles.rowChild} />
         <Field label="mp3" name="mp3" component={RenderDropzone} normalize={normalizeFileList} styles={styles.rowChild} />
       </div>
-      <Field label="Youtube Link" name="youtube" component={RenderField} type="text" autoComplete="off" />
+      <Field label="Youtube Link (Hangovers Performance)" name="youtube" component={RenderField} type="text" autoComplete="off" />
       <div className={css(styles.row)}>
         <Field label="Spotify Link (Original Song)" name="spotifyOriginalLink" component={RenderField} type="text" autoComplete="off" styles={styles.rowChild} />
         <Field label="Spotify Link (Hangovers Version)" name="spotifyHangoverLink" component={RenderField} type="text" autoComplete="off" styles={styles.rowChild} />

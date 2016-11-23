@@ -1,8 +1,8 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, css } from 'aphrodite';
-import ArrangementLink from '../components/links/ArrangementLink';
-import SemesterLink from '../components/links/SemesterLink';
+import ArrangementList from '../components/lists/ArrangementList';
+import SemesterList from '../components/lists/SemesterList';
 import { getAlbum } from '../actions';
 import { albumFormatter } from '../normalizers/adaptFormData';
 import { PADDING_UNIT } from '../StyleConstants';
@@ -21,13 +21,9 @@ class Album extends Component {
     return (
       <div className={css(styles.arrangement)}>
         <h2>{albumFormatter(album)}</h2>
-        {album.semester && album.semester.length ?
-          <SemesterLink {...album.semester[0]} />
-        : null}
+        <SemesterList semesters={album.semester} />
         <h3>Set List</h3>
-        {album.trackList && album.trackList.length ? album.trackList.map(a =>
-          <ArrangementLink key={a._id} {...a} />
-        ) : '...nothin'}
+        <ArrangementList arrangements={album.trackList} />
       </div>
     );
   }

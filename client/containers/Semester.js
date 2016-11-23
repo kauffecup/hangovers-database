@@ -1,9 +1,9 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, css } from 'aphrodite';
-import AlbumLink from '../components/links/AlbumLink';
-import ArrangementLink from '../components/links/ArrangementLink';
-import ConcertLink from '../components/links/ConcertLink';
+import AlbumList from '../components/lists/AlbumList';
+import ArrangementList from '../components/lists/ArrangementList';
+import ConcertList from '../components/lists/ConcertList';
 import HangoverList from '../components/lists/HangoverList';
 import { getSemester } from '../actions';
 import { semesterFormatter } from '../normalizers/adaptFormData';
@@ -27,21 +27,13 @@ class Semester extends Component {
         <HangoverList title="BM" hangovers={semester.bm} />
         <HangoverList title="President" hangovers={semester.president} />
         <h3>Arrangements</h3>
-        {semester.whenArranged && semester.whenArranged.length ? semester.whenArranged.map(a =>
-          <ArrangementLink key={a._id} {...a} />
-        ) : '...nothin'}
+        <ArrangementList arrangements={semester.whenArranged} />
         <h3>Concerts</h3>
-        {semester.concerts && semester.concerts.length ? semester.concerts.map(c =>
-          <ConcertLink key={c._id} {...c} />
-        ) : '...nothin'}
+        <ConcertList concerts={semester.concerts} />
         <h3>Songs Performed</h3>
-        {semester.whenPerformed && semester.whenPerformed.length ? semester.whenPerformed.map(s =>
-          <ArrangementLink key={s._id} {...s} />
-        ) : '...nothin'}
+        <ArrangementList arrangements={semester.whenPerformed} />
         <h3>Albums</h3>
-        {semester.albums && semester.albums.length ? semester.albums.map(a =>
-          <AlbumLink {...a} />
-        ) : '...nothin'}
+        <AlbumList albums={semester.albums} />
         <h3>Hangovers Graduated</h3>
         <HangoverList hangovers={semester.graduatingHangs} />
       </div>

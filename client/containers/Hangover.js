@@ -1,8 +1,8 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, css } from 'aphrodite';
-import ArrangementLink from '../components/links/ArrangementLink';
-import ConcertLink from '../components/links/ConcertLink';
+import ArrangementList from '../components/lists/ArrangementList';
+import ConcertList from '../components/lists/ConcertList';
 import SemesterList from '../components/lists/SemesterList';
 import { getHangover } from '../actions';
 import { hangoverFormatter } from '../normalizers/adaptFormData';
@@ -26,21 +26,11 @@ class Hangover extends Component {
         <SemesterList title="MDed" semesters={hangover.semestersMDed} />
         <SemesterList title="BMed" semesters={hangover.semestersBMed} />
         <SemesterList title="Presided" semesters={hangover.semestersPresided} />
-        {hangover.concertsMDed && hangover.concertsMDed.length ?
-          <div>
-            <span>MDed</span>{hangover.concertsMDed.map(c =>
-              <ConcertLink key={c._id} {...c} />
-            )}
-          </div>
-        : null}
+        <ConcertList title="MDed" concerts={hangover.concertsMDed} />
         <h3>Arranged</h3>
-        {hangover.arrangers && hangover.arrangers.length ? hangover.arrangers.map(a =>
-          <ArrangementLink key={a._id} {...a} />
-        ) : '...nothin'}
+        <ArrangementList arrangements={hangover.arrangers} />
         <h3>Soloed</h3>
-        {hangover.soloists && hangover.soloists.length ? hangover.soloists.map(a =>
-          <ArrangementLink key={a._id} {...a} />
-        ) : '...nothin'}
+        <ArrangementList arrangements={hangover.soloists} />
       </div>
     );
   }

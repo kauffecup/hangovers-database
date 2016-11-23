@@ -1,7 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, css } from 'aphrodite';
-import ArrangementLink from '../components/links/ArrangementLink';
+import ArrangementList from '../components/lists/ArrangementList';
 import { getArtist } from '../actions';
 import { artistFormatter } from '../normalizers/adaptFormData';
 import { PADDING_UNIT } from '../StyleConstants';
@@ -21,9 +21,7 @@ class Artist extends Component {
       <div className={css(styles.arrangement)}>
         <h2>{artistFormatter(artist)}</h2>
         <h3>Arrangements</h3>
-        {artist.arrangements && artist.arrangements.length ? artist.arrangements.map(a =>
-          <ArrangementLink key={a._id} {...a} />
-        ) : '...nothin'}
+        <ArrangementList arrangements={artist.arrangements} />
       </div>
     );
   }

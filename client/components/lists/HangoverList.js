@@ -1,13 +1,9 @@
 import React, { PropTypes } from 'react';
+import List from './_List';
 import HangoverLink from '../links/HangoverLink';
 
-const HangoverList = ({ title, hangovers = [] }) => hangovers.length ?
-  <div>
-    <span>{title}</span>
-    <span>{hangovers.map(h =>
-      <HangoverLink key={h._id} {...h} />
-    )}</span>
-  </div> : null;
+const HangoverList = ({ title, hangovers = [] }) =>
+  <List title={title} items={hangovers} Component={HangoverLink} />;
 
 HangoverList.propTypes = {
   title: PropTypes.string,

@@ -1,9 +1,9 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, css } from 'aphrodite';
-import ArrangementLink from '../components/links/ArrangementLink';
-import SemesterLink from '../components/links/SemesterLink';
-import HangoverLink from '../components/links/HangoverLink';
+import ArrangementList from '../components/lists/ArrangementList';
+import SemesterList from '../components/lists/SemesterList';
+import HangoverList from '../components/lists/HangoverList';
 import { getConcert } from '../actions';
 import { concertFormatter } from '../normalizers/adaptFormData';
 import { PADDING_UNIT } from '../StyleConstants';
@@ -22,18 +22,10 @@ class Concert extends Component {
     return (
       <div className={css(styles.arrangement)}>
         <h2>{concertFormatter(concert)}</h2>
-        {concert.semester && concert.semester.length ?
-          <SemesterLink {...concert.semester[0]} />
-        : null}
-        {concert.md && concert.md.length ?
-          <div>
-            <span>MD</span><HangoverLink {...concert.md[0]} />
-          </div>
-        : null}
+        <SemesterList semesters={concert.semester} />
+        <HangoverList title="MD" hangovers={concert.md} />
         <h3>Set List</h3>
-        {concert.setList && concert.setList.length ? concert.setList.map(a =>
-          <ArrangementLink key={a._id} {...a} />
-        ) : '...nothin'}
+        <ArrangementList arrangements={concert.setList} />
       </div>
     );
   }

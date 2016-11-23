@@ -4,7 +4,7 @@ export const activeAdapter = a =>
 export const albumFormatter = (a = {}, y = '') => `${a.name} ${y}`.trim();
 
 export const albumAdapter = (a = {}, sMap = {}) => ({
-  value: a._id, label: albumFormatter(a, sMap && sMap[a.semester] && sMap[a.semester].year),
+  value: a._id, label: albumFormatter(a, sMap && sMap[a.semester] ? sMap[a.semester].year : ''),
 });
 
 export const arrangementTypeAdapter = (at = {}) => ({
@@ -35,7 +35,7 @@ export const attatchmentAdapter = (a = {}, type = '') => {
 export const concertFormatter = (c = {}, y = '') => `${c.name} ${y}`.trim();
 
 export const concertAdapter = (c = {}, sMap = {}) => ({
-  value: c._id, label: concertFormatter(c, sMap && sMap[c.semester] && sMap[c.semester].year),
+  value: c._id, label: concertFormatter(c, sMap && sMap[c.semester] ? sMap[c.semester].year : ''),
 });
 
 export const genreAdapter = (g = {}) => ({

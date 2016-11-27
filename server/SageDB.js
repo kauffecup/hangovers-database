@@ -169,6 +169,14 @@ module.exports = class SageDB {
     }).then(response => response.rows.map(r => r.doc));
   }
 
+  searchGenres(text = '') {
+    return this._sageDB.searchAsync('search', 'genres', {
+      q: `name:(${text.toLowerCase()}*)`,
+      limit: LIMIT,
+      include_docs: true,
+    }).then(response => response.rows.map(r => r.doc));
+  }
+
   /**
    * Upserts for given doc types. If the doc is already in the database, update
    * it, if not create a new one.

@@ -25,6 +25,14 @@ const artistIndexer = function (doc) {
   }
 };
 
+const genreIndexer = function (doc) {
+  if (typeof doc.type === 'string' && doc.type === 'genre') {
+    if (typeof doc.name === 'string') {
+      index('name', doc.name.toLowerCase());
+    }
+  }
+};
+
 const ddoc = {
   _id: '_design/search',
   indexes: {
@@ -35,6 +43,10 @@ const ddoc = {
     artists: {
       analyzer: 'standard',
       index: artistIndexer,
+    },
+    genres: {
+      analyzer: 'standard',
+      index: genreIndexer,
     },
   },
 };

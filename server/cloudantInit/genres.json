@@ -1,62 +1,614 @@
 [
   {
+    "name": "Acid Jazz"
+  },
+  {
+    "name": "Acoustic Blues"
+  },
+  {
+    "name": "Accompaniment"
+  },
+  {
+    "name": "Adult Alternative"
+  },
+  {
+    "name": "Adult Contemporary"
+  },
+  {
+    "name": "Alt-Country & Americana"
+  },
+  {
     "name": "Alternative"
+  },
+  {
+    "name": "Alternative Metal"
+  },
+  {
+    "name": "Alternative Rock"
+  },
+  {
+    "name": "Africa"
+  },
+  {
+    "name": "American Alternative"
+  },
+  {
+    "name": "Arena Rock"
+  },
+  {
+    "name": "Australia & New Zealand"
+  },
+  {
+    "name": "Avant Garde & Free Jazz"
+  },
+  {
+    "name": "Bachata"
+  },
+  {
+    "name": "Ballets & Dances"
+  },
+  {
+    "name": "Banda"
+  },
+  {
+    "name": "Bass"
+  },
+  {
+    "name": "Bebop"
+  },
+  {
+    "name": "Bluegrass"
   },
   {
     "name": "Blues"
   },
   {
+    "name": "Blues Rock"
+  },
+  {
+    "name": "Big Band"
+  },
+  {
+    "name": "Bolero"
+  },
+  {
+    "name": "Brazilian Jazz"
+  },
+  {
+    "name": "British Alternative"
+  },
+  {
+    "name": "British Invasion"
+  },
+  {
+    "name": "British Metal"
+  },
+  {
+    "name": "Broadway & Vocalists"
+  },
+  {
+    "name": "Cabaret"
+  },
+  {
+    "name": "Caribbean & Cuba"
+  },
+  {
+    "name": "Celtic"
+  },
+  {
+    "name": "Celtic New Age"
+  },
+  {
+    "name": "Chamber Music"
+  },
+  {
+    "name": "Charanga"
+  },
+  {
+    "name": "Chicago Blues"
+  },
+  {
+    "name": "Children's Music"
+  },
+  {
+    "name": "Choir"
+  },
+  {
+    "name": "Christmas"
+  },
+  {
+    "name": "Christian"
+  },
+  {
+    "name": "Christian Contemporary Music"
+  },
+  {
+    "name": "Classic R&B"
+  },
+  {
+    "name": "Classic Rock"
+  },
+  {
+    "name": "Classical"
+  },
+  {
+    "name": "Classical Female Vocal Blues"
+  },
+  {
+    "name": "Comedy & Miscellaneous"
+  },
+  {
+    "name": "Compilations"
+  },
+  {
+    "name": "Concertos"
+  },
+  {
+    "name": "Contemporary Blues"
+  },
+  {
+    "name": "Contemporary Country"
+  },
+  {
+    "name": "Contemporary Folk"
+  },
+  {
+    "name": "Contemporary R&B"
+  },
+  {
+    "name": "Cool Jazz"
+  },
+  {
     "name": "Country"
   },
   {
-    "name": "EDM"
+    "name": "Country & Bluegrass"
+  },
+  {
+    "name": "Country Gospel"
+  },
+  {
+    "name": "Country Rock"
+  },
+  {
+    "name": "Cowboy"
+  },
+  {
+    "name": "Cumbia"
+  },
+  {
+    "name": "Dance Pop"
+  },
+  {
+    "name": "Dance & Electronic"
+  },
+  {
+    "name": "Death Metal"
+  },
+  {
+    "name": "Disco"
+  },
+  {
+    "name": "Delta Blues"
+  },
+  {
+    "name": "Drum & Bass"
+  },
+  {
+    "name": "Dubstep"
+  },
+  {
+    "name": "Duranguense"
+  },
+  {
+    "name": "East Coast"
   },
   {
     "name": "Easy Listening"
   },
   {
-    "name": "Disney"
+    "name": "Educational"
   },
   {
-    "name": "Hip Hop/Rap"
+    "name": "Electric Blues Guitar"
   },
   {
-    "name": "Holiday"
+    "name": "Electronica"
   },
   {
-    "name": "Indie Pop"
+    "name": "Environmental"
   },
   {
-    "name": "J-Pop"
+    "name": "Etudes"
+  },
+  {
+    "name": "Euro Pop"
+  },
+  {
+    "name": "Europe"
+  },
+  {
+    "name": "Exercise"
+  },
+  {
+    "name": "Experimental Rap"
+  },
+  {
+    "name": "Fantasies"
+  },
+  {
+    "name": "Far East & Asia"
+  },
+  {
+    "name": "Flamenco"
+  },
+  {
+    "name": "Folk"
+  },
+  {
+    "name": "Folk Rock"
+  },
+  {
+    "name": "Freestyle"
+  },
+  {
+    "name": "Fugues"
+  },
+  {
+    "name": "Funk"
+  },
+  {
+    "name": "Funk Rock"
+  },
+  {
+    "name": "Gangsta & Hardcore"
+  },
+  {
+    "name": "Gospel"
+  },
+  {
+    "name": "Goth & Industrial"
+  },
+  {
+    "name": "Grupero"
+  },
+  {
+    "name": "Hanukkah"
+  },
+  {
+    "name": "Hard ROck"
+  },
+  {
+    "name": "Hard Rock & Metal"
+  },
+  {
+    "name": "Hardcore & Punk"
+  },
+  {
+    "name": "Holiday Music"
+  },
+  {
+    "name": "Honky-Tonk"
+  },
+  {
+    "name": "House"
+  },
+  {
+    "name": "Independence Day"
+  },
+  {
+    "name": "India & Pakistan"
+  },
+  {
+    "name": "Indie & Lo-Fi"
+  },
+  {
+    "name": "Instrumental"
+  },
+  {
+    "name": "International Rap"
+  },
+  {
+    "name": "Jam Band"
   },
   {
     "name": "Jazz"
   },
   {
-    "name": "K-Pop"
+    "name": "Jazz Fusion"
   },
   {
-    "name": "Latin"
+    "name": "Jewish & Yiddish"
+  },
+  {
+    "name": "Korean Pop"
+  },
+  {
+    "name": "Latin Children's"
+  },
+  {
+    "name": "Latin Christian"
+  },
+  {
+    "name": "Latin Electronica"
+  },
+  {
+    "name": "Latin Hip-Hop"
+  },
+  {
+    "name": "Latin Jazz"
+  },
+  {
+    "name": "Latin Music"
+  },
+  {
+    "name": "Latin Pop"
+  },
+  {
+    "name": "Latin Rock"
+  },
+  {
+    "name": "Lullabies"
+  },
+  {
+    "name": "Mambo"
+  },
+  {
+    "name": "Mariachi"
+  },
+  {
+    "name": "Meditation"
+  },
+  {
+    "name": "Merengue"
+  },
+  {
+    "name": "Middle East"
+  },
+  {
+    "name": "Modern Blues"
+  },
+  {
+    "name": "Modern Postbebop"
+  },
+  {
+    "name": "Motown"
+  },
+  {
+    "name": "Musicals"
+  },
+  {
+    "name": "Neo-Soul"
   },
   {
     "name": "New Age"
   },
   {
+    "name": "New Orleans Jazz"
+  },
+  {
+    "name": "New Wave & Post-Punk"
+  },
+  {
+    "name": "New Year's Eve"
+  },
+  {
+    "name": "Norteno"
+  },
+  {
+    "name": "North America"
+  },
+  {
+    "name": "Old School"
+  },
+  {
+    "name": "Oldies"
+  },
+  {
+    "name": "Oldies & Retro"
+  },
+  {
+    "name": "Opera & Vocal"
+  },
+  {
+    "name": "Outlaw & Progressive Country"
+  },
+  {
+    "name": "Pacific Islands"
+  },
+  {
+    "name": "Poetry, Spoken Word & Interviews"
+  },
+  {
     "name": "Pop"
   },
   {
-    "name": "R&B/Soul"
+    "name": "Pop Metal"
+  },
+  {
+    "name": "Pop Rock"
+  },
+  {
+    "name": "Praise & Worship"
+  },
+  {
+    "name": "Preludes"
+  },
+  {
+    "name": "Progressive"
+  },
+  {
+    "name": "Psychadelic Rock"
+  },
+  {
+    "name": "Quiet Storm"
+  },
+  {
+    "name": "R&B"
+  },
+  {
+    "name": "Radio Shows"
+  },
+  {
+    "name": "Ranchera"
+  },
+  {
+    "name": "Rap & Hip-Hop"
+  },
+  {
+    "name": "Rap Rock"
   },
   {
     "name": "Reggae"
   },
   {
+    "name": "Reggaeton"
+  },
+  {
+    "name": "Regional Blues"
+  },
+  {
+    "name": "Rhumba"
+  },
+  {
     "name": "Rock"
   },
   {
-    "name": "Singer/Songwriter"
+    "name": "Rock & Metal"
   },
   {
-    "name": "World"
+    "name": "Rock Guitar"
+  },
+  {
+    "name": "Roots Rock"
+  },
+  {
+    "name": "Salsa"
+  },
+  {
+    "name": "Samba"
+  },
+  {
+    "name": "Serenades"
+  },
+  {
+    "name": "Sierreno"
+  },
+  {
+    "name": "Singer-Songwriter"
+  },
+  {
+    "name": "Sing-A-Long"
+  },
+  {
+    "name": "Ska"
+  },
+  {
+    "name": "Smooth Jazz"
+  },
+  {
+    "name": "Soft Rock"
+  },
+  {
+    "name": "Sonatas"
+  },
+  {
+    "name": "Soul"
+  },
+  {
+    "name": "Soul-Jazz & Boogaloo"
+  },
+  {
+    "name": "Sound Effects"
+  },
+  {
+    "name": "Soundtrack"
+  },
+  {
+    "name": "Southern Rap"
+  },
+  {
+    "name": "Southern Rock"
+  },
+  {
+    "name": "Suites"
+  },
+  {
+    "name": "Swing Jazz"
+  },
+  {
+    "name": "Symphonies"
+  },
+  {
+    "name": "Tango"
+  },
+  {
+    "name": "Techno"
+  },
+  {
+    "name": "Tejano"
+  },
+  {
+    "name": "Thanksgiving"
+  },
+  {
+    "name": "Thrash & Speed Metal"
+  },
+  {
+    "name": "Tierra Caliente"
+  },
+  {
+    "name": "Traditional"
+  },
+  {
+    "name": "Traditional Blues"
+  },
+  {
+    "name": "Traditional Folk"
+  },
+  {
+    "name": "Traditional Jazz & Ragtime"
+  },
+  {
+    "name": "Traditional Vocal Pop"
+  },
+  {
+    "name": "Trance"
+  },
+  {
+    "name": "Trip-Hop"
+  },
+  {
+    "name": "Turntablists"
+  },
+  {
+    "name": "Urban & Contemporary"
+  },
+  {
+    "name": "Valentine's Day"
+  },
+  {
+    "name": "Vallenato"
+  },
+  {
+    "name": "Vocal Jazz"
+  },
+  {
+    "name": "Vocal Pop"
+  },
+  {
+    "name": "Wedding Music"
+  },
+  {
+    "name": "West Coast"
+  },
+  {
+    "name": "Western Swing"
+  },
+  {
+    "name": "World Dance"
+  },
+  {
+    "name": "World Music"
   }
 ]

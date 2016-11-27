@@ -70,7 +70,7 @@ export const fullArrangementAdapter = (a = {}) => Object.assign({}, a, {
   arrangementType: (typeof a.arrangementType !== 'undefined') && arrangementTypeAdapter(a.arrangementType),
   concerts: (a.concerts || []).map(concertAdapter),
   finale: attatchmentAdapter(a._attachments, 'mus'),
-  genre: (typeof a.genre !== 'undefined') && genreAdapter(a.genre),
+  genre: (a.genre || []).map(genreAdapter),
   key: (typeof a.key !== 'undefined') && keyAdapter(a.key),
   mp3: attatchmentAdapter(a._attachments, 'mp3'),
   originalArtists: (a.originalArtists || []).map(artistAdapter),

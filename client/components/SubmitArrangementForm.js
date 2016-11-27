@@ -14,23 +14,22 @@ import { BERMUDA_GRAY, PADDING_UNIT } from '../StyleConstants';
 import {
   searchHangovers,
   searchArtists,
+  searchGenres,
 } from '../actions';
 import {
   arrangementTypeAdapter,
   semesterAdapter,
   albumAdapter,
   concertAdapter,
-  genreAdapter,
   keyAdapter,
 } from '../normalizers/adaptFormData';
 
 const SubmitArrangementForm = ({ app, submit, handleSubmit, handleDelete, id, rev }) => {
-  const { semesterMap, arrangementTypes: at, semesters: s, albums: al, concerts: co, genres: g, keys: k } = app;
+  const { semesterMap, arrangementTypes: at, semesters: s, albums: al, concerts: co, keys: k } = app;
   const arrangementTypes = at.map(arrangementTypeAdapter);
   const semesters = s.map(semesterAdapter);
   const albums = al.map(a => albumAdapter(a, semesterMap));
   const concerts = co.map(c => concertAdapter(c, semesterMap));
-  const genres = g.map(genreAdapter);
   const keys = k.map(keyAdapter);
   return (
     <form className={css(styles.form)} onSubmit={handleSubmit(values => submit(adaptSubmit(values)))}>
@@ -39,11 +38,11 @@ const SubmitArrangementForm = ({ app, submit, handleSubmit, handleDelete, id, re
         <Field label="Name" name="name" component={RenderField} type="text" autoComplete="off" styles={styles.rowChild} />
         <Field label="Abbreviation/Hangs Name" name="alternateName" component={RenderField} type="text" autoComplete="off" styles={styles.rowChild} />
       </div>
-      <Field label="Original Artist(s)" name="originalArtists" component={RenderCreatableAsync} loadOptions={searchArtists} multi />
       <div className={css(styles.row)}>
-        <Field label="Genre" name="genre" component={RenderSelect} options={genres} styles={styles.rowChild} />
+        <Field label="Original Artist(s)" name="originalArtists" component={RenderCreatableAsync} loadOptions={searchArtists} multi styles={styles.rowChild} />
         <Field label="Year Released" name="whenWritten" component={RenderField} type="text" autoComplete="off" styles={styles.rowChild} />
       </div>
+      <Field label="Genre(s)" name="genre" component={RenderAsync} loadOptions={searchGenres} multi />
       <h3 className={css(styles.categoryLabel)}>The Arrangement</h3>
       <Field label="Arranger(s)" name="arrangers" component={RenderAsync} loadOptions={searchHangovers} multi />
       <div className={css(styles.row)}>

@@ -7,10 +7,10 @@
 module.exports.textFields = ['alternateName', 'name', 'spotifyHangoverLink', 'spotifyOriginalLink', 'whenWritten', 'youtube'];
 
  /** Fields that are of the form {value, label} for displaying a pretty label for a given key */
-module.exports.objectFields = ['arrangementType', 'genre', 'key', 'quality', 'whenArranged'];
+module.exports.objectFields = ['arrangementType', 'key', 'quality', 'whenArranged'];
 
  /** Fields that are arrays of the above datatype */
-module.exports.objectArrayFields = ['albums', 'arrangers', 'concerts', 'soloists', 'whenPerformed'];
+module.exports.objectArrayFields = ['albums', 'arrangers', 'concerts', 'genre', 'soloists', 'whenPerformed'];
 
  /** Fields that are "yes"/"no" that we want to convert into booleans */
 module.exports.binaryFields = ['active', 'syllables'];

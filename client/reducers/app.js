@@ -13,7 +13,6 @@ const initialState = {
   semesterMap: {},
   albums: [],
   concerts: [],
-  genres: [],
   keys: [],
 };
 
@@ -38,7 +37,6 @@ export default function reduce(state = initialState, action) {
         semesterMap: sMap,
         albums: action.data.albums.rows,
         concerts: action.data.concerts.rows,
-        genres: action.data.genres.rows,
         keys: action.data.keys.rows,
       });
     }

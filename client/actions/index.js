@@ -1,7 +1,7 @@
 import { stringify } from 'query-string';
 import { reset, SubmissionError } from 'redux-form';
 import { push } from 'react-router-redux';
-import { hangoverAdapter, artistAdapter, fullArrangementAdapter } from '../normalizers/adaptFormData';
+import { hangoverAdapter, artistAdapter, fullArrangementAdapter, genreAdapter } from '../normalizers/adaptFormData';
 
 export const ARRANGEMENT_FORM = 'addArrangement';
 export const EDIT_FORM = 'editArrangement';
@@ -65,6 +65,14 @@ export function searchArtists(artist) {
   }
   return _myFetch(`/search/artists?${stringify({ artist: artist.trim() })}`)
     .then(hangovers => ({ options: hangovers.map(artistAdapter) }));
+}
+
+export function searchGenres(genre) {
+  if (!genre) {
+    return Promise.resolve({ options: [] });
+  }
+  return _myFetch(`/search/genres?${stringify({ genre: genre.trim() })}`)
+    .then(genres => ({ options: genres.map(genreAdapter) }));
 }
 
 export function arrangementExists(name) {

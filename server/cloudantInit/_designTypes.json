@@ -35,7 +35,7 @@
       "map": "function (doc) {\n  if (doc.type === 'key') {\n    emit(doc._id, 1); \n  }\n}"
     },
     "arrangement_full": {
-      "map": "function (doc) {\n  if (doc.type === 'arrangement') {\n    emit([doc._id]);\n\n    var singleFields = ['arrangementType', 'genre', 'key', 'whenArranged'];\n    singleFields.forEach(function(field) {\n      if (typeof doc[field] === 'string') {\n        emit([doc._id, field], {_id: doc[field]});\n      }\n    });\n    \n    var multiFields = ['albums', 'arrangers', 'concerts', 'originalArtists', 'soloists', 'whenPerformed'];\n    multiFields.forEach(function(field) {\n      if (doc[field] && doc[field].length) {\n        for (var i = 0; i < doc[field].length; i++) {\n          emit([doc._id, field, i], {_id: doc[field][i]});\n        }\n      }\n    })\n  }\n}"
+      "map": "function (doc) {\n  if (doc.type === 'arrangement') {\n    emit([doc._id]);\n\n    var singleFields = ['arrangementType', 'key', 'whenArranged'];\n    singleFields.forEach(function(field) {\n      if (typeof doc[field] === 'string') {\n        emit([doc._id, field], {_id: doc[field]});\n      }\n    });\n    \n    var multiFields = ['albums', 'arrangers', 'concerts', 'genre', 'originalArtists', 'soloists', 'tags', 'whenPerformed'];\n    multiFields.forEach(function(field) {\n      if (doc[field] && doc[field].length) {\n        for (var i = 0; i < doc[field].length; i++) {\n          emit([doc._id, field, i], {_id: doc[field][i]});\n        }\n      }\n    })\n  }\n}"
     },
     "hangover_full": {
       "map": "function (doc) {\n  if (doc.type === 'hangover') {\n    emit([doc._id]);\n    if (doc.graduationSemester) {\n      emit([doc._id, 'graduationSemester'], { _id: doc.graduationSemester });\n    }\n  } else if (doc.type === 'semester') {\n    if (doc.md) {\n      emit([doc.md, 'semestersMDed'], { _id: doc._id });\n    }\n    if (doc.president) {\n      emit([doc.president, 'semestersPresided'], { _id: doc._id });\n    }\n    if (doc.bm) {\n      if (typeof doc.bm === 'string') {\n        emit([doc.bm, 'semestersBMed'], { _id: doc._id });\n      } else if (doc.bm.length) {\n        for (var i = 0; i < doc.bm.length; i++) {\n          emit([doc.bm[i], 'semestersBMed'], { _id: doc._id });\n        }\n      }\n    }\n  } else if (doc.type === 'concert') {\n    if (doc.md) {\n      emit([doc.md, 'concertsMDed'], { _id: doc._id });\n    }\n  } else if (doc.type === 'arrangement') {\n    var multiFields = ['arrangers', 'soloists'];\n    multiFields.forEach(function(field) {\n      if (doc[field] && doc[field].length) {\n        for (var i = 0; i < doc[field].length; i++) {\n          emit([doc[field][i], field], { _id: doc._id });\n        }\n      }\n    })\n  }\n}"
@@ -51,6 +51,9 @@
     },
     "artist_full": {
       "map": "function (doc) {\n  if (doc.type === 'artist') {\n    emit([doc._id]);\n  } else if (doc.type === 'arrangement') {\n    if (doc.originalArtists && doc.originalArtists.length) {\n      for (var i = 0; i < doc.originalArtists.length; i++) {\n        emit([doc.originalArtists[i], 'arrangements'], { _id: doc._id });\n      }\n    }\n  }\n}"
+    },
+    "tags": {
+      "map": "function (doc) {\n  if (doc.type === 'tag') {\n    emit(doc._id, 1); \n  }\n}"
     }
   },
   "language": "javascript"

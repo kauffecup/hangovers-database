@@ -19,7 +19,10 @@ module.exports.binaryFields = ['active', 'syllables'];
 module.exports.newFields = [];
 
  /** Fields that are arrays of the above datatype */
-module.exports.newArrayFields = ['originalArtists'];
+module.exports.newArrayFields = ['originalArtists', 'tags'];
 
  /** Fields that are files */
 module.exports.fileFields = ['finale', 'mp3', 'pdf'];
+
+/** String appended to form objects to let the server know it should create a new object */
+module.exports.NEW_IDENTIFIER = 'new:';

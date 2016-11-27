@@ -15,6 +15,7 @@ import {
   searchHangovers,
   searchArtists,
   searchGenres,
+  searchTags,
 } from '../actions';
 import {
   arrangementTypeAdapter,
@@ -70,6 +71,8 @@ const SubmitArrangementForm = ({ app, submit, handleSubmit, handleDelete, id, re
         <Field label="Spotify Link (Original Song)" name="spotifyOriginalLink" component={RenderField} type="text" autoComplete="off" styles={styles.rowChild} />
         <Field label="Spotify Link (Hangovers Version)" name="spotifyHangoverLink" component={RenderField} type="text" autoComplete="off" styles={styles.rowChild} />
       </div>
+      <h3 className={css(styles.categoryLabel)}>Odds and Ends</h3>
+      <Field label="Tags" name="tags" component={RenderCreatableAsync} loadOptions={searchTags} multi />
       <Button type="submit" text="Submit" />
       {handleDelete && id && rev ? <Button text="Delete" handleClick={() => handleDelete(id, rev)} error type="button" /> : null}
     </form>

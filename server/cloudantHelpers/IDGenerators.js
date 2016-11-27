@@ -32,3 +32,6 @@ module.exports.getArtistID = artist =>
 
 module.exports.getKeyID = key =>
   `${types.KEY_TYPE}_${key.name.toLowerCase().replace(/\s/g, '_')}_${key.tonality.toLowerCase().replace(/\s/g, '_')}`;
+
+module.exports.getTagID = tag =>
+  `${types.TAG_TYPE}_${tag.name.toLowerCase().replace(/\s/g, '_')}`;

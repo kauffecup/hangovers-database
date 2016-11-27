@@ -153,25 +153,18 @@ module.exports = class SageDB {
     }));
   }
 
-  searchHangovers(text = '') {
-    return this._sageDB.searchAsync('search', 'hangovers', {
-      q: `nameString:(${text.toLowerCase()}*)`,
-      limit: LIMIT,
-      include_docs: true,
-    }).then(response => response.rows.map(r => r.doc));
-  }
+  /**
+   * Searchers for indexed types
+   */
+  searchHangovers(text = '') { return this._search('hangovers', `nameString:(${text.toLowerCase()}*)`); }
+  searchArtists(text = '') { return this._search('artists', `name:(${text.toLowerCase()}*)`); }
+  searchGenres(text = '') { return this._search('genres', `name:(${text.toLowerCase()}*)`); }
+  searchTags(text = '') { return this._search('tags', `name:(${text.toLowerCase()}*)`); }
 
-  searchArtists(text = '') {
-    return this._sageDB.searchAsync('search', 'artists', {
-      q: `name:(${text.toLowerCase()}*)`,
-      limit: LIMIT,
-      include_docs: true,
-    }).then(response => response.rows.map(r => r.doc));
-  }
-
-  searchGenres(text = '') {
-    return this._sageDB.searchAsync('search', 'genres', {
-      q: `name:(${text.toLowerCase()}*)`,
+  /** Helper method for the above searchers */
+  _search(index, q) {
+    return this._sageDB.searchAsync('search', index, {
+      q,
       limit: LIMIT,
       include_docs: true,
     }).then(response => response.rows.map(r => r.doc));
@@ -190,6 +183,7 @@ module.exports = class SageDB {
   upsertConcertType(ct) { return this._upsertType(ct, types.CONCERT_TYPE_TYPE, idgen.getConcertTypeID(ct)); }
   upsertGenre(g) { return this._upsertType(g, types.GENRE_TYPE, idgen.getGenreID(g)); }
   upsertArtist(a) { return this._upsertType(a, types.ARTIST_TYPE, idgen.getArtistID(a)); }
+  upsertTag(t) { return this._upsertType(t, types.TAG_TYPE, idgen.getTagID(t)); }
   upsertKey(k) { return this._upsertType(k, types.KEY_TYPE, idgen.getKeyID(k)); }
   upsertArrangement(arrangement, files = {}) {
     let filesToUpload = adaptFiles(files, arrangement.name);
@@ -212,7 +206,10 @@ module.exports = class SageDB {
           .then(buffer => adaptFile(buffer, arrangement.name, type, dot));
       }
     ) : Promise.resolve([]);
-    const toUpload = adaptArrangement(arrangement, artist => this.upsertArtist(artist));
+    const { toUpload, newArtists = [], newTags = [] } = adaptArrangement(arrangement);
+    // for the newArtists and newTags we detected while adapting, create them!
+    newArtists.forEach(artist => this.upsertArtist(artist));
+    newTags.forEach(tag => this.upsertTag(tag));
     // if we're updating an arrangement such that one of its newly changed fields
     // will change the ID of the document, we delete the old doc and create a new
     // one. otherwise we simply upsert. in either case we have to call different

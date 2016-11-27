@@ -67,6 +67,8 @@ class Arrangement extends Component {
         <Field title="Youtube Link" text={arrangement.youtube} />
         <Field title="Spotify Link (Original Song)" text={arrangement.spotifyOriginalLink} />
         <Field title="Spotify Link (Hangovers Version)" text={arrangement.spotifyHangoverLink} />
+        <h3>Odds and Ends</h3>
+        <Field title="Tags" text={arrangement.tags && arrangement.tags.length ? arrangement.tags.map(tag => tag.name).join(', ') : 'none!'} />
       </div>
     );
   }

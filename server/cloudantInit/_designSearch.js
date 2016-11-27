@@ -33,6 +33,14 @@ const genreIndexer = function (doc) {
   }
 };
 
+const tagIndexer = function (doc) {
+  if (typeof doc.type === 'string' && doc.type === 'tag') {
+    if (typeof doc.name === 'string') {
+      index('name', doc.name.toLowerCase());
+    }
+  }
+};
+
 const ddoc = {
   _id: '_design/search',
   indexes: {
@@ -47,6 +55,10 @@ const ddoc = {
     genres: {
       analyzer: 'standard',
       index: genreIndexer,
+    },
+    tags: {
+      analyzer: 'standard',
+      index: tagIndexer,
     },
   },
 };

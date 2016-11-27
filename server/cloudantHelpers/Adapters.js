@@ -1,8 +1,5 @@
-const { binaryFields, fileFields, objectArrayFields } = require('../../shared/FormConstants');
-const { getArtistID } = require('./IDGenerators');
-
-const NEW_IDENTIFIER = 'new:';
-
+const { binaryFields, fileFields, objectArrayFields, NEW_IDENTIFIER } = require('../../shared/FormConstants');
+const { getArtistID, getTagID } = require('./IDGenerators');
 
 /**
 * Adapt a file into a cloudant friendly file
@@ -33,9 +30,8 @@ const adaptFiles = (files, name) => {
 
 /**
  * Take an arrangement obejct and make it cloudant friendly
- * TODO this second param is SUPER hacky
  */
-const adaptArrangement = (arrangement, upsertArtist) => {
+const adaptArrangement = (arrangement) => {
   const toUpload = Object.assign({}, arrangement);
   // make sure booleans are actually booleans
   for (const binaryField of binaryFields) {
@@ -54,19 +50,33 @@ const adaptArrangement = (arrangement, upsertArtist) => {
     }
   }
   // in this field we allow the user to define a new artist. if that's what's
-  // going down, strip the new identifier and create a new artist object
+  // going down, strip the new identifier and return a new artist object
+  const newArtists = [];
   if (toUpload.originalArtists) {
     toUpload.originalArtists = [].concat(toUpload.originalArtists).map((oa) => {
       if (oa.indexOf(NEW_IDENTIFIER) > -1) {
         const artistName = oa.substring(oa.indexOf(NEW_IDENTIFIER) + NEW_IDENTIFIER.length);
-        const artist = { name: artistName };
-        upsertArtist(artist);
-        return getArtistID(artist);
+        const newArtist = { name: artistName };
+        newArtists.push(newArtist);
+        return getArtistID(newArtist);
       }
       return oa;
     });
   }
-  return toUpload;
+  // likewise for new tags
+  const newTags = [];
+  if (toUpload.tags) {
+    toUpload.tags = [].concat(toUpload.tags).map((tag) => {
+      if (tag.indexOf(NEW_IDENTIFIER) > -1) {
+        const tagName = tag.substring(tag.indexOf(NEW_IDENTIFIER) + NEW_IDENTIFIER.length);
+        const newTag = { name: tagName };
+        newTags.push(newTag);
+        return getTagID(newTag);
+      }
+      return tag;
+    });
+  }
+  return { toUpload, newArtists, newTags };
 };
 
 module.exports.adaptFile = adaptFile;

@@ -6,6 +6,7 @@ module.exports.ALBUM_TYPE = 'album';
 module.exports.CONCERT_TYPE = 'concert';
 module.exports.GENRE_TYPE = 'genre';
 module.exports.ARTIST_TYPE = 'artist';
+module.exports.TAG_TYPE = 'tag';
 // essentially enums
 module.exports.ARRANGEMENT_TYPE_TYPE = 'arrangement_type';
 module.exports.ALBUM_FORMAT_TYPE = 'album_format';

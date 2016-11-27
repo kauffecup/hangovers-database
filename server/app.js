@@ -134,10 +134,17 @@ app.get('/search/artists', ({ query: { artist } }, res) => {
     .catch(e => res.status(500).res.json(e));
 });
 
-/** GET: Let's get some artists */
+/** GET: Let's get some genres */
 app.get('/search/genres', ({ query: { genre } }, res) => {
   sageDB.searchGenres(genre)
     .then(genres => res.json(genres))
+    .catch(e => res.status(500).res.json(e));
+});
+
+/** GET: Let's get some tags */
+app.get('/search/tags', ({ query: { tag } }, res) => {
+  sageDB.searchTags(tag)
+    .then(tags => res.json(tags))
     .catch(e => res.status(500).res.json(e));
 });
 

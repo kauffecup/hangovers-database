@@ -5,13 +5,14 @@ import {
   newFields,
   newArrayFields,
   fileFields,
+  NEW_IDENTIFIER,
 } from '../../shared/FormConstants';
 
 /** Helper methods for adapting the datatypes into what the backend is expecting */
 const adaptObject = o => o && o.value;
 const adaptObjectArray = oa => oa && oa.length && oa.map(adaptObject);
 const adaptBinary = b => b && b === 'yes';
-const adaptNew = n => n && (n.value === n.label ? `new:${n.value}` : n.value); // allows the server to identify a new value
+const adaptNew = n => n && (n.value === n.label ? `${NEW_IDENTIFIER}${n.value}` : n.value); // allows the server to identify a new value
 const adaptNewArray = na => na && na.length && na.map(adaptNew);
 const adaptFile = f => (f && f.inCloudant) ? `${f.name},${f.type}` : f;
 

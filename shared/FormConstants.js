@@ -4,7 +4,7 @@
  */
 
 /** Fields that are, ya know, just normal text */
-module.exports.textFields = ['alternateName', 'name', 'spotifyHangoverLink', 'spotifyOriginalLink', 'whenWritten', 'youtube'];
+module.exports.textFields = ['alternateName', 'name', 'notes', 'spotifyHangoverLink', 'spotifyOriginalLink', 'whenWritten', 'youtube'];
 
  /** Fields that are of the form {value, label} for displaying a pretty label for a given key */
 module.exports.objectFields = ['arrangementType', 'key', 'quality', 'whenArranged'];

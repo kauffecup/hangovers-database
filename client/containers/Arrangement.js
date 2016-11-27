@@ -69,6 +69,7 @@ class Arrangement extends Component {
         <Field title="Spotify Link (Hangovers Version)" text={arrangement.spotifyHangoverLink} />
         <h3>Odds and Ends</h3>
         <Field title="Tags" text={arrangement.tags && arrangement.tags.length ? arrangement.tags.map(tag => tag.name).join(', ') : 'none!'} />
+        <Field title="Notes" text={arrangement.notes} />
       </div>
     );
   }

@@ -5,6 +5,7 @@ import normalizeFileList from '../normalizers/normalizeFileList';
 import adaptSubmit from '../normalizers/adaptSubmit';
 import RenderCreatableAsync from './form/RenderCreatableAsync';
 import RenderField from './form/RenderField';
+import RenderTextArea from './form/RenderTextArea';
 import RenderBinary from './form/RenderBinary';
 import RenderSelect from './form/RenderSelect';
 import RenderAsync from './form/RenderAsync';
@@ -73,6 +74,7 @@ const SubmitArrangementForm = ({ app, submit, handleSubmit, handleDelete, id, re
       </div>
       <h3 className={css(styles.categoryLabel)}>Odds and Ends</h3>
       <Field label="Tags" name="tags" component={RenderCreatableAsync} loadOptions={searchTags} multi />
+      <Field label="Notes" name="notes" component={RenderTextArea} />
       <Button type="submit" text="Submit" />
       {handleDelete && id && rev ? <Button text="Delete" handleClick={() => handleDelete(id, rev)} error type="button" /> : null}
     </form>
@@ -83,6 +85,7 @@ const styles = StyleSheet.create({
   form: {
     flex: 1,
     'overflow-y': 'auto',
+    padding: `${PADDING_UNIT}px`,
   },
   categoryLabel: {
     color: BERMUDA_GRAY,

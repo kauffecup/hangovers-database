@@ -11,6 +11,8 @@ import { arrangementExists } from '../actions';
  *     active, whenPerformed, concerts, albums, soloists
  *   files and such:
  *     youtube, pdf, finale, mp3, spotifyOriginalLink, spotifyHangoverLink
+ *   odds and ends:
+ *     notes, tags
  */
 
 const REQUIRED_ERROR = 'Required';

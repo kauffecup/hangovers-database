@@ -1,7 +1,8 @@
 import { stringify } from 'query-string';
 import { reset, SubmissionError } from 'redux-form';
 import { push } from 'react-router-redux';
-import { hangoverAdapter, artistAdapter, fullArrangementAdapter, genreAdapter } from '../normalizers/adaptFormData';
+import { fullArrangementAdapter } from '../normalizers/adaptFormData';
+import myFetch from './myFetch';
 
 export const ARRANGEMENT_FORM = 'addArrangement';
 export const EDIT_FORM = 'editArrangement';
@@ -47,48 +48,6 @@ export const GET_ARTISTS = 'GET_ARTISTS';
 export const GET_ARTISTS_SUCCESS = 'GET_ARTISTS_SUCCESS';
 export const GET_ARTISTS_FAILURE = 'GET_ARTISTS_FAILURE';
 
-// Here be some network functions. they probably don't belong here because they
-// aren't technically actions! howeverrrrr the actions that use network functions
-// define them all here so maybe they do? who knows
-
-export function searchHangovers(hangover) {
-  if (!hangover) {
-    return Promise.resolve({ options: [] });
-  }
-  return _myFetch(`/search/hangovers?${stringify({ hangover: hangover.trim() })}`)
-    .then(hangovers => ({ options: hangovers.map(hangoverAdapter) }));
-}
-
-export function searchArtists(artist) {
-  if (!artist) {
-    return Promise.resolve({ options: [] });
-  }
-  return _myFetch(`/search/artists?${stringify({ artist: artist.trim() })}`)
-    .then(hangovers => ({ options: hangovers.map(artistAdapter) }));
-}
-
-export function searchGenres(genre) {
-  if (!genre) {
-    return Promise.resolve({ options: [] });
-  }
-  return _myFetch(`/search/genres?${stringify({ genre: genre.trim() })}`)
-    .then(genres => ({ options: genres.map(genreAdapter) }));
-}
-
-export function searchTags(tag) {
-  if (!tag) {
-    return Promise.resolve({ options: [] });
-  }
-  return _myFetch(`/search/tags?${stringify({ tag: tag.trim() })}`)
-    .then(genres => ({ options: genres.map(genreAdapter) }));
-}
-
-export function arrangementExists(name) {
-  return _myFetch(`/arrangementexists?${stringify({ name })}`);
-}
-
-// OK. here are some actual actions. like with types and whatnot.
-
 export function setBanner(text, type) {
   return { type: SET_BANNER, text, bannerType: type };
 }
@@ -100,7 +59,7 @@ export function closeBanner() {
 /** Helper action for everything that follows this basic format */
 const actionFetch = (endpoint, START, SUCCESS, FAILURE, params) => (dispatch) => {
   dispatch({ type: START });
-  return _myFetch(`${endpoint}${params ? `?${stringify(params)}` : ''}`)
+  return myFetch(`${endpoint}${params ? `?${stringify(params)}` : ''}`)
     .then(data => dispatch({ type: SUCCESS, data }))
     .catch(error => dispatch({ type: FAILURE, error }));
 };
@@ -123,7 +82,7 @@ export const getArtists = skip => actionFetch('/list/artists', GET_ARTISTS, GET_
 export function getEditArrangementData(arrangementID) {
   return (dispatch) => {
     dispatch({ type: GET_EDIT_ARRANGEMENT });
-    _myFetch(`/full/arrangement?${stringify({ arrangementID })}`)
+    myFetch(`/full/arrangement?${stringify({ arrangementID })}`)
       .then(data => dispatch({ type: GET_EDIT_ARRANGEMENT_SUCCESS, data: fullArrangementAdapter(data) }))
       .catch(error => dispatch({ type: GET_EDIT_ARRANGEMENT_FAILURE, error }));
   };
@@ -131,7 +90,7 @@ export function getEditArrangementData(arrangementID) {
 
 export function destroyDocument(_id, _rev) {
   return dispatch =>
-    _myFetch(`/destroy?${stringify({ _id, _rev })}`, { method: 'DELETE' })
+    myFetch(`/destroy?${stringify({ _id, _rev })}`, { method: 'DELETE' })
       .then(() => {
         // on success we show a happy message and head back to the home page
         dispatch(setBanner('Successfully deleted that!', BANNER_SUCCESS));
@@ -187,18 +146,8 @@ function submitArrangement(values) {
       }
     }
   }
-  return _myFetch('/arrangementsubmit', { method: 'POST', body: formData })
+  return myFetch('/arrangementsubmit', { method: 'POST', body: formData })
     .catch((error) => {
       throw new SubmissionError(error);
-    });
-}
-
-function _myFetch(endpoint, opts) {
-  return fetch(endpoint, opts)
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      }
-      throw response;
     });
 }

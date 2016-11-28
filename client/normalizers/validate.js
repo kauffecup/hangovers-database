@@ -1,5 +1,5 @@
 import youtubeRegex from 'youtube-regex';
-import { arrangementExists } from '../actions';
+import { arrangementExists } from '../actions/search';
 
 /**
  * Fields are:

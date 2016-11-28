@@ -17,7 +17,7 @@ import {
   searchArtists,
   searchGenres,
   searchTags,
-} from '../actions';
+} from '../actions/search';
 import {
   arrangementTypeAdapter,
   semesterAdapter,

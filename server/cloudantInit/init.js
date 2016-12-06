@@ -12,6 +12,13 @@ const genres = require('./genres.json');
 const keys = require('./keys.json');
 const designTypes = require('./_designTypes.json');
 const designSearch = require('./_designSearch');
+const albumSemesters = require('./relationships/albumSemesters.json');
+const bms = require('./relationships/BMs.json');
+const concertSemesters = require('./relationships/concertSemesters.json');
+const mds = require('./relationships/MDs.json');
+const pres = require('./relationships/Presidents.json');
+const grad = require('./relationships/hangoversGraduated.json');
+const concertMDs = require('./relationships/concertMDs.json');
 
 const sageDB = new SageDB(config);
 
@@ -40,4 +47,8 @@ sageDB.initialize(config).then(() => sageDB._upsert(designTypes))
   // and the keys of course!
   .then(() => Promise.map(keys, k => sageDB.upsertKey(k), opts))
   // lastly, genres.
-  .then(() => Promise.map(genres, g => sageDB.upsertGenre(g), opts));
+  .then(() => Promise.map(genres, g => sageDB.upsertGenre(g), opts))
+  // finally, the relationships. their ids are already defined so can do them all at once
+  .then(() => Promise.map([
+    ...bms, ...mds, ...pres, ...grad, ...concertMDs, ...albumSemesters, ...concertSemesters,
+  ], doc => sageDB._upsert(doc), opts));

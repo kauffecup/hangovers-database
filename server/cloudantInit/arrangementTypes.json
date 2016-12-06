@@ -1,18 +1,14 @@
 [
   {
-    "name": "Copy of Handwritten",
-    "description": "A scan of a copy of a copy of a... of the original handwritten edition."
+    "name": "Source PDF"
   },
   {
-    "name": "Electronic",
-    "description": "The PDF generated from finale."
+    "name": "Scan of Electronic Print"
   },
   {
-    "name": "Handwritten Original",
-    "description": "A scan of the original handwritten edition."
+    "name": "Scan of Handwritten Original"
   },
   {
-    "name": "Scan of Electronic",
-    "description": "A scan of an electronically generated arrangement."
+    "name": "Scan of Handwritten Copy"
   }
 ]

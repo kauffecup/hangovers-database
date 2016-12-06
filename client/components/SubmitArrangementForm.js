@@ -35,7 +35,7 @@ const SubmitArrangementForm = ({ app, submit, handleSubmit, handleDelete, id, re
   const keys = k.map(keyAdapter);
   return (
     <form className={css(styles.form)} onSubmit={handleSubmit(values => submit(adaptSubmit(values)))}>
-      <h3 className={css(styles.categoryLabel)}>The Song</h3>
+      <h3 className={css(styles.categoryLabel)}>Song</h3>
       <div className={css(styles.row)}>
         <Field label="Name" name="name" component={RenderField} type="text" autoComplete="off" styles={styles.rowChild} />
         <Field label="Abbreviation/Hangs Name" name="alternateName" component={RenderField} type="text" autoComplete="off" styles={styles.rowChild} />
@@ -45,7 +45,7 @@ const SubmitArrangementForm = ({ app, submit, handleSubmit, handleDelete, id, re
         <Field label="Year Released" name="whenWritten" component={RenderField} type="text" autoComplete="off" styles={styles.rowChild} />
       </div>
       <Field label="Genre(s)" name="genre" component={RenderAsync} loadOptions={searchGenres} multi />
-      <h3 className={css(styles.categoryLabel)}>The Arrangement</h3>
+      <h3 className={css(styles.categoryLabel)}>Arrangement</h3>
       <Field label="Arranger(s)" name="arrangers" component={RenderAsync} loadOptions={searchHangovers} multi />
       <div className={css(styles.row)}>
         <Field label="When Arranged" name="whenArranged" component={RenderSelect} options={semesters} styles={styles.rowChild} />

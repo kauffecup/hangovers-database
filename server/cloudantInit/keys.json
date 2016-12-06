@@ -17,10 +17,6 @@
   },
   {
     "name": "A#",
-    "tonality": "major"
-  },
-  {
-    "name": "A#",
     "tonality": "minor"
   },
   {
@@ -52,10 +48,6 @@
     "tonality": "major"
   },
   {
-    "name": "Cb",
-    "tonality": "minor"
-  },
-  {
     "name": "C",
     "tonality": "major"
   },
@@ -76,20 +68,12 @@
     "tonality": "major"
   },
   {
-    "name": "Db",
-    "tonality": "minor"
-  },
-  {
     "name": "D",
     "tonality": "major"
   },
   {
     "name": "D",
     "tonality": "minor"
-  },
-  {
-    "name": "D#",
-    "tonality": "major"
   },
   {
     "name": "D#",
@@ -109,22 +93,6 @@
   },
   {
     "name": "E",
-    "tonality": "minor"
-  },
-  {
-    "name": "E#",
-    "tonality": "major"
-  },
-  {
-    "name": "E#",
-    "tonality": "minor"
-  },
-  {
-    "name": "Fb",
-    "tonality": "major"
-  },
-  {
-    "name": "Fb",
     "tonality": "minor"
   },
   {
@@ -148,20 +116,12 @@
     "tonality": "major"
   },
   {
-    "name": "Gb",
-    "tonality": "minor"
-  },
-  {
     "name": "G",
     "tonality": "major"
   },
   {
     "name": "G",
     "tonality": "minor"
-  },
-  {
-    "name": "G#",
-    "tonality": "major"
   },
   {
     "name": "G#",

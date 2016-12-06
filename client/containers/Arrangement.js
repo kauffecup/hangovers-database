@@ -34,17 +34,17 @@ class Arrangement extends Component {
       <div className={css(styles.arrangement)}>
         <PathButton text="edit" path={`/edit/${id}`} />
         <h2>{arrangement.name}</h2>
-        <h3>The Song</h3>
+        <h3>Song</h3>
         <Field text={arrangement.alternateName} />
         <ArtistList title="originally performed by" artists={arrangement.originalArtists} />
         <Field text={arrangement.genre && arrangement.genre.length && arrangement.genre.map(g => g.name).join(', ')} />
         <Field text={arrangement.whenWritten} />
-        <h3>The Arrangement</h3>
+        <h3>Arrangement</h3>
         <HangoverList title="arranged by" hangovers={arrangement.arrangers} />
         <Field text={keyFormatter(arrangement.key)} />
         <SemesterList title="arranged" semesters={[arrangement.whenArranged]} />
         <Field text={arrangement.syllables ? 'has syllables' : 'doesn\'t have syllables'} />
-        <Field text={arrangement.arrangementType && `${arrangement.arrangementType.name} (${arrangement.arrangementType.description})`} />
+        <Field text={arrangement.arrangementType && arrangement.arrangementType.name} />
         <h3>Performances</h3>
         <Field text={arrangement.active ? 'active' : 'not active'} />
         <SemesterList title="semester(s) performed" semesters={arrangement.whenPerformed} />

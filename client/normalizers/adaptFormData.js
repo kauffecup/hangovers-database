@@ -8,7 +8,7 @@ export const albumAdapter = (a = {}, sMap = {}) => ({
 });
 
 export const arrangementTypeAdapter = (at = {}) => ({
-  value: at._id, label: `${at.name} (${at.description})`,
+  value: at._id, label: `${at.name}`,
 });
 
 export const artistFormatter = (a = {}) => a.name;

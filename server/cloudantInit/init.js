@@ -10,7 +10,9 @@ const concertTypes = require('./concertTypes.json');
 const concerts = require('./concerts.json');
 const genres = require('./genres.json');
 const keys = require('./keys.json');
-const designTypes = require('./_designTypes.json');
+const designFull = require('./_designFull');
+const designTypes = require('./_designTypes');
+const designRelationships = require('./_designRelationships');
 const designSearch = require('./_designSearch');
 const albumSemesters = require('./relationships/albumSemesters.json');
 const bms = require('./relationships/BMs.json');
@@ -28,7 +30,10 @@ const CONCURRENCY = 3;
 const opts = { concurrency: CONCURRENCY };
 
 // first we add our design docs
-sageDB.initialize(config).then(() => sageDB._upsert(designTypes))
+sageDB.initialize(config)
+  .then(() => sageDB._upsert(designFull))
+  .then(() => sageDB._upsert(designTypes))
+  .then(() => sageDB._upsert(designRelationships))
   .then(() => sageDB._upsert(designSearch))
   // some semesters
   .then(() => Promise.map(semesters, s => sageDB.upsertSemester(s), opts))

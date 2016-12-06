@@ -72,18 +72,18 @@ module.exports = class SageDB {
    * Getters for retrieving a "full" object and rolling up similar key fields
    * into an array.
    */
-  getFullHangover(hangoverID) { return this._getFullArrayRollup(hangoverID, 'hangover_full'); }
-  getFullSemester(semesterID) { return this._getFullArrayRollup(semesterID, 'semester_full'); }
-  getFullConcert(concertID) { return this._getFullArrayRollup(concertID, 'concert_full'); }
-  getFullAlbum(albumID) { return this._getFullArrayRollup(albumID, 'album_full'); }
-  getFullArtist(artistID) { return this._getFullArrayRollup(artistID, 'artist_full'); }
+  getFullHangover(hangoverID) { return this._getFullArrayRollup(hangoverID, 'hangover'); }
+  getFullSemester(semesterID) { return this._getFullArrayRollup(semesterID, 'semester'); }
+  getFullConcert(concertID) { return this._getFullArrayRollup(concertID, 'concert'); }
+  getFullAlbum(albumID) { return this._getFullArrayRollup(albumID, 'album'); }
+  getFullArtist(artistID) { return this._getFullArrayRollup(artistID, 'artist'); }
 
   /**
    * Here we get a document's metadata along with the original docs for any ids
    * it might link to. We have some cleanup logic for combining into a clean array.
    */
   _getFullArrayRollup(id, view) {
-    return this._sageDB.viewAsync('types', view, {
+    return this._sageDB.viewAsync('full', view, {
       include_docs: true,
       startkey: [id],
       endkey: [id, {}],

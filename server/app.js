@@ -33,7 +33,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(paths.appBuild));
 
 /** GET: get the initial data necessary for form stuff */
-app.get('/initializeforms', (req, res) => {
+app.get('/api/initializeforms', (req, res) => {
   Promise.join(
     // this is fine until there are more than 200 of these bad boys
     sageDB.getArrangementTypes(200),
@@ -64,15 +64,15 @@ const getFull = (id, method, res) =>
     .catch(e => res.status(500).json(e));
 
 /** Endpoints that use the above helper **/
-app.get('/full/arrangement', ({ query: { arrangementID } }, res) => getFull(arrangementID, 'getFullArrangement', res));
-app.get('/full/hangover', ({ query: { hangoverID } }, res) => getFull(hangoverID, 'getFullHangover', res));
-app.get('/full/semester', ({ query: { semesterID } }, res) => getFull(semesterID, 'getFullSemester', res));
-app.get('/full/concert', ({ query: { concertID } }, res) => getFull(concertID, 'getFullConcert', res));
-app.get('/full/album', ({ query: { albumID } }, res) => getFull(albumID, 'getFullAlbum', res));
-app.get('/full/artist', ({ query: { artistID } }, res) => getFull(artistID, 'getFullArtist', res));
+app.get('/api/full/arrangement', ({ query: { arrangementID } }, res) => getFull(arrangementID, 'getFullArrangement', res));
+app.get('/api/full/hangover', ({ query: { hangoverID } }, res) => getFull(hangoverID, 'getFullHangover', res));
+app.get('/api/full/semester', ({ query: { semesterID } }, res) => getFull(semesterID, 'getFullSemester', res));
+app.get('/api/full/concert', ({ query: { concertID } }, res) => getFull(concertID, 'getFullConcert', res));
+app.get('/api/full/album', ({ query: { albumID } }, res) => getFull(albumID, 'getFullAlbum', res));
+app.get('/api/full/artist', ({ query: { artistID } }, res) => getFull(artistID, 'getFullArtist', res));
 
 /** Get a file from the database */
-app.get('/arrangementfile', ({ query: { arrangementID, attachmentID, type } }, res) => {
+app.get('/api/arrangementfile', ({ query: { arrangementID, attachmentID, type } }, res) => {
   sageDB.getArrangementAttachment(arrangementID, attachmentID)
     .then((buffer) => {
       res.set({
@@ -91,12 +91,12 @@ const getList = (limit, skip, method, res) =>
     .catch(e => res.status(500).json(e));
 
 /** Endpoints that use the above helper */
-app.get('/list/arrangements', ({ query: { limit, skip } }, res) => getList(limit, skip, 'getArrangements', res));
-app.get('/list/hangovers', ({ query: { limit, skip } }, res) => getList(limit, skip, 'getHangovers', res));
-app.get('/list/artists', ({ query: { limit, skip } }, res) => getList(limit, skip, 'getArtists', res));
+app.get('/api/list/arrangements', ({ query: { limit, skip } }, res) => getList(limit, skip, 'getArrangements', res));
+app.get('/api/list/hangovers', ({ query: { limit, skip } }, res) => getList(limit, skip, 'getHangovers', res));
+app.get('/api/list/artists', ({ query: { limit, skip } }, res) => getList(limit, skip, 'getArtists', res));
 
 /** POST: Submit a new arrangement */
-app.post('/arrangementsubmit', upload.fields([
+app.post('/api/arrangementsubmit', upload.fields([
   { name: 'pdf', maxCount: 1 },
   { name: 'finale', maxCount: 1 },
   { name: 'mp3', maxCount: 1 },
@@ -106,43 +106,50 @@ app.post('/arrangementsubmit', upload.fields([
     .catch(e => res.status(500).json(e));
 });
 
+/** POST: Edit a hangover's info */
+app.post('/api/edit/hangover', ({ body }, res) => {
+  sageDB.upsertHangover(body)
+    .then(() => res.json({}))
+    .catch(e => res.status(500).json(e));
+});
+
 /** GET: see if an arrangement exists */
-app.get('/arrangementexists', ({ query: { name } }, res) => {
+app.get('/api/arrangementexists', ({ query: { name } }, res) => {
   sageDB.arrangementExists(name)
     .then(exists => res.json(exists))
     .catch(e => res.status(500).json(e));
 });
 
 /** DELETE: a document from the database */
-app.delete('/destroy', ({ query: { _id, _rev } }, res) => {
+app.delete('/api/destroy', ({ query: { _id, _rev } }, res) => {
   sageDB.destroy(_id, _rev)
     .then(() => res.json({}))
     .catch(e => res.status(500).json(e));
 });
 
 /** GET: Let's get some hangovers */
-app.get('/search/hangovers', ({ query: { hangover } }, res) => {
+app.get('/api/search/hangovers', ({ query: { hangover } }, res) => {
   sageDB.searchHangovers(hangover)
     .then(hangovers => res.json(hangovers))
     .catch(e => res.status(500).json(e));
 });
 
 /** GET: Let's get some artists */
-app.get('/search/artists', ({ query: { artist } }, res) => {
+app.get('/api/search/artists', ({ query: { artist } }, res) => {
   sageDB.searchArtists(artist)
     .then(artists => res.json(artists))
     .catch(e => res.status(500).json(e));
 });
 
 /** GET: Let's get some genres */
-app.get('/search/genres', ({ query: { genre } }, res) => {
+app.get('/api/search/genres', ({ query: { genre } }, res) => {
   sageDB.searchGenres(genre)
     .then(genres => res.json(genres))
     .catch(e => res.status(500).json(e));
 });
 
 /** GET: Let's get some tags */
-app.get('/search/tags', ({ query: { tag } }, res) => {
+app.get('/api/search/tags', ({ query: { tag } }, res) => {
   sageDB.searchTags(tag)
     .then(tags => res.json(tags))
     .catch(e => res.status(500).json(e));

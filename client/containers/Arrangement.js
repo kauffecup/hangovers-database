@@ -32,7 +32,7 @@ class Arrangement extends Component {
     }
     return (
       <div className={css(styles.arrangement)}>
-        <PathButton text="edit" path={`/edit/${id}`} />
+        <PathButton text="edit" path={`/edit/arrangement/${id}`} />
         <h2>{arrangement.name}</h2>
         <h3>Song</h3>
         <Field text={arrangement.alternateName} />

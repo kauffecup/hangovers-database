@@ -1,317 +1,254 @@
 [
   {
     "name": "Christmas Concert I",
-    "semester": "semester_2013_fall",
     "concert_type": "concert_type_christmas"
   },
   {
     "name": "British Invasion",
-    "semester": "semester_2012_spring",
     "concert_type": "special"
   },
   {
     "name": "Fall Tonic I",
-    "semester": "semester_1980_fall",
     "concert_type": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic II",
-    "semester": "semester_1981_fall",
     "concert_type": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic III",
-    "semester": "semester_1982_fall",
     "concert_type": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic IV",
-    "semester": "semester_1983_fall",
     "concert_type": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic V",
-    "semester": "semester_1984_fall",
     "concert_type": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic VI",
-    "semester": "semester_1985_fall",
     "concert_type": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic VII",
-    "semester": "semester_1986_fall",
     "concert_type": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic VIII",
-    "semester": "semester_1987_fall",
     "concert_type": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic IX",
-    "semester": "semester_1988_fall",
     "concert_type": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic X",
-    "semester": "semester_1989_fall",
     "concert_type": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic XI",
-    "semester": "semester_1990_fall",
     "concert_type": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic XII",
-    "semester": "semester_1991_fall",
     "concert_type": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic XIII",
-    "semester": "semester_1992_fall",
     "concert_type": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic XIV",
-    "semester": "semester_1993_fall",
     "concert_type": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic XV",
-    "semester": "semester_1994_fall",
     "concert_type": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic XVI",
-    "semester": "semester_1995_fall",
     "concert_type": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic XVII",
-    "semester": "semester_1996_fall",
     "concert_type": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic XVIII",
-    "semester": "semester_1997_fall",
     "concert_type": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic XIX",
-    "semester": "semester_1998_fall",
     "concert_type": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic XX",
-    "semester": "semester_1999_fall",
     "concert_type": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic XXI",
-    "semester": "semester_2000_fall",
     "concert_type": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic XXII",
-    "semester": "semester_2001_fall",
     "concert_type": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic XXIII",
-    "semester": "semester_2002_fall",
     "concert_type": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic XXIV",
-    "semester": "semester_2003_fall",
     "concert_type": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic XXV",
-    "semester": "semester_2004_fall",
     "concert_type": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic XXVI",
-    "semester": "semester_2005_fall",
     "concert_type": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic XXVII",
-    "semester": "semester_2006_fall",
     "concert_type": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic XXVIII",
-    "semester": "semester_2007_fall",
     "concert_type": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic XXIX",
-    "semester": "semester_2008_fall",
     "concert_type": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic XXX",
-    "semester": "semester_2009_fall",
     "concert_type": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic XXXI",
-    "semester": "semester_2010_fall",
     "concert_type": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic XXXII",
-    "semester": "semester_2011_fall",
     "concert_type": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic XXXIII",
-    "semester": "semester_2012_fall",
     "concert_type": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic XXXIV",
-    "semester": "semester_2013_fall",
     "concert_type": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic XXXV",
-    "semester": "semester_2014_fall",
     "concert_type": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic XXXVI",
-    "semester": "semester_2015_fall",
     "concert_type": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic XXXVII",
-    "semester": "semester_2016_fall",
     "concert_type": "concert_type_fall_tonic"
   },
   {
     "name": "Happy Hour I",
-    "semester": "semester_1993_spring",
     "concert_type": "concert_type_happy_hour"
   },
   {
     "name": "Happy Hour II",
-    "semester": "semester_1994_spring",
     "concert_type": "concert_type_happy_hour"
   },
   {
     "name": "Happy Hour III",
-    "semester": "semester_1995_spring",
     "concert_type": "concert_type_happy_hour"
   },
   {
     "name": "Happy Hour IV",
-    "semester": "semester_1996_spring",
     "concert_type": "concert_type_happy_hour"
   },
   {
     "name": "Happy Hour V",
-    "semester": "semester_1997_spring",
     "concert_type": "concert_type_happy_hour"
   },
   {
     "name": "Happy Hour VI",
-    "semester": "semester_1998_spring",
     "concert_type": "concert_type_happy_hour"
   },
   {
     "name": "Happy Hour VII",
-    "semester": "semester_1999_spring",
     "concert_type": "concert_type_happy_hour"
   },
   {
     "name": "Happy Hour VIII",
-    "semester": "semester_2000_spring",
     "concert_type": "concert_type_happy_hour"
   },
   {
     "name": "Happy Hour IX",
-    "semester": "semester_2001_spring",
     "concert_type": "concert_type_happy_hour"
   },
   {
     "name": "Happy Hour X",
-    "semester": "semester_2002_spring",
     "concert_type": "concert_type_happy_hour"
   },
   {
     "name": "Happy Hour XI",
-    "semester": "semester_2003_spring",
     "concert_type": "concert_type_happy_hour"
   },
   {
     "name": "Happy Hour XII",
-    "semester": "semester_2004_spring",
     "concert_type": "concert_type_happy_hour"
   },
   {
     "name": "Happy Hour XIII",
-    "semester": "semester_2005_spring",
     "concert_type": "concert_type_happy_hour"
   },
   {
     "name": "Happy Hour XIV",
-    "semester": "semester_2006_spring",
     "concert_type": "concert_type_happy_hour"
   },
   {
     "name": "Happy Hour XV",
-    "semester": "semester_2007_spring",
     "concert_type": "concert_type_happy_hour"
   },
   {
     "name": "Happy Hour XVI",
-    "semester": "semester_2008_spring",
     "concert_type": "concert_type_happy_hour"
   },
   {
     "name": "Happy Hour XVII",
-    "semester": "semester_2009_spring",
     "concert_type": "concert_type_happy_hour"
   },
   {
     "name": "Happy Hour XVIII",
-    "semester": "semester_2010_spring",
     "concert_type": "concert_type_happy_hour"
   },
   {
     "name": "Happy Hour XIX",
-    "semester": "semester_2011_spring",
     "concert_type": "concert_type_happy_hour"
   },
   {
     "name": "Happy Hour XX",
-    "semester": "semester_2012_spring",
     "concert_type": "concert_type_happy_hour"
   },
   {
     "name": "Happy Hour XXI",
-    "semester": "semester_2013_spring",
     "concert_type": "concert_type_happy_hour"
   },
   {
     "name": "Happy Hour XXII",
-    "semester": "semester_2014_spring",
     "concert_type": "concert_type_happy_hour"
   },
   {
     "name": "Happy Hour XXIII",
-    "semester": "semester_2015_spring",
     "concert_type": "concert_type_happy_hour"
   },
   {
     "name": "Happy Hour XXIV",
-    "semester": "semester_2016_spring",
     "concert_type": "concert_type_happy_hour"
   }
 ]

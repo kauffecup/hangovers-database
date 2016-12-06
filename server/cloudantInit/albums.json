@@ -1,88 +1,70 @@
 [
   {
     "name": "A Flight - EP",
-    "semester": "semester_2014_spring",
     "format": "album_format_digital"
   },
   {
     "name": "Final Draught",
-    "semester": "semester_2013_spring",
     "format": "album_format_cd"
   },
   {
     "name": "Three Sheets to the Wind",
-    "semester": "semester_2008_spring",
     "format": "album_format_cd"
   },
   {
     "name": "Blackout",
-    "semester": "semester_2005_spring",
     "format": "album_format_cd"
   },
   {
     "name": "Vintage",
-    "semester": "semester_2004_spring",
     "format": "album_format_cd"
   },
   {
     "name": "Shot in the Dark",
-    "semester": "semester_2001_spring",
     "format": "album_format_cd"
   },
   {
     "name": "Spirits",
-    "semester": "semester_1998_spring",
     "format": "album_format_cd"
   },
   {
     "name": "Moonshine",
-    "semester": "semester_1996_spring",
     "format": "album_format_cd"
   },
   {
     "name": "On the Rocks",
-    "semester": "semester_1994_spring",
     "format": "album_format_cd"
   },
   {
     "name": "Behind Bars",
-    "semester": "semester_1989_spring",
     "format": "album_format_casette"
   },
   {
     "name": "Cheers",
-    "semester": "semester_1986_spring",
     "format": "album_format_33_lp"
   },
   {
     "name": "Hangin' Out",
-    "semester": "semester_1984_spring",
     "format": "album_format_33_lp"
   },
   {
     "name": "Facetime (Single)",
-    "semester": "semester_1981_spring",
     "format": "album_format_45_rpm"
   },
   {
     "name": "Facetime",
-    "semester": "semester_1981_spring",
     "format": "album_format_33_lp"
   },
   {
     "name": "Slightly Sober",
-    "semester": "semester_1979_spring",
     "format": "album_format_33_lp"
   },
   {
     "name": "Alma Mater",
-    "semester": "semester_1973_spring",
-    "format": "album_format_33_lp",
-    "notes": "as The Leftovers"
+    "format": "album_format_33_lp"
   },
   {
     "name": "The Hangovers",
-    "semester": "semester_1970_spring",
     "format": "album_format_33_lp"
   }
 ]

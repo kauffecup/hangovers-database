@@ -1,1287 +1,1032 @@
 [
   {
     "firstName": "George",
-    "lastName": "Ecker",
-    "graduationSemester": "semester_1964_spring"
+    "lastName": "Ecker"
   },
   {
     "firstName": "H. Michael",
-    "lastName": "Newman",
-    "graduationSemester": "semester_1964_spring"
+    "lastName": "Newman"
   },
   {
     "firstName": "Gregory",
-    "lastName": "Pearson",
-    "graduationSemester": "semester_1967_spring"
+    "lastName": "Pearson"
   },
   {
     "firstName": "Melvar",
-    "lastName": "Richards",
-    "graduationSemester": "semester_1967_spring"
+    "lastName": "Richards"
   },
   {
     "firstName": "Stephen",
-    "lastName": "Wagner",
-    "graduationSemester": "semester_1967_spring"
+    "lastName": "Wagner"
   },
   {
     "firstName": "Richard",
-    "lastName": "Dehmel",
-    "graduationSemester": "semester_1969_spring"
+    "lastName": "Dehmel"
   },
   {
     "firstName": "Barry",
-    "lastName": "Rose",
-    "graduationSemester": "semester_1969_spring"
+    "lastName": "Rose"
   },
   {
     "firstName": "Donald",
-    "lastName": "Buss",
-    "graduationSemester": "semester_1970_spring"
+    "lastName": "Buss"
   },
   {
     "firstName": "B. J.",
-    "lastName": "Jacobson",
-    "graduationSemester": "semester_1970_spring"
+    "lastName": "Jacobson"
   },
   {
     "firstName": "Philip E.",
-    "lastName": "Batson",
-    "graduationSemester": "semester_1970_spring"
+    "lastName": "Batson"
   },
   {
     "firstName": "Robert",
-    "lastName": "Anspach",
-    "graduationSemester": "semester_1970_spring"
+    "lastName": "Anspach"
   },
   {
     "firstName": "Dick",
-    "lastName": "French",
-    "graduationSemester": "semester_1971_spring"
+    "lastName": "French"
   },
   {
     "firstName": "Sanford",
-    "lastName": "Shaw",
-    "graduationSemester": "semester_1971_spring"
+    "lastName": "Shaw"
   },
   {
     "firstName": "John",
-    "lastName": "Nicolls",
-    "graduationSemester": "semester_1972_spring"
+    "lastName": "Nicolls"
   },
   {
     "firstName": "George",
-    "lastName": "Gull",
-    "graduationSemester": "semester_1972_spring"
+    "lastName": "Gull"
   },
   {
     "firstName": "Stanley",
-    "lastName": "Malinowski",
-    "graduationSemester": "semester_1972_spring"
+    "lastName": "Malinowski"
   },
   {
     "firstName": "Alan",
-    "lastName": "Keyes",
-    "graduationSemester": "semester_1972_spring"
+    "lastName": "Keyes"
   },
   {
     "firstName": "William",
-    "lastName": "Cagney",
-    "graduationSemester": "semester_1973_spring"
+    "lastName": "Cagney"
   },
   {
     "firstName": "Bill",
-    "lastName": "Welker",
-    "graduationSemester": "semester_1973_spring"
+    "lastName": "Welker"
   },
   {
     "firstName": "David",
-    "lastName": "Ross",
-    "graduationSemester": "semester_1973_spring"
+    "lastName": "Ross"
   },
   {
     "firstName": "Steve",
-    "lastName": "Mallon",
-    "graduationSemester": "semester_1973_spring"
+    "lastName": "Mallon"
   },
   {
     "firstName": "David M.",
-    "lastName": "Janower",
-    "graduationSemester": "semester_1974_spring"
+    "lastName": "Janower"
   },
   {
     "firstName": "John B.",
-    "lastName": "Murdoch",
-    "graduationSemester": "semester_1974_spring"
+    "lastName": "Murdoch"
   },
   {
     "firstName": "Jonathan",
-    "lastName": "Stewart",
-    "graduationSemester": "semester_1974_spring"
+    "lastName": "Stewart"
   },
   {
     "firstName": "Sanford",
-    "lastName": "Steever",
-    "graduationSemester": "semester_1974_spring"
+    "lastName": "Steever"
   },
   {
     "firstName": "Bruce",
-    "lastName": "Terrell",
-    "graduationSemester": "semester_1974_spring"
+    "lastName": "Terrell"
   },
   {
     "firstName": "Tom E.",
-    "lastName": "Moormann",
-    "graduationSemester": "semester_1975_spring"
+    "lastName": "Moormann"
   },
   {
     "firstName": "David E.",
-    "lastName": "Neal",
-    "graduationSemester": "semester_1975_spring"
+    "lastName": "Neal"
   },
   {
     "firstName": "Terry R.",
-    "lastName": "Smith",
-    "graduationSemester": "semester_1975_spring"
+    "lastName": "Smith"
   },
   {
     "firstName": "James",
-    "lastName": "Bennett",
-    "graduationSemester": "semester_1975_spring"
+    "lastName": "Bennett"
   },
   {
     "firstName": "Charles P.",
-    "lastName": "Andersen",
-    "graduationSemester": "semester_1976_spring"
+    "lastName": "Andersen"
   },
   {
     "firstName": "Thomas",
-    "lastName": "Andrews",
-    "graduationSemester": "semester_1976_spring"
+    "lastName": "Andrews"
   },
   {
     "firstName": "John Russell",
-    "lastName": "Hayner",
-    "graduationSemester": "semester_1976_spring"
+    "lastName": "Hayner"
   },
   {
     "firstName": "Randall",
-    "lastName": "Johnson",
-    "graduationSemester": "semester_1976_spring"
+    "lastName": "Johnson"
   },
   {
     "firstName": "Donald S.",
-    "lastName": "Juceum",
-    "graduationSemester": "semester_1977_spring"
+    "lastName": "Juceum"
   },
   {
     "firstName": "Robert",
-    "lastName": "Kyle",
-    "graduationSemester": "semester_1977_spring"
+    "lastName": "Kyle"
   },
   {
     "firstName": "Benjamin",
-    "lastName": "Miller",
-    "graduationSemester": "semester_1977_spring"
+    "lastName": "Miller"
   },
   {
     "firstName": "Daniel",
-    "lastName": "Stoddard",
-    "graduationSemester": "semester_1977_spring"
+    "lastName": "Stoddard"
   },
   {
     "firstName": "Paul",
-    "lastName": "Andreassen",
-    "graduationSemester": "semester_1978_spring"
+    "lastName": "Andreassen"
   },
   {
     "firstName": "Peter",
-    "lastName": "Chatel",
-    "graduationSemester": "semester_1978_spring"
+    "lastName": "Chatel"
   },
   {
     "firstName": "Jim",
-    "lastName": "Gordon",
-    "graduationSemester": "semester_1978_spring"
+    "lastName": "Gordon"
   },
   {
     "firstName": "Robert",
-    "lastName": "Menee",
-    "graduationSemester": "semester_1978_spring"
+    "lastName": "Menee"
   },
   {
     "firstName": "Donald",
-    "lastName": "Reaves",
-    "graduationSemester": "semester_1978_spring"
+    "lastName": "Reaves"
   },
   {
     "firstName": "William",
-    "lastName": "Snedden",
-    "graduationSemester": "semester_1978_spring"
+    "lastName": "Snedden"
   },
   {
     "firstName": "Scott",
-    "lastName": "Haber",
-    "graduationSemester": "semester_1980_spring"
+    "lastName": "Haber"
   },
   {
     "firstName": "Steve",
-    "lastName": "Hubbard",
-    "graduationSemester": "semester_1980_spring"
+    "lastName": "Hubbard"
   },
   {
     "firstName": "David",
-    "lastName": "Jones",
-    "graduationSemester": "semester_1980_spring"
+    "lastName": "Jones"
   },
   {
     "firstName": "John",
-    "lastName": "Littell",
-    "graduationSemester": "semester_1980_spring"
+    "lastName": "Littell"
   },
   {
     "firstName": "Robert",
-    "lastName": "Nitzschke",
-    "graduationSemester": "semester_1980_spring"
+    "lastName": "Nitzschke"
   },
   {
     "firstName": "Jon",
-    "lastName": "Wardner",
-    "graduationSemester": "semester_1980_spring"
+    "lastName": "Wardner"
   },
   {
     "firstName": "Anthony",
-    "lastName": "Boyadjis",
-    "graduationSemester": "semester_1981_spring"
+    "lastName": "Boyadjis"
   },
   {
     "firstName": "Kenyon",
-    "lastName": "Erickson",
-    "graduationSemester": "semester_1981_spring"
+    "lastName": "Erickson"
   },
   {
     "firstName": "Rob",
-    "lastName": "Page",
-    "graduationSemester": "semester_1981_spring"
+    "lastName": "Page"
   },
   {
     "firstName": "Russell",
-    "lastName": "Urban",
-    "graduationSemester": "semester_1981_spring"
+    "lastName": "Urban"
   },
   {
     "firstName": "Marshall",
-    "lastName": "Burchard",
-    "graduationSemester": "semester_1982_spring"
+    "lastName": "Burchard"
   },
   {
     "firstName": "Phil",
-    "lastName": "Hess",
-    "graduationSemester": "semester_1982_spring"
+    "lastName": "Hess"
   },
   {
     "firstName": "Stephen",
-    "lastName": "Holmes",
-    "graduationSemester": "semester_1982_spring"
+    "lastName": "Holmes"
   },
   {
     "firstName": "Mike",
-    "lastName": "Polk",
-    "graduationSemester": "semester_1982_spring"
+    "lastName": "Polk"
   },
   {
     "firstName": "James",
-    "lastName": "Salomon",
-    "graduationSemester": "semester_1982_spring"
+    "lastName": "Salomon"
   },
   {
     "firstName": "Marshall",
-    "lastName": "Schlumberger",
-    "graduationSemester": "semester_1982_spring"
+    "lastName": "Schlumberger"
   },
   {
     "firstName": "Gene",
-    "lastName": "Stromecki",
-    "graduationSemester": "semester_1982_spring"
+    "lastName": "Stromecki"
   },
   {
     "firstName": "David",
-    "lastName": "Ambler",
-    "graduationSemester": "semester_1983_spring"
+    "lastName": "Ambler"
   },
   {
     "firstName": "John",
-    "lastName": "Hansen",
-    "graduationSemester": "semester_1983_spring"
+    "lastName": "Hansen"
   },
   {
     "firstName": "James",
-    "lastName": "Hildreth",
-    "graduationSemester": "semester_1983_spring"
+    "lastName": "Hildreth"
   },
   {
     "firstName": "Philippus",
-    "lastName": "Miller III",
-    "graduationSemester": "semester_1983_spring"
+    "lastName": "Miller III"
   },
   {
     "firstName": "Robert",
-    "lastName": "Walters",
-    "graduationSemester": "semester_1983_spring"
+    "lastName": "Walters"
   },
   {
     "firstName": "Joseph",
-    "lastName": "Black",
-    "graduationSemester": "semester_1984_spring"
+    "lastName": "Black"
   },
   {
     "firstName": "Nomeriano",
-    "lastName": "Cruz",
-    "graduationSemester": "semester_1984_spring"
+    "lastName": "Cruz"
   },
   {
     "firstName": "Micah",
-    "lastName": "Greenstein",
-    "graduationSemester": "semester_1984_spring"
+    "lastName": "Greenstein"
   },
   {
     "firstName": "Jeff",
-    "lastName": "Sherman",
-    "graduationSemester": "semester_1984_spring"
+    "lastName": "Sherman"
   },
   {
     "firstName": "Scott",
-    "lastName": "Zimmerman",
-    "graduationSemester": "semester_1984_spring"
+    "lastName": "Zimmerman"
   },
   {
     "firstName": "Dave",
-    "lastName": "Bonalle",
-    "graduationSemester": "semester_1985_spring"
+    "lastName": "Bonalle"
   },
   {
     "firstName": "Chris",
-    "lastName": "Gaechter",
-    "graduationSemester": "semester_1985_spring"
+    "lastName": "Gaechter"
   },
   {
     "firstName": "Doug",
-    "lastName": "Herr",
-    "graduationSemester": "semester_1985_spring"
+    "lastName": "Herr"
   },
   {
     "firstName": "Robert",
-    "lastName": "Mack",
-    "graduationSemester": "semester_1985_spring"
+    "lastName": "Mack"
   },
   {
     "firstName": "Peter",
-    "lastName": "Sherwood",
-    "graduationSemester": "semester_1985_spring"
+    "lastName": "Sherwood"
   },
   {
     "firstName": "Jim",
-    "lastName": "Conway",
-    "graduationSemester": "semester_1986_spring"
+    "lastName": "Conway"
   },
   {
     "firstName": "Woody",
-    "lastName": "Firm",
-    "graduationSemester": "semester_1986_spring"
+    "lastName": "Firm"
   },
   {
     "firstName": "Gilbert",
-    "lastName": "Keteltas",
-    "graduationSemester": "semester_1986_spring"
+    "lastName": "Keteltas"
   },
   {
     "firstName": "Don",
-    "lastName": "Peck",
-    "graduationSemester": "semester_1986_spring"
+    "lastName": "Peck"
   },
   {
     "firstName": "Ben",
-    "lastName": "Peierls",
-    "graduationSemester": "semester_1986_spring"
+    "lastName": "Peierls"
   },
   {
     "firstName": "Ronald",
-    "lastName": "Schiller",
-    "graduationSemester": "semester_1986_spring"
+    "lastName": "Schiller"
   },
   {
     "firstName": "Cornell",
-    "lastName": "Stinson",
-    "graduationSemester": "semester_1986_spring"
+    "lastName": "Stinson"
   },
   {
     "firstName": "Mark",
-    "lastName": "Cardin",
-    "graduationSemester": "semester_1987_spring"
+    "lastName": "Cardin"
   },
   {
     "firstName": "Dan",
-    "lastName": "Wagner",
-    "graduationSemester": "semester_1987_spring"
+    "lastName": "Wagner"
   },
   {
     "firstName": "Stephen",
-    "lastName": "Baker",
-    "graduationSemester": "semester_1988_spring"
+    "lastName": "Baker"
   },
   {
     "firstName": "Scott",
-    "lastName": "Becker",
-    "graduationSemester": "semester_1988_spring"
+    "lastName": "Becker"
   },
   {
     "firstName": "Timothy",
-    "lastName": "Briglin",
-    "graduationSemester": "semester_1988_spring"
+    "lastName": "Briglin"
   },
   {
     "firstName": "Scott",
-    "lastName": "Denny",
-    "graduationSemester": "semester_1988_spring"
+    "lastName": "Denny"
   },
   {
     "firstName": "Jeff",
-    "lastName": "Hanavan",
-    "graduationSemester": "semester_1988_spring"
+    "lastName": "Hanavan"
   },
   {
     "firstName": "Larry",
-    "lastName": "McAfoos",
-    "graduationSemester": "semester_1988_spring"
+    "lastName": "McAfoos"
   },
   {
     "firstName": "Jake",
-    "lastName": "White",
-    "graduationSemester": "semester_1988_spring"
+    "lastName": "White"
   },
   {
     "firstName": "David",
-    "lastName": "Houggy",
-    "graduationSemester": "semester_1989_spring"
+    "lastName": "Houggy"
   },
   {
     "firstName": "Allen",
-    "lastName": "Manzano",
-    "graduationSemester": "semester_1989_spring"
+    "lastName": "Manzano"
   },
   {
     "firstName": "Joel",
-    "lastName": "Seligman",
-    "graduationSemester": "semester_1989_spring"
+    "lastName": "Seligman"
   },
   {
     "firstName": "Bruce",
-    "lastName": "Smith",
-    "graduationSemester": "semester_1989_spring"
+    "lastName": "Smith"
   },
   {
     "firstName": "Cesar",
-    "lastName": "Rospigliosi",
-    "graduationSemester": "semester_1990_spring"
+    "lastName": "Rospigliosi"
   },
   {
     "firstName": "Randall",
-    "lastName": "Schloss",
-    "graduationSemester": "semester_1990_spring"
+    "lastName": "Schloss"
   },
   {
     "firstName": "Derek",
-    "lastName": "Thomas",
-    "graduationSemester": "semester_1990_spring"
+    "lastName": "Thomas"
   },
   {
     "firstName": "John",
-    "lastName": "Hedlund",
-    "graduationSemester": "semester_1991_spring"
+    "lastName": "Hedlund"
   },
   {
     "firstName": "Bob",
-    "lastName": "Saunders",
-    "graduationSemester": "semester_1991_spring"
+    "lastName": "Saunders"
   },
   {
     "firstName": "Martin",
-    "lastName": "Beversdorf",
-    "graduationSemester": "semester_1992_spring"
+    "lastName": "Beversdorf"
   },
   {
     "firstName": "Gene",
-    "lastName": "Choi",
-    "graduationSemester": "semester_1992_spring"
+    "lastName": "Choi"
   },
   {
     "firstName": "Dave",
-    "lastName": "Capelli",
-    "graduationSemester": "semester_1992_spring"
+    "lastName": "Capelli"
   },
   {
     "firstName": "Rob",
-    "lastName": "Crane",
-    "graduationSemester": "semester_1992_spring"
+    "lastName": "Crane"
   },
   {
     "firstName": "Terry",
-    "lastName": "Horner",
-    "graduationSemester": "semester_1992_spring"
+    "lastName": "Horner"
   },
   {
     "firstName": "Constantine",
-    "lastName": "Hrousis",
-    "graduationSemester": "semester_1992_spring"
+    "lastName": "Hrousis"
   },
   {
     "firstName": "Everett",
-    "lastName": "McElveen",
-    "graduationSemester": "semester_1992_spring"
+    "lastName": "McElveen"
   },
   {
     "firstName": "Eric",
-    "lastName": "Peters",
-    "graduationSemester": "semester_1992_spring"
+    "lastName": "Peters"
   },
   {
     "firstName": "Dan",
-    "lastName": "Skolnik",
-    "graduationSemester": "semester_1992_spring"
+    "lastName": "Skolnik"
   },
   {
     "firstName": "J D.",
-    "lastName": "Whitney",
-    "graduationSemester": "semester_1992_spring"
+    "lastName": "Whitney"
   },
   {
     "firstName": "Andrew",
-    "lastName": "Willett",
-    "graduationSemester": "semester_1992_spring"
+    "lastName": "Willett"
   },
   {
     "firstName": "Jim",
-    "lastName": "Van Slyke",
-    "graduationSemester": "semester_1992_spring"
+    "lastName": "Van Slyke"
   },
   {
     "firstName": "Aaron",
-    "lastName": "Hicks",
-    "graduationSemester": "semester_1993_spring"
+    "lastName": "Hicks"
   },
   {
     "firstName": "John",
-    "lastName": "Macris",
-    "graduationSemester": "semester_1993_spring"
+    "lastName": "Macris"
   },
   {
     "firstName": "David",
-    "lastName": "Mount",
-    "graduationSemester": "semester_1993_spring"
+    "lastName": "Mount"
   },
   {
     "firstName": "Michael",
-    "lastName": "Banino",
-    "graduationSemester": "semester_1994_spring"
+    "lastName": "Banino"
   },
   {
     "firstName": "Michael",
-    "lastName": "Healy",
-    "graduationSemester": "semester_1994_spring"
+    "lastName": "Healy"
   },
   {
     "firstName": "Uday",
-    "lastName": "Joshi",
-    "graduationSemester": "semester_1994_spring"
+    "lastName": "Joshi"
   },
   {
     "firstName": "Geoffrey",
-    "lastName": "Kho",
-    "graduationSemester": "semester_1994_spring"
+    "lastName": "Kho"
   },
   {
     "firstName": "Dan",
-    "lastName": "Marovitz",
-    "graduationSemester": "semester_1994_spring"
+    "lastName": "Marovitz"
   },
   {
     "firstName": "Aaron",
-    "lastName": "Richmond",
-    "graduationSemester": "semester_1994_spring"
+    "lastName": "Richmond"
   },
   {
     "firstName": "Ryan",
-    "lastName": "Lee",
-    "graduationSemester": "semester_1995_spring"
+    "lastName": "Lee"
   },
   {
     "firstName": "Mike",
-    "lastName": "Trogolo",
-    "graduationSemester": "semester_1996_spring"
+    "lastName": "Trogolo"
   },
   {
     "firstName": "Keith",
-    "lastName": "Adler",
-    "graduationSemester": "semester_1996_spring"
+    "lastName": "Adler"
   },
   {
     "firstName": "Brian",
-    "lastName": "Chu",
-    "graduationSemester": "semester_1996_spring"
+    "lastName": "Chu"
   },
   {
     "firstName": "William",
-    "lastName": "Doll",
-    "graduationSemester": "semester_1996_spring"
+    "lastName": "Doll"
   },
   {
     "firstName": "Terence",
-    "lastName": "Goff",
-    "graduationSemester": "semester_1996_spring"
+    "lastName": "Goff"
   },
   {
     "firstName": "Eric",
-    "lastName": "Meyersfield",
-    "graduationSemester": "semester_1996_spring"
+    "lastName": "Meyersfield"
   },
   {
     "firstName": "Paul",
-    "lastName": "Miller",
-    "graduationSemester": "semester_1996_spring"
+    "lastName": "Miller"
   },
   {
     "firstName": "Josh",
-    "lastName": "Romalis",
-    "graduationSemester": "semester_1996_spring"
+    "lastName": "Romalis"
   },
   {
     "firstName": "I-Sah",
-    "lastName": "Hsieh",
-    "graduationSemester": "semester_1997_spring"
+    "lastName": "Hsieh"
   },
   {
     "firstName": "Andrew",
-    "lastName": "Swan",
-    "graduationSemester": "semester_1997_spring"
+    "lastName": "Swan"
   },
   {
     "firstName": "Taylor",
-    "lastName": "Heanue",
-    "graduationSemester": "semester_1997_spring"
+    "lastName": "Heanue"
   },
   {
     "firstName": "Garrick",
-    "lastName": "Applebee",
-    "graduationSemester": "semester_1998_spring"
+    "lastName": "Applebee"
   },
   {
     "firstName": "Alexander",
-    "lastName": "Brose",
-    "graduationSemester": "semester_1998_spring"
+    "lastName": "Brose"
   },
   {
     "firstName": "Joseph",
-    "lastName": "Cleverdon",
-    "graduationSemester": "semester_1998_spring"
+    "lastName": "Cleverdon"
   },
   {
     "firstName": "Michael",
-    "lastName": "Kassatly",
-    "graduationSemester": "semester_1998_spring"
+    "lastName": "Kassatly"
   },
   {
     "firstName": "Michael",
-    "lastName": "Raffaele",
-    "graduationSemester": "semester_1998_spring"
+    "lastName": "Raffaele"
   },
   {
     "firstName": "Brian",
-    "lastName": "Ray",
-    "graduationSemester": "semester_1998_spring"
+    "lastName": "Ray"
   },
   {
     "firstName": "Bryce",
-    "lastName": "Hall",
-    "graduationSemester": "semester_1999_spring"
+    "lastName": "Hall"
   },
   {
     "firstName": "Derrick",
-    "lastName": "Lee",
-    "graduationSemester": "semester_1999_spring"
+    "lastName": "Lee"
   },
   {
     "firstName": "Bruce",
-    "lastName": "Pan",
-    "graduationSemester": "semester_1999_spring"
+    "lastName": "Pan"
   },
   {
     "firstName": "Carib",
-    "lastName": "Mendez",
-    "graduationSemester": "semester_1999_spring"
+    "lastName": "Mendez"
   },
   {
     "firstName": "David",
-    "lastName": "Ben-Aviv",
-    "graduationSemester": "semester_2000_spring"
+    "lastName": "Ben-Aviv"
   },
   {
     "firstName": "Loki",
-    "lastName": "Johnk",
-    "graduationSemester": "semester_2000_spring"
+    "lastName": "Johnk"
   },
   {
     "firstName": "Nicholas",
-    "lastName": "Mandala",
-    "graduationSemester": "semester_2000_spring"
+    "lastName": "Mandala"
   },
   {
     "firstName": "Steve",
-    "lastName": "Engelbrecht",
-    "graduationSemester": "semester_2001_spring"
+    "lastName": "Engelbrecht"
   },
   {
     "firstName": "Adam",
-    "lastName": "Farouk",
-    "graduationSemester": "semester_2001_spring"
+    "lastName": "Farouk"
   },
   {
     "firstName": "Joe",
-    "lastName": "Gregorio",
-    "graduationSemester": "semester_2001_spring"
+    "lastName": "Gregorio"
   },
   {
     "firstName": "George",
-    "lastName": "Jaramillo",
-    "graduationSemester": "semester_2001_spring"
+    "lastName": "Jaramillo"
   },
   {
     "firstName": "Gregory",
-    "lastName": "Pratt",
-    "graduationSemester": "semester_2001_spring"
+    "lastName": "Pratt"
   },
   {
     "firstName": "Jeremy",
-    "lastName": "Selan",
-    "graduationSemester": "semester_2001_spring"
+    "lastName": "Selan"
   },
   {
     "firstName": "Sam",
-    "lastName": "Bradford",
-    "graduationSemester": "semester_2002_spring"
+    "lastName": "Bradford"
   },
   {
     "firstName": "Omar",
-    "lastName": "Cooley",
-    "graduationSemester": "semester_2002_spring"
+    "lastName": "Cooley"
   },
   {
     "firstName": "Rodney",
-    "lastName": "Martin",
-    "graduationSemester": "semester_2002_spring"
+    "lastName": "Martin"
   },
   {
     "firstName": "Bill",
-    "lastName": "Meakem",
-    "graduationSemester": "semester_2002_spring"
+    "lastName": "Meakem"
   },
   {
     "firstName": "Michael",
-    "lastName": "Nestor",
-    "graduationSemester": "semester_2002_spring"
+    "lastName": "Nestor"
   },
   {
     "firstName": "Chris",
-    "lastName": "Wildeman",
-    "graduationSemester": "semester_2002_spring"
+    "lastName": "Wildeman"
   },
   {
     "firstName": "Andy",
-    "lastName": "Goldin",
-    "graduationSemester": "semester_2003_spring"
+    "lastName": "Goldin"
   },
   {
     "firstName": "Chris",
-    "lastName": "Noble",
-    "graduationSemester": "semester_2003_spring"
+    "lastName": "Noble"
   },
   {
     "firstName": "Serban",
-    "lastName": "Staicu",
-    "graduationSemester": "semester_2003_spring"
+    "lastName": "Staicu"
   },
   {
     "firstName": "Brian",
-    "lastName": "Gacioch",
-    "graduationSemester": "semester_2004_spring"
+    "lastName": "Gacioch"
   },
   {
     "firstName": "Joshua",
-    "lastName": "Irizarry",
-    "graduationSemester": "semester_2004_spring"
+    "lastName": "Irizarry"
   },
   {
     "firstName": "Benjamin",
-    "lastName": "Lowe",
-    "graduationSemester": "semester_2004_spring"
+    "lastName": "Lowe"
   },
   {
     "firstName": "Samuel",
-    "lastName": "Magargi",
-    "graduationSemester": "semester_2004_spring"
+    "lastName": "Magargi"
   },
   {
     "firstName": "Adam",
-    "lastName": "Odeh",
-    "graduationSemester": "semester_2004_spring"
+    "lastName": "Odeh"
   },
   {
     "firstName": "Jeremy",
-    "lastName": "Riley",
-    "graduationSemester": "semester_2004_spring"
+    "lastName": "Riley"
   },
   {
     "firstName": "Weston",
-    "lastName": "Walker",
-    "graduationSemester": "semester_2004_spring"
+    "lastName": "Walker"
   },
   {
     "firstName": "Dylan",
-    "lastName": "Bindman",
-    "graduationSemester": "semester_2005_spring"
+    "lastName": "Bindman"
   },
   {
     "firstName": "Jevon",
-    "lastName": "Bindman",
-    "graduationSemester": "semester_2005_spring"
+    "lastName": "Bindman"
   },
   {
     "firstName": "Evan",
-    "lastName": "Hunter",
-    "graduationSemester": "semester_2005_spring"
+    "lastName": "Hunter"
   },
   {
     "firstName": "Matthew",
-    "lastName": "Janiga",
-    "graduationSemester": "semester_2005_spring"
+    "lastName": "Janiga"
   },
   {
     "firstName": "Doug",
-    "lastName": "Markant",
-    "graduationSemester": "semester_2005_spring"
+    "lastName": "Markant"
   },
   {
     "firstName": "Daniel",
-    "lastName": "Moscoe",
-    "graduationSemester": "semester_2005_spring"
+    "lastName": "Moscoe"
   },
   {
     "firstName": "Steven",
-    "lastName": "Ryu",
-    "graduationSemester": "semester_2005_spring"
+    "lastName": "Ryu"
   },
   {
     "firstName": "Zach",
-    "lastName": "Burns",
-    "graduationSemester": "semester_2006_spring"
+    "lastName": "Burns"
   },
   {
     "firstName": "Joe",
-    "lastName": "Fassler",
-    "graduationSemester": "semester_2006_spring"
+    "lastName": "Fassler"
   },
   {
     "firstName": "Doug",
-    "lastName": "Leuthold",
-    "graduationSemester": "semester_2006_spring",
-    "hangsName": "Logan"
+    "hangsName": "Logan",
+    "lastName": "Leuthold"
   },
   {
     "firstName": "Arnold",
-    "lastName": "Mahesan",
-    "graduationSemester": "semester_2006_spring"
+    "lastName": "Mahesan"
   },
   {
     "firstName": "Clayton",
-    "lastName": "McCarl",
-    "graduationSemester": "semester_2006_spring"
+    "lastName": "McCarl"
   },
   {
     "firstName": "David",
-    "lastName": "Kim",
-    "graduationSemester": "semester_2007_spring"
+    "lastName": "Kim"
   },
   {
     "firstName": "Michael",
-    "lastName": "McKeon",
-    "graduationSemester": "semester_2007_spring"
+    "lastName": "McKeon"
   },
   {
     "firstName": "Justin",
-    "lastName": "Vitanza",
-    "graduationSemester": "semester_2007_spring"
+    "lastName": "Vitanza"
   },
   {
     "firstName": "Miles",
-    "lastName": "Nisly",
-    "graduationSemester": "semester_2007_spring"
+    "lastName": "Nisly"
   },
   {
     "firstName": "Pat",
-    "lastName": "Little",
-    "graduationSemester": "semester_2007_spring"
+    "lastName": "Little"
   },
   {
     "firstName": "Oren",
-    "lastName": "Berman",
-    "graduationSemester": "semester_2008_spring"
+    "lastName": "Berman"
   },
   {
     "firstName": "Evan",
-    "lastName": "Graham",
-    "graduationSemester": "semester_2008_spring"
+    "lastName": "Graham"
   },
   {
     "firstName": "Matt",
-    "lastName": "Robbins",
-    "graduationSemester": "semester_2008_spring"
+    "lastName": "Robbins"
   },
   {
     "firstName": "Ethan",
-    "lastName": "Russell",
-    "graduationSemester": "semester_2008_spring"
+    "lastName": "Russell"
   },
   {
     "firstName": "Jason",
-    "lastName": "Toris",
-    "graduationSemester": "semester_2008_spring"
+    "lastName": "Toris"
   },
   {
     "firstName": "Steve",
-    "lastName": "Welker",
-    "graduationSemester": "semester_2008_spring",
-    "hangsName": "Willie"
+    "hangsName": "Willie",
+    "lastName": "Welker"
   },
   {
     "firstName": "Colin",
-    "lastName": "Wilke",
-    "graduationSemester": "semester_2008_spring"
+    "lastName": "Wilke"
   },
   {
     "firstName": "Bill",
-    "lastName": "Wright",
-    "graduationSemester": "semester_2008_spring"
+    "lastName": "Wright"
   },
   {
     "firstName": "Joel",
-    "lastName": "Dankwa",
-    "graduationSemester": "semester_2009_spring"
+    "lastName": "Dankwa"
   },
   {
     "firstName": "Adam",
-    "lastName": "Piel",
-    "graduationSemester": "semester_2009_spring"
+    "lastName": "Piel"
   },
   {
     "firstName": "Ben",
-    "lastName": "Rosenfield",
-    "graduationSemester": "semester_2009_spring"
+    "lastName": "Rosenfield"
   },
   {
     "firstName": "Eric",
-    "lastName": "Shannon",
-    "graduationSemester": "semester_2009_spring"
+    "lastName": "Shannon"
   },
   {
     "firstName": "Jeff",
-    "lastName": "Eng",
-    "graduationSemester": "semester_2010_spring"
+    "lastName": "Eng"
   },
   {
     "firstName": "Tommy",
-    "lastName": "Felix",
-    "graduationSemester": "semester_2010_spring"
+    "lastName": "Felix"
   },
   {
     "firstName": "Alan",
-    "lastName": "Garcia",
-    "graduationSemester": "semester_2010_spring"
+    "lastName": "Garcia"
   },
   {
     "firstName": "Amar",
-    "lastName": "Kelkar",
-    "graduationSemester": "semester_2010_spring"
+    "lastName": "Kelkar"
   },
   {
     "firstName": "Jeff",
-    "lastName": "Parries",
-    "graduationSemester": "semester_2010_spring",
-    "hangsName": "Roger"
+    "hangsName": "Roger",
+    "lastName": "Parries"
   },
   {
     "firstName": "Mark",
-    "lastName": "Thomas",
-    "graduationSemester": "semester_2010_spring"
+    "lastName": "Thomas"
   },
   {
     "firstName": "Dan",
-    "lastName": "Cloutier",
-    "graduationSemester": "semester_2011_spring"
+    "lastName": "Cloutier"
   },
   {
     "firstName": "Bradshaw",
-    "lastName": "Irish",
-    "graduationSemester": "semester_2011_spring"
+    "lastName": "Irish"
   },
   {
     "firstName": "Scott",
-    "lastName": "Resnick",
-    "graduationSemester": "semester_2011_spring"
+    "lastName": "Resnick"
   },
   {
     "firstName": "Alec",
-    "lastName": "Sullivan",
-    "graduationSemester": "semester_2011_spring"
+    "lastName": "Sullivan"
   },
   {
     "firstName": "Sam",
-    "lastName": "Breslin",
-    "graduationSemester": "semester_2012_spring"
+    "lastName": "Breslin"
   },
   {
     "firstName": "Ian",
-    "lastName": "Goldin",
-    "graduationSemester": "semester_2012_spring"
+    "lastName": "Goldin"
   },
   {
     "firstName": "Eric",
-    "lastName": "Horn",
-    "graduationSemester": "semester_2012_spring",
-    "hangsName": "Brody"
+    "hangsName": "Brody",
+    "lastName": "Horn"
   },
   {
     "firstName": "Ben",
-    "lastName": "Perlmutter",
-    "graduationSemester": "semester_2012_spring",
-    "hangsName": "Paul"
+    "hangsName": "Paul",
+    "lastName": "Perlmutter"
   },
   {
     "firstName": "Jordan",
-    "lastName": "Toth",
-    "graduationSemester": "semester_2012_spring"
+    "lastName": "Toth"
   },
   {
     "firstName": "Ben",
-    "lastName": "Veit",
-    "graduationSemester": "semester_2012_spring"
+    "lastName": "Veit"
   },
   {
     "firstName": "Dan",
-    "lastName": "Kuhr",
-    "graduationSemester": "semester_2013_spring",
-    "hangsName": "Calvin"
+    "hangsName": "Calvin",
+    "lastName": "Kuhr"
   },
   {
     "firstName": "Blake",
-    "lastName": "Zhang",
-    "graduationSemester": "semester_2013_spring"
+    "lastName": "Zhang"
   },
   {
     "firstName": "Patrick",
-    "lastName": "Dorion",
-    "graduationSemester": "semester_2013_spring"
+    "lastName": "Dorion"
   },
   {
     "firstName": "Jonathan",
-    "lastName": "Kaufman",
-    "graduationSemester": "semester_2013_spring"
+    "lastName": "Kaufman"
   },
   {
     "firstName": "Matthew",
-    "lastName": "Skroce",
-    "graduationSemester": "semester_2013_spring"
+    "lastName": "Skroce"
   },
   {
     "firstName": "Shun",
-    "lastName": "Serizawa",
-    "graduationSemester": "semester_2013_spring"
+    "lastName": "Serizawa"
   },
   {
     "firstName": "Adam",
-    "lastName": "Beckwith",
-    "graduationSemester": "semester_2014_spring"
+    "lastName": "Beckwith"
   },
   {
     "firstName": "Calvin",
-    "lastName": "Multanen",
-    "graduationSemester": "semester_2014_spring",
-    "hangsName": "Bryce"
+    "hangsName": "Bryce",
+    "lastName": "Multanen"
   },
   {
     "firstName": "Ryan",
-    "lastName": "Smith",
-    "graduationSemester": "semester_2014_spring"
+    "lastName": "Smith"
   },
   {
     "firstName": "Warren",
-    "lastName": "Lowell",
-    "graduationSemester": "semester_2014_spring"
+    "lastName": "Lowell"
   },
   {
     "firstName": "Jared",
-    "lastName": "Landsman",
-    "graduationSemester": "semester_2014_spring"
+    "lastName": "Landsman"
   },
   {
     "firstName": "Chris",
-    "lastName": "Donaldson",
-    "graduationSemester": "semester_2014_spring"
+    "lastName": "Donaldson"
   },
   {
     "firstName": "McKenzie",
-    "lastName": "Read",
-    "graduationSemester": "semester_2015_spring"
+    "lastName": "Read"
   },
   {
     "firstName": "Roshun",
-    "lastName": "Alur",
-    "graduationSemester": "semester_2015_spring"
+    "lastName": "Alur"
   },
   {
     "firstName": "Michael",
-    "lastName": "Gross",
-    "graduationSemester": "semester_2015_spring"
+    "lastName": "Gross"
   },
   {
     "firstName": "Ben",
-    "lastName": "Wu",
-    "graduationSemester": "semester_2015_spring",
-    "hangsName": "Cameron"
+    "hangsName": "Cameron",
+    "lastName": "Wu"
   },
   {
     "firstName": "Chandler",
-    "lastName": "Waggoner",
-    "graduationSemester": "semester_2015_spring"
+    "lastName": "Waggoner"
   },
   {
     "firstName": "Scott",
-    "lastName": "Hare",
-    "graduationSemester": "semester_2016_spring"
+    "lastName": "Hare"
   },
   {
     "firstName": "Donny",
-    "lastName": "Morrissey",
-    "graduationSemester": "semester_2016_spring"
+    "lastName": "Morrissey"
   },
   {
     "firstName": "Christian",
-    "lastName": "Kelly",
-    "graduationSemester": "semester_2016_spring"
+    "lastName": "Kelly"
   },
   {
     "firstName": "Jake",
-    "lastName": "Cohen",
-    "graduationSemester": "semester_2016_spring"
+    "lastName": "Cohen"
   },
   {
     "firstName": "Evan",
-    "lastName": "Yetter",
-    "graduationSemester": "semester_2016_spring"
+    "lastName": "Yetter"
   },
   {
     "firstName": "Phil",
-    "lastName": "Fargo",
-    "graduationSemester": "semester_2016_spring"
+    "lastName": "Fargo"
   },
   {
     "firstName": "Anjit",
-    "lastName": "Fageria",
-    "graduationSemester": "semester_2016_spring"
+    "lastName": "Fageria"
   },
   {
     "firstName": "Jacob",
-    "lastName": "Herrera",
-    "graduationSemester": "semester_2016_spring"
+    "lastName": "Herrera"
   },
   {
     "firstName": "Adam",
-    "lastName": "Proch",
-    "graduationSemester": "semester_2017_spring",
-    "hangsName": "Jason"
+    "hangsName": "Jason",
+    "lastName": "Proch"
   },
   {
     "firstName": "Jonathan",
-    "lastName": "Lassman",
-    "graduationSemester": "semester_2017_spring"
+    "lastName": "Lassman"
   },
   {
     "firstName": "Sebin",
-    "lastName": "Lee",
-    "graduationSemester": "semester_2017_spring"
+    "lastName": "Lee"
   },
   {
     "firstName": "Charles",
-    "lastName": "Phil",
-    "graduationSemester": "semester_2017_spring"
+    "lastName": "Phil"
   },
   {
     "firstName": "Erik",
-    "lastName": "Gustafson",
-    "graduationSemester": "semester_2018_spring"
+    "lastName": "Gustafson"
   },
   {
     "firstName": "Chino",
-    "lastName": "Agulanna",
-    "graduationSemester": "semester_2018_spring"
+    "lastName": "Agulanna"
   },
   {
     "firstName": "Jae",
-    "lastName": "Noh",
-    "graduationSemester": "semester_2018_spring"
+    "lastName": "Noh"
   },
   {
     "firstName": "Nathan",
-    "lastName": "Kashdan",
-    "graduationSemester": "semester_2018_spring"
+    "lastName": "Kashdan"
   },
   {
     "firstName": "John",
-    "lastName": "Schafer",
-    "graduationSemester": "semester_2018_spring",
-    "hangsName": "Bartholomew"
+    "hangsName": "Bartholomew",
+    "lastName": "Schafer"
   },
   {
     "firstName": "Austin",
-    "lastName": "Cody",
-    "graduationSemester": "semester_2018_spring"
+    "lastName": "Cody"
   },
   {
     "firstName": "Tyler",
-    "lastName": "Brewer",
-    "graduationSemester": "semester_2019_spring"
+    "lastName": "Brewer"
   },
   {
     "firstName": "Tommy",
-    "lastName": "Strawderman",
-    "graduationSemester": "semester_2019_spring"
+    "lastName": "Strawderman"
   },
   {
     "firstName": "Derek",
-    "lastName": "Cheng",
-    "graduationSemester": "semester_2020_spring"
+    "lastName": "Cheng"
   },
   {
     "firstName": "Drake",
-    "lastName": "Eshleman",
-    "graduationSemester": "semester_2020_spring"
+    "lastName": "Eshleman"
   },
   {
     "firstName": "Brady",
-    "lastName": "Kellum",
-    "graduationSemester": "semester_2020_spring"
+    "lastName": "Kellum"
   },
   {
     "firstName": "Andrew",
-    "lastName": "Melchionna",
-    "graduationSemester": "semester_2020_spring"
+    "lastName": "Melchionna"
   }
 ]

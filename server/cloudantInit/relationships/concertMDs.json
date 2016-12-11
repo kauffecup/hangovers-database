@@ -1,379 +1,379 @@
 [
   {
     "_id": "md_concert_relationship_type_hangover_kaufman_jonathan_concert_christmas_concert_i",
-    "type": "md_concert_relationship_type",
+    "type": "md_concert_relationship",
     "hangover": "hangover_kaufman_jonathan",
     "concert": "concert_christmas_concert_i"
   },
   {
     "_id": "md_concert_relationship_type_hangover_breslin_sam_concert_british_invasion",
-    "type": "md_concert_relationship_type",
+    "type": "md_concert_relationship",
     "hangover": "hangover_breslin_sam",
     "concert": "concert_british_invasion"
   },
   {
     "_id": "md_concert_relationship_type_hangover_wardner_jon_concert_fall_tonic_i",
-    "type": "md_concert_relationship_type",
+    "type": "md_concert_relationship",
     "hangover": "hangover_wardner_jon",
     "concert": "concert_fall_tonic_i"
   },
   {
     "_id": "md_concert_relationship_type_hangover_hess_phil_concert_fall_tonic_ii",
-    "type": "md_concert_relationship_type",
+    "type": "md_concert_relationship",
     "hangover": "hangover_hess_phil",
     "concert": "concert_fall_tonic_ii"
   },
   {
     "_id": "md_concert_relationship_type_hangover_mack_robert_concert_fall_tonic_iii",
-    "type": "md_concert_relationship_type",
+    "type": "md_concert_relationship",
     "hangover": "hangover_mack_robert",
     "concert": "concert_fall_tonic_iii"
   },
   {
     "_id": "md_concert_relationship_type_hangover_mack_robert_concert_fall_tonic_iv",
-    "type": "md_concert_relationship_type",
+    "type": "md_concert_relationship",
     "hangover": "hangover_mack_robert",
     "concert": "concert_fall_tonic_iv"
   },
   {
     "_id": "md_concert_relationship_type_hangover_schiller_ronald_concert_fall_tonic_v",
-    "type": "md_concert_relationship_type",
+    "type": "md_concert_relationship",
     "hangover": "hangover_schiller_ronald",
     "concert": "concert_fall_tonic_v"
   },
   {
     "_id": "md_concert_relationship_type_hangover_becker_scott_concert_fall_tonic_vi",
-    "type": "md_concert_relationship_type",
+    "type": "md_concert_relationship",
     "hangover": "hangover_becker_scott",
     "concert": "concert_fall_tonic_vi"
   },
   {
     "_id": "md_concert_relationship_type_hangover_becker_scott_concert_fall_tonic_vii",
-    "type": "md_concert_relationship_type",
+    "type": "md_concert_relationship",
     "hangover": "hangover_becker_scott",
     "concert": "concert_fall_tonic_vii"
   },
   {
     "_id": "md_concert_relationship_type_hangover_becker_scott_concert_fall_tonic_viii",
-    "type": "md_concert_relationship_type",
+    "type": "md_concert_relationship",
     "hangover": "hangover_becker_scott",
     "concert": "concert_fall_tonic_viii"
   },
   {
     "_id": "md_concert_relationship_type_hangover_schloss_randall_concert_fall_tonic_ix",
-    "type": "md_concert_relationship_type",
+    "type": "md_concert_relationship",
     "hangover": "hangover_schloss_randall",
     "concert": "concert_fall_tonic_ix"
   },
   {
     "_id": "md_concert_relationship_type_hangover_schloss_randall_concert_fall_tonic_x",
-    "type": "md_concert_relationship_type",
+    "type": "md_concert_relationship",
     "hangover": "hangover_schloss_randall",
     "concert": "concert_fall_tonic_x"
   },
   {
     "_id": "md_concert_relationship_type_hangover_mount_david_concert_fall_tonic_xi",
-    "type": "md_concert_relationship_type",
+    "type": "md_concert_relationship",
     "hangover": "hangover_mount_david",
     "concert": "concert_fall_tonic_xi"
   },
   {
     "_id": "md_concert_relationship_type_hangover_peters_eric_concert_fall_tonic_xii",
-    "type": "md_concert_relationship_type",
+    "type": "md_concert_relationship",
     "hangover": "hangover_peters_eric",
     "concert": "concert_fall_tonic_xii"
   },
   {
     "_id": "md_concert_relationship_type_hangover_chu_brian_concert_fall_tonic_xiii",
-    "type": "md_concert_relationship_type",
+    "type": "md_concert_relationship",
     "hangover": "hangover_chu_brian",
     "concert": "concert_fall_tonic_xiii"
   },
   {
     "_id": "md_concert_relationship_type_hangover_chu_brian_concert_fall_tonic_xiv",
-    "type": "md_concert_relationship_type",
+    "type": "md_concert_relationship",
     "hangover": "hangover_chu_brian",
     "concert": "concert_fall_tonic_xiv"
   },
   {
     "_id": "md_concert_relationship_type_hangover_lee_ryan_concert_fall_tonic_xv",
-    "type": "md_concert_relationship_type",
+    "type": "md_concert_relationship",
     "hangover": "hangover_lee_ryan",
     "concert": "concert_fall_tonic_xv"
   },
   {
     "_id": "md_concert_relationship_type_hangover_trogolo_mike_concert_fall_tonic_xvi",
-    "type": "md_concert_relationship_type",
+    "type": "md_concert_relationship",
     "hangover": "hangover_trogolo_mike",
     "concert": "concert_fall_tonic_xvi"
   },
   {
     "_id": "md_concert_relationship_type_hangover_mendez_carib_concert_fall_tonic_xvii",
-    "type": "md_concert_relationship_type",
+    "type": "md_concert_relationship",
     "hangover": "hangover_mendez_carib",
     "concert": "concert_fall_tonic_xvii"
   },
   {
     "_id": "md_concert_relationship_type_hangover_brose_alexander_concert_fall_tonic_xviii",
-    "type": "md_concert_relationship_type",
+    "type": "md_concert_relationship",
     "hangover": "hangover_brose_alexander",
     "concert": "concert_fall_tonic_xviii"
   },
   {
     "_id": "md_concert_relationship_type_hangover_farouk_adam_concert_fall_tonic_xix",
-    "type": "md_concert_relationship_type",
+    "type": "md_concert_relationship",
     "hangover": "hangover_farouk_adam",
     "concert": "concert_fall_tonic_xix"
   },
   {
     "_id": "md_concert_relationship_type_hangover_gregorio_joe_concert_fall_tonic_xx",
-    "type": "md_concert_relationship_type",
+    "type": "md_concert_relationship",
     "hangover": "hangover_gregorio_joe",
     "concert": "concert_fall_tonic_xx"
   },
   {
     "_id": "md_concert_relationship_type_hangover_wildeman_chris_concert_fall_tonic_xxi",
-    "type": "md_concert_relationship_type",
+    "type": "md_concert_relationship",
     "hangover": "hangover_wildeman_chris",
     "concert": "concert_fall_tonic_xxi"
   },
   {
     "_id": "md_concert_relationship_type_hangover_meakem_bill_concert_fall_tonic_xxii",
-    "type": "md_concert_relationship_type",
+    "type": "md_concert_relationship",
     "hangover": "hangover_meakem_bill",
     "concert": "concert_fall_tonic_xxii"
   },
   {
     "_id": "md_concert_relationship_type_hangover_goldin_andy_concert_fall_tonic_xxiii",
-    "type": "md_concert_relationship_type",
+    "type": "md_concert_relationship",
     "hangover": "hangover_goldin_andy",
     "concert": "concert_fall_tonic_xxiii"
   },
   {
     "_id": "md_concert_relationship_type_hangover_bindman_jevon_concert_fall_tonic_xxiv",
-    "type": "md_concert_relationship_type",
+    "type": "md_concert_relationship",
     "hangover": "hangover_bindman_jevon",
     "concert": "concert_fall_tonic_xxiv"
   },
   {
     "_id": "md_concert_relationship_type_hangover_mccarl_clayton_concert_fall_tonic_xxv",
-    "type": "md_concert_relationship_type",
+    "type": "md_concert_relationship",
     "hangover": "hangover_mccarl_clayton",
     "concert": "concert_fall_tonic_xxv"
   },
   {
     "_id": "md_concert_relationship_type_hangover_burns_zach_concert_fall_tonic_xxvi",
-    "type": "md_concert_relationship_type",
+    "type": "md_concert_relationship",
     "hangover": "hangover_burns_zach",
     "concert": "concert_fall_tonic_xxvi"
   },
   {
     "_id": "md_concert_relationship_type_hangover_welker_steve_concert_fall_tonic_xxvii",
-    "type": "md_concert_relationship_type",
+    "type": "md_concert_relationship",
     "hangover": "hangover_welker_steve",
     "concert": "concert_fall_tonic_xxvii"
   },
   {
     "_id": "md_concert_relationship_type_hangover_welker_steve_concert_fall_tonic_xxviii",
-    "type": "md_concert_relationship_type",
+    "type": "md_concert_relationship",
     "hangover": "hangover_welker_steve",
     "concert": "concert_fall_tonic_xxviii"
   },
   {
     "_id": "md_concert_relationship_type_hangover_rosenfield_ben_concert_fall_tonic_xxix",
-    "type": "md_concert_relationship_type",
+    "type": "md_concert_relationship",
     "hangover": "hangover_rosenfield_ben",
     "concert": "concert_fall_tonic_xxix"
   },
   {
     "_id": "md_concert_relationship_type_hangover_goldin_ian_concert_fall_tonic_xxx",
-    "type": "md_concert_relationship_type",
+    "type": "md_concert_relationship",
     "hangover": "hangover_goldin_ian",
     "concert": "concert_fall_tonic_xxx"
   },
   {
     "_id": "md_concert_relationship_type_hangover_goldin_ian_concert_fall_tonic_xxxi",
-    "type": "md_concert_relationship_type",
+    "type": "md_concert_relationship",
     "hangover": "hangover_goldin_ian",
     "concert": "concert_fall_tonic_xxxi"
   },
   {
     "_id": "md_concert_relationship_type_hangover_breslin_sam_concert_fall_tonic_xxxii",
-    "type": "md_concert_relationship_type",
+    "type": "md_concert_relationship",
     "hangover": "hangover_breslin_sam",
     "concert": "concert_fall_tonic_xxxii"
   },
   {
     "_id": "md_concert_relationship_type_hangover_kaufman_jonathan_concert_fall_tonic_xxxiii",
-    "type": "md_concert_relationship_type",
+    "type": "md_concert_relationship",
     "hangover": "hangover_kaufman_jonathan",
     "concert": "concert_fall_tonic_xxxiii"
   },
   {
     "_id": "md_concert_relationship_type_hangover_alur_roshun_concert_fall_tonic_xxxiv",
-    "type": "md_concert_relationship_type",
+    "type": "md_concert_relationship",
     "hangover": "hangover_alur_roshun",
     "concert": "concert_fall_tonic_xxxiv"
   },
   {
     "_id": "md_concert_relationship_type_hangover_kelly_christian_concert_fall_tonic_xxxv",
-    "type": "md_concert_relationship_type",
+    "type": "md_concert_relationship",
     "hangover": "hangover_kelly_christian",
     "concert": "concert_fall_tonic_xxxv"
   },
   {
     "_id": "md_concert_relationship_type_hangover_yetter_evan_concert_fall_tonic_xxxvi",
-    "type": "md_concert_relationship_type",
+    "type": "md_concert_relationship",
     "hangover": "hangover_yetter_evan",
     "concert": "concert_fall_tonic_xxxvi"
   },
   {
     "_id": "md_concert_relationship_type_hangover_lassman_jonathan_concert_fall_tonic_xxxvii",
-    "type": "md_concert_relationship_type",
+    "type": "md_concert_relationship",
     "hangover": "hangover_lassman_jonathan",
     "concert": "concert_fall_tonic_xxxvii"
   },
   {
     "_id": "md_concert_relationship_type_hangover_chu_brian_concert_happy_hour_i",
-    "type": "md_concert_relationship_type",
+    "type": "md_concert_relationship",
     "hangover": "hangover_chu_brian",
     "concert": "concert_happy_hour_i"
   },
   {
     "_id": "md_concert_relationship_type_hangover_chu_brian_concert_happy_hour_ii",
-    "type": "md_concert_relationship_type",
+    "type": "md_concert_relationship",
     "hangover": "hangover_chu_brian",
     "concert": "concert_happy_hour_ii"
   },
   {
     "_id": "md_concert_relationship_type_hangover_lee_ryan_concert_happy_hour_iii",
-    "type": "md_concert_relationship_type",
+    "type": "md_concert_relationship",
     "hangover": "hangover_lee_ryan",
     "concert": "concert_happy_hour_iii"
   },
   {
     "_id": "md_concert_relationship_type_hangover_trogolo_mike_concert_happy_hour_iv",
-    "type": "md_concert_relationship_type",
+    "type": "md_concert_relationship",
     "hangover": "hangover_trogolo_mike",
     "concert": "concert_happy_hour_iv"
   },
   {
     "_id": "md_concert_relationship_type_hangover_brose_alexander_concert_happy_hour_v",
-    "type": "md_concert_relationship_type",
+    "type": "md_concert_relationship",
     "hangover": "hangover_brose_alexander",
     "concert": "concert_happy_hour_v"
   },
   {
     "_id": "md_concert_relationship_type_hangover_farouk_adam_concert_happy_hour_vi",
-    "type": "md_concert_relationship_type",
+    "type": "md_concert_relationship",
     "hangover": "hangover_farouk_adam",
     "concert": "concert_happy_hour_vi"
   },
   {
     "_id": "md_concert_relationship_type_hangover_gregorio_joe_concert_happy_hour_vii",
-    "type": "md_concert_relationship_type",
+    "type": "md_concert_relationship",
     "hangover": "hangover_gregorio_joe",
     "concert": "concert_happy_hour_vii"
   },
   {
     "_id": "md_concert_relationship_type_hangover_wildeman_chris_concert_happy_hour_viii",
-    "type": "md_concert_relationship_type",
+    "type": "md_concert_relationship",
     "hangover": "hangover_wildeman_chris",
     "concert": "concert_happy_hour_viii"
   },
   {
     "_id": "md_concert_relationship_type_hangover_meakem_bill_concert_happy_hour_ix",
-    "type": "md_concert_relationship_type",
+    "type": "md_concert_relationship",
     "hangover": "hangover_meakem_bill",
     "concert": "concert_happy_hour_ix"
   },
   {
     "_id": "md_concert_relationship_type_hangover_goldin_andy_concert_happy_hour_x",
-    "type": "md_concert_relationship_type",
+    "type": "md_concert_relationship",
     "hangover": "hangover_goldin_andy",
     "concert": "concert_happy_hour_x"
   },
   {
     "_id": "md_concert_relationship_type_hangover_bindman_jevon_concert_happy_hour_xi",
-    "type": "md_concert_relationship_type",
+    "type": "md_concert_relationship",
     "hangover": "hangover_bindman_jevon",
     "concert": "concert_happy_hour_xi"
   },
   {
     "_id": "md_concert_relationship_type_hangover_mccarl_clayton_concert_happy_hour_xii",
-    "type": "md_concert_relationship_type",
+    "type": "md_concert_relationship",
     "hangover": "hangover_mccarl_clayton",
     "concert": "concert_happy_hour_xii"
   },
   {
     "_id": "md_concert_relationship_type_hangover_burns_zach_concert_happy_hour_xiii",
-    "type": "md_concert_relationship_type",
+    "type": "md_concert_relationship",
     "hangover": "hangover_burns_zach",
     "concert": "concert_happy_hour_xiii"
   },
   {
     "_id": "md_concert_relationship_type_hangover_welker_steve_concert_happy_hour_xiv",
-    "type": "md_concert_relationship_type",
+    "type": "md_concert_relationship",
     "hangover": "hangover_welker_steve",
     "concert": "concert_happy_hour_xiv"
   },
   {
     "_id": "md_concert_relationship_type_hangover_welker_steve_concert_happy_hour_xv",
-    "type": "md_concert_relationship_type",
+    "type": "md_concert_relationship",
     "hangover": "hangover_welker_steve",
     "concert": "concert_happy_hour_xv"
   },
   {
     "_id": "md_concert_relationship_type_hangover_rosenfield_ben_concert_happy_hour_xvi",
-    "type": "md_concert_relationship_type",
+    "type": "md_concert_relationship",
     "hangover": "hangover_rosenfield_ben",
     "concert": "concert_happy_hour_xvi"
   },
   {
     "_id": "md_concert_relationship_type_hangover_goldin_ian_concert_happy_hour_xvii",
-    "type": "md_concert_relationship_type",
+    "type": "md_concert_relationship",
     "hangover": "hangover_goldin_ian",
     "concert": "concert_happy_hour_xvii"
   },
   {
     "_id": "md_concert_relationship_type_hangover_goldin_ian_concert_happy_hour_xviii",
-    "type": "md_concert_relationship_type",
+    "type": "md_concert_relationship",
     "hangover": "hangover_goldin_ian",
     "concert": "concert_happy_hour_xviii"
   },
   {
     "_id": "md_concert_relationship_type_hangover_breslin_sam_concert_happy_hour_xix",
-    "type": "md_concert_relationship_type",
+    "type": "md_concert_relationship",
     "hangover": "hangover_breslin_sam",
     "concert": "concert_happy_hour_xix"
   },
   {
     "_id": "md_concert_relationship_type_hangover_kaufman_jonathan_concert_happy_hour_xx",
-    "type": "md_concert_relationship_type",
+    "type": "md_concert_relationship",
     "hangover": "hangover_kaufman_jonathan",
     "concert": "concert_happy_hour_xx"
   },
   {
     "_id": "md_concert_relationship_type_hangover_alur_roshun_concert_happy_hour_xxi",
-    "type": "md_concert_relationship_type",
+    "type": "md_concert_relationship",
     "hangover": "hangover_alur_roshun",
     "concert": "concert_happy_hour_xxi"
   },
   {
     "_id": "md_concert_relationship_type_hangover_kelly_christian_concert_happy_hour_xxii",
-    "type": "md_concert_relationship_type",
+    "type": "md_concert_relationship",
     "hangover": "hangover_kelly_christian",
     "concert": "concert_happy_hour_xxii"
   },
   {
     "_id": "md_concert_relationship_type_hangover_yetter_evan_concert_happy_hour_xxiii",
-    "type": "md_concert_relationship_type",
+    "type": "md_concert_relationship",
     "hangover": "hangover_yetter_evan",
     "concert": "concert_happy_hour_xxiii"
   },
   {
     "_id": "md_concert_relationship_type_hangover_lassman_jonathan_concert_happy_hour_xxiv",
-    "type": "md_concert_relationship_type",
+    "type": "md_concert_relationship",
     "hangover": "hangover_lassman_jonathan",
     "concert": "concert_happy_hour_xxiv"
   }

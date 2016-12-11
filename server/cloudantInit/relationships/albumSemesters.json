@@ -1,103 +1,103 @@
 [
   {
-    "_id": "album_semester_relationship_type_album_a_flight_-_ep_semester_2014_spring",
-    "type": "album_semester_relationship_type",
+    "_id": "album_semester_relationship_album_a_flight_-_ep_semester_2014_spring",
+    "type": "album_semester_relationship",
     "album": "album_a_flight_-_ep",
     "semester": "semester_2014_spring"
   },
   {
-    "_id": "album_semester_relationship_type_album_final_draught_semester_2013_spring",
-    "type": "album_semester_relationship_type",
+    "_id": "album_semester_relationship_album_final_draught_semester_2013_spring",
+    "type": "album_semester_relationship",
     "album": "album_final_draught",
     "semester": "semester_2013_spring"
   },
   {
-    "_id": "album_semester_relationship_type_album_three_sheets_to_the_wind_semester_2008_spring",
-    "type": "album_semester_relationship_type",
+    "_id": "album_semester_relationship_album_three_sheets_to_the_wind_semester_2008_spring",
+    "type": "album_semester_relationship",
     "album": "album_three_sheets_to_the_wind",
     "semester": "semester_2008_spring"
   },
   {
-    "_id": "album_semester_relationship_type_album_blackout_semester_2005_spring",
-    "type": "album_semester_relationship_type",
+    "_id": "album_semester_relationship_album_blackout_semester_2005_spring",
+    "type": "album_semester_relationship",
     "album": "album_blackout",
     "semester": "semester_2005_spring"
   },
   {
-    "_id": "album_semester_relationship_type_album_vintage_semester_2004_spring",
-    "type": "album_semester_relationship_type",
+    "_id": "album_semester_relationship_album_vintage_semester_2004_spring",
+    "type": "album_semester_relationship",
     "album": "album_vintage",
     "semester": "semester_2004_spring"
   },
   {
-    "_id": "album_semester_relationship_type_album_shot_in_the_dark_semester_2001_spring",
-    "type": "album_semester_relationship_type",
+    "_id": "album_semester_relationship_album_shot_in_the_dark_semester_2001_spring",
+    "type": "album_semester_relationship",
     "album": "album_shot_in_the_dark",
     "semester": "semester_2001_spring"
   },
   {
-    "_id": "album_semester_relationship_type_album_spirits_semester_1998_spring",
-    "type": "album_semester_relationship_type",
+    "_id": "album_semester_relationship_album_spirits_semester_1998_spring",
+    "type": "album_semester_relationship",
     "album": "album_spirits",
     "semester": "semester_1998_spring"
   },
   {
-    "_id": "album_semester_relationship_type_album_moonshine_semester_1996_spring",
-    "type": "album_semester_relationship_type",
+    "_id": "album_semester_relationship_album_moonshine_semester_1996_spring",
+    "type": "album_semester_relationship",
     "album": "album_moonshine",
     "semester": "semester_1996_spring"
   },
   {
-    "_id": "album_semester_relationship_type_album_on_the_rocks_semester_1994_spring",
-    "type": "album_semester_relationship_type",
+    "_id": "album_semester_relationship_album_on_the_rocks_semester_1994_spring",
+    "type": "album_semester_relationship",
     "album": "album_on_the_rocks",
     "semester": "semester_1994_spring"
   },
   {
-    "_id": "album_semester_relationship_type_album_behind_bars_semester_1989_spring",
-    "type": "album_semester_relationship_type",
+    "_id": "album_semester_relationship_album_behind_bars_semester_1989_spring",
+    "type": "album_semester_relationship",
     "album": "album_behind_bars",
     "semester": "semester_1989_spring"
   },
   {
-    "_id": "album_semester_relationship_type_album_cheers_semester_1986_spring",
-    "type": "album_semester_relationship_type",
+    "_id": "album_semester_relationship_album_cheers_semester_1986_spring",
+    "type": "album_semester_relationship",
     "album": "album_cheers",
     "semester": "semester_1986_spring"
   },
   {
-    "_id": "album_semester_relationship_type_album_hangin'_out_semester_1984_spring",
-    "type": "album_semester_relationship_type",
+    "_id": "album_semester_relationship_album_hangin'_out_semester_1984_spring",
+    "type": "album_semester_relationship",
     "album": "album_hangin'_out",
     "semester": "semester_1984_spring"
   },
   {
-    "_id": "album_semester_relationship_type_album_facetime_(single)_semester_1981_spring",
-    "type": "album_semester_relationship_type",
+    "_id": "album_semester_relationship_album_facetime_(single)_semester_1981_spring",
+    "type": "album_semester_relationship",
     "album": "album_facetime_(single)",
     "semester": "semester_1981_spring"
   },
   {
-    "_id": "album_semester_relationship_type_album_facetime_semester_1981_spring",
-    "type": "album_semester_relationship_type",
+    "_id": "album_semester_relationship_album_facetime_semester_1981_spring",
+    "type": "album_semester_relationship",
     "album": "album_facetime",
     "semester": "semester_1981_spring"
   },
   {
-    "_id": "album_semester_relationship_type_album_slightly_sober_semester_1979_spring",
-    "type": "album_semester_relationship_type",
+    "_id": "album_semester_relationship_album_slightly_sober_semester_1979_spring",
+    "type": "album_semester_relationship",
     "album": "album_slightly_sober",
     "semester": "semester_1979_spring"
   },
   {
-    "_id": "album_semester_relationship_type_album_alma_mater_semester_1973_spring",
-    "type": "album_semester_relationship_type",
+    "_id": "album_semester_relationship_album_alma_mater_semester_1973_spring",
+    "type": "album_semester_relationship",
     "album": "album_alma_mater",
     "semester": "semester_1973_spring"
   },
   {
-    "_id": "album_semester_relationship_type_album_the_hangovers_semester_1970_spring",
-    "type": "album_semester_relationship_type",
+    "_id": "album_semester_relationship_album_the_hangovers_semester_1970_spring",
+    "type": "album_semester_relationship",
     "album": "album_the_hangovers",
     "semester": "semester_1970_spring"
   }

@@ -21,14 +21,14 @@ const arrangementMap = function (doc) {
   if (doc.type === 'arrangement') {
     emit([doc._id]);
 
-    var singleFields = ['arrangementType', 'key', 'whenArranged'];
+    var singleFields = ['arrangementType', 'key', 'semesterArranged'];
     singleFields.forEach(function (field) {
       if (typeof doc[field] === 'string') {
         emit([doc._id, field], { _id: doc[field] });
       }
     });
 
-    var multiFields = ['albums', 'arrangers', 'concerts', 'genre', 'originalArtists', 'soloists', 'tags', 'whenPerformed'];
+    var multiFields = ['albums', 'arrangers', 'concerts', 'genre', 'originalArtists', 'soloists', 'tags', 'semestersPerformed'];
     multiFields.forEach(function (field) {
       if (doc[field] && doc[field].length) {
         for (var i = 0; i < doc[field].length; i++) {
@@ -102,14 +102,14 @@ const semesterMap = function (doc) {
   } else if (doc.type === 'bm_semester_relationship_type') {
     emit([doc.semester, 'bm'], { _id: doc.hangover });
   } else if (doc.type === 'arrangement') {
-    var singleFields = ['whenArranged'];
+    var singleFields = ['semesterArranged'];
     singleFields.forEach(function (field) {
       if (doc[field]) {
         emit([doc[field], field], { _id: doc._id });
       }
     });
 
-    var multiFields = ['whenPerformed'];
+    var multiFields = ['semestersPerformed'];
     multiFields.forEach(function (field) {
       if (doc[field] && doc[field].length) {
         for (var i = 0; i < doc[field].length; i++) {

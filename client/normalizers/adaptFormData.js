@@ -77,6 +77,6 @@ export const fullArrangementAdapter = (a = {}) => Object.assign({}, a, {
   pdf: attatchmentAdapter(a._attachments, 'pdf'),
   soloists: (a.soloists || []).map(hangoverAdapter),
   syllables: (typeof a.syllables !== 'undefined') && syllableAdapter(a.syllables),
-  whenArranged: (typeof a.whenArranged !== 'undefined') && semesterAdapter(a.whenArranged),
-  whenPerformed: (a.whenPerformed || []).map(semesterAdapter),
+  semesterArranged: (typeof a.semesterArranged !== 'undefined') && semesterAdapter(a.semesterArranged),
+  semestersPerformed: (a.semestersPerformed || []).map(semesterAdapter),
 });

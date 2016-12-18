@@ -48,7 +48,7 @@ const SubmitArrangementForm = ({ app, submit, handleSubmit, handleDelete, id, re
       <h3 className={css(styles.categoryLabel)}>Arrangement</h3>
       <Field label="Arranger(s)" name="arrangers" component={RenderAsync} loadOptions={searchHangovers} multi />
       <div className={css(styles.row)}>
-        <Field label="When Arranged" name="whenArranged" component={RenderSelect} options={semesters} styles={styles.rowChild} />
+        <Field label="When Arranged" name="semesterArranged" component={RenderSelect} options={semesters} styles={styles.rowChild} />
         <Field label="Key" name="key" component={RenderSelect} options={keys} styles={styles.rowChild} />
       </div>
       <div className={css(styles.row)}>
@@ -57,7 +57,7 @@ const SubmitArrangementForm = ({ app, submit, handleSubmit, handleDelete, id, re
       </div>
       <h3 className={css(styles.categoryLabel)}>Performances</h3>
       <Field label="Active" name="active" component={RenderBinary} />
-      <Field label="Semester(s) Performed" name="whenPerformed" component={RenderSelect} options={semesters} multi />
+      <Field label="Semester(s) Performed" name="semestersPerformed" component={RenderSelect} options={semesters} multi />
       <Field label="Concert(s) Featured In" name="concerts" component={RenderSelect} options={concerts} multi />
       <Field label="Album(s) Appeared On" name="albums" component={RenderSelect} options={albums} multi />
       <Field label="Soloist(s)" name="soloists" component={RenderAsync} loadOptions={searchHangovers} multi />

@@ -42,12 +42,12 @@ class Arrangement extends Component {
         <h3>Arrangement</h3>
         <HangoverList title="arranged by" hangovers={arrangement.arrangers} />
         <Field text={keyFormatter(arrangement.key)} />
-        <SemesterList title="arranged" semesters={[arrangement.whenArranged]} />
+        <SemesterList title="arranged" semesters={[arrangement.semesterArranged]} />
         <Field text={arrangement.syllables ? 'has syllables' : 'doesn\'t have syllables'} />
         <Field text={arrangement.arrangementType && arrangement.arrangementType.name} />
         <h3>Performances</h3>
         <Field text={arrangement.active ? 'active' : 'not active'} />
-        <SemesterList title="semester(s) performed" semesters={arrangement.whenPerformed} />
+        <SemesterList title="semester(s) performed" semesters={arrangement.semestersPerformed} />
         <ConcertList title="concert(s) performed" concerts={arrangement.concerts} />
         <AlbumList title="album(s) on" albums={arrangement.albums} />
         <HangoverList title="soloist(s)" hangovers={arrangement.soloists} />

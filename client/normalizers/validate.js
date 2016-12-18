@@ -6,9 +6,9 @@ import { arrangementExists } from '../actions/search';
  *   song:
  *     name, alternateName, originalArtists, whenWritten, genre
  *   arrangements:
- *     arrangers, key, whenArranged, arrangementType, syllables
+ *     arrangers, key, semesterArranged, arrangementType, syllables
  *   performance:
- *     active, whenPerformed, concerts, albums, soloists
+ *     active, semestersPerformed, concerts, albums, soloists
  *   files and such:
  *     youtube, pdf, finale, mp3, spotifyOriginalLink, spotifyHangoverLink
  *   odds and ends:

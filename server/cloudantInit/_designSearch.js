@@ -41,6 +41,45 @@ const tagIndexer = function (doc) {
   }
 };
 
+
+const relationshipIndexer = function (doc) {
+  if (typeof doc.type === 'string' && (
+    doc.type === 'album_semester_relationship' ||
+    doc.type === 'arrangement_albums_relationship' ||
+    doc.type === 'arrangement_arrangers_relationship' ||
+    doc.type === 'arrangement_concerts_relationship' ||
+    doc.type === 'arrangement_genre_relationship' ||
+    doc.type === 'arrangement_semester_arranged_relationship' ||
+    doc.type === 'arrangement_semesters_performed_relationship' ||
+    doc.type === 'arrangement_soloists_relationship' ||
+    doc.type === 'bm_semester_relationship' ||
+    doc.type === 'concert_semester_relationship' ||
+    doc.type === 'hangover_graduation_semester_relationship' ||
+    doc.type === 'md_concert_relationship' ||
+    doc.type === 'md_semester_relationship' ||
+    doc.type === 'president_semester_relationship'
+  )) {
+    if (typeof doc.album === 'string') {
+      index('album', doc.album);
+    }
+    if (typeof doc.arrangement === 'string') {
+      index('arrangement', doc.arrangement);
+    }
+    if (typeof doc.concert === 'string') {
+      index('concert', doc.concert);
+    }
+    if (typeof doc.genre === 'string') {
+      index('genre', doc.genre);
+    }
+    if (typeof doc.hangover === 'string') {
+      index('hangover', doc.hangover);
+    }
+    if (typeof doc.semester === 'string') {
+      index('semester', doc.semester);
+    }
+  }
+};
+
 const ddoc = {
   _id: '_design/search',
   indexes: {
@@ -55,6 +94,10 @@ const ddoc = {
     genres: {
       analyzer: 'standard',
       index: genreIndexer,
+    },
+    relationships: {
+      analyzer: 'standard',
+      index: relationshipIndexer,
     },
     tags: {
       analyzer: 'standard',

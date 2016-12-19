@@ -6,6 +6,7 @@ const { adaptFile, adaptFiles, adaptArrangement } = require('./cloudantHelpers/A
 const { fileFields } = require('../shared/FormConstants');
 
 const LIMIT = 20;
+const OPTS = { concurrency: 3 };
 
 module.exports = class SageDB {
   constructor(config) {
@@ -132,12 +133,13 @@ module.exports = class SageDB {
   searchArtists(text = '') { return this._search('artists', `name:(${text.toLowerCase()}*)`); }
   searchGenres(text = '') { return this._search('genres', `name:(${text.toLowerCase()}*)`); }
   searchTags(text = '') { return this._search('tags', `name:(${text.toLowerCase()}*)`); }
+  searchRelationships(field, id) { return this._search('relationships', `${field}:${id}`, 200); }
 
   /** Helper method for the above searchers */
-  _search(index, q) {
+  _search(index, q, limit = LIMIT) {
     return this._sageDB.searchAsync('search', index, {
       q,
-      limit: LIMIT,
+      limit,
       include_docs: true,
     }).then(response => response.rows.map(r => r.doc));
   }
@@ -178,48 +180,49 @@ module.exports = class SageDB {
           .then(buffer => adaptFile(buffer, arrangement.name, type, dot));
       }
     ) : Promise.resolve([]);
-    const { toUpload, newArtists = [], newTags = [] } = adaptArrangement(arrangement);
-    // for the newArtists and newTags we detected while adapting, create them!
-    newArtists.forEach(artist => this.upsertArtist(artist));
-    newTags.forEach(tag => this.upsertTag(tag));
-    const arrID = idgen.getArrangementID(toUpload);
-    const multiRelationshipFields = [
-      { field: 'albums', relationshipField: 'album', type: types.ARRANGEMENT_ALBUMS_RELATIONSHIP_TYPE, idGenerator: idgen.getArrangementAlbumID },
-      { field: 'arrangers', relationshipField: 'hangover', type: types.ARRANGEMENT_ARRANGERS_RELATIONSHIP_TYPE, idGenerator: idgen.getArrangementArrangerID },
-      { field: 'concerts', relationshipField: 'concert', type: types.ARRANGEMENT_CONCERTS_RELATIONSHIP_TYPE, idGenerator: idgen.getArrangementConcertID },
-      { field: 'genre', relationshipField: 'genre', type: types.ARRANGEMENT_GENRE_RELATIONSHIP_TYPE, idGenerator: idgen.getArrangementGenreID },
-      { field: 'semestersPerformed', relationshipField: 'semester', type: types.ARRANGEMENT_SEMESTERS_PERFORMED_RELATIONSHIP_TYPE, idGenerator: idgen.getArrangementSemesterPerformedID },
-      { field: 'soloists', relationshipField: 'hangover', type: types.ARRANGEMENT_SOLOISTS_RELATIONSHIP_TYPE, idGenerator: idgen.getArrangementSoloistID },
-    ];
-    const singleRelationshipFields = [
-      { field: 'semesterArranged', relationshipField: 'semester', type: types.ARRANGEMENT_SEMESTER_ARRANGED_RELATIONSHIP_TYPE, idGenerator: idgen.getArrangementSemesterArrangedID },
-    ];
-    const relationships = [];
+    const { arrID, toUpload, newArtists = [], newTags = [], relationships = [] } = adaptArrangement(arrangement);
 
-    for (const { field, relationshipField, type, idGenerator } of multiRelationshipFields) {
-      if (toUpload[field] && toUpload[field].length) {
-        for (const thingID of toUpload[field]) {
-          const doc = { [relationshipField]: thingID, arrangement: arrID };
-          relationships.push({ doc, type, id: idGenerator(arrID, thingID) });
-        }
-      }
-    }
-
-    for (const { field, relationshipField, type, idGenerator } of singleRelationshipFields) {
-      if (toUpload[field]) {
-        const doc = { [relationshipField]: toUpload[field], arrangement: arrID };
-        relationships.push({ doc, type, id: idGenerator(arrID, toUpload[field]) });
-      }
-    }
-
+    console.log('loading files');
     return filesProm.then((otherFiles) => {
+      console.log('upserting arrangement doc');
       filesToUpload = [...filesToUpload, ...otherFiles];
       if (filesToUpload.length) {
         return this._upsertTypeWithFiles(toUpload, filesToUpload, types.ARRANGEMENT_TYPE, arrID);
       }
       return this._upsertType(toUpload, types.ARRANGEMENT_TYPE, arrID);
     })
-    .then(() => Promise.map(relationships, ({ doc, type, id }) => this._upsertType(doc, type, id), { concurrency: 3 }));
+    // for the newArtists and newTags we detected while adapting, create them!
+    .then(() => console.log('creating new artists and tags'))
+    .then(() => Promise.join(
+      Promise.map(newArtists, a => this.upsertArtist(a), OPTS),
+      Promise.map(newTags, t => this.upsertTag(t), OPTS),
+      () => {}
+    ))
+    .then(() => console.log('fetching existing relationships'))
+    .then(() => this.searchRelationships('arrangement', arrID))
+    .then((oldRelationships) => {
+      const oldRelationshipMap = {};
+      for (const oldRelationship of oldRelationships) {
+        oldRelationshipMap[oldRelationship._id] = oldRelationship;
+      }
+      const visitedMap = {};
+      const relationshipsToUpload = [];
+      for (const relationship of relationships) {
+        if (oldRelationshipMap[relationship.id]) {
+          visitedMap[relationship.id] = true;
+        } else {
+          relationshipsToUpload.push(relationship);
+        }
+      }
+      const relationshipsToDelete = oldRelationships.filter(or => !visitedMap[or._id]);
+      console.log('creating new relationships and deleting stale ones');
+      return Promise.join(
+        Promise.map(relationshipsToUpload, ({ doc, type, id }) => this._upsertType(doc, type, id), OPTS),
+        Promise.map(relationshipsToDelete, ({ _id, _rev }) => this.destroy(_id, _rev), OPTS),
+        () => {}
+      );
+    })
+    .catch(console.error);
   }
 
   /** Format the call to _upsert for the above doc types */

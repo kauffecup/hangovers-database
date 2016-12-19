@@ -1,3 +1,4 @@
+const mime = require('mime-types');
 const { binaryFields, fileFields, objectArrayFields, NEW_IDENTIFIER } = require('../../shared/FormConstants');
 const idgen = require('./IDGenerators');
 const types = require('./DBTypes');
@@ -28,7 +29,7 @@ const adaptFile = (data, arrangementName, contentType, dot) => ({
 const fileAdapt = (f, name, dot) => adaptFile(f.buffer, name, f.mimetype, dot);
 
 /**
- * Adapt a files object with pdf/mus/mp3 keys into cloudant friendly files
+ * Adapt a files object with pdf/mus/recording keys into cloudant friendly files
  */
 const adaptFiles = (files, name) => {
   const returnFiles = [];
@@ -38,8 +39,8 @@ const adaptFiles = (files, name) => {
   if (files.finale && files.finale.length) {
     returnFiles.push(fileAdapt(files.finale[0], name, 'mus'));
   }
-  if (files.mp3 && files.mp3.length) {
-    returnFiles.push(fileAdapt(files.mp3[0], name, 'mp3'));
+  if (files.recording && files.recording.length) {
+    returnFiles.push(fileAdapt(files.recording[0], name, mime.extension(files.recording[0].mimetype)));
   }
   return returnFiles;
 };

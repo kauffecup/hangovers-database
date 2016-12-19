@@ -99,7 +99,7 @@ app.get('/list/artists', ({ query: { limit, skip } }, res) => getList(limit, ski
 app.post('/arrangementsubmit', upload.fields([
   { name: 'pdf', maxCount: 1 },
   { name: 'finale', maxCount: 1 },
-  { name: 'mp3', maxCount: 1 },
+  { name: 'recording', maxCount: 1 },
 ]), ({ body, files }, res) => {
   sageDB.upsertArrangement(body, files)
     .then(() => res.json({}))

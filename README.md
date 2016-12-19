@@ -65,7 +65,7 @@ welcome to Sage.
 
   - PDF (link to file)
   - Finale (link to file)
-  - MP3 (link to file)
+  - Recording (link to file)
   - Youtube (link to the tube)
   - Spotify Link for original song
   - Spotify Link for hangovers version

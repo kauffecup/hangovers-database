@@ -68,7 +68,7 @@ const SubmitArrangementForm = ({ app, submit, handleSubmit, handleDelete, id, re
       <div className={css(styles.row)}>
         <Field label="PDF" name="pdf" component={RenderDropzone} normalize={normalizeFileList} styles={styles.rowChild} />
         <Field label="Finale" name="finale" component={RenderDropzone} normalize={normalizeFileList} styles={styles.rowChild} />
-        <Field label="mp3" name="mp3" component={RenderDropzone} normalize={normalizeFileList} styles={styles.rowChild} />
+        <Field label="Recording" name="recording" component={RenderDropzone} normalize={normalizeFileList} styles={styles.rowChild} />
       </div>
       <Field label="Youtube Link (Hangovers Performance)" name="youtube" component={RenderField} type="text" autoComplete="off" />
       <div className={css(styles.row)}>

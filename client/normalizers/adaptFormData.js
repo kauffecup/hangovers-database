@@ -20,7 +20,9 @@ export const artistAdapter = (a = {}) => ({
 export const attatchmentAdapter = (a = {}, type = '') => {
   for (const attachment of Object.keys(a)) {
     const split = (attachment || '').split('.');
-    if (split.length && split[split.length - 1] === type) {
+    if ((split.length && split[split.length - 1] === type) ||
+      (attachment.content_type && attachment.content_type.indexOf(type) > -1)
+    ) {
       return {
         name: attachment,
         type: a[attachment].content_type,
@@ -77,7 +79,7 @@ export const fullArrangementAdapter = (a = {}) => Object.assign({}, a, {
   finale: attatchmentAdapter(a._attachments, 'mus'),
   genre: (a.genre || []).map(genreAdapter),
   key: (typeof a.key !== 'undefined') && keyAdapter(a.key),
-  mp3: attatchmentAdapter(a._attachments, 'mp3'),
+  recording: attatchmentAdapter(a._attachments, 'audio'),
   pdf: attatchmentAdapter(a._attachments, 'pdf'),
   soloists: (a.soloists || []).map(hangoverAdapter),
   syllables: (typeof a.syllables !== 'undefined') && syllableAdapter(a.syllables),

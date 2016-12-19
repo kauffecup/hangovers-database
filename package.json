@@ -5,6 +5,7 @@
   "scripts": {
     "start": "node server/app.js",
     "build": "node scripts/build.js",
+    "debug": "node --inspect --debug-brk server/app.js",
     "dev": "better-npm-run dev",
     "init": "node server/cloudantInit/init",
     "test": "node scripts/test.js --env=jsdom",
@@ -44,6 +45,7 @@
     "body-parser": "^1.15.2",
     "cloudant": "^1.5.0",
     "express": "^4.14.0",
+    "mime-types": "^2.1.13",
     "morgan": "^1.7.0",
     "multer": "^1.2.0",
     "query-string": "^4.2.3",

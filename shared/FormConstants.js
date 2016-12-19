@@ -22,7 +22,7 @@ module.exports.newFields = [];
 module.exports.newArrayFields = ['artists', 'tags'];
 
  /** Fields that are files */
-module.exports.fileFields = ['finale', 'mp3', 'pdf'];
+module.exports.fileFields = ['finale', 'recording', 'pdf'];
 
 /** String appended to form objects to let the server know it should create a new object */
 module.exports.NEW_IDENTIFIER = 'new:';

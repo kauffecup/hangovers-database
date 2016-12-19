@@ -10,7 +10,7 @@ import { arrangementExists } from '../actions/search';
  *   performance:
  *     active, semestersPerformed, concerts, albums, soloists
  *   files and such:
- *     youtube, pdf, finale, mp3, spotifyOriginalLink, spotifyHangoverLink
+ *     youtube, pdf, finale, recording, spotifyOriginalLink, spotifyHangoverLink
  *   odds and ends:
  *     notes, tags
  */
@@ -57,8 +57,8 @@ export default (values) => {
     errors.pdf = 'PDF must be a... pdf';
   }
 
-  if (values.mp3 && values.mp3.type !== 'audio/mp3') {
-    errors.mp3 = 'mp3 must be a... mp3';
+  if (values.recording && values.recording.type.indexOf('audio') === -1) {
+    errors.recording = 'Recording must be a... recording.';
   }
 
   return errors;

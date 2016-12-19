@@ -21,21 +21,35 @@ const arrangementMap = function (doc) {
   if (doc.type === 'arrangement') {
     emit([doc._id]);
 
-    var singleFields = ['arrangementType', 'key', 'semesterArranged'];
+    var singleFields = ['arrangementType', 'key'];
     singleFields.forEach(function (field) {
       if (typeof doc[field] === 'string') {
         emit([doc._id, field], { _id: doc[field] });
       }
     });
 
-    var multiFields = ['albums', 'arrangers', 'concerts', 'genre', 'originalArtists', 'soloists', 'tags', 'semestersPerformed'];
+    var multiFields = ['originalArtists', 'tags'];
     multiFields.forEach(function (field) {
       if (doc[field] && doc[field].length) {
         for (var i = 0; i < doc[field].length; i++) {
-          emit([doc._id, field, i], { _id: doc[field][i] });
+          emit([doc._id, field], { _id: doc[field][i] });
         }
       }
     });
+  } else if (doc.type === 'arrangement_albums_relationship') {
+    emit([doc.arrangement, 'albums'], { _id: doc.album });
+  } else if (doc.type === 'arrangement_arrangers_relationship') {
+    emit([doc.arrangement, 'arrangers'], { _id: doc.hangover });
+  } else if (doc.type === 'arrangement_concerts_relationship') {
+    emit([doc.arrangement, 'concerts'], { _id: doc.concert });
+  } else if (doc.type === 'arrangement_genre_relationship') {
+    emit([doc.arrangement, 'genre'], { _id: doc.genre });
+  } else if (doc.type === 'arrangement_semester_arranged_relationship') {
+    emit([doc.arrangement, 'semesterArranged'], { _id: doc.semester });
+  } else if (doc.type === 'arrangement_semesters_performed_relationship') {
+    emit([doc.arrangement, 'semestersPerformed'], { _id: doc.semester });
+  } else if (doc.type === 'arrangement_soloists_relationship') {
+    emit([doc.arrangement, 'soloists'], { _id: doc.hangover });
   }
 };
 
@@ -130,24 +144,12 @@ const ddoc = {
   _id: '_design/full',
   language: 'javascript',
   views: {
-    album: {
-      map: albumMap,
-    },
-    arrangement: {
-      map: arrangementMap,
-    },
-    artist: {
-      map: artistMap,
-    },
-    concert: {
-      map: concertMap,
-    },
-    hangover: {
-      map: hangoverMap,
-    },
-    semester: {
-      map: semesterMap,
-    },
+    album: { map: albumMap },
+    arrangement: { map: arrangementMap },
+    artist: { map: artistMap },
+    concert: { map: concertMap },
+    hangover: { map: hangoverMap },
+    semester: { map: semesterMap },
   },
 };
 

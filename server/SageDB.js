@@ -35,43 +35,10 @@ module.exports = class SageDB {
   }
 
   /**
-   * Here we get the arrangement metadata along with all the original docs for
-   * various fields (for example we fetch the full hangover for arrangers or soloists
-   * instead of just the `hangover_jonathan_kaufman` field) and combine them into
-   * one doc. Resolve with that one!
-   */
-  getFullArrangement(arrangementID) {
-    return this._sageDB.viewAsync('types', 'arrangement_full', {
-      include_docs: true,
-      startkey: [arrangementID],
-      endkey: [arrangementID, {}, {}],
-      limit: 200,
-    }).then(({ rows }) => {
-      if (!rows || !rows.length) {
-        throw new Error('No arrangement found');
-      }
-      const doc = rows[0].doc; // TODO: is this always true?
-      // this seems rather hacky, but uhh looks like it works!
-      // likely because the keys are constructed from the original doc?
-      for (let i = 1; i < rows.length; i++) {
-        const rowKey = rows[i].key;
-        const rowDoc = rows[i].doc;
-        if (rowDoc) {
-          if (rowKey.length === 2) {
-            doc[rowKey[1]] = rowDoc;
-          } else if (rowKey.length === 3) {
-            doc[rowKey[1]][rowKey[2]] = rowDoc;
-          }
-        }
-      }
-      return doc;
-    });
-  }
-
-  /**
    * Getters for retrieving a "full" object and rolling up similar key fields
    * into an array.
    */
+  getFullArrangement(arrangementID) { return this._getFullArrayRollup(arrangementID, 'arrangement', ['arrangementType', 'key', 'semesterArranged']); }
   getFullHangover(hangoverID) { return this._getFullArrayRollup(hangoverID, 'hangover'); }
   getFullSemester(semesterID) { return this._getFullArrayRollup(semesterID, 'semester'); }
   getFullConcert(concertID) { return this._getFullArrayRollup(concertID, 'concert'); }
@@ -82,7 +49,7 @@ module.exports = class SageDB {
    * Here we get a document's metadata along with the original docs for any ids
    * it might link to. We have some cleanup logic for combining into a clean array.
    */
-  _getFullArrayRollup(id, view) {
+  _getFullArrayRollup(id, view, flatten = []) {
     return this._sageDB.viewAsync('full', view, {
       include_docs: true,
       startkey: [id],
@@ -106,6 +73,11 @@ module.exports = class SageDB {
       }
       for (const arrayName of Object.keys(docArrays)) {
         doc[arrayName] = docArrays[arrayName];
+      }
+      for (const flattenField of flatten) {
+        if (doc[flattenField] && doc[flattenField][0]) {
+          doc[flattenField] = doc[flattenField][0];
+        }
       }
       return doc;
     });
@@ -210,24 +182,44 @@ module.exports = class SageDB {
     // for the newArtists and newTags we detected while adapting, create them!
     newArtists.forEach(artist => this.upsertArtist(artist));
     newTags.forEach(tag => this.upsertTag(tag));
-    // if we're updating an arrangement such that one of its newly changed fields
-    // will change the ID of the document, we delete the old doc and create a new
-    // one. otherwise we simply upsert. in either case we have to call different
-    // methods if we're also adding files.
     const arrID = idgen.getArrangementID(toUpload);
-    const deleteAndReAdd = alreadyInDB && (toUpload._id !== arrID);
+    const multiRelationshipFields = [
+      { field: 'albums', relationshipField: 'album', type: types.ARRANGEMENT_ALBUMS_RELATIONSHIP_TYPE, idGenerator: idgen.getArrangementAlbumID },
+      { field: 'arrangers', relationshipField: 'hangover', type: types.ARRANGEMENT_ARRANGERS_RELATIONSHIP_TYPE, idGenerator: idgen.getArrangementArrangerID },
+      { field: 'concerts', relationshipField: 'concert', type: types.ARRANGEMENT_CONCERTS_RELATIONSHIP_TYPE, idGenerator: idgen.getArrangementConcertID },
+      { field: 'genre', relationshipField: 'genre', type: types.ARRANGEMENT_GENRE_RELATIONSHIP_TYPE, idGenerator: idgen.getArrangementGenreID },
+      { field: 'semestersPerformed', relationshipField: 'semester', type: types.ARRANGEMENT_SEMESTERS_PERFORMED_RELATIONSHIP_TYPE, idGenerator: idgen.getArrangementSemesterPerformedID },
+      { field: 'soloists', relationshipField: 'hangover', type: types.ARRANGEMENT_SOLOISTS_RELATIONSHIP_TYPE, idGenerator: idgen.getArrangementSoloistID },
+    ];
+    const singleRelationshipFields = [
+      { field: 'semesterArranged', relationshipField: 'semester', type: types.ARRANGEMENT_SEMESTER_ARRANGED_RELATIONSHIP_TYPE, idGenerator: idgen.getArrangementSemesterArrangedID },
+    ];
+    const relationships = [];
+
+    for (const { field, relationshipField, type, idGenerator } of multiRelationshipFields) {
+      if (toUpload[field] && toUpload[field].length) {
+        for (const thingID of toUpload[field]) {
+          const doc = { [relationshipField]: thingID, arrangement: arrID };
+          relationships.push({ doc, type, id: idGenerator(arrID, thingID) });
+        }
+      }
+    }
+
+    for (const { field, relationshipField, type, idGenerator } of singleRelationshipFields) {
+      if (toUpload[field]) {
+        const doc = { [relationshipField]: toUpload[field], arrangement: arrID };
+        relationships.push({ doc, type, id: idGenerator(arrID, toUpload[field]) });
+      }
+    }
+
     return filesProm.then((otherFiles) => {
       filesToUpload = [...filesToUpload, ...otherFiles];
-      if (deleteAndReAdd) {
-        if (filesToUpload.length) {
-          return this._destroyAndAddWithFiles(toUpload, arrID, filesToUpload);
-        }
-        return this._destroyAndAdd(toUpload, arrID);
-      } else if (filesToUpload.length) {
+      if (filesToUpload.length) {
         return this._upsertTypeWithFiles(toUpload, filesToUpload, types.ARRANGEMENT_TYPE, arrID);
       }
       return this._upsertType(toUpload, types.ARRANGEMENT_TYPE, arrID);
-    });
+    })
+    .then(() => Promise.map(relationships, ({ doc, type, id }) => this._upsertType(doc, type, id), { concurrency: 3 }));
   }
 
   /** Format the call to _upsert for the above doc types */

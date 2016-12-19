@@ -2,8 +2,7 @@ const Promise = require('bluebird');
 const cloudant = require('cloudant');
 const types = require('./cloudantHelpers/DBTypes');
 const idgen = require('./cloudantHelpers/IDGenerators');
-const { adaptFile, adaptFiles, adaptArrangement } = require('./cloudantHelpers/Adapters');
-const { fileFields } = require('../shared/FormConstants');
+const { adaptFiles, adaptArrangement } = require('./cloudantHelpers/Adapters');
 
 const LIMIT = 20;
 const OPTS = { concurrency: 3 };
@@ -160,44 +159,20 @@ module.exports = class SageDB {
   upsertTag(t) { return this._upsertType(t, types.TAG_TYPE, idgen.getTagID(t)); }
   upsertKey(k) { return this._upsertType(k, types.KEY_TYPE, idgen.getKeyID(k)); }
   upsertArrangement(arrangement, files = {}) {
-    let filesToUpload = adaptFiles(files, arrangement.name);
-    const alreadyInDB = arrangement._id && arrangement._rev;
-    // ok, this is a bit of a mess, but i swear it's necessary. if we're editing
-    // this arrangement and it already has files in the database, we have to fetch
-    // them and re-add them. this is annoying and there definitely exists a way to
-    // not do this (probably). we do it this way especially if we're renaming the
-    // arrangement as there's no way to transfer attachments directly. so anyway,
-    // we fetch the existing files by looking in the arrangement file fields which'll
-    // be of the format `${attachmentID},${content_type}`. we then format the object
-    // to be the same as what's returned in adaptFiles
-    const filesProm = alreadyInDB ? Promise.map(
-      [...fileFields].map(field => arrangement[field]).filter(fileInfo => !!fileInfo),
-      (fileInfo) => {
-        const [attachmentID, type] = fileInfo.split(',');
-        const split = attachmentID.split('.');
-        const dot = split[split.length - 1];
-        return this.getArrangementAttachment(arrangement._id, attachmentID)
-          .then(buffer => adaptFile(buffer, arrangement.name, type, dot));
-      }
-    ) : Promise.resolve([]);
-    const { arrID, toUpload, newArtists = [], newTags = [], relationships = [] } = adaptArrangement(arrangement);
-
-    console.log('loading files');
-    return filesProm.then((otherFiles) => {
+    const filesToUpload = adaptFiles(files, arrangement.name);
+    const { arrID, toUpload, newArtists = [], newTags = [], relationships = [] } = adaptArrangement(arrangement, filesToUpload);
+    console.log('creating new artists and tags');
+    return Promise.join(
+      Promise.map(newArtists, a => this.upsertArtist(a), OPTS),
+      Promise.map(newTags, t => this.upsertTag(t), OPTS),
+      () => {}
+    ).then(() => {
       console.log('upserting arrangement doc');
-      filesToUpload = [...filesToUpload, ...otherFiles];
       if (filesToUpload.length) {
         return this._upsertTypeWithFiles(toUpload, filesToUpload, types.ARRANGEMENT_TYPE, arrID);
       }
       return this._upsertType(toUpload, types.ARRANGEMENT_TYPE, arrID);
     })
-    // for the newArtists and newTags we detected while adapting, create them!
-    .then(() => console.log('creating new artists and tags'))
-    .then(() => Promise.join(
-      Promise.map(newArtists, a => this.upsertArtist(a), OPTS),
-      Promise.map(newTags, t => this.upsertTag(t), OPTS),
-      () => {}
-    ))
     .then(() => console.log('fetching existing relationships'))
     .then(() => this.searchRelationships('arrangement', arrID))
     .then((oldRelationships) => {
@@ -221,8 +196,7 @@ module.exports = class SageDB {
         Promise.map(relationshipsToDelete, ({ _id, _rev }) => this.destroy(_id, _rev), OPTS),
         () => {}
       );
-    })
-    .catch(console.error);
+    });
   }
 
   /** Format the call to _upsert for the above doc types */

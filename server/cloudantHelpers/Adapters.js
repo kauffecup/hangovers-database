@@ -1,7 +1,13 @@
 const mime = require('mime-types');
-const { binaryFields, fileFields, objectArrayFields, NEW_IDENTIFIER } = require('../../shared/FormConstants');
 const idgen = require('./IDGenerators');
 const types = require('./DBTypes');
+const {
+  binaryFields,
+  fileFields,
+  objectArrayFields,
+  NEW_IDENTIFIER,
+  DELETE_IDENTIFIER,
+} = require('../../shared/FormConstants');
 
 const multiRelationshipFields = [
   { field: 'albums', relationshipField: 'album', type: types.ARRANGEMENT_ALBUMS_RELATIONSHIP_TYPE, idGenerator: idgen.getArrangementAlbumID },
@@ -48,17 +54,13 @@ const adaptFiles = (files, name) => {
 /**
  * Take an arrangement obejct and make it cloudant friendly
  */
-const adaptArrangement = (arrangement) => {
+const adaptArrangement = (arrangement, files = []) => {
   const toUpload = Object.assign({}, arrangement);
   const arrID = idgen.getArrangementID(toUpload);
+
   // make sure booleans are actually booleans
   for (const binaryField of binaryFields) {
     toUpload[binaryField] = toUpload[binaryField] === 'true';
-  }
-  // if these fields are in the arrangement object and not the files object it
-  // means we're editing and they are unchanged
-  for (const fileField of [...fileFields, '_attachments']) {
-    delete toUpload[fileField];
   }
   // make sure array fields are actually arrays - if there's only a single key
   // it'll be treated as a string
@@ -66,6 +68,27 @@ const adaptArrangement = (arrangement) => {
     if (toUpload[arrayField]) {
       toUpload[arrayField] = [].concat(toUpload[arrayField]);
     }
+  }
+  // if these fields are in the arrangement object and not the files object it
+  // means we're editing and they are unchanged
+  for (const fileField of fileFields) {
+    delete toUpload[fileField];
+  }
+  // file time! parse the _attachments object. if we're going to be uploading
+  // a new file of that name, or if the delete identifier is specified, remove
+  // that file object from _attachments so that it is removed from cloudant
+  if (toUpload._attachments) {
+    try {
+      toUpload._attachments = JSON.parse(toUpload._attachments);
+      for (const { name } of files) {
+        delete toUpload._attachments[name];
+      }
+      for (const key of Object.keys(toUpload._attachments)) {
+        if (toUpload._attachments[key] === DELETE_IDENTIFIER) {
+          delete toUpload._attachments[key];
+        }
+      }
+    } catch (e) { console.error(e); }
   }
   // in this field we allow the user to define a new artist. if that's what's
   // going down, strip the new identifier and return a new artist object

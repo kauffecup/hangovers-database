@@ -26,3 +26,6 @@ module.exports.fileFields = ['finale', 'recording', 'pdf'];
 
 /** String appended to form objects to let the server know it should create a new object */
 module.exports.NEW_IDENTIFIER = 'new:';
+
+/** Indicates to the backend that a certain file field should be removed from the database */
+module.exports.DELETE_IDENTIFIER = 'delete_file';

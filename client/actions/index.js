@@ -137,7 +137,9 @@ function submitArrangement(values) {
   const formData = new FormData();
   for (const key of Object.keys(values)) {
     if (values[key]) {
-      if (Array.isArray(values[key])) {
+      if (key === '_attachments') {
+        formData.append('_attachments', JSON.stringify(values._attachments));
+      } else if (Array.isArray(values[key])) {
         for (let i = 0; i < values[key].length; i++) {
           formData.append(key, values[key][i]);
         }

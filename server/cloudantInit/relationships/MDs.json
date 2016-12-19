@@ -1,0 +1,584 @@
+[
+  {
+    "_id": "md_semester_relationship_hangover_dehmel_richard_semester_1968_fall",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_dehmel_richard",
+    "semester": "semester_1968_fall"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_dehmel_richard_semester_1969_spring",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_dehmel_richard",
+    "semester": "semester_1969_spring"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_dehmel_richard_semester_1969_fall",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_dehmel_richard",
+    "semester": "semester_1969_fall"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_dehmel_richard_semester_1970_spring",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_dehmel_richard",
+    "semester": "semester_1970_spring"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_dehmel_richard_semester_1970_fall",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_dehmel_richard",
+    "semester": "semester_1970_fall"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_dehmel_richard_semester_1971_spring",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_dehmel_richard",
+    "semester": "semester_1971_spring"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_french_dick_semester_1971_fall",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_french_dick",
+    "semester": "semester_1971_fall"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_french_dick_semester_1972_spring",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_french_dick",
+    "semester": "semester_1972_spring"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_malinowski_stanley_semester_1972_fall",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_malinowski_stanley",
+    "semester": "semester_1972_fall"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_malinowski_stanley_semester_1973_spring",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_malinowski_stanley",
+    "semester": "semester_1973_spring"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_welker_bill_semester_1973_fall",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_welker_bill",
+    "semester": "semester_1973_fall"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_welker_bill_semester_1974_spring",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_welker_bill",
+    "semester": "semester_1974_spring"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_welker_bill_semester_1974_fall",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_welker_bill",
+    "semester": "semester_1974_fall"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_welker_bill_semester_1975_spring",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_welker_bill",
+    "semester": "semester_1975_spring"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_moormann_tom_e_semester_1975_fall",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_moormann_tom_e",
+    "semester": "semester_1975_fall"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_moormann_tom_e_semester_1976_spring",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_moormann_tom_e",
+    "semester": "semester_1976_spring"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_janower_david_m_semester_1976_fall",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_janower_david_m",
+    "semester": "semester_1976_fall"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_janower_david_m_semester_1977_spring",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_janower_david_m",
+    "semester": "semester_1977_spring"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_pearson_gregory_semester_1977_fall",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_pearson_gregory",
+    "semester": "semester_1977_fall"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_pearson_gregory_semester_1978_spring",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_pearson_gregory",
+    "semester": "semester_1978_spring"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_wardner_jon_semester_1978_fall",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_wardner_jon",
+    "semester": "semester_1978_fall"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_wardner_jon_semester_1979_spring",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_wardner_jon",
+    "semester": "semester_1979_spring"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_wardner_jon_semester_1979_fall",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_wardner_jon",
+    "semester": "semester_1979_fall"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_wardner_jon_semester_1980_spring",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_wardner_jon",
+    "semester": "semester_1980_spring"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_wardner_jon_semester_1980_fall",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_wardner_jon",
+    "semester": "semester_1980_fall"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_hess_phil_semester_1981_spring",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_hess_phil",
+    "semester": "semester_1981_spring"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_hess_phil_semester_1981_fall",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_hess_phil",
+    "semester": "semester_1981_fall"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_mack_robert_semester_1982_spring",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_mack_robert",
+    "semester": "semester_1982_spring"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_mack_robert_semester_1982_fall",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_mack_robert",
+    "semester": "semester_1982_fall"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_mack_robert_semester_1983_spring",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_mack_robert",
+    "semester": "semester_1983_spring"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_mack_robert_semester_1983_fall",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_mack_robert",
+    "semester": "semester_1983_fall"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_schiller_ronald_semester_1984_spring",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_schiller_ronald",
+    "semester": "semester_1984_spring"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_schiller_ronald_semester_1984_fall",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_schiller_ronald",
+    "semester": "semester_1984_fall"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_becker_scott_semester_1985_spring",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_becker_scott",
+    "semester": "semester_1985_spring"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_becker_scott_semester_1985_fall",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_becker_scott",
+    "semester": "semester_1985_fall"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_becker_scott_semester_1986_spring",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_becker_scott",
+    "semester": "semester_1986_spring"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_becker_scott_semester_1986_fall",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_becker_scott",
+    "semester": "semester_1986_fall"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_becker_scott_semester_1987_spring",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_becker_scott",
+    "semester": "semester_1987_spring"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_becker_scott_semester_1987_fall",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_becker_scott",
+    "semester": "semester_1987_fall"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_becker_scott_semester_1988_spring",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_becker_scott",
+    "semester": "semester_1988_spring"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_schloss_randall_semester_1988_fall",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_schloss_randall",
+    "semester": "semester_1988_fall"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_schloss_randall_semester_1989_spring",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_schloss_randall",
+    "semester": "semester_1989_spring"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_schloss_randall_semester_1989_fall",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_schloss_randall",
+    "semester": "semester_1989_fall"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_schloss_randall_semester_1990_spring",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_schloss_randall",
+    "semester": "semester_1990_spring"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_mount_david_semester_1990_fall",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_mount_david",
+    "semester": "semester_1990_fall"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_mount_david_semester_1991_spring",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_mount_david",
+    "semester": "semester_1991_spring"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_peters_eric_semester_1991_fall",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_peters_eric",
+    "semester": "semester_1991_fall"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_peters_eric_semester_1992_spring",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_peters_eric",
+    "semester": "semester_1992_spring"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_chu_brian_semester_1992_fall",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_chu_brian",
+    "semester": "semester_1992_fall"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_chu_brian_semester_1993_spring",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_chu_brian",
+    "semester": "semester_1993_spring"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_chu_brian_semester_1993_fall",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_chu_brian",
+    "semester": "semester_1993_fall"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_chu_brian_semester_1994_spring",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_chu_brian",
+    "semester": "semester_1994_spring"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_lee_ryan_semester_1994_fall",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_lee_ryan",
+    "semester": "semester_1994_fall"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_lee_ryan_semester_1995_spring",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_lee_ryan",
+    "semester": "semester_1995_spring"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_trogolo_mike_semester_1995_fall",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_trogolo_mike",
+    "semester": "semester_1995_fall"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_trogolo_mike_semester_1996_spring",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_trogolo_mike",
+    "semester": "semester_1996_spring"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_mendez_carib_semester_1996_fall",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_mendez_carib",
+    "semester": "semester_1996_fall"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_brose_alexander_semester_1997_spring",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_brose_alexander",
+    "semester": "semester_1997_spring"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_brose_alexander_semester_1997_fall",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_brose_alexander",
+    "semester": "semester_1997_fall"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_farouk_adam_semester_1998_spring",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_farouk_adam",
+    "semester": "semester_1998_spring"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_farouk_adam_semester_1998_fall",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_farouk_adam",
+    "semester": "semester_1998_fall"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_gregorio_joe_semester_1999_spring",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_gregorio_joe",
+    "semester": "semester_1999_spring"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_gregorio_joe_semester_1999_fall",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_gregorio_joe",
+    "semester": "semester_1999_fall"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_wildeman_chris_semester_2000_spring",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_wildeman_chris",
+    "semester": "semester_2000_spring"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_wildeman_chris_semester_2000_fall",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_wildeman_chris",
+    "semester": "semester_2000_fall"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_meakem_bill_semester_2001_spring",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_meakem_bill",
+    "semester": "semester_2001_spring"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_meakem_bill_semester_2001_fall",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_meakem_bill",
+    "semester": "semester_2001_fall"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_goldin_andy_semester_2002_spring",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_goldin_andy",
+    "semester": "semester_2002_spring"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_goldin_andy_semester_2002_fall",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_goldin_andy",
+    "semester": "semester_2002_fall"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_bindman_jevon_semester_2003_spring",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_bindman_jevon",
+    "semester": "semester_2003_spring"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_bindman_jevon_semester_2003_fall",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_bindman_jevon",
+    "semester": "semester_2003_fall"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_mccarl_clayton_semester_2004_spring",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_mccarl_clayton",
+    "semester": "semester_2004_spring"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_mccarl_clayton_semester_2004_fall",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_mccarl_clayton",
+    "semester": "semester_2004_fall"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_burns_zach_semester_2005_spring",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_burns_zach",
+    "semester": "semester_2005_spring"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_burns_zach_semester_2005_fall",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_burns_zach",
+    "semester": "semester_2005_fall"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_welker_steve_semester_2006_spring",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_welker_steve",
+    "semester": "semester_2006_spring"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_welker_steve_semester_2006_fall",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_welker_steve",
+    "semester": "semester_2006_fall"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_welker_steve_semester_2007_spring",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_welker_steve",
+    "semester": "semester_2007_spring"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_welker_steve_semester_2007_fall",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_welker_steve",
+    "semester": "semester_2007_fall"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_rosenfield_ben_semester_2008_spring",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_rosenfield_ben",
+    "semester": "semester_2008_spring"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_rosenfield_ben_semester_2008_fall",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_rosenfield_ben",
+    "semester": "semester_2008_fall"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_goldin_ian_semester_2009_spring",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_goldin_ian",
+    "semester": "semester_2009_spring"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_goldin_ian_semester_2009_fall",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_goldin_ian",
+    "semester": "semester_2009_fall"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_goldin_ian_semester_2010_spring",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_goldin_ian",
+    "semester": "semester_2010_spring"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_goldin_ian_semester_2010_fall",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_goldin_ian",
+    "semester": "semester_2010_fall"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_breslin_sam_semester_2011_spring",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_breslin_sam",
+    "semester": "semester_2011_spring"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_breslin_sam_semester_2011_fall",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_breslin_sam",
+    "semester": "semester_2011_fall"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_kaufman_jonathan_semester_2012_spring",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_kaufman_jonathan",
+    "semester": "semester_2012_spring"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_kaufman_jonathan_semester_2012_fall",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_kaufman_jonathan",
+    "semester": "semester_2012_fall"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_alur_roshun_semester_2013_spring",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_alur_roshun",
+    "semester": "semester_2013_spring"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_alur_roshun_semester_2013_fall",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_alur_roshun",
+    "semester": "semester_2013_fall"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_kelly_christian_semester_2014_spring",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_kelly_christian",
+    "semester": "semester_2014_spring"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_kelly_christian_semester_2014_fall",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_kelly_christian",
+    "semester": "semester_2014_fall"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_yetter_evan_semester_2015_spring",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_yetter_evan",
+    "semester": "semester_2015_spring"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_yetter_evan_semester_2015_fall",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_yetter_evan",
+    "semester": "semester_2015_fall"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_lassman_jonathan_semester_2016_spring",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_lassman_jonathan",
+    "semester": "semester_2016_spring"
+  },
+  {
+    "_id": "md_semester_relationship_hangover_lassman_jonathan_semester_2016_fall",
+    "type": "md_semester_relationship",
+    "hangover": "hangover_lassman_jonathan",
+    "semester": "semester_2016_fall"
+  }
+]

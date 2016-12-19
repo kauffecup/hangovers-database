@@ -1,0 +1,1532 @@
+[
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_ecker_george_semester_1964_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_ecker_george",
+    "semester": "semester_1964_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_newman_h_michael_semester_1964_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_newman_h_michael",
+    "semester": "semester_1964_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_pearson_gregory_semester_1967_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_pearson_gregory",
+    "semester": "semester_1967_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_richards_melvar_semester_1967_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_richards_melvar",
+    "semester": "semester_1967_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_wagner_stephen_semester_1967_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_wagner_stephen",
+    "semester": "semester_1967_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_dehmel_richard_semester_1969_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_dehmel_richard",
+    "semester": "semester_1969_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_rose_barry_semester_1969_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_rose_barry",
+    "semester": "semester_1969_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_buss_donald_semester_1970_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_buss_donald",
+    "semester": "semester_1970_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_jacobson_b_j._semester_1970_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_jacobson_b_j.",
+    "semester": "semester_1970_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_batson_philip_e_semester_1970_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_batson_philip_e",
+    "semester": "semester_1970_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_anspach_robert_semester_1970_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_anspach_robert",
+    "semester": "semester_1970_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_french_dick_semester_1971_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_french_dick",
+    "semester": "semester_1971_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_shaw_sanford_semester_1971_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_shaw_sanford",
+    "semester": "semester_1971_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_nicolls_john_semester_1972_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_nicolls_john",
+    "semester": "semester_1972_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_gull_george_semester_1972_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_gull_george",
+    "semester": "semester_1972_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_malinowski_stanley_semester_1972_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_malinowski_stanley",
+    "semester": "semester_1972_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_keyes_alan_semester_1972_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_keyes_alan",
+    "semester": "semester_1972_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_cagney_william_semester_1973_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_cagney_william",
+    "semester": "semester_1973_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_welker_bill_semester_1973_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_welker_bill",
+    "semester": "semester_1973_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_ross_david_semester_1973_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_ross_david",
+    "semester": "semester_1973_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_mallon_steve_semester_1973_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_mallon_steve",
+    "semester": "semester_1973_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_janower_david_m_semester_1974_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_janower_david_m",
+    "semester": "semester_1974_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_murdoch_john_b_semester_1974_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_murdoch_john_b",
+    "semester": "semester_1974_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_stewart_jonathan_semester_1974_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_stewart_jonathan",
+    "semester": "semester_1974_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_steever_sanford_semester_1974_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_steever_sanford",
+    "semester": "semester_1974_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_terrell_bruce_semester_1974_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_terrell_bruce",
+    "semester": "semester_1974_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_moormann_tom_e_semester_1975_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_moormann_tom_e",
+    "semester": "semester_1975_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_neal_david_e_semester_1975_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_neal_david_e",
+    "semester": "semester_1975_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_smith_terry_r_semester_1975_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_smith_terry_r",
+    "semester": "semester_1975_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_bennett_james_semester_1975_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_bennett_james",
+    "semester": "semester_1975_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_andersen_charles_p_semester_1976_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_andersen_charles_p",
+    "semester": "semester_1976_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_andrews_thomas_semester_1976_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_andrews_thomas",
+    "semester": "semester_1976_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_hayner_john_russell_semester_1976_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_hayner_john_russell",
+    "semester": "semester_1976_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_johnson_randall_semester_1976_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_johnson_randall",
+    "semester": "semester_1976_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_juceum_donald_s_semester_1977_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_juceum_donald_s",
+    "semester": "semester_1977_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_kyle_robert_semester_1977_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_kyle_robert",
+    "semester": "semester_1977_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_miller_benjamin_semester_1977_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_miller_benjamin",
+    "semester": "semester_1977_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_stoddard_daniel_semester_1977_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_stoddard_daniel",
+    "semester": "semester_1977_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_andreassen_paul_semester_1978_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_andreassen_paul",
+    "semester": "semester_1978_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_chatel_peter_semester_1978_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_chatel_peter",
+    "semester": "semester_1978_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_gordon_jim_semester_1978_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_gordon_jim",
+    "semester": "semester_1978_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_menee_robert_semester_1978_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_menee_robert",
+    "semester": "semester_1978_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_reaves_donald_semester_1978_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_reaves_donald",
+    "semester": "semester_1978_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_snedden_william_semester_1978_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_snedden_william",
+    "semester": "semester_1978_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_haber_scott_semester_1980_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_haber_scott",
+    "semester": "semester_1980_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_hubbard_steve_semester_1980_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_hubbard_steve",
+    "semester": "semester_1980_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_jones_david_semester_1980_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_jones_david",
+    "semester": "semester_1980_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_littell_john_semester_1980_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_littell_john",
+    "semester": "semester_1980_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_nitzschke_robert_semester_1980_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_nitzschke_robert",
+    "semester": "semester_1980_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_wardner_jon_semester_1980_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_wardner_jon",
+    "semester": "semester_1980_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_boyadjis_anthony_semester_1981_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_boyadjis_anthony",
+    "semester": "semester_1981_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_erickson_kenyon_semester_1981_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_erickson_kenyon",
+    "semester": "semester_1981_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_page_rob_semester_1981_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_page_rob",
+    "semester": "semester_1981_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_urban_russell_semester_1981_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_urban_russell",
+    "semester": "semester_1981_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_burchard_marshall_semester_1982_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_burchard_marshall",
+    "semester": "semester_1982_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_hess_phil_semester_1982_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_hess_phil",
+    "semester": "semester_1982_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_holmes_stephen_semester_1982_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_holmes_stephen",
+    "semester": "semester_1982_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_polk_mike_semester_1982_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_polk_mike",
+    "semester": "semester_1982_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_salomon_james_semester_1982_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_salomon_james",
+    "semester": "semester_1982_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_schlumberger_marshall_semester_1982_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_schlumberger_marshall",
+    "semester": "semester_1982_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_stromecki_gene_semester_1982_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_stromecki_gene",
+    "semester": "semester_1982_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_ambler_david_semester_1983_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_ambler_david",
+    "semester": "semester_1983_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_hansen_john_semester_1983_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_hansen_john",
+    "semester": "semester_1983_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_hildreth_james_semester_1983_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_hildreth_james",
+    "semester": "semester_1983_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_miller_iii_philippus_semester_1983_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_miller_iii_philippus",
+    "semester": "semester_1983_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_walters_robert_semester_1983_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_walters_robert",
+    "semester": "semester_1983_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_black_joseph_semester_1984_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_black_joseph",
+    "semester": "semester_1984_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_cruz_nomeriano_semester_1984_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_cruz_nomeriano",
+    "semester": "semester_1984_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_greenstein_micah_semester_1984_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_greenstein_micah",
+    "semester": "semester_1984_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_sherman_jeff_semester_1984_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_sherman_jeff",
+    "semester": "semester_1984_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_zimmerman_scott_semester_1984_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_zimmerman_scott",
+    "semester": "semester_1984_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_bonalle_dave_semester_1985_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_bonalle_dave",
+    "semester": "semester_1985_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_gaechter_chris_semester_1985_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_gaechter_chris",
+    "semester": "semester_1985_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_herr_doug_semester_1985_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_herr_doug",
+    "semester": "semester_1985_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_mack_robert_semester_1985_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_mack_robert",
+    "semester": "semester_1985_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_sherwood_peter_semester_1985_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_sherwood_peter",
+    "semester": "semester_1985_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_conway_jim_semester_1986_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_conway_jim",
+    "semester": "semester_1986_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_firm_woody_semester_1986_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_firm_woody",
+    "semester": "semester_1986_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_keteltas_gilbert_semester_1986_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_keteltas_gilbert",
+    "semester": "semester_1986_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_peck_don_semester_1986_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_peck_don",
+    "semester": "semester_1986_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_peierls_ben_semester_1986_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_peierls_ben",
+    "semester": "semester_1986_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_schiller_ronald_semester_1986_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_schiller_ronald",
+    "semester": "semester_1986_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_stinson_cornell_semester_1986_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_stinson_cornell",
+    "semester": "semester_1986_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_cardin_mark_semester_1987_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_cardin_mark",
+    "semester": "semester_1987_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_wagner_dan_semester_1987_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_wagner_dan",
+    "semester": "semester_1987_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_baker_stephen_semester_1988_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_baker_stephen",
+    "semester": "semester_1988_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_becker_scott_semester_1988_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_becker_scott",
+    "semester": "semester_1988_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_briglin_timothy_semester_1988_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_briglin_timothy",
+    "semester": "semester_1988_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_denny_scott_semester_1988_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_denny_scott",
+    "semester": "semester_1988_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_hanavan_jeff_semester_1988_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_hanavan_jeff",
+    "semester": "semester_1988_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_mcafoos_larry_semester_1988_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_mcafoos_larry",
+    "semester": "semester_1988_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_white_jake_semester_1988_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_white_jake",
+    "semester": "semester_1988_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_houggy_david_semester_1989_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_houggy_david",
+    "semester": "semester_1989_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_manzano_allen_semester_1989_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_manzano_allen",
+    "semester": "semester_1989_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_seligman_joel_semester_1989_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_seligman_joel",
+    "semester": "semester_1989_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_smith_bruce_semester_1989_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_smith_bruce",
+    "semester": "semester_1989_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_rospigliosi_cesar_semester_1990_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_rospigliosi_cesar",
+    "semester": "semester_1990_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_schloss_randall_semester_1990_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_schloss_randall",
+    "semester": "semester_1990_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_thomas_derek_semester_1990_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_thomas_derek",
+    "semester": "semester_1990_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_hedlund_john_semester_1991_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_hedlund_john",
+    "semester": "semester_1991_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_saunders_bob_semester_1991_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_saunders_bob",
+    "semester": "semester_1991_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_beversdorf_martin_semester_1992_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_beversdorf_martin",
+    "semester": "semester_1992_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_choi_gene_semester_1992_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_choi_gene",
+    "semester": "semester_1992_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_capelli_dave_semester_1992_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_capelli_dave",
+    "semester": "semester_1992_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_crane_rob_semester_1992_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_crane_rob",
+    "semester": "semester_1992_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_horner_terry_semester_1992_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_horner_terry",
+    "semester": "semester_1992_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_hrousis_constantine_semester_1992_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_hrousis_constantine",
+    "semester": "semester_1992_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_mcelveen_everett_semester_1992_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_mcelveen_everett",
+    "semester": "semester_1992_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_peters_eric_semester_1992_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_peters_eric",
+    "semester": "semester_1992_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_skolnik_dan_semester_1992_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_skolnik_dan",
+    "semester": "semester_1992_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_whitney_j_d_semester_1992_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_whitney_j_d",
+    "semester": "semester_1992_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_willett_andrew_semester_1992_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_willett_andrew",
+    "semester": "semester_1992_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_van_slyke_jim_semester_1992_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_van_slyke_jim",
+    "semester": "semester_1992_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_hicks_aaron_semester_1993_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_hicks_aaron",
+    "semester": "semester_1993_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_macris_john_semester_1993_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_macris_john",
+    "semester": "semester_1993_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_mount_david_semester_1993_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_mount_david",
+    "semester": "semester_1993_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_banino_michael_semester_1994_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_banino_michael",
+    "semester": "semester_1994_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_healy_michael_semester_1994_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_healy_michael",
+    "semester": "semester_1994_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_joshi_uday_semester_1994_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_joshi_uday",
+    "semester": "semester_1994_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_kho_geoffrey_semester_1994_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_kho_geoffrey",
+    "semester": "semester_1994_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_marovitz_dan_semester_1994_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_marovitz_dan",
+    "semester": "semester_1994_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_richmond_aaron_semester_1994_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_richmond_aaron",
+    "semester": "semester_1994_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_lee_ryan_semester_1995_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_lee_ryan",
+    "semester": "semester_1995_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_trogolo_mike_semester_1996_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_trogolo_mike",
+    "semester": "semester_1996_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_adler_keith_semester_1996_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_adler_keith",
+    "semester": "semester_1996_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_chu_brian_semester_1996_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_chu_brian",
+    "semester": "semester_1996_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_doll_william_semester_1996_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_doll_william",
+    "semester": "semester_1996_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_goff_terence_semester_1996_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_goff_terence",
+    "semester": "semester_1996_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_meyersfield_eric_semester_1996_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_meyersfield_eric",
+    "semester": "semester_1996_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_miller_paul_semester_1996_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_miller_paul",
+    "semester": "semester_1996_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_romalis_josh_semester_1996_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_romalis_josh",
+    "semester": "semester_1996_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_hsieh_i-sah_semester_1997_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_hsieh_i-sah",
+    "semester": "semester_1997_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_swan_andrew_semester_1997_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_swan_andrew",
+    "semester": "semester_1997_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_heanue_taylor_semester_1997_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_heanue_taylor",
+    "semester": "semester_1997_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_applebee_garrick_semester_1998_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_applebee_garrick",
+    "semester": "semester_1998_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_brose_alexander_semester_1998_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_brose_alexander",
+    "semester": "semester_1998_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_cleverdon_joseph_semester_1998_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_cleverdon_joseph",
+    "semester": "semester_1998_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_kassatly_michael_semester_1998_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_kassatly_michael",
+    "semester": "semester_1998_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_raffaele_michael_semester_1998_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_raffaele_michael",
+    "semester": "semester_1998_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_ray_brian_semester_1998_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_ray_brian",
+    "semester": "semester_1998_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_hall_bryce_semester_1999_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_hall_bryce",
+    "semester": "semester_1999_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_lee_derrick_semester_1999_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_lee_derrick",
+    "semester": "semester_1999_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_pan_bruce_semester_1999_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_pan_bruce",
+    "semester": "semester_1999_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_mendez_carib_semester_1999_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_mendez_carib",
+    "semester": "semester_1999_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_ben-aviv_david_semester_2000_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_ben-aviv_david",
+    "semester": "semester_2000_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_johnk_loki_semester_2000_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_johnk_loki",
+    "semester": "semester_2000_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_mandala_nicholas_semester_2000_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_mandala_nicholas",
+    "semester": "semester_2000_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_engelbrecht_steve_semester_2001_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_engelbrecht_steve",
+    "semester": "semester_2001_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_farouk_adam_semester_2001_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_farouk_adam",
+    "semester": "semester_2001_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_gregorio_joe_semester_2001_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_gregorio_joe",
+    "semester": "semester_2001_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_jaramillo_george_semester_2001_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_jaramillo_george",
+    "semester": "semester_2001_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_pratt_gregory_semester_2001_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_pratt_gregory",
+    "semester": "semester_2001_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_selan_jeremy_semester_2001_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_selan_jeremy",
+    "semester": "semester_2001_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_bradford_sam_semester_2002_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_bradford_sam",
+    "semester": "semester_2002_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_cooley_omar_semester_2002_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_cooley_omar",
+    "semester": "semester_2002_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_martin_rodney_semester_2002_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_martin_rodney",
+    "semester": "semester_2002_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_meakem_bill_semester_2002_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_meakem_bill",
+    "semester": "semester_2002_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_nestor_michael_semester_2002_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_nestor_michael",
+    "semester": "semester_2002_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_wildeman_chris_semester_2002_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_wildeman_chris",
+    "semester": "semester_2002_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_goldin_andy_semester_2003_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_goldin_andy",
+    "semester": "semester_2003_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_noble_chris_semester_2003_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_noble_chris",
+    "semester": "semester_2003_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_staicu_serban_semester_2003_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_staicu_serban",
+    "semester": "semester_2003_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_gacioch_brian_semester_2004_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_gacioch_brian",
+    "semester": "semester_2004_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_irizarry_joshua_semester_2004_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_irizarry_joshua",
+    "semester": "semester_2004_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_lowe_benjamin_semester_2004_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_lowe_benjamin",
+    "semester": "semester_2004_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_magargi_samuel_semester_2004_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_magargi_samuel",
+    "semester": "semester_2004_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_odeh_adam_semester_2004_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_odeh_adam",
+    "semester": "semester_2004_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_riley_jeremy_semester_2004_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_riley_jeremy",
+    "semester": "semester_2004_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_walker_weston_semester_2004_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_walker_weston",
+    "semester": "semester_2004_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_bindman_dylan_semester_2005_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_bindman_dylan",
+    "semester": "semester_2005_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_bindman_jevon_semester_2005_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_bindman_jevon",
+    "semester": "semester_2005_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_hunter_evan_semester_2005_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_hunter_evan",
+    "semester": "semester_2005_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_janiga_matthew_semester_2005_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_janiga_matthew",
+    "semester": "semester_2005_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_markant_doug_semester_2005_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_markant_doug",
+    "semester": "semester_2005_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_moscoe_daniel_semester_2005_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_moscoe_daniel",
+    "semester": "semester_2005_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_ryu_steven_semester_2005_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_ryu_steven",
+    "semester": "semester_2005_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_burns_zach_semester_2006_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_burns_zach",
+    "semester": "semester_2006_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_fassler_joe_semester_2006_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_fassler_joe",
+    "semester": "semester_2006_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_leuthold_doug_semester_2006_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_leuthold_doug",
+    "semester": "semester_2006_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_mahesan_arnold_semester_2006_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_mahesan_arnold",
+    "semester": "semester_2006_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_mccarl_clayton_semester_2006_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_mccarl_clayton",
+    "semester": "semester_2006_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_kim_david_semester_2007_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_kim_david",
+    "semester": "semester_2007_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_mckeon_michael_semester_2007_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_mckeon_michael",
+    "semester": "semester_2007_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_vitanza_justin_semester_2007_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_vitanza_justin",
+    "semester": "semester_2007_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_nisly_miles_semester_2007_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_nisly_miles",
+    "semester": "semester_2007_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_little_pat_semester_2007_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_little_pat",
+    "semester": "semester_2007_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_berman_oren_semester_2008_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_berman_oren",
+    "semester": "semester_2008_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_graham_evan_semester_2008_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_graham_evan",
+    "semester": "semester_2008_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_robbins_matt_semester_2008_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_robbins_matt",
+    "semester": "semester_2008_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_russell_ethan_semester_2008_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_russell_ethan",
+    "semester": "semester_2008_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_toris_jason_semester_2008_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_toris_jason",
+    "semester": "semester_2008_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_welker_steve_semester_2008_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_welker_steve",
+    "semester": "semester_2008_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_wilke_colin_semester_2008_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_wilke_colin",
+    "semester": "semester_2008_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_wright_bill_semester_2008_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_wright_bill",
+    "semester": "semester_2008_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_dankwa_joel_semester_2009_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_dankwa_joel",
+    "semester": "semester_2009_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_piel_adam_semester_2009_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_piel_adam",
+    "semester": "semester_2009_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_rosenfield_ben_semester_2009_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_rosenfield_ben",
+    "semester": "semester_2009_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_shannon_eric_semester_2009_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_shannon_eric",
+    "semester": "semester_2009_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_eng_jeff_semester_2010_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_eng_jeff",
+    "semester": "semester_2010_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_felix_tommy_semester_2010_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_felix_tommy",
+    "semester": "semester_2010_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_garcia_alan_semester_2010_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_garcia_alan",
+    "semester": "semester_2010_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_kelkar_amar_semester_2010_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_kelkar_amar",
+    "semester": "semester_2010_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_parries_jeff_semester_2010_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_parries_jeff",
+    "semester": "semester_2010_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_thomas_mark_semester_2010_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_thomas_mark",
+    "semester": "semester_2010_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_cloutier_dan_semester_2011_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_cloutier_dan",
+    "semester": "semester_2011_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_irish_bradshaw_semester_2011_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_irish_bradshaw",
+    "semester": "semester_2011_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_resnick_scott_semester_2011_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_resnick_scott",
+    "semester": "semester_2011_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_sullivan_alec_semester_2011_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_sullivan_alec",
+    "semester": "semester_2011_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_breslin_sam_semester_2012_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_breslin_sam",
+    "semester": "semester_2012_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_goldin_ian_semester_2012_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_goldin_ian",
+    "semester": "semester_2012_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_horn_eric_semester_2012_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_horn_eric",
+    "semester": "semester_2012_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_perlmutter_ben_semester_2012_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_perlmutter_ben",
+    "semester": "semester_2012_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_toth_jordan_semester_2012_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_toth_jordan",
+    "semester": "semester_2012_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_veit_ben_semester_2012_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_veit_ben",
+    "semester": "semester_2012_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_kuhr_dan_semester_2013_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_kuhr_dan",
+    "semester": "semester_2013_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_zhang_blake_semester_2013_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_zhang_blake",
+    "semester": "semester_2013_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_dorion_patrick_semester_2013_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_dorion_patrick",
+    "semester": "semester_2013_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_kaufman_jonathan_semester_2013_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_kaufman_jonathan",
+    "semester": "semester_2013_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_skroce_matthew_semester_2013_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_skroce_matthew",
+    "semester": "semester_2013_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_serizawa_shun_semester_2013_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_serizawa_shun",
+    "semester": "semester_2013_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_beckwith_adam_semester_2014_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_beckwith_adam",
+    "semester": "semester_2014_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_multanen_calvin_semester_2014_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_multanen_calvin",
+    "semester": "semester_2014_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_smith_ryan_semester_2014_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_smith_ryan",
+    "semester": "semester_2014_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_lowell_warren_semester_2014_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_lowell_warren",
+    "semester": "semester_2014_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_landsman_jared_semester_2014_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_landsman_jared",
+    "semester": "semester_2014_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_donaldson_chris_semester_2014_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_donaldson_chris",
+    "semester": "semester_2014_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_read_mckenzie_semester_2015_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_read_mckenzie",
+    "semester": "semester_2015_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_alur_roshun_semester_2015_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_alur_roshun",
+    "semester": "semester_2015_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_gross_michael_semester_2015_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_gross_michael",
+    "semester": "semester_2015_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_wu_ben_semester_2015_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_wu_ben",
+    "semester": "semester_2015_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_waggoner_chandler_semester_2015_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_waggoner_chandler",
+    "semester": "semester_2015_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_hare_scott_semester_2016_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_hare_scott",
+    "semester": "semester_2016_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_morrissey_donny_semester_2016_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_morrissey_donny",
+    "semester": "semester_2016_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_kelly_christian_semester_2016_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_kelly_christian",
+    "semester": "semester_2016_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_cohen_jake_semester_2016_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_cohen_jake",
+    "semester": "semester_2016_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_yetter_evan_semester_2016_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_yetter_evan",
+    "semester": "semester_2016_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_fargo_phil_semester_2016_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_fargo_phil",
+    "semester": "semester_2016_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_fageria_anjit_semester_2016_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_fageria_anjit",
+    "semester": "semester_2016_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_herrera_jacob_semester_2016_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_herrera_jacob",
+    "semester": "semester_2016_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_proch_adam_semester_2017_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_proch_adam",
+    "semester": "semester_2017_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_lassman_jonathan_semester_2017_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_lassman_jonathan",
+    "semester": "semester_2017_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_lee_sebin_semester_2017_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_lee_sebin",
+    "semester": "semester_2017_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_phil_charles_semester_2017_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_phil_charles",
+    "semester": "semester_2017_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_gustafson_erik_semester_2018_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_gustafson_erik",
+    "semester": "semester_2018_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_agulanna_chino_semester_2018_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_agulanna_chino",
+    "semester": "semester_2018_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_noh_jae_semester_2018_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_noh_jae",
+    "semester": "semester_2018_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_kashdan_nathan_semester_2018_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_kashdan_nathan",
+    "semester": "semester_2018_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_schafer_john_semester_2018_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_schafer_john",
+    "semester": "semester_2018_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_cody_austin_semester_2018_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_cody_austin",
+    "semester": "semester_2018_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_brewer_tyler_semester_2019_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_brewer_tyler",
+    "semester": "semester_2019_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_strawderman_tommy_semester_2019_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_strawderman_tommy",
+    "semester": "semester_2019_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_cheng_derek_semester_2020_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_cheng_derek",
+    "semester": "semester_2020_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_eshleman_drake_semester_2020_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_eshleman_drake",
+    "semester": "semester_2020_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_kellum_brady_semester_2020_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_kellum_brady",
+    "semester": "semester_2020_spring"
+  },
+  {
+    "_id": "hangover_graduation_semester_relationship_hangover_melchionna_andrew_semester_2020_spring",
+    "type": "hangover_graduation_semester_relationship",
+    "hangover": "hangover_melchionna_andrew",
+    "semester": "semester_2020_spring"
+  }
+]

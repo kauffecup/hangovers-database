@@ -4,11 +4,11 @@ import { arrangementExists } from '../actions/search';
 /**
  * Fields are:
  *   song:
- *     name, alternateName, originalArtists, whenWritten, genre
+ *     name, alternateName, artists, whenWritten, genre
  *   arrangements:
- *     arrangers, key, whenArranged, arrangementType, syllables
+ *     arrangers, key, semesterArranged, arrangementType, syllables
  *   performance:
- *     active, whenPerformed, concerts, albums, soloists
+ *     active, semestersPerformed, concerts, albums, soloists
  *   files and such:
  *     youtube, pdf, finale, mp3, spotifyOriginalLink, spotifyHangoverLink
  *   odds and ends:
@@ -31,8 +31,8 @@ export default (values) => {
     errors.whenWritten = 'Enter a valid 4 digit year';
   }
 
-  if (!values.originalArtists) {
-    errors.originalArtists = REQUIRED_ERROR;
+  if (!values.artists) {
+    errors.artists = REQUIRED_ERROR;
   }
 
   if (!values.arrangementType) {

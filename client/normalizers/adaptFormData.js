@@ -18,15 +18,15 @@ export const artistAdapter = (a = {}) => ({
 });
 
 export const attatchmentAdapter = (a = {}, type = '') => {
-  for (const attachment of Object.keys(a)) {
-    const split = (attachment || '').split('.');
+  for (const fileName of Object.keys(a)) {
+    const split = (fileName || '').split('.');
     if ((split.length && split[split.length - 1] === type) ||
-      (attachment.content_type && attachment.content_type.indexOf(type) > -1)
+      (a[fileName].content_type && a[fileName].content_type.indexOf(type) > -1)
     ) {
       return {
-        name: attachment,
-        type: a[attachment].content_type,
-        size: a[attachment].length,
+        name: fileName,
+        type: a[fileName].content_type,
+        size: a[fileName].length,
         inCloudant: true,
       };
     }

@@ -12,14 +12,16 @@ class EditArrangement extends Component {
   }
 
   render() {
-    const { dispatch, id, rev } = this.props;
+    const { dispatch, id, rev, name } = this.props;
     return (
       <SubmitArrangementForm
         {...this.props}
         submit={values => dispatch(editArrangement(values))}
         handleDelete={(_id, _rev) => dispatch(destroyDocument(_id, _rev))}
         id={id}
+        name={name}
         rev={rev}
+        edit
       />
     );
   }
@@ -28,6 +30,7 @@ class EditArrangement extends Component {
 EditArrangement.propTypes = {
   dispatch: PropTypes.func.isRequired,
   id: PropTypes.string.isReuired,
+  name: PropTypes.string.isRequired,
   rev: PropTypes.string,
 };
 
@@ -35,6 +38,7 @@ EditArrangement.propTypes = {
 const mapStateToProps = (state, routerProps) => ({
   app: state.app,
   id: routerProps.params.id,
+  name: state.form.editArrangement && state.form.editArrangement.values && state.form.editArrangement.values.name,
   rev: state.form && state.form.editArrangement && state.form.editArrangement.values && state.form.editArrangement.values._rev,
 });
 

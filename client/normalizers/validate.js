@@ -4,7 +4,7 @@ import { arrangementExists } from '../actions/search';
 /**
  * Fields are:
  *   song:
- *     name, alternateName, originalArtists, whenWritten, genre
+ *     name, alternateName, artists, whenWritten, genre
  *   arrangements:
  *     arrangers, key, semesterArranged, arrangementType, syllables
  *   performance:
@@ -31,8 +31,8 @@ export default (values) => {
     errors.whenWritten = 'Enter a valid 4 digit year';
   }
 
-  if (!values.originalArtists) {
-    errors.originalArtists = REQUIRED_ERROR;
+  if (!values.artists) {
+    errors.artists = REQUIRED_ERROR;
   }
 
   if (!values.arrangementType) {

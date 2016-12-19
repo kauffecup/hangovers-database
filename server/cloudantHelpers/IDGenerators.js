@@ -48,6 +48,9 @@ module.exports.getArrangementAlbumID = (arrangementID, albumID) =>
 module.exports.getArrangementArrangerID = (arrangementID, hangoverID) =>
   `${types.ARRANGEMENT_ARRANGERS_RELATIONSHIP_TYPE}_${arrangementID}_${hangoverID}`;
 
+module.exports.getArrangementArtistID = (arrangementID, artistID) =>
+  `${types.ARRANGEMENT_ARTIST_RELATIONSHIP_TYPE}_${arrangementID}_${artistID}`;
+
 module.exports.getArrangementConcertID = (arrangementID, concertID) =>
   `${types.ARRANGEMENT_CONCERTS_RELATIONSHIP_TYPE}_${arrangementID}_${concertID}`;
 
@@ -62,6 +65,9 @@ module.exports.getArrangementSemesterPerformedID = (arrangementID, semesterID) =
 
 module.exports.getArrangementSoloistID = (arrangementID, hangoverID) =>
   `${types.ARRANGEMENT_SOLOISTS_RELATIONSHIP_TYPE}_${arrangementID}_${hangoverID}`;
+
+module.exports.getArrangementTagID = (arrangementID, tagID) =>
+  `${types.ARRANGEMENT_TAG_RELATIONSHIP_TYPE}_${arrangementID}_${tagID}`;
 
 module.exports.getBMSemesterID = (hangoverID, semesterID) =>
   `${types.BM_SEMESTER_RELATIONSHIP_TYPE}_${hangoverID}_${semesterID}`;

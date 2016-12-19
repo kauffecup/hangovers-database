@@ -36,7 +36,7 @@ class Arrangement extends Component {
         <h2>{arrangement.name}</h2>
         <h3>Song</h3>
         <Field text={arrangement.alternateName} />
-        <ArtistList title="originally performed by" artists={arrangement.originalArtists} />
+        <ArtistList title="originally performed by" artists={arrangement.artists} />
         <Field text={arrangement.genre && arrangement.genre.length && arrangement.genre.map(g => g.name).join(', ')} />
         <Field text={arrangement.whenWritten} />
         <h3>Arrangement</h3>

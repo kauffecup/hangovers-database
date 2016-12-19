@@ -63,20 +63,25 @@ export const semesterAdapter = (s = {}) => ({
 export const syllableAdapter = s =>
   s && typeof s === 'boolean' ? 'yes' : 'no';
 
+export const tagAdapter = (t = {}) => ({
+  value: t._id, label: t.name,
+});
+
 export const fullArrangementAdapter = (a = {}) => Object.assign({}, a, {
   active: (typeof a.active !== 'undefined') && activeAdapter(a.active),
   albums: (a.albums || []).map(albumAdapter),
   arrangers: (a.arrangers || []).map(hangoverAdapter),
   arrangementType: (typeof a.arrangementType !== 'undefined') && arrangementTypeAdapter(a.arrangementType),
+  artists: (a.artists || []).map(artistAdapter),
   concerts: (a.concerts || []).map(concertAdapter),
   finale: attatchmentAdapter(a._attachments, 'mus'),
   genre: (a.genre || []).map(genreAdapter),
   key: (typeof a.key !== 'undefined') && keyAdapter(a.key),
   mp3: attatchmentAdapter(a._attachments, 'mp3'),
-  originalArtists: (a.originalArtists || []).map(artistAdapter),
   pdf: attatchmentAdapter(a._attachments, 'pdf'),
   soloists: (a.soloists || []).map(hangoverAdapter),
   syllables: (typeof a.syllables !== 'undefined') && syllableAdapter(a.syllables),
   semesterArranged: (typeof a.semesterArranged !== 'undefined') && semesterAdapter(a.semesterArranged),
   semestersPerformed: (a.semestersPerformed || []).map(semesterAdapter),
+  tags: (a.tags || []).map(tagAdapter),
 });

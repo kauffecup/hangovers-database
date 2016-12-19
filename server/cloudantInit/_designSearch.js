@@ -47,11 +47,13 @@ const relationshipIndexer = function (doc) {
     doc.type === 'album_semester_relationship' ||
     doc.type === 'arrangement_albums_relationship' ||
     doc.type === 'arrangement_arrangers_relationship' ||
+    doc.type === 'arrangement_artist_relationship' ||
     doc.type === 'arrangement_concerts_relationship' ||
     doc.type === 'arrangement_genre_relationship' ||
     doc.type === 'arrangement_semester_arranged_relationship' ||
     doc.type === 'arrangement_semesters_performed_relationship' ||
     doc.type === 'arrangement_soloists_relationship' ||
+    doc.type === 'arrangement_tag_relationship' ||
     doc.type === 'bm_semester_relationship' ||
     doc.type === 'concert_semester_relationship' ||
     doc.type === 'hangover_graduation_semester_relationship' ||
@@ -65,6 +67,9 @@ const relationshipIndexer = function (doc) {
     if (typeof doc.arrangement === 'string') {
       index('arrangement', doc.arrangement);
     }
+    if (typeof doc.artist === 'string') {
+      index('artist', doc.artist);
+    }
     if (typeof doc.concert === 'string') {
       index('concert', doc.concert);
     }
@@ -76,6 +81,9 @@ const relationshipIndexer = function (doc) {
     }
     if (typeof doc.semester === 'string') {
       index('semester', doc.semester);
+    }
+    if (typeof doc.tag === 'string') {
+      index('tag', doc.tag);
     }
   }
 };

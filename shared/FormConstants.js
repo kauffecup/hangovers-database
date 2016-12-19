@@ -19,7 +19,7 @@ module.exports.binaryFields = ['active', 'syllables'];
 module.exports.newFields = [];
 
  /** Fields that are arrays of the above datatype */
-module.exports.newArrayFields = ['originalArtists', 'tags'];
+module.exports.newArrayFields = ['artists', 'tags'];
 
  /** Fields that are files */
 module.exports.fileFields = ['finale', 'mp3', 'pdf'];

@@ -5,10 +5,12 @@ const types = require('./DBTypes');
 const multiRelationshipFields = [
   { field: 'albums', relationshipField: 'album', type: types.ARRANGEMENT_ALBUMS_RELATIONSHIP_TYPE, idGenerator: idgen.getArrangementAlbumID },
   { field: 'arrangers', relationshipField: 'hangover', type: types.ARRANGEMENT_ARRANGERS_RELATIONSHIP_TYPE, idGenerator: idgen.getArrangementArrangerID },
+  { field: 'artists', relationshipField: 'artist', type: types.ARRANGEMENT_ARTIST_RELATIONSHIP_TYPE, idGenerator: idgen.getArrangementArtistID },
   { field: 'concerts', relationshipField: 'concert', type: types.ARRANGEMENT_CONCERTS_RELATIONSHIP_TYPE, idGenerator: idgen.getArrangementConcertID },
   { field: 'genre', relationshipField: 'genre', type: types.ARRANGEMENT_GENRE_RELATIONSHIP_TYPE, idGenerator: idgen.getArrangementGenreID },
   { field: 'semestersPerformed', relationshipField: 'semester', type: types.ARRANGEMENT_SEMESTERS_PERFORMED_RELATIONSHIP_TYPE, idGenerator: idgen.getArrangementSemesterPerformedID },
   { field: 'soloists', relationshipField: 'hangover', type: types.ARRANGEMENT_SOLOISTS_RELATIONSHIP_TYPE, idGenerator: idgen.getArrangementSoloistID },
+  { field: 'tags', relationshipField: 'tag', type: types.ARRANGEMENT_TAG_RELATIONSHIP_TYPE, idGenerator: idgen.getArrangementTagID },
 ];
 
 const singleRelationshipFields = [
@@ -67,8 +69,8 @@ const adaptArrangement = (arrangement) => {
   // in this field we allow the user to define a new artist. if that's what's
   // going down, strip the new identifier and return a new artist object
   const newArtists = [];
-  if (toUpload.originalArtists) {
-    toUpload.originalArtists = [].concat(toUpload.originalArtists).map((oa) => {
+  if (toUpload.artists) {
+    toUpload.artists = [].concat(toUpload.artists).map((oa) => {
       if (oa.indexOf(NEW_IDENTIFIER) > -1) {
         const artistName = oa.substring(oa.indexOf(NEW_IDENTIFIER) + NEW_IDENTIFIER.length);
         const newArtist = { name: artistName };

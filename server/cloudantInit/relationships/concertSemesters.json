@@ -1,0 +1,380 @@
+[
+  {
+    "_id": "concert_semester_relationship_concert_christmas_concert_i_semester_2013_fall",
+    "type": "concert_semester_relationship",
+    "concert": "concert_christmas_concert_i",
+    "semester": "semester_2013_fall"
+  },
+  {
+    "_id": "concert_semester_relationship_concert_british_invasion_semester_2012_spring",
+    "type": "concert_semester_relationship",
+    "concert": "concert_british_invasion",
+    "semester": "semester_2012_spring"
+  },
+  {
+    "_id": "concert_semester_relationship_concert_fall_tonic_i_semester_1980_fall",
+    "type": "concert_semester_relationship",
+    "concert": "concert_fall_tonic_i",
+    "semester": "semester_1980_fall"
+  },
+  {
+    "_id": "concert_semester_relationship_concert_fall_tonic_ii_semester_1981_fall",
+    "type": "concert_semester_relationship",
+    "concert": "concert_fall_tonic_ii",
+    "semester": "semester_1981_fall"
+  },
+  {
+    "_id": "concert_semester_relationship_concert_fall_tonic_iii_semester_1982_fall",
+    "type": "concert_semester_relationship",
+    "concert": "concert_fall_tonic_iii",
+    "semester": "semester_1982_fall"
+  },
+  {
+    "_id": "concert_semester_relationship_concert_fall_tonic_iv_semester_1983_fall",
+    "type": "concert_semester_relationship",
+    "concert": "concert_fall_tonic_iv",
+    "semester": "semester_1983_fall"
+  },
+  {
+    "_id": "concert_semester_relationship_concert_fall_tonic_v_semester_1984_fall",
+    "type": "concert_semester_relationship",
+    "concert": "concert_fall_tonic_v",
+    "semester": "semester_1984_fall"
+  },
+  {
+    "_id": "concert_semester_relationship_concert_fall_tonic_vi_semester_1985_fall",
+    "type": "concert_semester_relationship",
+    "concert": "concert_fall_tonic_vi",
+    "semester": "semester_1985_fall"
+  },
+  {
+    "_id": "concert_semester_relationship_concert_fall_tonic_vii_semester_1986_fall",
+    "type": "concert_semester_relationship",
+    "concert": "concert_fall_tonic_vii",
+    "semester": "semester_1986_fall"
+  },
+  {
+    "_id": "concert_semester_relationship_concert_fall_tonic_viii_semester_1987_fall",
+    "type": "concert_semester_relationship",
+    "concert": "concert_fall_tonic_viii",
+    "semester": "semester_1987_fall"
+  },
+  {
+    "_id": "concert_semester_relationship_concert_fall_tonic_ix_semester_1988_fall",
+    "type": "concert_semester_relationship",
+    "concert": "concert_fall_tonic_ix",
+    "semester": "semester_1988_fall"
+  },
+  {
+    "_id": "concert_semester_relationship_concert_fall_tonic_x_semester_1989_fall",
+    "type": "concert_semester_relationship",
+    "concert": "concert_fall_tonic_x",
+    "semester": "semester_1989_fall"
+  },
+  {
+    "_id": "concert_semester_relationship_concert_fall_tonic_xi_semester_1990_fall",
+    "type": "concert_semester_relationship",
+    "concert": "concert_fall_tonic_xi",
+    "semester": "semester_1990_fall"
+  },
+  {
+    "_id": "concert_semester_relationship_concert_fall_tonic_xii_semester_1991_fall",
+    "type": "concert_semester_relationship",
+    "concert": "concert_fall_tonic_xii",
+    "semester": "semester_1991_fall"
+  },
+  {
+    "_id": "concert_semester_relationship_concert_fall_tonic_xiii_semester_1992_fall",
+    "type": "concert_semester_relationship",
+    "concert": "concert_fall_tonic_xiii",
+    "semester": "semester_1992_fall"
+  },
+  {
+    "_id": "concert_semester_relationship_concert_fall_tonic_xiv_semester_1993_fall",
+    "type": "concert_semester_relationship",
+    "concert": "concert_fall_tonic_xiv",
+    "semester": "semester_1993_fall"
+  },
+  {
+    "_id": "concert_semester_relationship_concert_fall_tonic_xv_semester_1994_fall",
+    "type": "concert_semester_relationship",
+    "concert": "concert_fall_tonic_xv",
+    "semester": "semester_1994_fall"
+  },
+  {
+    "_id": "concert_semester_relationship_concert_fall_tonic_xvi_semester_1995_fall",
+    "type": "concert_semester_relationship",
+    "concert": "concert_fall_tonic_xvi",
+    "semester": "semester_1995_fall"
+  },
+  {
+    "_id": "concert_semester_relationship_concert_fall_tonic_xvii_semester_1996_fall",
+    "type": "concert_semester_relationship",
+    "concert": "concert_fall_tonic_xvii",
+    "semester": "semester_1996_fall"
+  },
+  {
+    "_id": "concert_semester_relationship_concert_fall_tonic_xviii_semester_1997_fall",
+    "type": "concert_semester_relationship",
+    "concert": "concert_fall_tonic_xviii",
+    "semester": "semester_1997_fall"
+  },
+  {
+    "_id": "concert_semester_relationship_concert_fall_tonic_xix_semester_1998_fall",
+    "type": "concert_semester_relationship",
+    "concert": "concert_fall_tonic_xix",
+    "semester": "semester_1998_fall"
+  },
+  {
+    "_id": "concert_semester_relationship_concert_fall_tonic_xx_semester_1999_fall",
+    "type": "concert_semester_relationship",
+    "concert": "concert_fall_tonic_xx",
+    "semester": "semester_1999_fall"
+  },
+  {
+    "_id": "concert_semester_relationship_concert_fall_tonic_xxi_semester_2000_fall",
+    "type": "concert_semester_relationship",
+    "concert": "concert_fall_tonic_xxi",
+    "semester": "semester_2000_fall"
+  },
+  {
+    "_id": "concert_semester_relationship_concert_fall_tonic_xxii_semester_2001_fall",
+    "type": "concert_semester_relationship",
+    "concert": "concert_fall_tonic_xxii",
+    "semester": "semester_2001_fall"
+  },
+  {
+    "_id": "concert_semester_relationship_concert_fall_tonic_xxiii_semester_2002_fall",
+    "type": "concert_semester_relationship",
+    "concert": "concert_fall_tonic_xxiii",
+    "semester": "semester_2002_fall"
+  },
+  {
+    "_id": "concert_semester_relationship_concert_fall_tonic_xxiv_semester_2003_fall",
+    "type": "concert_semester_relationship",
+    "concert": "concert_fall_tonic_xxiv",
+    "semester": "semester_2003_fall"
+  },
+  {
+    "_id": "concert_semester_relationship_concert_fall_tonic_xxv_semester_2004_fall",
+    "type": "concert_semester_relationship",
+    "concert": "concert_fall_tonic_xxv",
+    "semester": "semester_2004_fall"
+  },
+  {
+    "_id": "concert_semester_relationship_concert_fall_tonic_xxvi_semester_2005_fall",
+    "type": "concert_semester_relationship",
+    "concert": "concert_fall_tonic_xxvi",
+    "semester": "semester_2005_fall"
+  },
+  {
+    "_id": "concert_semester_relationship_concert_fall_tonic_xxvii_semester_2006_fall",
+    "type": "concert_semester_relationship",
+    "concert": "concert_fall_tonic_xxvii",
+    "semester": "semester_2006_fall"
+  },
+  {
+    "_id": "concert_semester_relationship_concert_fall_tonic_xxviii_semester_2007_fall",
+    "type": "concert_semester_relationship",
+    "concert": "concert_fall_tonic_xxviii",
+    "semester": "semester_2007_fall"
+  },
+  {
+    "_id": "concert_semester_relationship_concert_fall_tonic_xxix_semester_2008_fall",
+    "type": "concert_semester_relationship",
+    "concert": "concert_fall_tonic_xxix",
+    "semester": "semester_2008_fall"
+  },
+  {
+    "_id": "concert_semester_relationship_concert_fall_tonic_xxx_semester_2009_fall",
+    "type": "concert_semester_relationship",
+    "concert": "concert_fall_tonic_xxx",
+    "semester": "semester_2009_fall"
+  },
+  {
+    "_id": "concert_semester_relationship_concert_fall_tonic_xxxi_semester_2010_fall",
+    "type": "concert_semester_relationship",
+    "concert": "concert_fall_tonic_xxxi",
+    "semester": "semester_2010_fall"
+  },
+  {
+    "_id": "concert_semester_relationship_concert_fall_tonic_xxxii_semester_2011_fall",
+    "type": "concert_semester_relationship",
+    "concert": "concert_fall_tonic_xxxii",
+    "semester": "semester_2011_fall"
+  },
+  {
+    "_id": "concert_semester_relationship_concert_fall_tonic_xxxiii_semester_2012_fall",
+    "type": "concert_semester_relationship",
+    "concert": "concert_fall_tonic_xxxiii",
+    "semester": "semester_2012_fall"
+  },
+  {
+    "_id": "concert_semester_relationship_concert_fall_tonic_xxxiv_semester_2013_fall",
+    "type": "concert_semester_relationship",
+    "concert": "concert_fall_tonic_xxxiv",
+    "semester": "semester_2013_fall"
+  },
+  {
+    "_id": "concert_semester_relationship_concert_fall_tonic_xxxv_semester_2014_fall",
+    "type": "concert_semester_relationship",
+    "concert": "concert_fall_tonic_xxxv",
+    "semester": "semester_2014_fall"
+  },
+  {
+    "_id": "concert_semester_relationship_concert_fall_tonic_xxxvi_semester_2015_fall",
+    "type": "concert_semester_relationship",
+    "concert": "concert_fall_tonic_xxxvi",
+    "semester": "semester_2015_fall"
+  },
+  {
+    "_id": "concert_semester_relationship_concert_fall_tonic_xxxvii_semester_2016_fall",
+    "type": "concert_semester_relationship",
+    "concert": "concert_fall_tonic_xxxvii",
+    "semester": "semester_2016_fall"
+  },
+  {
+    "_id": "concert_semester_relationship_concert_happy_hour_i_semester_1993_spring",
+    "type": "concert_semester_relationship",
+    "concert": "concert_happy_hour_i",
+    "semester": "semester_1993_spring"
+  },
+  {
+    "_id": "concert_semester_relationship_concert_happy_hour_ii_semester_1994_spring",
+    "type": "concert_semester_relationship",
+    "concert": "concert_happy_hour_ii",
+    "semester": "semester_1994_spring"
+  },
+  {
+    "_id": "concert_semester_relationship_concert_happy_hour_iii_semester_1995_spring",
+    "type": "concert_semester_relationship",
+    "concert": "concert_happy_hour_iii",
+    "semester": "semester_1995_spring"
+  },
+  {
+    "_id": "concert_semester_relationship_concert_happy_hour_iv_semester_1996_spring",
+    "type": "concert_semester_relationship",
+    "concert": "concert_happy_hour_iv",
+    "semester": "semester_1996_spring"
+  },
+  {
+    "_id": "concert_semester_relationship_concert_happy_hour_v_semester_1997_spring",
+    "type": "concert_semester_relationship",
+    "concert": "concert_happy_hour_v",
+    "semester": "semester_1997_spring"
+  },
+  {
+    "_id": "concert_semester_relationship_concert_happy_hour_vi_semester_1998_spring",
+    "type": "concert_semester_relationship",
+    "concert": "concert_happy_hour_vi",
+    "semester": "semester_1998_spring"
+  },
+  {
+    "_id": "concert_semester_relationship_concert_happy_hour_vii_semester_1999_spring",
+    "type": "concert_semester_relationship",
+    "concert": "concert_happy_hour_vii",
+    "semester": "semester_1999_spring"
+  },
+  {
+    "_id": "concert_semester_relationship_concert_happy_hour_viii_semester_2000_spring",
+    "type": "concert_semester_relationship",
+    "concert": "concert_happy_hour_viii",
+    "semester": "semester_2000_spring"
+  },
+  {
+    "_id": "concert_semester_relationship_concert_happy_hour_ix_semester_2001_spring",
+    "type": "concert_semester_relationship",
+    "concert": "concert_happy_hour_ix",
+    "semester": "semester_2001_spring"
+  },
+  {
+    "_id": "concert_semester_relationship_concert_happy_hour_x_semester_2002_spring",
+    "type": "concert_semester_relationship",
+    "concert": "concert_happy_hour_x",
+    "semester": "semester_2002_spring"
+  },
+  {
+    "_id": "concert_semester_relationship_concert_happy_hour_xi_semester_2003_spring",
+    "type": "concert_semester_relationship",
+    "concert": "concert_happy_hour_xi",
+    "semester": "semester_2003_spring"
+  },
+  {
+    "_id": "concert_semester_relationship_concert_happy_hour_xii_semester_2004_spring",
+    "type": "concert_semester_relationship",
+    "concert": "concert_happy_hour_xii",
+    "semester": "semester_2004_spring"
+  },
+  {
+    "_id": "concert_semester_relationship_concert_happy_hour_xiii_semester_2005_spring",
+    "type": "concert_semester_relationship",
+    "concert": "concert_happy_hour_xiii",
+    "semester": "semester_2005_spring"
+  },
+  {
+    "_id": "concert_semester_relationship_concert_happy_hour_xiv_semester_2006_spring",
+    "type": "concert_semester_relationship",
+    "concert": "concert_happy_hour_xiv",
+    "semester": "semester_2006_spring"
+  },
+  {
+    "_id": "concert_semester_relationship_concert_happy_hour_xv_semester_2007_spring",
+    "type": "concert_semester_relationship",
+    "concert": "concert_happy_hour_xv",
+    "semester": "semester_2007_spring"
+  },
+  {
+    "_id": "concert_semester_relationship_concert_happy_hour_xvi_semester_2008_spring",
+    "type": "concert_semester_relationship",
+    "concert": "concert_happy_hour_xvi",
+    "semester": "semester_2008_spring"
+  },
+  {
+    "_id": "concert_semester_relationship_concert_happy_hour_xvii_semester_2009_spring",
+    "type": "concert_semester_relationship",
+    "concert": "concert_happy_hour_xvii",
+    "semester": "semester_2009_spring"
+  },
+  {
+    "_id": "concert_semester_relationship_concert_happy_hour_xviii_semester_2010_spring",
+    "type": "concert_semester_relationship",
+    "concert": "concert_happy_hour_xviii",
+    "semester": "semester_2010_spring"
+  },
+  {
+    "_id": "concert_semester_relationship_concert_happy_hour_xix_semester_2011_spring",
+    "type": "concert_semester_relationship",
+    "concert": "concert_happy_hour_xix",
+    "semester": "semester_2011_spring"
+  },
+  {
+    "_id": "concert_semester_relationship_concert_happy_hour_xx_semester_2012_spring",
+    "type": "concert_semester_relationship",
+    "concert": "concert_happy_hour_xx",
+    "semester": "semester_2012_spring"
+  },
+  {
+    "_id": "concert_semester_relationship_concert_happy_hour_xxi_semester_2013_spring",
+    "type": "concert_semester_relationship",
+    "concert": "concert_happy_hour_xxi",
+    "semester": "semester_2013_spring"
+  },
+  {
+    "_id": "concert_semester_relationship_concert_happy_hour_xxii_semester_2014_spring",
+    "type": "concert_semester_relationship",
+    "concert": "concert_happy_hour_xxii",
+    "semester": "semester_2014_spring"
+  },
+  {
+    "_id": "concert_semester_relationship_concert_happy_hour_xxiii_semester_2015_spring",
+    "type": "concert_semester_relationship",
+    "concert": "concert_happy_hour_xxiii",
+    "semester": "semester_2015_spring"
+  },
+  {
+    "_id": "concert_semester_relationship_concert_happy_hour_xxiv_semester_2016_spring",
+    "type": "concert_semester_relationship",
+    "concert": "concert_happy_hour_xxiv",
+    "semester": "semester_2016_spring"
+  }
+]

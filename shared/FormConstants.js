@@ -7,10 +7,10 @@
 module.exports.textFields = ['alternateName', 'name', 'notes', 'spotifyHangoverLink', 'spotifyOriginalLink', 'whenWritten', 'youtube'];
 
  /** Fields that are of the form {value, label} for displaying a pretty label for a given key */
-module.exports.objectFields = ['arrangementType', 'key', 'quality', 'whenArranged'];
+module.exports.objectFields = ['arrangementType', 'key', 'quality', 'semesterArranged'];
 
  /** Fields that are arrays of the above datatype */
-module.exports.objectArrayFields = ['albums', 'arrangers', 'concerts', 'genre', 'soloists', 'whenPerformed'];
+module.exports.objectArrayFields = ['albums', 'arrangers', 'concerts', 'genre', 'soloists', 'semestersPerformed'];
 
  /** Fields that are "yes"/"no" that we want to convert into booleans */
 module.exports.binaryFields = ['active', 'syllables'];
@@ -19,10 +19,13 @@ module.exports.binaryFields = ['active', 'syllables'];
 module.exports.newFields = [];
 
  /** Fields that are arrays of the above datatype */
-module.exports.newArrayFields = ['originalArtists', 'tags'];
+module.exports.newArrayFields = ['artists', 'tags'];
 
  /** Fields that are files */
-module.exports.fileFields = ['finale', 'mp3', 'pdf'];
+module.exports.fileFields = ['finale', 'recording', 'pdf'];
 
 /** String appended to form objects to let the server know it should create a new object */
 module.exports.NEW_IDENTIFIER = 'new:';
+
+/** Indicates to the backend that a certain file field should be removed from the database */
+module.exports.DELETE_IDENTIFIER = 'delete_file';

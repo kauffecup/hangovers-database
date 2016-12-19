@@ -22,13 +22,15 @@ export const artistAdapter = (a = {}) => ({
 });
 
 export const attatchmentAdapter = (a = {}, type = '') => {
-  for (const attachment of Object.keys(a)) {
-    const split = (attachment || '').split('.');
-    if (split.length && split[split.length - 1] === type) {
+  for (const fileName of Object.keys(a)) {
+    const split = (fileName || '').split('.');
+    if ((split.length && split[split.length - 1] === type) ||
+      (a[fileName].content_type && a[fileName].content_type.indexOf(type) > -1)
+    ) {
       return {
-        name: attachment,
-        type: a[attachment].content_type,
-        size: a[attachment].length,
+        name: fileName,
+        type: a[fileName].content_type,
+        size: a[fileName].length,
         inCloudant: true,
       };
     }
@@ -67,22 +69,27 @@ export const semesterAdapter = (s = {}) => ({
 export const syllableAdapter = s =>
   s && typeof s === 'boolean' ? 'yes' : 'no';
 
+export const tagAdapter = (t = {}) => ({
+  value: t._id, label: t.name,
+});
+
 export const fullArrangementAdapter = (a = {}) => Object.assign({}, a, {
   active: (typeof a.active !== 'undefined') && activeAdapter(a.active),
   albums: (a.albums || []).map(albumAdapter),
   arrangers: (a.arrangers || []).map(hangoverAdapter),
   arrangementType: (typeof a.arrangementType !== 'undefined') && arrangementTypeAdapter(a.arrangementType),
+  artists: (a.artists || []).map(artistAdapter),
   concerts: (a.concerts || []).map(concertAdapter),
   finale: attatchmentAdapter(a._attachments, 'mus'),
   genre: (a.genre || []).map(genreAdapter),
   key: (typeof a.key !== 'undefined') && keyAdapter(a.key),
-  mp3: attatchmentAdapter(a._attachments, 'mp3'),
-  originalArtists: (a.originalArtists || []).map(artistAdapter),
+  recording: attatchmentAdapter(a._attachments, 'audio'),
   pdf: attatchmentAdapter(a._attachments, 'pdf'),
   soloists: (a.soloists || []).map(hangoverAdapter),
   syllables: (typeof a.syllables !== 'undefined') && syllableAdapter(a.syllables),
-  whenArranged: (typeof a.whenArranged !== 'undefined') && semesterAdapter(a.whenArranged),
-  whenPerformed: (a.whenPerformed || []).map(semesterAdapter),
+  semesterArranged: (typeof a.semesterArranged !== 'undefined') && semesterAdapter(a.semesterArranged),
+  semestersPerformed: (a.semestersPerformed || []).map(semesterAdapter),
+  tags: (a.tags || []).map(tagAdapter),
 });
 
 export const fullHangoverAdapter = (h = {}) => Object.assign({}, h, {

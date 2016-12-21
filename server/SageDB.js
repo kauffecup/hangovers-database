@@ -2,7 +2,7 @@ const Promise = require('bluebird');
 const cloudant = require('cloudant');
 const types = require('./cloudantHelpers/DBTypes');
 const idgen = require('./cloudantHelpers/IDGenerators');
-const { adaptFiles, adaptArrangement } = require('./cloudantHelpers/Adapters');
+const { adaptFiles, adaptArrangement, adaptHangover } = require('./cloudantHelpers/Adapters');
 
 const LIMIT = 20;
 const OPTS = { concurrency: 3 };
@@ -128,11 +128,12 @@ module.exports = class SageDB {
   /**
    * Searchers for indexed types
    */
-  searchHangovers(text = '') { return this._search('hangovers', `nameString:(${text.toLowerCase()}*)`); }
   searchArtists(text = '') { return this._search('artists', `name:(${text.toLowerCase()}*)`); }
+  searchArrangements(text = '') { return this._search('arrangements', `name:(${text.toLowerCase()}*)`); }
   searchGenres(text = '') { return this._search('genres', `name:(${text.toLowerCase()}*)`); }
-  searchTags(text = '') { return this._search('tags', `name:(${text.toLowerCase()}*)`); }
+  searchHangovers(text = '') { return this._search('hangovers', `nameString:(${text.toLowerCase()}*)`); }
   searchRelationships(field, id) { return this._search('relationships', `${field}:${id}`, 200); }
+  searchTags(text = '') { return this._search('tags', `name:(${text.toLowerCase()}*)`); }
 
   /** Helper method for the above searchers */
   _search(index, q, limit = LIMIT) {
@@ -148,7 +149,6 @@ module.exports = class SageDB {
    * it, if not create a new one.
    */
   upsertArrangementType(at) { return this._upsertType(at, types.ARRANGEMENT_TYPE_TYPE, idgen.getArrangementTypeID(at)); }
-  upsertHangover(h) { return this._upsertType(h, types.HANGOVER_TYPE, idgen.getHangoverID(h)); }
   upsertSemester(s) { return this._upsertType(s, types.SEMESTER_TYPE, idgen.getSemesterID(s)); }
   upsertAlbum(a) { return this._upsertType(a, types.ALBUM_TYPE, idgen.getAlbumID(a)); }
   upsertAlbumFormat(af) { return this._upsertType(af, types.ALBUM_FORMAT_TYPE, idgen.getAlbumFormatID(af)); }
@@ -158,6 +158,12 @@ module.exports = class SageDB {
   upsertArtist(a) { return this._upsertType(a, types.ARTIST_TYPE, idgen.getArtistID(a)); }
   upsertTag(t) { return this._upsertType(t, types.TAG_TYPE, idgen.getTagID(t)); }
   upsertKey(k) { return this._upsertType(k, types.KEY_TYPE, idgen.getKeyID(k)); }
+  upsertHangover(hangover) {
+    const { hangoverID, toUpload, relationships } = adaptHangover(hangover);
+    return this._upsertType(toUpload, types.HANGOVER_TYPE, hangoverID)
+      .then(() => this.searchRelationships('hangover', hangoverID))
+      .then(oldRelationships => this.manageRelationships(relationships, oldRelationships));
+  }
   upsertArrangement(arrangement, files = {}) {
     const filesToUpload = adaptFiles(files, arrangement.name);
     const { arrID, toUpload, newArtists = [], newTags = [], relationships = [] } = adaptArrangement(arrangement, filesToUpload);
@@ -175,28 +181,7 @@ module.exports = class SageDB {
     })
     .then(() => console.log('fetching existing relationships'))
     .then(() => this.searchRelationships('arrangement', arrID))
-    .then((oldRelationships) => {
-      const oldRelationshipMap = {};
-      for (const oldRelationship of oldRelationships) {
-        oldRelationshipMap[oldRelationship._id] = oldRelationship;
-      }
-      const visitedMap = {};
-      const relationshipsToUpload = [];
-      for (const relationship of relationships) {
-        if (oldRelationshipMap[relationship.id]) {
-          visitedMap[relationship.id] = true;
-        } else {
-          relationshipsToUpload.push(relationship);
-        }
-      }
-      const relationshipsToDelete = oldRelationships.filter(or => !visitedMap[or._id]);
-      console.log('creating new relationships and deleting stale ones');
-      return Promise.join(
-        Promise.map(relationshipsToUpload, ({ doc, type, id }) => this._upsertType(doc, type, id), OPTS),
-        Promise.map(relationshipsToDelete, ({ _id, _rev }) => this.destroy(_id, _rev), OPTS),
-        () => {}
-      );
-    });
+    .then(oldRelationships => this.manageRelationships(relationships, oldRelationships));
   }
 
   /** Format the call to _upsert for the above doc types */
@@ -254,5 +239,29 @@ module.exports = class SageDB {
   /** Destroy a doc */
   destroy(id, rev) {
     return this._sageDB.destroyAsync(id, rev);
+  }
+
+  /** Guarantee that the only relationships are the passed in array in as few deletes/adds as possible */
+  manageRelationships(relationships, oldRelationships) {
+    const oldRelationshipMap = {};
+    for (const oldRelationship of oldRelationships) {
+      oldRelationshipMap[oldRelationship._id] = oldRelationship;
+    }
+    const visitedMap = {};
+    const relationshipsToUpload = [];
+    for (const relationship of relationships) {
+      if (oldRelationshipMap[relationship.id]) {
+        visitedMap[relationship.id] = true;
+      } else {
+        relationshipsToUpload.push(relationship);
+      }
+    }
+    const relationshipsToDelete = oldRelationships.filter(or => !visitedMap[or._id]);
+    console.log('creating new relationships and deleting stale ones');
+    return Promise.join(
+      Promise.map(relationshipsToUpload, ({ doc, type, id }) => this._upsertType(doc, type, id), OPTS),
+      Promise.map(relationshipsToDelete, ({ _id, _rev }) => this.destroy(_id, _rev), OPTS),
+      () => {}
+    );
   }
 };

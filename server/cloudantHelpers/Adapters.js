@@ -9,7 +9,7 @@ const {
   DELETE_IDENTIFIER,
 } = require('../../shared/FormConstants');
 
-const multiRelationshipFields = [
+const multiRelationshipArrangementFields = [
   { field: 'albums', relationshipField: 'album', type: types.ARRANGEMENT_ALBUMS_RELATIONSHIP_TYPE, idGenerator: idgen.getArrangementAlbumID },
   { field: 'arrangers', relationshipField: 'hangover', type: types.ARRANGEMENT_ARRANGERS_RELATIONSHIP_TYPE, idGenerator: idgen.getArrangementArrangerID },
   { field: 'artists', relationshipField: 'artist', type: types.ARRANGEMENT_ARTIST_RELATIONSHIP_TYPE, idGenerator: idgen.getArrangementArtistID },
@@ -20,8 +20,21 @@ const multiRelationshipFields = [
   { field: 'tags', relationshipField: 'tag', type: types.ARRANGEMENT_TAG_RELATIONSHIP_TYPE, idGenerator: idgen.getArrangementTagID },
 ];
 
-const singleRelationshipFields = [
+const singleRelationshipArrangementFields = [
   { field: 'semesterArranged', relationshipField: 'semester', type: types.ARRANGEMENT_SEMESTER_ARRANGED_RELATIONSHIP_TYPE, idGenerator: idgen.getArrangementSemesterArrangedID },
+];
+
+const multiRelationshipHangoverFields = [
+  { field: 'arranged', relationshipField: 'arrangement', type: types.ARRANGEMENT_ARRANGERS_RELATIONSHIP_TYPE, idGenerator: idgen.getArrangementArrangerID, second: true },
+  { field: 'concertsMDed', relationshipField: 'semester', type: types.MD_CONCERT_RELATIONSHIP_TYPE, idGenerator: idgen.getMDConcertID },
+  { field: 'semestersBMed', relationshipField: 'semester', type: types.BM_SEMESTER_RELATIONSHIP_TYPE, idGenerator: idgen.getBMSemesterID },
+  { field: 'semestersMDed', relationshipField: 'semester', type: types.MD_SEMESTER_RELATIONSHIP_TYPE, idGenerator: idgen.getMDSemesterID },
+  { field: 'semestersPresided', relationshipField: 'semester', type: types.PRESIDENT_SEMESTER_RELATIONSHIP_TYPE, idGenerator: idgen.getPresidentSemesterID },
+  { field: 'soloed', relationshipField: 'arrangement', type: types.ARRANGEMENT_SOLOISTS_RELATIONSHIP_TYPE, idGenerator: idgen.getArrangementSoloistID, second: true },
+];
+
+const singleRelationshipHangoverFields = [
+  { field: 'graduationSemester', relationshipField: 'semester', type: types.HANGOVER_GRADUATION_SEMESTER_RELATIONSHIP_TYPE, idGenerator: idgen.getHangoverGraduationID },
 ];
 
 /**
@@ -118,30 +131,50 @@ const adaptArrangement = (arrangement, files = []) => {
     });
   }
 
-  // now we figure out the relationships for this arrangement. as we build the
-  // relationships, we consolidate them into one array and remove the field from
-  // the arrangement we're adapting. the relationship is sufficient!
-  const relationships = [];
-  for (const { field, relationshipField, type, idGenerator } of multiRelationshipFields) {
-    if (toUpload[field] && toUpload[field].length) {
-      for (const thingID of toUpload[field]) {
-        const doc = { [relationshipField]: thingID, arrangement: arrID };
-        relationships.push({ doc, type, id: idGenerator(arrID, thingID) });
-      }
-      delete toUpload[field];
-    }
-  }
-  for (const { field, relationshipField, type, idGenerator } of singleRelationshipFields) {
-    if (toUpload[field]) {
-      const doc = { [relationshipField]: toUpload[field], arrangement: arrID };
-      relationships.push({ doc, type, id: idGenerator(arrID, toUpload[field]) });
-      delete toUpload[field];
-    }
-  }
-
+  const relationships = adaptRelationships(toUpload, arrID, 'arrangement', multiRelationshipArrangementFields, singleRelationshipArrangementFields);
   return { arrID, toUpload, newArtists, newTags, relationships };
+};
+
+/**
+ * Take a hangover object and make it cloudant friendly
+ */
+const adaptHangover = (hangover) => {
+  const toUpload = Object.assign({}, hangover);
+  const hangoverID = idgen.getHangoverID(toUpload);
+  const relationships = adaptRelationships(toUpload, hangoverID, 'hangover', multiRelationshipHangoverFields, singleRelationshipHangoverFields);
+  return { hangoverID, toUpload, relationships };
+};
+
+/**
+ * Iterate over the passed in doc. For the fields, types, and id generators
+ * specified in the passed in multiFields and singleFields arrays, create an
+ * array that identifies all of the relationships for the given doc. As we do
+ * this, delete the field that we used to generate these relationships from the
+ * doc, as the relationships array is sufficient to identify what's going on.
+ */
+const adaptRelationships = (myDoc, id, myRelationshipField, multiFields, singleFields) => {
+  const relationships = [];
+  for (const { field, relationshipField, type, idGenerator, second } of multiFields) {
+    if (myDoc[field] && myDoc[field].length) {
+      for (const thingID of myDoc[field]) {
+        const doc = { [relationshipField]: thingID, [myRelationshipField]: id };
+        relationships.push({ doc, type, id: idGenerator(second ? thingID : id, second ? id : thingID) });
+      }
+    }
+    delete myDoc[field]; // eslint-disable-line
+  }
+  for (const { field, relationshipField, type, idGenerator, second } of singleFields) {
+    if (myDoc[field]) {
+      const doc = { [relationshipField]: myDoc[field], [myRelationshipField]: id };
+      relationships.push({ doc, type, id: idGenerator(second ? myDoc[field] : id, second ? id : myDoc[field]) });
+    }
+    delete myDoc[field]; // eslint-disable-line
+  }
+  console.log(relationships);
+  return relationships;
 };
 
 module.exports.adaptFile = adaptFile;
 module.exports.adaptFiles = adaptFiles;
 module.exports.adaptArrangement = adaptArrangement;
+module.exports.adaptHangover = adaptHangover;

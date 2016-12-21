@@ -12,7 +12,7 @@ import concert from './concert';
 import hangover from './hangover';
 import hangovers from './hangovers';
 import semester from './semester';
-import { GET_EDIT_ARRANGEMENT_SUCCESS } from '../actions';
+import { GET_EDIT_ARRANGEMENT_SUCCESS, GET_EDIT_HANGOVER_SUCCESS } from '../actions';
 
 export default combineReducers({
   app,
@@ -27,10 +27,22 @@ export default combineReducers({
   hangovers,
   semester,
   routing: routerReducer,
+  // update our edit forms when we receive the fetched data
   form: formReducer.plugin({
     editArrangement: (state, action) => {
       switch (action.type) {
         case GET_EDIT_ARRANGEMENT_SUCCESS:
+          return Object.assign({}, state, {
+            values: action.data,
+          });
+
+        default:
+          return state;
+      }
+    },
+    editHangover: (state, action) => {
+      switch (action.type) {
+        case GET_EDIT_HANGOVER_SUCCESS:
           return Object.assign({}, state, {
             values: action.data,
           });

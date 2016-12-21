@@ -22,7 +22,7 @@ class Album extends Component {
       <div className={css(styles.arrangement)}>
         <h2>{albumFormatter(album)}</h2>
         <SemesterList semesters={album.semester} />
-        <h3>Set List</h3>
+        <h3>Track List</h3>
         <ArrangementList arrangements={album.trackList} />
       </div>
     );

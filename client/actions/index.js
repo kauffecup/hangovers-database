@@ -1,11 +1,12 @@
 import { stringify } from 'query-string';
 import { reset, SubmissionError } from 'redux-form';
 import { push } from 'react-router-redux';
-import { fullArrangementAdapter } from '../normalizers/adaptFormData';
+import { fullArrangementAdapter, fullHangoverAdapter } from '../normalizers/adaptFormData';
 import myFetch from './myFetch';
 
 export const ARRANGEMENT_FORM = 'addArrangement';
 export const EDIT_FORM = 'editArrangement';
+export const HANGOVER_FORM = 'editHangover';
 
 export const SET_BANNER = 'SET_BANNER';
 export const BANNER_SUCCESS = 'BANNER_SUCCESS';
@@ -41,6 +42,9 @@ export const GET_ARTIST_FAILURE = 'GET_ARTIST_FAILURE';
 export const GET_EDIT_ARRANGEMENT = 'GET_EDIT_ARRANGEMENT';
 export const GET_EDIT_ARRANGEMENT_SUCCESS = 'GET_EDIT_ARRANGEMENT_SUCCESS';
 export const GET_EDIT_ARRANGEMENT_FAILURE = 'GET_EDIT_ARRANGEMENT_FAILURE';
+export const GET_EDIT_HANGOVER = 'GET_EDIT_HANGOVER';
+export const GET_EDIT_HANGOVER_SUCCESS = 'GET_EDIT_HANGOVER_SUCCESS';
+export const GET_EDIT_HANGOVER_FAILURE = 'GET_EDIT_HANGOVER_FAILURE';
 export const GET_HANGOVERS = 'GET_HANGOVERS';
 export const GET_HANGOVERS_SUCCESS = 'GET_HANGOVERS_SUCCESS';
 export const GET_HANGOVERS_FAILURE = 'GET_HANGOVERS_FAILURE';
@@ -64,33 +68,42 @@ const actionFetch = (endpoint, START, SUCCESS, FAILURE, params) => (dispatch) =>
     .catch(error => dispatch({ type: FAILURE, error }));
 };
 
-export const initializeForms = () => actionFetch('/initializeforms', INITIALIZE_FORMS, INITIALIZE_FORMS_SUCCESS, INITIALIZE_FORMS_FAILURE);
+export const initializeForms = () => actionFetch('/api/initializeforms', INITIALIZE_FORMS, INITIALIZE_FORMS_SUCCESS, INITIALIZE_FORMS_FAILURE);
 
 /** Actions for getting full top level objects */
-export const getArrangement = arrangementID => actionFetch('/full/arrangement', GET_ARRANGEMENT, GET_ARRANGEMENT_SUCCESS, GET_ARRANGEMENT_FAILURE, { arrangementID });
-export const getHangover = hangoverID => actionFetch('/full/hangover', GET_HANGOVER, GET_HANGOVER_SUCCESS, GET_HANGOVER_FAILURE, { hangoverID });
-export const getSemester = semesterID => actionFetch('/full/semester', GET_SEMESTER, GET_SEMESTER_SUCCESS, GET_SEMESTER_FAILURE, { semesterID });
-export const getConcert = concertID => actionFetch('/full/concert', GET_CONCERT, GET_CONCERT_SUCCESS, GET_CONCERT_FAILURE, { concertID });
-export const getAlbum = albumID => actionFetch('/full/album', GET_ALBUM, GET_ALBUM_SUCCESS, GET_ALBUM_FAILURE, { albumID });
-export const getArtist = artistID => actionFetch('/full/artist', GET_ARTIST, GET_ARTIST_SUCCESS, GET_ARTIST_FAILURE, { artistID });
+export const getArrangement = arrangementID => actionFetch('/api/full/arrangement', GET_ARRANGEMENT, GET_ARRANGEMENT_SUCCESS, GET_ARRANGEMENT_FAILURE, { arrangementID });
+export const getHangover = hangoverID => actionFetch('/api/full/hangover', GET_HANGOVER, GET_HANGOVER_SUCCESS, GET_HANGOVER_FAILURE, { hangoverID });
+export const getSemester = semesterID => actionFetch('/api/full/semester', GET_SEMESTER, GET_SEMESTER_SUCCESS, GET_SEMESTER_FAILURE, { semesterID });
+export const getConcert = concertID => actionFetch('/api/full/concert', GET_CONCERT, GET_CONCERT_SUCCESS, GET_CONCERT_FAILURE, { concertID });
+export const getAlbum = albumID => actionFetch('/api/full/album', GET_ALBUM, GET_ALBUM_SUCCESS, GET_ALBUM_FAILURE, { albumID });
+export const getArtist = artistID => actionFetch('/api/full/artist', GET_ARTIST, GET_ARTIST_SUCCESS, GET_ARTIST_FAILURE, { artistID });
 
 /** Actions for getting paged lists */
-export const getArrangements = skip => actionFetch('/list/arrangements', GET_ARRANGEMENTS, GET_ARRANGEMENTS_SUCCESS, GET_ARRANGEMENTS_FAILURE, { skip });
-export const getHangovers = skip => actionFetch('/list/hangovers', GET_HANGOVERS, GET_HANGOVERS_SUCCESS, GET_HANGOVERS_FAILURE, { skip });
-export const getArtists = skip => actionFetch('/list/artists', GET_ARTISTS, GET_ARTISTS_SUCCESS, GET_ARTISTS_FAILURE, { skip });
+export const getArrangements = skip => actionFetch('/api/list/arrangements', GET_ARRANGEMENTS, GET_ARRANGEMENTS_SUCCESS, GET_ARRANGEMENTS_FAILURE, { skip });
+export const getHangovers = skip => actionFetch('/api/list/hangovers', GET_HANGOVERS, GET_HANGOVERS_SUCCESS, GET_HANGOVERS_FAILURE, { skip });
+export const getArtists = skip => actionFetch('/api/list/artists', GET_ARTISTS, GET_ARTISTS_SUCCESS, GET_ARTISTS_FAILURE, { skip });
 
 export function getEditArrangementData(arrangementID) {
   return (dispatch) => {
     dispatch({ type: GET_EDIT_ARRANGEMENT });
-    myFetch(`/full/arrangement?${stringify({ arrangementID })}`)
+    myFetch(`/api/full/arrangement?${stringify({ arrangementID })}`)
       .then(data => dispatch({ type: GET_EDIT_ARRANGEMENT_SUCCESS, data: fullArrangementAdapter(data) }))
       .catch(error => dispatch({ type: GET_EDIT_ARRANGEMENT_FAILURE, error }));
   };
 }
 
+export function getEditHangoverData(hangoverID) {
+  return (dispatch) => {
+    dispatch({ type: GET_EDIT_HANGOVER });
+    myFetch(`/api/full/hangover?${stringify({ hangoverID })}`)
+      .then(data => dispatch({ type: GET_EDIT_HANGOVER_SUCCESS, data: fullHangoverAdapter(data) }))
+      .catch(error => dispatch({ type: GET_EDIT_HANGOVER_FAILURE, error }));
+  };
+}
+
 export function destroyDocument(_id, _rev) {
   return dispatch =>
-    myFetch(`/destroy?${stringify({ _id, _rev })}`, { method: 'DELETE' })
+    myFetch(`/api/destroy?${stringify({ _id, _rev })}`, { method: 'DELETE' })
       .then(() => {
         // on success we show a happy message and head back to the home page
         dispatch(setBanner('Successfully deleted that!', BANNER_SUCCESS));
@@ -100,6 +113,24 @@ export function destroyDocument(_id, _rev) {
         dispatch(setBanner('Failed to delete that!', BANNER_ERROR));
         return e;
       });
+}
+
+export function editHangover(values) {
+  return dispatch =>
+    myFetch('/api/edit/hangover', {
+      method: 'POST',
+      body: JSON.stringify(values),
+      headers: { 'Content-Type': 'application/json' },
+    }).then((json) => {
+      // on success we show a happy message and head back to the home page
+      dispatch(setBanner('Successfully edited hangover', BANNER_SUCCESS));
+      dispatch(push('/'));
+      dispatch(reset(HANGOVER_FORM));
+      return json;
+    }).catch((error) => {
+      dispatch(setBanner('Failed to edit hangover', BANNER_ERROR));
+      throw new SubmissionError(error);
+    });
 }
 
 export function addArrangement(values) {
@@ -134,6 +165,14 @@ export function editArrangement(values) {
 }
 
 function submitArrangement(values) {
+  const formData = formatFormData(values);
+  return myFetch('/api/arrangementsubmit', { method: 'POST', body: formData })
+    .catch((error) => {
+      throw new SubmissionError(error);
+    });
+}
+
+function formatFormData(values) {
   const formData = new FormData();
   for (const key of Object.keys(values)) {
     if (values[key]) {
@@ -148,8 +187,5 @@ function submitArrangement(values) {
       }
     }
   }
-  return myFetch('/arrangementsubmit', { method: 'POST', body: formData })
-    .catch((error) => {
-      throw new SubmissionError(error);
-    });
+  return formData;
 }

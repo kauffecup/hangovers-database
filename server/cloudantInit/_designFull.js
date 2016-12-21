@@ -8,12 +8,8 @@ const albumMap = function (doc) {
     emit([doc._id]);
   } else if (doc.type === 'album_semester_relationship') {
     emit([doc.album, 'semester'], { _id: doc.semester });
-  } else if (doc.type === 'arrangement') {
-    if (doc.albums && doc.albums.length) {
-      for (var i = 0; i < doc.concerts.length; i++) {
-        emit([doc.albums[i], 'trackList'], { _id: doc._id });
-      }
-    }
+  } else if (doc.type === 'arrangement_albums_relationship') {
+    emit([doc.album, 'trackList'], { _id: doc.arrangement });
   }
 };
 
@@ -66,12 +62,8 @@ const concertMap = function (doc) {
     emit([doc.concert, 'semester'], { _id: doc.semester });
   } else if (doc.type === 'md_concert_relationship') {
     emit([doc.concert, 'md'], { _id: doc.hangover });
-  } else if (doc.type === 'arrangement') {
-    if (doc.concerts && doc.concerts.length) {
-      for (var i = 0; i < doc.concerts.length; i++) {
-        emit([doc.concerts[i], 'setList'], { _id: doc._id });
-      }
-    }
+  } else if (doc.type === 'arrangement_concerts_relationship') {
+    emit([doc.concert, 'setList'], { _id: doc.arrangement });
   }
 };
 
@@ -88,15 +80,10 @@ const hangoverMap = function (doc) {
     emit([doc.hangover, 'semestersBMed'], { _id: doc.semester });
   } else if (doc.type === 'md_concert_relationship') {
     emit([doc.hangover, 'concertsMDed'], { _id: doc.concert });
-  } else if (doc.type === 'arrangement') {
-    var multiFields = ['arrangers', 'soloists'];
-    multiFields.forEach(function (field) {
-      if (doc[field] && doc[field].length) {
-        for (var i = 0; i < doc[field].length; i++) {
-          emit([doc[field][i], field], { _id: doc._id });
-        }
-      }
-    });
+  } else if (doc.type === 'arrangement_arrangers_relationship') {
+    emit([doc.hangover, 'arranged'], { _id: doc.arrangement });
+  } else if (doc.type === 'arrangement_soloists_relationship') {
+    emit([doc.hangover, 'soloed'], { _id: doc.arrangement });
   }
 };
 
@@ -109,22 +96,10 @@ const semesterMap = function (doc) {
     emit([doc.semester, 'president'], { _id: doc.hangover });
   } else if (doc.type === 'bm_semester_relationship') {
     emit([doc.semester, 'bm'], { _id: doc.hangover });
-  } else if (doc.type === 'arrangement') {
-    var singleFields = ['semesterArranged'];
-    singleFields.forEach(function (field) {
-      if (doc[field]) {
-        emit([doc[field], field], { _id: doc._id });
-      }
-    });
-
-    var multiFields = ['semestersPerformed'];
-    multiFields.forEach(function (field) {
-      if (doc[field] && doc[field].length) {
-        for (var i = 0; i < doc[field].length; i++) {
-          emit([doc[field][i], field], { _id: doc._id });
-        }
-      }
-    });
+  } else if (doc.type === 'arrangement_semester_arranged_relationship') {
+    emit([doc.semester, 'arrangements'], { _id: doc.arrangement });
+  } else if (doc.type === 'arrangement_semesters_performed_relationship') {
+    emit([doc.semester, 'performed'], { _id: doc.arrangement });
   } else if (doc.type === 'album_semester_relationship') {
     emit([doc.semester, 'albums'], { _id: doc.album });
   } else if (doc.type === 'concert_semester_relationship') {

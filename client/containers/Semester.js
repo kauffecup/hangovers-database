@@ -27,11 +27,11 @@ class Semester extends Component {
         <HangoverList title="BM" hangovers={semester.bm} />
         <HangoverList title="President" hangovers={semester.president} />
         <h3>Arrangements</h3>
-        <ArrangementList arrangements={semester.semesterArranged} />
+        <ArrangementList arrangements={semester.arrangements} />
         <h3>Concerts</h3>
         <ConcertList concerts={semester.concerts} />
         <h3>Songs Performed</h3>
-        <ArrangementList arrangements={semester.semestersPerformed} />
+        <ArrangementList arrangements={semester.performed} />
         <h3>Albums</h3>
         <AlbumList albums={semester.albums} />
         <h3>Hangovers Graduated</h3>

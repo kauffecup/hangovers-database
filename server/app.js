@@ -95,6 +95,19 @@ app.get('/api/list/arrangements', ({ query: { limit, skip } }, res) => getList(l
 app.get('/api/list/hangovers', ({ query: { limit, skip } }, res) => getList(limit, skip, 'getHangovers', res));
 app.get('/api/list/artists', ({ query: { limit, skip } }, res) => getList(limit, skip, 'getArtists', res));
 
+/** Perform a search in the database */
+const search = (text, method, res) =>
+  sageDB[method](text)
+    .then(hangovers => res.json(hangovers))
+    .catch(e => res.status(500).json(e));
+
+/** Endpoints that use the above helper */
+app.get('/api/search/artists', ({ query: { artist } }, res) => search(artist, 'searchArtists', res));
+app.get('/api/search/arrangements', ({ query: { arrangement } }, res) => search(arrangement, 'searchArrangements', res));
+app.get('/api/search/genres', ({ query: { genre } }, res) => search(genre, 'searchGenres', res));
+app.get('/api/search/hangovers', ({ query: { hangover } }, res) => search(hangover, 'searchHangovers', res));
+app.get('/api/search/tags', ({ query: { tag } }, res) => search(tag, 'searchTags', res));
+
 /** POST: Submit a new arrangement */
 app.post('/api/arrangementsubmit', upload.fields([
   { name: 'pdf', maxCount: 1 },
@@ -124,34 +137,6 @@ app.get('/api/arrangementexists', ({ query: { name } }, res) => {
 app.delete('/api/destroy', ({ query: { _id, _rev } }, res) => {
   sageDB.destroy(_id, _rev)
     .then(() => res.json({}))
-    .catch(e => res.status(500).json(e));
-});
-
-/** GET: Let's get some hangovers */
-app.get('/api/search/hangovers', ({ query: { hangover } }, res) => {
-  sageDB.searchHangovers(hangover)
-    .then(hangovers => res.json(hangovers))
-    .catch(e => res.status(500).json(e));
-});
-
-/** GET: Let's get some artists */
-app.get('/api/search/artists', ({ query: { artist } }, res) => {
-  sageDB.searchArtists(artist)
-    .then(artists => res.json(artists))
-    .catch(e => res.status(500).json(e));
-});
-
-/** GET: Let's get some genres */
-app.get('/api/search/genres', ({ query: { genre } }, res) => {
-  sageDB.searchGenres(genre)
-    .then(genres => res.json(genres))
-    .catch(e => res.status(500).json(e));
-});
-
-/** GET: Let's get some tags */
-app.get('/api/search/tags', ({ query: { tag } }, res) => {
-  sageDB.searchTags(tag)
-    .then(tags => res.json(tags))
     .catch(e => res.status(500).json(e));
 });
 

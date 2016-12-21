@@ -116,20 +116,21 @@ export function destroyDocument(_id, _rev) {
 }
 
 export function editHangover(values) {
-  return (dispatch) => {
-    const formData = formatFormData(values);
-    return myFetch('/api/edit/hangover', { method: 'POST', body: formData })
-      .then((json) => {
-        // on success we show a happy message and head back to the home page
-        dispatch(setBanner('Successfully edited hangover', BANNER_SUCCESS));
-        dispatch(push('/'));
-        dispatch(reset(HANGOVER_FORM));
-        return json;
-      }).catch((error) => {
-        dispatch(setBanner('Failed to edit hangover', BANNER_ERROR));
-        throw new SubmissionError(error);
-      });
-  };
+  return dispatch =>
+    myFetch('/api/edit/hangover', {
+      method: 'POST',
+      body: JSON.stringify(values),
+      headers: { 'Content-Type': 'application/json' },
+    }).then((json) => {
+      // on success we show a happy message and head back to the home page
+      dispatch(setBanner('Successfully edited hangover', BANNER_SUCCESS));
+      dispatch(push('/'));
+      dispatch(reset(HANGOVER_FORM));
+      return json;
+    }).catch((error) => {
+      dispatch(setBanner('Failed to edit hangover', BANNER_ERROR));
+      throw new SubmissionError(error);
+    });
 }
 
 export function addArrangement(values) {

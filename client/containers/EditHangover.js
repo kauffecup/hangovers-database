@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
 import { adaptHangoverSubmit } from '../normalizers/adaptSubmit';
 import RenderSelect from '../components/form/RenderSelect';
-import ArrangementList from '../components/lists/ArrangementList';
+import RenderAsync from '../components/form/RenderAsync';
 import Button from '../components/Button';
 import { getEditHangoverData, editHangover } from '../actions';
+import { searchArrangements } from '../actions/search';
 import {
   semesterAdapter,
   concertAdapter,
@@ -19,7 +20,7 @@ class EditHangover extends Component {
   }
 
   render() {
-    const { app, dispatch, handleSubmit, name, arrangements, soloed } = this.props;
+    const { app, dispatch, handleSubmit, name } = this.props;
     const { semesterMap, semesters: s, concerts: co } = app;
     const semesters = s.map(semesterAdapter);
     const concerts = co.map(c => concertAdapter(c, semesterMap));
@@ -31,10 +32,8 @@ class EditHangover extends Component {
         <Field label="Semester(s) MDed" name="semestersMDed" component={RenderSelect} options={semesters} multi />
         <Field label="Semester(s) BMed" name="semestersBMed" component={RenderSelect} options={semesters} multi />
         <Field label="Semester(s) Presided" name="semestersPresided" component={RenderSelect} options={semesters} multi />
-        <h3>Arranged (to edit, update arrangement.)</h3>
-        <ArrangementList arrangements={arrangements} />
-        <h3>Soloed (to edit, update arrangement.)</h3>
-        <ArrangementList arrangements={soloed} />
+        <Field label="Arranged" name="arranged" component={RenderAsync} loadOptions={searchArrangements} multi />
+        <Field label="Soloed" name="soloed" component={RenderAsync} loadOptions={searchArrangements} multi />
         <Button type="submit" text="Submit" />
       </form>
     );
@@ -44,19 +43,15 @@ class EditHangover extends Component {
 EditHangover.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   dispatch: PropTypes.func.isRequired,
-  id: PropTypes.string.isReuired,
+  id: PropTypes.string.isRequired,
   app: PropTypes.object.isRequired,
   name: PropTypes.string,
-  arrangements: PropTypes.object,
-  soloed: PropTypes.object,
 };
 
 const mapStateToProps = (state, routerProps) => ({
   app: state.app,
   id: routerProps.params.id,
   name: hangoverFormatter(state.form.editHangover && state.form.editHangover.values),
-  arrangements: state.form.editHangover && state.form.editHangover.values && state.form.editHangover.values.arrangers,
-  soloed: state.form.editHangover && state.form.editHangover.values && state.form.editHangover.values.soloists,
 });
 
 // Wrap the component to inject dispatch and state into it

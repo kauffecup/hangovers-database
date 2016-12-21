@@ -58,7 +58,7 @@ export const adaptHangoverSubmit = (values) => {
     adaptedValues[objectField] = adaptObject(values[objectField]);
   }
 
-  const hObjectArrayFields = ['concertsMDed', 'semestersBMed', 'semestersMDed', 'semestersPresided'];
+  const hObjectArrayFields = ['arranged', 'concertsMDed', 'semestersBMed', 'semestersMDed', 'semestersPresided', 'soloed'];
   for (const objectArrayField of hObjectArrayFields) {
     adaptedValues[objectArrayField] = adaptObjectArray(values[objectArrayField]);
   }

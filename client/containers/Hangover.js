@@ -30,9 +30,9 @@ class Hangover extends Component {
         <SemesterList title="Presided" semesters={hangover.semestersPresided} />
         <ConcertList title="MDed" concerts={hangover.concertsMDed} />
         <h3>Arranged</h3>
-        <ArrangementList arrangements={hangover.arrangers} />
+        <ArrangementList arrangements={hangover.arranged} />
         <h3>Soloed</h3>
-        <ArrangementList arrangements={hangover.soloists} />
+        <ArrangementList arrangements={hangover.soloed} />
       </div>
     );
   }

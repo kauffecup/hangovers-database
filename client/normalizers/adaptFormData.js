@@ -93,9 +93,11 @@ export const fullArrangementAdapter = (a = {}) => Object.assign({}, a, {
 });
 
 export const fullHangoverAdapter = (h = {}) => Object.assign({}, h, {
+  arranged: (h.arranged || []).map(arrangementAdapter),
   concertsMDed: (h.concertsMDed || []).map(concertAdapter),
   graduationSemester: h.graduationSemester && h.graduationSemester.length === 1 && semesterAdapter(h.graduationSemester[0]),
   semestersBMed: (h.semestersBMed || []).map(semesterAdapter),
   semestersMDed: (h.semestersMDed || []).map(semesterAdapter),
   semestersPresided: (h.semestersPresided || []).map(semesterAdapter),
+  soloed: (h.soloed || []).map(arrangementAdapter),
 });

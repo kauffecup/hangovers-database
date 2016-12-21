@@ -170,7 +170,6 @@ const adaptRelationships = (myDoc, id, myRelationshipField, multiFields, singleF
     }
     delete myDoc[field]; // eslint-disable-line
   }
-  console.log(relationships);
   return relationships;
 };
 

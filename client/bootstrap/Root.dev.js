@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { Provider } from 'react-redux';
-import App from '../containers/App';
+import App from '../containers/Routes';
 import DevTools from './DevTools';
 
 const Root = ({ store, history }) => (

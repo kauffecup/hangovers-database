@@ -1,17 +1,17 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
-import { adaptHangoverSubmit } from '../normalizers/adaptSubmit';
-import RenderSelect from '../components/form/RenderSelect';
-import RenderAsync from '../components/form/RenderAsync';
-import Button from '../components/Button';
-import { getEditHangoverData, editHangover } from '../actions';
-import { searchArrangements } from '../actions/search';
+import { adaptHangoverSubmit } from '../../normalizers/adaptSubmit';
+import RenderSelect from '../../components/form/RenderSelect';
+import RenderAsync from '../../components/form/RenderAsync';
+import Button from '../../components/Button';
+import { getEditHangoverData, editHangover } from '../../actions';
+import { searchArrangements } from '../../actions/search';
 import {
   semesterAdapter,
   concertAdapter,
   hangoverFormatter,
-} from '../normalizers/adaptFormData';
+} from '../../normalizers/adaptFormData';
 
 class EditHangover extends Component {
   componentDidMount() {

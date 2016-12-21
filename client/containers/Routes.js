@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Router, Route, IndexRoute } from 'react-router';
 import AddArrangement from './AddArrangement';
-import EditArrangement from './EditArrangement';
+import EditArrangement from './edit/EditArrangement';
 import Arrangements from './Arrangements';
 import Arrangement from './Arrangement';
 import Artists from './Artists';
@@ -10,7 +10,7 @@ import Albums from './Albums';
 import Artist from './Artist';
 import Sage from './Sage';
 import Hangover from './Hangover';
-import EditHangover from './EditHangover';
+import EditHangover from './edit/EditHangover';
 import Hangovers from './Hangovers';
 import Semester from './Semester';
 import Semesters from './Semesters';

@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
-import { getEditArrangementData, editArrangement, destroyDocument } from '../actions';
-import validate from '../normalizers/validate';
-import SubmitArrangementForm from '../components/SubmitArrangementForm';
+import { getEditArrangementData, editArrangement, destroyDocument } from '../../actions';
+import validate from '../../normalizers/validate';
+import SubmitArrangementForm from '../../components/SubmitArrangementForm';
 
 class EditArrangement extends Component {
   componentDidMount() {

@@ -13,6 +13,7 @@ import hangover from './hangover';
 import hangovers from './hangovers';
 import semester from './semester';
 import {
+  GET_EDIT_ALBUM_SUCCESS,
   GET_EDIT_ARRANGEMENT_SUCCESS,
   GET_EDIT_CONCERT_SUCCESS,
   GET_EDIT_HANGOVER_SUCCESS,
@@ -34,6 +35,17 @@ export default combineReducers({
   routing: routerReducer,
   // update our edit forms when we receive the fetched data
   form: formReducer.plugin({
+    editAlbum: (state, action) => {
+      switch (action.type) {
+        case GET_EDIT_ALBUM_SUCCESS:
+          return Object.assign({}, state, {
+            values: action.data,
+          });
+
+        default:
+          return state;
+      }
+    },
     editArrangement: (state, action) => {
       switch (action.type) {
         case GET_EDIT_ARRANGEMENT_SUCCESS:

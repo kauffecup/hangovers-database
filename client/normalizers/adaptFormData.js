@@ -7,6 +7,10 @@ export const albumAdapter = (a = {}, sMap = {}) => ({
   value: a._id, label: albumFormatter(a, sMap && sMap[a.semester] ? sMap[a.semester].year : ''),
 });
 
+export const albumFormatAdapter = (af = {}) => ({
+  value: af._id, label: af.name,
+});
+
 export const arrangementAdapter = (a = {}) => ({
   value: a._id, label: a.name,
 });
@@ -75,6 +79,12 @@ export const syllableAdapter = s =>
 
 export const tagAdapter = (t = {}) => ({
   value: t._id, label: t.name,
+});
+
+export const fullAlbumAdapter = (a = {}) => Object.assign({}, a, {
+  format: (typeof a.format !== 'undefined') && albumFormatAdapter(a.format),
+  semester: (typeof a.semester !== 'undefined') && semesterAdapter(a.semester),
+  trackList: (a.trackList || []).map(arrangementAdapter),
 });
 
 export const fullArrangementAdapter = (a = {}) => Object.assign({}, a, {

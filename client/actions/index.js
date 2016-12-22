@@ -3,12 +3,14 @@ import { reset, SubmissionError } from 'redux-form';
 import { push } from 'react-router-redux';
 import myFetch from './myFetch';
 import {
+  fullAlbumAdapter,
   fullArrangementAdapter,
   fullConcertAdapter,
   fullHangoverAdapter,
   fullSemesterAdapter,
 } from '../normalizers/adaptFormData';
 
+export const ALBUM_FORM = 'editAlbum';
 export const ARRANGEMENT_FORM = 'addArrangement';
 export const CONCERT_FORM = 'editConcert';
 export const EDIT_FORM = 'editArrangement';
@@ -46,6 +48,9 @@ export const GET_ALBUM_FAILURE = 'GET_ALBUM_FAILURE';
 export const GET_ARTIST = 'GET_ARTIST';
 export const GET_ARTIST_SUCCESS = 'GET_ARTIST_SUCCESS';
 export const GET_ARTIST_FAILURE = 'GET_ARTIST_FAILURE';
+export const GET_EDIT_ALBUM = 'GET_EDIT_ALBUM';
+export const GET_EDIT_ALBUM_SUCCESS = 'GET_EDIT_ALBUM_SUCCESS';
+export const GET_EDIT_ALBUM_FAILURE = 'GET_EDIT_ALBUM_FAILURE';
 export const GET_EDIT_ARRANGEMENT = 'GET_EDIT_ARRANGEMENT';
 export const GET_EDIT_ARRANGEMENT_SUCCESS = 'GET_EDIT_ARRANGEMENT_SUCCESS';
 export const GET_EDIT_ARRANGEMENT_FAILURE = 'GET_EDIT_ARRANGEMENT_FAILURE';
@@ -96,6 +101,15 @@ export const getArrangements = skip => actionFetch('/api/list/arrangements', GET
 export const getHangovers = skip => actionFetch('/api/list/hangovers', GET_HANGOVERS, GET_HANGOVERS_SUCCESS, GET_HANGOVERS_FAILURE, { skip });
 export const getArtists = skip => actionFetch('/api/list/artists', GET_ARTISTS, GET_ARTISTS_SUCCESS, GET_ARTISTS_FAILURE, { skip });
 
+export function getEditAlbumData(albumID) {
+  return (dispatch) => {
+    dispatch({ type: GET_EDIT_ALBUM });
+    myFetch(`/api/full/album?${stringify({ albumID })}`)
+      .then(data => dispatch({ type: GET_EDIT_ALBUM_SUCCESS, data: fullAlbumAdapter(data) }))
+      .catch(error => dispatch({ type: GET_EDIT_ALBUM_FAILURE, error }));
+  };
+}
+
 export function getEditArrangementData(arrangementID) {
   return (dispatch) => {
     dispatch({ type: GET_EDIT_ARRANGEMENT });
@@ -144,6 +158,24 @@ export function destroyDocument(_id, _rev) {
         dispatch(setBanner('Failed to delete that!', BANNER_ERROR));
         return e;
       });
+}
+
+export function editAlbum(values) {
+  return dispatch =>
+    myFetch('/api/edit/album', {
+      method: 'POST',
+      body: JSON.stringify(values),
+      headers: { 'Content-Type': 'application/json' },
+    }).then((json) => {
+      // on success we show a happy message and head back to the home page
+      dispatch(setBanner('Successfully edited album', BANNER_SUCCESS));
+      dispatch(push('/'));
+      dispatch(reset(CONCERT_FORM));
+      return json;
+    }).catch((error) => {
+      dispatch(setBanner('Failed to edit album', BANNER_ERROR));
+      throw new SubmissionError(error);
+    });
 }
 
 export function editConcert(values) {

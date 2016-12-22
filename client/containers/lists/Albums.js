@@ -5,11 +5,11 @@ import { StyleSheet, css } from 'aphrodite';
 import AlbumLink from '../../components/links/AlbumLink';
 import { PADDING_UNIT, ALBUM_HEIGHT } from '../../StyleConstants';
 
-const Albums = ({ albums, semesterMap }) => {
+const Albums = ({ albums }) => {
   const rowRenderer = ({ index, key, style }) => // eslint-disable-line
     <div key={key} style={style}>
       <div className={css(styles.album)}>
-        <AlbumLink {...albums[index]} year={semesterMap[albums[index].semester].year} />
+        <AlbumLink {...albums[index]} />
       </div>
     </div>;
 
@@ -42,12 +42,10 @@ const styles = StyleSheet.create({
 
 Albums.propTypes = {
   albums: PropTypes.array.isRequired,
-  semesterMap: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
   albums: state.app.albums,
-  semesterMap: state.app.semesterMap,
 });
 
 // Wrap the component to inject dispatch and state into it

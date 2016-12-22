@@ -5,11 +5,11 @@ import { StyleSheet, css } from 'aphrodite';
 import ConcertLink from '../components/links/ConcertLink';
 import { PADDING_UNIT, CONCERT_HEIGHT } from '../StyleConstants';
 
-const Concerts = ({ concerts, semesterMap }) => {
+const Concerts = ({ concerts }) => {
   const rowRenderer = ({ index, key, style }) => // eslint-disable-line
     <div key={key} style={style}>
       <div className={css(styles.concert)}>
-        <ConcertLink {...concerts[index]} year={semesterMap[concerts[index].semester].year} />
+        <ConcertLink {...concerts[index]} />
       </div>
     </div>;
 
@@ -42,7 +42,6 @@ const styles = StyleSheet.create({
 
 Concerts.propTypes = {
   concerts: PropTypes.array.isRequired,
-  semesterMap: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({

@@ -5,6 +5,7 @@ const idgen = require('./cloudantHelpers/IDGenerators');
 const {
   adaptFiles,
   adaptArrangement,
+  adaptConcert,
   adaptHangover,
   adaptSemester,
 } = require('./cloudantHelpers/Adapters');
@@ -46,7 +47,7 @@ module.exports = class SageDB {
   getFullArrangement(arrangementID) { return this._getFullArrayRollup(arrangementID, 'arrangement', ['arrangementType', 'key', 'semesterArranged']); }
   getFullHangover(hangoverID) { return this._getFullArrayRollup(hangoverID, 'hangover'); }
   getFullSemester(semesterID) { return this._getFullArrayRollup(semesterID, 'semester'); }
-  getFullConcert(concertID) { return this._getFullArrayRollup(concertID, 'concert'); }
+  getFullConcert(concertID) { return this._getFullArrayRollup(concertID, 'concert', ['concertType', 'semester']); }
   getFullAlbum(albumID) { return this._getFullArrayRollup(albumID, 'album'); }
   getFullArtist(artistID) { return this._getFullArrayRollup(artistID, 'artist'); }
 
@@ -153,13 +154,13 @@ module.exports = class SageDB {
   upsertArrangementType(at) { return this._upsertType(at, types.ARRANGEMENT_TYPE_TYPE, idgen.getArrangementTypeID(at)); }
   upsertAlbum(a) { return this._upsertType(a, types.ALBUM_TYPE, idgen.getAlbumID(a)); }
   upsertAlbumFormat(af) { return this._upsertType(af, types.ALBUM_FORMAT_TYPE, idgen.getAlbumFormatID(af)); }
-  upsertConcert(c) { return this._upsertType(c, types.CONCERT_TYPE, idgen.getConcertID(c)); }
   upsertConcertType(ct) { return this._upsertType(ct, types.CONCERT_TYPE_TYPE, idgen.getConcertTypeID(ct)); }
   upsertGenre(g) { return this._upsertType(g, types.GENRE_TYPE, idgen.getGenreID(g)); }
   upsertArtist(a) { return this._upsertType(a, types.ARTIST_TYPE, idgen.getArtistID(a)); }
   upsertTag(t) { return this._upsertType(t, types.TAG_TYPE, idgen.getTagID(t)); }
   upsertKey(k) { return this._upsertType(k, types.KEY_TYPE, idgen.getKeyID(k)); }
   /** Upserts for doc types with relationships */
+  upsertConcert(c) { return this._upsertWithRelationships(c, adaptConcert, types.CONCERT_TYPE, 'concert'); }
   upsertSemester(s) { return this._upsertWithRelationships(s, adaptSemester, types.SEMESTER_TYPE, 'semester'); }
   upsertHangover(h) { return this._upsertWithRelationships(h, adaptHangover, types.HANGOVER_TYPE, 'hangover'); }
   upsertArrangement(arrangement, files = {}) {

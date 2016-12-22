@@ -4,11 +4,13 @@ import { push } from 'react-router-redux';
 import myFetch from './myFetch';
 import {
   fullArrangementAdapter,
+  fullConcertAdapter,
   fullHangoverAdapter,
   fullSemesterAdapter,
 } from '../normalizers/adaptFormData';
 
 export const ARRANGEMENT_FORM = 'addArrangement';
+export const CONCERT_FORM = 'editConcert';
 export const EDIT_FORM = 'editArrangement';
 export const HANGOVER_FORM = 'editHangover';
 export const SEMESTER_FORM = 'editSemester';
@@ -53,6 +55,9 @@ export const GET_EDIT_HANGOVER_FAILURE = 'GET_EDIT_HANGOVER_FAILURE';
 export const GET_EDIT_SEMESTER = 'GET_EDIT_SEMESTER';
 export const GET_EDIT_SEMESTER_SUCCESS = 'GET_EDIT_SEMESTER_SUCCESS';
 export const GET_EDIT_SEMESTER_FAILURE = 'GET_EDIT_SEMESTER_FAILURE';
+export const GET_EDIT_CONCERT = 'GET_EDIT_CONCERT';
+export const GET_EDIT_CONCERT_SUCCESS = 'GET_EDIT_CONCERT_SUCCESS';
+export const GET_EDIT_CONCERT_FAILURE = 'GET_EDIT_CONCERT_FAILURE';
 export const GET_HANGOVERS = 'GET_HANGOVERS';
 export const GET_HANGOVERS_SUCCESS = 'GET_HANGOVERS_SUCCESS';
 export const GET_HANGOVERS_FAILURE = 'GET_HANGOVERS_FAILURE';
@@ -100,6 +105,15 @@ export function getEditArrangementData(arrangementID) {
   };
 }
 
+export function getEditConcertData(concertID) {
+  return (dispatch) => {
+    dispatch({ type: GET_EDIT_CONCERT });
+    myFetch(`/api/full/concert?${stringify({ concertID })}`)
+      .then(data => dispatch({ type: GET_EDIT_CONCERT_SUCCESS, data: fullConcertAdapter(data) }))
+      .catch(error => dispatch({ type: GET_EDIT_CONCERT_FAILURE, error }));
+  };
+}
+
 export function getEditHangoverData(hangoverID) {
   return (dispatch) => {
     dispatch({ type: GET_EDIT_HANGOVER });
@@ -130,6 +144,24 @@ export function destroyDocument(_id, _rev) {
         dispatch(setBanner('Failed to delete that!', BANNER_ERROR));
         return e;
       });
+}
+
+export function editConcert(values) {
+  return dispatch =>
+    myFetch('/api/edit/concert', {
+      method: 'POST',
+      body: JSON.stringify(values),
+      headers: { 'Content-Type': 'application/json' },
+    }).then((json) => {
+      // on success we show a happy message and head back to the home page
+      dispatch(setBanner('Successfully edited concert', BANNER_SUCCESS));
+      dispatch(push('/'));
+      dispatch(reset(CONCERT_FORM));
+      return json;
+    }).catch((error) => {
+      dispatch(setBanner('Failed to edit concert', BANNER_ERROR));
+      throw new SubmissionError(error);
+    });
 }
 
 export function editHangover(values) {

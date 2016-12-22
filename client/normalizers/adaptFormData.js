@@ -44,8 +44,12 @@ export const concertAdapter = (c = {}, sMap = {}) => ({
   value: c._id, label: concertFormatter(c, sMap && sMap[c.semester] ? sMap[c.semester].year : ''),
 });
 
+export const concertTypeAdapter = (ct = {}) => ({
+  value: ct._id, label: ct.name,
+});
+
 export const genreAdapter = (g = {}) => ({
-  value: g._id, label: `${g.name}`,
+  value: g._id, label: g.name,
 });
 
 export const hangoverFormatter = (h = {}) => `${h.firstName} ${h.lastName}`;
@@ -90,6 +94,13 @@ export const fullArrangementAdapter = (a = {}) => Object.assign({}, a, {
   semesterArranged: (typeof a.semesterArranged !== 'undefined') && semesterAdapter(a.semesterArranged),
   semestersPerformed: (a.semestersPerformed || []).map(semesterAdapter),
   tags: (a.tags || []).map(tagAdapter),
+});
+
+export const fullConcertAdapter = (c = {}) => Object.assign({}, c, {
+  concertType: (typeof c.concertType !== 'undefined') && concertTypeAdapter(c.concertType),
+  md: (c.md || []).map(hangoverAdapter),
+  semester: (typeof c.semester !== 'undefined') && semesterAdapter(c.semester),
+  setList: (c.setList || []).map(arrangementAdapter),
 });
 
 export const fullHangoverAdapter = (h = {}) => Object.assign({}, h, {

@@ -14,6 +14,7 @@ import hangovers from './hangovers';
 import semester from './semester';
 import {
   GET_EDIT_ARRANGEMENT_SUCCESS,
+  GET_EDIT_CONCERT_SUCCESS,
   GET_EDIT_HANGOVER_SUCCESS,
   GET_EDIT_SEMESTER_SUCCESS,
 } from '../actions';
@@ -36,6 +37,17 @@ export default combineReducers({
     editArrangement: (state, action) => {
       switch (action.type) {
         case GET_EDIT_ARRANGEMENT_SUCCESS:
+          return Object.assign({}, state, {
+            values: action.data,
+          });
+
+        default:
+          return state;
+      }
+    },
+    editConcert: (state, action) => {
+      switch (action.type) {
+        case GET_EDIT_CONCERT_SUCCESS:
           return Object.assign({}, state, {
             values: action.data,
           });

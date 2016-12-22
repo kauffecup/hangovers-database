@@ -1,6 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, css } from 'aphrodite';
+import PathButton from '../components/PathButton';
 import ArrangementList from '../components/lists/ArrangementList';
 import SemesterList from '../components/lists/SemesterList';
 import HangoverList from '../components/lists/HangoverList';
@@ -15,12 +16,13 @@ class Concert extends Component {
   }
 
   render() {
-    const { concert, loading } = this.props;
+    const { concert, loading, id } = this.props;
     if (loading) {
       return <div>loading</div>;
     }
     return (
       <div className={css(styles.arrangement)}>
+        <PathButton text="edit" path={`/edit/concert/${id}`} />
         <h2>{concertFormatter(concert)}</h2>
         <SemesterList semesters={concert.semester} />
         <HangoverList title="MD" hangovers={concert.md} />

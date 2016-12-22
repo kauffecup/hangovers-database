@@ -24,6 +24,15 @@ const singleRelationshipArrangementFields = [
   { field: 'semesterArranged', relationshipField: 'semester', type: types.ARRANGEMENT_SEMESTER_ARRANGED_RELATIONSHIP_TYPE, idGenerator: idgen.getArrangementSemesterArrangedID },
 ];
 
+const multiRelationshipConcertFields = [
+  { field: 'md', relationshipField: 'hangover', type: types.MD_CONCERT_RELATIONSHIP_TYPE, idGenerator: idgen.getMDConcertID, second: true },
+  { field: 'setList', relationshipField: 'arrangement', type: types.ARRANGEMENT_CONCERTS_RELATIONSHIP_TYPE, idGenerator: idgen.getArrangementConcertID, second: true },
+];
+
+const singleRelationshipConcertFields = [
+  { field: 'semester', relationshipField: 'semester', type: types.CONCERT_SEMESTER_RELATIONSHIP_TYPE, idGenerator: idgen.getConcertSemesterID },
+];
+
 const multiRelationshipHangoverFields = [
   { field: 'arranged', relationshipField: 'arrangement', type: types.ARRANGEMENT_ARRANGERS_RELATIONSHIP_TYPE, idGenerator: idgen.getArrangementArrangerID, second: true },
   { field: 'concertsMDed', relationshipField: 'semester', type: types.MD_CONCERT_RELATIONSHIP_TYPE, idGenerator: idgen.getMDConcertID },
@@ -146,6 +155,16 @@ const adaptArrangement = (arrangement, files = []) => {
 /**
  * Take a hangover object and make it cloudant friendly
  */
+const adaptConcert = (concert) => {
+  const toUpload = Object.assign({}, concert);
+  const id = idgen.getConcertID(toUpload);
+  const relationships = adaptRelationships(toUpload, id, 'concert', multiRelationshipConcertFields, singleRelationshipConcertFields);
+  return { id, toUpload, relationships };
+};
+
+/**
+ * Take a hangover object and make it cloudant friendly
+ */
 const adaptHangover = (hangover) => {
   const toUpload = Object.assign({}, hangover);
   const id = idgen.getHangoverID(toUpload);
@@ -194,5 +213,6 @@ const adaptRelationships = (myDoc, id, myRelationshipField, multiFields = [], si
 module.exports.adaptFile = adaptFile;
 module.exports.adaptFiles = adaptFiles;
 module.exports.adaptArrangement = adaptArrangement;
+module.exports.adaptConcert = adaptConcert;
 module.exports.adaptHangover = adaptHangover;
 module.exports.adaptSemester = adaptSemester;

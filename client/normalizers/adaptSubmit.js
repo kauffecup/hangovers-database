@@ -50,6 +50,21 @@ export default (values) => {
   return Object.assign({}, values, adaptedValues);
 };
 
+export const adaptConcertSubmit = (values) => {
+  const adaptedValues = {};
+  const cObjectFields = ['concertType', 'semester'];
+  for (const objectField of cObjectFields) {
+    adaptedValues[objectField] = adaptObject(values[objectField]);
+  }
+
+  const cObjectArrayFields = ['md', 'setList'];
+  for (const objectArrayField of cObjectArrayFields) {
+    adaptedValues[objectArrayField] = adaptObjectArray(values[objectArrayField]);
+  }
+
+  return Object.assign({}, values, adaptedValues);
+};
+
 export const adaptHangoverSubmit = (values) => {
   const adaptedValues = {};
   const hObjectArrayFields = ['arranged', 'concertsMDed', 'graduationSemester', 'semestersBMed', 'semestersMDed', 'semestersPresided', 'soloed'];

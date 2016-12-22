@@ -58,6 +58,9 @@ const artistMap = function (doc) {
 const concertMap = function (doc) {
   if (doc.type === 'concert') {
     emit([doc._id]);
+    if (doc.concertType) {
+      emit([doc._id, 'concertType'], { _id: doc.concertType });
+    }
   } else if (doc.type === 'concert_semester_relationship') {
     emit([doc.concert, 'semester'], { _id: doc.semester });
   } else if (doc.type === 'md_concert_relationship') {

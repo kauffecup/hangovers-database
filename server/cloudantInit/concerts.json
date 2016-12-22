@@ -1,254 +1,254 @@
 [
   {
     "name": "Christmas Concert I",
-    "concert_type": "concert_type_christmas"
+    "concertType": "concert_type_christmas"
   },
   {
     "name": "British Invasion",
-    "concert_type": "special"
+    "concertType": "special"
   },
   {
     "name": "Fall Tonic I",
-    "concert_type": "concert_type_fall_tonic"
+    "concertType": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic II",
-    "concert_type": "concert_type_fall_tonic"
+    "concertType": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic III",
-    "concert_type": "concert_type_fall_tonic"
+    "concertType": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic IV",
-    "concert_type": "concert_type_fall_tonic"
+    "concertType": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic V",
-    "concert_type": "concert_type_fall_tonic"
+    "concertType": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic VI",
-    "concert_type": "concert_type_fall_tonic"
+    "concertType": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic VII",
-    "concert_type": "concert_type_fall_tonic"
+    "concertType": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic VIII",
-    "concert_type": "concert_type_fall_tonic"
+    "concertType": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic IX",
-    "concert_type": "concert_type_fall_tonic"
+    "concertType": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic X",
-    "concert_type": "concert_type_fall_tonic"
+    "concertType": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic XI",
-    "concert_type": "concert_type_fall_tonic"
+    "concertType": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic XII",
-    "concert_type": "concert_type_fall_tonic"
+    "concertType": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic XIII",
-    "concert_type": "concert_type_fall_tonic"
+    "concertType": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic XIV",
-    "concert_type": "concert_type_fall_tonic"
+    "concertType": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic XV",
-    "concert_type": "concert_type_fall_tonic"
+    "concertType": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic XVI",
-    "concert_type": "concert_type_fall_tonic"
+    "concertType": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic XVII",
-    "concert_type": "concert_type_fall_tonic"
+    "concertType": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic XVIII",
-    "concert_type": "concert_type_fall_tonic"
+    "concertType": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic XIX",
-    "concert_type": "concert_type_fall_tonic"
+    "concertType": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic XX",
-    "concert_type": "concert_type_fall_tonic"
+    "concertType": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic XXI",
-    "concert_type": "concert_type_fall_tonic"
+    "concertType": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic XXII",
-    "concert_type": "concert_type_fall_tonic"
+    "concertType": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic XXIII",
-    "concert_type": "concert_type_fall_tonic"
+    "concertType": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic XXIV",
-    "concert_type": "concert_type_fall_tonic"
+    "concertType": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic XXV",
-    "concert_type": "concert_type_fall_tonic"
+    "concertType": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic XXVI",
-    "concert_type": "concert_type_fall_tonic"
+    "concertType": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic XXVII",
-    "concert_type": "concert_type_fall_tonic"
+    "concertType": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic XXVIII",
-    "concert_type": "concert_type_fall_tonic"
+    "concertType": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic XXIX",
-    "concert_type": "concert_type_fall_tonic"
+    "concertType": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic XXX",
-    "concert_type": "concert_type_fall_tonic"
+    "concertType": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic XXXI",
-    "concert_type": "concert_type_fall_tonic"
+    "concertType": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic XXXII",
-    "concert_type": "concert_type_fall_tonic"
+    "concertType": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic XXXIII",
-    "concert_type": "concert_type_fall_tonic"
+    "concertType": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic XXXIV",
-    "concert_type": "concert_type_fall_tonic"
+    "concertType": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic XXXV",
-    "concert_type": "concert_type_fall_tonic"
+    "concertType": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic XXXVI",
-    "concert_type": "concert_type_fall_tonic"
+    "concertType": "concert_type_fall_tonic"
   },
   {
     "name": "Fall Tonic XXXVII",
-    "concert_type": "concert_type_fall_tonic"
+    "concertType": "concert_type_fall_tonic"
   },
   {
     "name": "Happy Hour I",
-    "concert_type": "concert_type_happy_hour"
+    "concertType": "concert_type_happy_hour"
   },
   {
     "name": "Happy Hour II",
-    "concert_type": "concert_type_happy_hour"
+    "concertType": "concert_type_happy_hour"
   },
   {
     "name": "Happy Hour III",
-    "concert_type": "concert_type_happy_hour"
+    "concertType": "concert_type_happy_hour"
   },
   {
     "name": "Happy Hour IV",
-    "concert_type": "concert_type_happy_hour"
+    "concertType": "concert_type_happy_hour"
   },
   {
     "name": "Happy Hour V",
-    "concert_type": "concert_type_happy_hour"
+    "concertType": "concert_type_happy_hour"
   },
   {
     "name": "Happy Hour VI",
-    "concert_type": "concert_type_happy_hour"
+    "concertType": "concert_type_happy_hour"
   },
   {
     "name": "Happy Hour VII",
-    "concert_type": "concert_type_happy_hour"
+    "concertType": "concert_type_happy_hour"
   },
   {
     "name": "Happy Hour VIII",
-    "concert_type": "concert_type_happy_hour"
+    "concertType": "concert_type_happy_hour"
   },
   {
     "name": "Happy Hour IX",
-    "concert_type": "concert_type_happy_hour"
+    "concertType": "concert_type_happy_hour"
   },
   {
     "name": "Happy Hour X",
-    "concert_type": "concert_type_happy_hour"
+    "concertType": "concert_type_happy_hour"
   },
   {
     "name": "Happy Hour XI",
-    "concert_type": "concert_type_happy_hour"
+    "concertType": "concert_type_happy_hour"
   },
   {
     "name": "Happy Hour XII",
-    "concert_type": "concert_type_happy_hour"
+    "concertType": "concert_type_happy_hour"
   },
   {
     "name": "Happy Hour XIII",
-    "concert_type": "concert_type_happy_hour"
+    "concertType": "concert_type_happy_hour"
   },
   {
     "name": "Happy Hour XIV",
-    "concert_type": "concert_type_happy_hour"
+    "concertType": "concert_type_happy_hour"
   },
   {
     "name": "Happy Hour XV",
-    "concert_type": "concert_type_happy_hour"
+    "concertType": "concert_type_happy_hour"
   },
   {
     "name": "Happy Hour XVI",
-    "concert_type": "concert_type_happy_hour"
+    "concertType": "concert_type_happy_hour"
   },
   {
     "name": "Happy Hour XVII",
-    "concert_type": "concert_type_happy_hour"
+    "concertType": "concert_type_happy_hour"
   },
   {
     "name": "Happy Hour XVIII",
-    "concert_type": "concert_type_happy_hour"
+    "concertType": "concert_type_happy_hour"
   },
   {
     "name": "Happy Hour XIX",
-    "concert_type": "concert_type_happy_hour"
+    "concertType": "concert_type_happy_hour"
   },
   {
     "name": "Happy Hour XX",
-    "concert_type": "concert_type_happy_hour"
+    "concertType": "concert_type_happy_hour"
   },
   {
     "name": "Happy Hour XXI",
-    "concert_type": "concert_type_happy_hour"
+    "concertType": "concert_type_happy_hour"
   },
   {
     "name": "Happy Hour XXII",
-    "concert_type": "concert_type_happy_hour"
+    "concertType": "concert_type_happy_hour"
   },
   {
     "name": "Happy Hour XXIII",
-    "concert_type": "concert_type_happy_hour"
+    "concertType": "concert_type_happy_hour"
   },
   {
     "name": "Happy Hour XXIV",
-    "concert_type": "concert_type_happy_hour"
+    "concertType": "concert_type_happy_hour"
   }
 ]

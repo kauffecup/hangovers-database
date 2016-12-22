@@ -1,18 +1,24 @@
 /* global index */
+/* eslint-disable no-var */
+/* eslint-disable prefer-template */
 
 const hangoverIndexer = function (doc) {
+  var name = '';
   if (typeof doc.type === 'string' && doc.type === 'hangover') {
     if (typeof doc.firstName === 'string') {
       index('firstName', doc.firstName.toLowerCase());
+      name += doc.firstName;
+    }
+    if (typeof doc.hangsName === 'string') {
+      index('hangsName', doc.hangsName.toLowerCase());
+      name += ' ' + doc.hangsName;
     }
     if (typeof doc.lastName === 'string') {
       index('lastName', doc.lastName.toLowerCase());
+      name += ' ' + doc.lastName;
     }
-    if (typeof doc.graduationSemester === 'string') {
-      index('graduationSemester', doc.graduationSemester.toLowerCase());
-    }
-    if (typeof doc.firstName === 'string' && typeof doc.lastName === 'string') {
-      index('nameString', ('' + doc.firstName + ' ' + doc.lastName).toLowerCase()); // eslint-disable-line
+    if (name) {
+      index('nameString', name.toLowerCase());
     }
   }
 };

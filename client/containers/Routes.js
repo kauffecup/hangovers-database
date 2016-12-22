@@ -13,6 +13,7 @@ import Hangover from './Hangover';
 import EditHangover from './edit/EditHangover';
 import Hangovers from './Hangovers';
 import Semester from './Semester';
+import EditSemester from './edit/EditSemester';
 import Semesters from './Semesters';
 import Concert from './Concert';
 import Concerts from './Concerts';
@@ -26,6 +27,7 @@ const App = ({ history }) =>
       <Route path="edit/hangover/:id" component={EditHangover} />
       <Route path="semesters" component={Semesters} />
       <Route path="semesters/:id" component={Semester} />
+      <Route path="/edit/semester/:id" component={EditSemester} />
       <Route path="concerts" component={Concerts} />
       <Route path="concerts/:id" component={Concert} />
       <Route path="albums" component={Albums} />

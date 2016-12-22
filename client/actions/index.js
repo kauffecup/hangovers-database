@@ -1,12 +1,17 @@
 import { stringify } from 'query-string';
 import { reset, SubmissionError } from 'redux-form';
 import { push } from 'react-router-redux';
-import { fullArrangementAdapter, fullHangoverAdapter } from '../normalizers/adaptFormData';
 import myFetch from './myFetch';
+import {
+  fullArrangementAdapter,
+  fullHangoverAdapter,
+  fullSemesterAdapter,
+} from '../normalizers/adaptFormData';
 
 export const ARRANGEMENT_FORM = 'addArrangement';
 export const EDIT_FORM = 'editArrangement';
 export const HANGOVER_FORM = 'editHangover';
+export const SEMESTER_FORM = 'editSemester';
 
 export const SET_BANNER = 'SET_BANNER';
 export const BANNER_SUCCESS = 'BANNER_SUCCESS';
@@ -45,6 +50,9 @@ export const GET_EDIT_ARRANGEMENT_FAILURE = 'GET_EDIT_ARRANGEMENT_FAILURE';
 export const GET_EDIT_HANGOVER = 'GET_EDIT_HANGOVER';
 export const GET_EDIT_HANGOVER_SUCCESS = 'GET_EDIT_HANGOVER_SUCCESS';
 export const GET_EDIT_HANGOVER_FAILURE = 'GET_EDIT_HANGOVER_FAILURE';
+export const GET_EDIT_SEMESTER = 'GET_EDIT_SEMESTER';
+export const GET_EDIT_SEMESTER_SUCCESS = 'GET_EDIT_SEMESTER_SUCCESS';
+export const GET_EDIT_SEMESTER_FAILURE = 'GET_EDIT_SEMESTER_FAILURE';
 export const GET_HANGOVERS = 'GET_HANGOVERS';
 export const GET_HANGOVERS_SUCCESS = 'GET_HANGOVERS_SUCCESS';
 export const GET_HANGOVERS_FAILURE = 'GET_HANGOVERS_FAILURE';
@@ -101,6 +109,15 @@ export function getEditHangoverData(hangoverID) {
   };
 }
 
+export function getEditSemesterData(semesterID) {
+  return (dispatch) => {
+    dispatch({ type: GET_EDIT_SEMESTER });
+    myFetch(`/api/full/semester?${stringify({ semesterID })}`)
+      .then(data => dispatch({ type: GET_EDIT_SEMESTER_SUCCESS, data: fullSemesterAdapter(data) }))
+      .catch(error => dispatch({ type: GET_EDIT_SEMESTER_FAILURE, error }));
+  };
+}
+
 export function destroyDocument(_id, _rev) {
   return dispatch =>
     myFetch(`/api/destroy?${stringify({ _id, _rev })}`, { method: 'DELETE' })
@@ -129,6 +146,24 @@ export function editHangover(values) {
       return json;
     }).catch((error) => {
       dispatch(setBanner('Failed to edit hangover', BANNER_ERROR));
+      throw new SubmissionError(error);
+    });
+}
+
+export function editSemester(values) {
+  return dispatch =>
+    myFetch('/api/edit/semester', {
+      method: 'POST',
+      body: JSON.stringify(values),
+      headers: { 'Content-Type': 'application/json' },
+    }).then((json) => {
+      // on success we show a happy message and head back to the home page
+      dispatch(setBanner('Successfully edited semester', BANNER_SUCCESS));
+      dispatch(push('/'));
+      dispatch(reset(SEMESTER_FORM));
+      return json;
+    }).catch((error) => {
+      dispatch(setBanner('Failed to edit semester', BANNER_ERROR));
       throw new SubmissionError(error);
     });
 }

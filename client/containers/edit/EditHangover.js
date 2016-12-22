@@ -27,7 +27,7 @@ class EditHangover extends Component {
     return (
       <form onSubmit={handleSubmit(values => dispatch(editHangover(adaptHangoverSubmit(values))))}>
         <h2>{name}</h2>
-        <Field label="Graduated" name="graduationSemester" component={RenderSelect} options={semesters} />
+        <Field label="Graduated" name="graduationSemester" component={RenderSelect} options={semesters} multi />
         <Field label="Concert(s) MDed" name="concertsMDed" component={RenderSelect} options={concerts} multi />
         <Field label="Semester(s) MDed" name="semestersMDed" component={RenderSelect} options={semesters} multi />
         <Field label="Semester(s) BMed" name="semestersBMed" component={RenderSelect} options={semesters} multi />

@@ -12,7 +12,11 @@ import concert from './concert';
 import hangover from './hangover';
 import hangovers from './hangovers';
 import semester from './semester';
-import { GET_EDIT_ARRANGEMENT_SUCCESS, GET_EDIT_HANGOVER_SUCCESS } from '../actions';
+import {
+  GET_EDIT_ARRANGEMENT_SUCCESS,
+  GET_EDIT_HANGOVER_SUCCESS,
+  GET_EDIT_SEMESTER_SUCCESS,
+} from '../actions';
 
 export default combineReducers({
   app,
@@ -43,6 +47,17 @@ export default combineReducers({
     editHangover: (state, action) => {
       switch (action.type) {
         case GET_EDIT_HANGOVER_SUCCESS:
+          return Object.assign({}, state, {
+            values: action.data,
+          });
+
+        default:
+          return state;
+      }
+    },
+    editSemester: (state, action) => {
+      switch (action.type) {
+        case GET_EDIT_SEMESTER_SUCCESS:
           return Object.assign({}, state, {
             values: action.data,
           });

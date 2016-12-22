@@ -2,7 +2,12 @@ const Promise = require('bluebird');
 const cloudant = require('cloudant');
 const types = require('./cloudantHelpers/DBTypes');
 const idgen = require('./cloudantHelpers/IDGenerators');
-const { adaptFiles, adaptArrangement, adaptHangover } = require('./cloudantHelpers/Adapters');
+const {
+  adaptFiles,
+  adaptArrangement,
+  adaptHangover,
+  adaptSemester,
+} = require('./cloudantHelpers/Adapters');
 
 const LIMIT = 20;
 const OPTS = { concurrency: 3 };
@@ -144,12 +149,8 @@ module.exports = class SageDB {
     }).then(response => response.rows.map(r => r.doc));
   }
 
-  /**
-   * Upserts for given doc types. If the doc is already in the database, update
-   * it, if not create a new one.
-   */
+  /** Upserts for given doc types without relationships */
   upsertArrangementType(at) { return this._upsertType(at, types.ARRANGEMENT_TYPE_TYPE, idgen.getArrangementTypeID(at)); }
-  upsertSemester(s) { return this._upsertType(s, types.SEMESTER_TYPE, idgen.getSemesterID(s)); }
   upsertAlbum(a) { return this._upsertType(a, types.ALBUM_TYPE, idgen.getAlbumID(a)); }
   upsertAlbumFormat(af) { return this._upsertType(af, types.ALBUM_FORMAT_TYPE, idgen.getAlbumFormatID(af)); }
   upsertConcert(c) { return this._upsertType(c, types.CONCERT_TYPE, idgen.getConcertID(c)); }
@@ -158,12 +159,9 @@ module.exports = class SageDB {
   upsertArtist(a) { return this._upsertType(a, types.ARTIST_TYPE, idgen.getArtistID(a)); }
   upsertTag(t) { return this._upsertType(t, types.TAG_TYPE, idgen.getTagID(t)); }
   upsertKey(k) { return this._upsertType(k, types.KEY_TYPE, idgen.getKeyID(k)); }
-  upsertHangover(hangover) {
-    const { hangoverID, toUpload, relationships } = adaptHangover(hangover);
-    return this._upsertType(toUpload, types.HANGOVER_TYPE, hangoverID)
-      .then(() => this.searchRelationships('hangover', hangoverID))
-      .then(oldRelationships => this.manageRelationships(relationships, oldRelationships));
-  }
+  /** Upserts for doc types with relationships */
+  upsertSemester(s) { return this._upsertWithRelationships(s, adaptSemester, types.SEMESTER_TYPE, 'semester'); }
+  upsertHangover(h) { return this._upsertWithRelationships(h, adaptHangover, types.HANGOVER_TYPE, 'hangover'); }
   upsertArrangement(arrangement, files = {}) {
     const filesToUpload = adaptFiles(files, arrangement.name);
     const { arrID, toUpload, newArtists = [], newTags = [], relationships = [] } = adaptArrangement(arrangement, filesToUpload);
@@ -182,6 +180,14 @@ module.exports = class SageDB {
     .then(() => console.log('fetching existing relationships'))
     .then(() => this.searchRelationships('arrangement', arrID))
     .then(oldRelationships => this.manageRelationships(relationships, oldRelationships));
+  }
+
+  /** Handle flow of identifying relationships, upserting the adapted doc, and managing relationships */
+  _upsertWithRelationships(doc, adapter, type, relationshipField) {
+    const { id, toUpload, relationships } = adapter(doc);
+    return this._upsertType(toUpload, type, id)
+      .then(() => this.searchRelationships(relationshipField, id))
+      .then(oldRelationships => this.manageRelationships(relationships, oldRelationships));
   }
 
   /** Format the call to _upsert for the above doc types */

@@ -27,14 +27,22 @@ const singleRelationshipArrangementFields = [
 const multiRelationshipHangoverFields = [
   { field: 'arranged', relationshipField: 'arrangement', type: types.ARRANGEMENT_ARRANGERS_RELATIONSHIP_TYPE, idGenerator: idgen.getArrangementArrangerID, second: true },
   { field: 'concertsMDed', relationshipField: 'semester', type: types.MD_CONCERT_RELATIONSHIP_TYPE, idGenerator: idgen.getMDConcertID },
+  { field: 'graduationSemester', relationshipField: 'semester', type: types.HANGOVER_GRADUATION_SEMESTER_RELATIONSHIP_TYPE, idGenerator: idgen.getHangoverGraduationID },
   { field: 'semestersBMed', relationshipField: 'semester', type: types.BM_SEMESTER_RELATIONSHIP_TYPE, idGenerator: idgen.getBMSemesterID },
   { field: 'semestersMDed', relationshipField: 'semester', type: types.MD_SEMESTER_RELATIONSHIP_TYPE, idGenerator: idgen.getMDSemesterID },
   { field: 'semestersPresided', relationshipField: 'semester', type: types.PRESIDENT_SEMESTER_RELATIONSHIP_TYPE, idGenerator: idgen.getPresidentSemesterID },
   { field: 'soloed', relationshipField: 'arrangement', type: types.ARRANGEMENT_SOLOISTS_RELATIONSHIP_TYPE, idGenerator: idgen.getArrangementSoloistID, second: true },
 ];
 
-const singleRelationshipHangoverFields = [
-  { field: 'graduationSemester', relationshipField: 'semester', type: types.HANGOVER_GRADUATION_SEMESTER_RELATIONSHIP_TYPE, idGenerator: idgen.getHangoverGraduationID },
+const multiRelationshipSemesterFields = [
+  { field: 'albums', relationshipField: 'album', type: types.ALBUM_SEMESTER_RELATIONSHIP_TYPE, idGenerator: idgen.getAlbumSemesterID, second: true },
+  { field: 'arrangements', relationshipField: 'arrangement', type: types.ARRANGEMENT_SEMESTER_ARRANGED_RELATIONSHIP_TYPE, idGenerator: idgen.getArrangementSemesterArrangedID, second: true },
+  { field: 'bm', relationshipField: 'hangover', type: types.BM_SEMESTER_RELATIONSHIP_TYPE, idGenerator: idgen.getBMSemesterID, second: true },
+  { field: 'concerts', relationshipField: 'concert', type: types.CONCERT_SEMESTER_RELATIONSHIP_TYPE, idGenerator: idgen.getConcertSemesterID, second: true },
+  { field: 'md', relationshipField: 'hangover', type: types.MD_SEMESTER_RELATIONSHIP_TYPE, idGenerator: idgen.getMDSemesterID, second: true },
+  { field: 'performed', relationshipField: 'arrangement', type: types.ARRANGEMENT_SEMESTERS_PERFORMED_RELATIONSHIP_TYPE, idGenerator: idgen.getArrangementSemesterPerformedID, second: true },
+  { field: 'president', relationshipField: 'hangover', type: types.PRESIDENT_SEMESTER_RELATIONSHIP_TYPE, idGenerator: idgen.getPresidentSemesterID, second: true },
+  { field: 'graduatingHangs', relationshipField: 'hangover', type: types.HANGOVER_GRADUATION_SEMESTER_RELATIONSHIP_TYPE, idGenerator: idgen.getHangoverGraduationID, second: true },
 ];
 
 /**
@@ -140,9 +148,19 @@ const adaptArrangement = (arrangement, files = []) => {
  */
 const adaptHangover = (hangover) => {
   const toUpload = Object.assign({}, hangover);
-  const hangoverID = idgen.getHangoverID(toUpload);
-  const relationships = adaptRelationships(toUpload, hangoverID, 'hangover', multiRelationshipHangoverFields, singleRelationshipHangoverFields);
-  return { hangoverID, toUpload, relationships };
+  const id = idgen.getHangoverID(toUpload);
+  const relationships = adaptRelationships(toUpload, id, 'hangover', multiRelationshipHangoverFields);
+  return { id, toUpload, relationships };
+};
+
+/**
+ * Take a semester object and make it cloudant friendly
+ */
+const adaptSemester = (semester) => {
+  const toUpload = Object.assign({}, semester);
+  const id = idgen.getSemesterID(toUpload);
+  const relationships = adaptRelationships(toUpload, id, 'semester', multiRelationshipSemesterFields);
+  return { id, toUpload, relationships };
 };
 
 /**
@@ -152,7 +170,7 @@ const adaptHangover = (hangover) => {
  * this, delete the field that we used to generate these relationships from the
  * doc, as the relationships array is sufficient to identify what's going on.
  */
-const adaptRelationships = (myDoc, id, myRelationshipField, multiFields, singleFields) => {
+const adaptRelationships = (myDoc, id, myRelationshipField, multiFields = [], singleFields = []) => {
   const relationships = [];
   for (const { field, relationshipField, type, idGenerator, second } of multiFields) {
     if (myDoc[field] && myDoc[field].length) {
@@ -177,3 +195,4 @@ module.exports.adaptFile = adaptFile;
 module.exports.adaptFiles = adaptFiles;
 module.exports.adaptArrangement = adaptArrangement;
 module.exports.adaptHangover = adaptHangover;
+module.exports.adaptSemester = adaptSemester;

@@ -119,12 +119,15 @@ app.post('/api/arrangementsubmit', upload.fields([
     .catch(e => res.status(500).json(e));
 });
 
-/** POST: Edit a hangover's info */
-app.post('/api/edit/hangover', ({ body }, res) => {
-  sageDB.upsertHangover(body)
+/** Upsert a doc that we're editing */
+const edit = (doc, upsertMethod, res) =>
+  sageDB[upsertMethod](doc)
     .then(() => res.json({}))
     .catch(e => res.status(500).json(e));
-});
+
+/** endpoints that use the above helper */
+app.post('/api/edit/hangover', ({ body }, res) => edit(body, 'upsertHangover', res));
+app.post('/api/edit/semester', ({ body }, res) => edit(body, 'upsertSemester', res));
 
 /** GET: see if an arrangement exists */
 app.get('/api/arrangementexists', ({ query: { name } }, res) => {

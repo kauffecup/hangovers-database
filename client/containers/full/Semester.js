@@ -1,14 +1,14 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, css } from 'aphrodite';
-import PathButton from '../components/PathButton';
-import AlbumList from '../components/lists/AlbumList';
-import ArrangementList from '../components/lists/ArrangementList';
-import ConcertList from '../components/lists/ConcertList';
-import HangoverList from '../components/lists/HangoverList';
-import { getSemester } from '../actions';
-import { semesterFormatter } from '../normalizers/adaptFormData';
-import { PADDING_UNIT } from '../StyleConstants';
+import PathButton from '../../components/PathButton';
+import AlbumList from '../../components/lists/AlbumList';
+import ArrangementList from '../../components/lists/ArrangementList';
+import ConcertList from '../../components/lists/ConcertList';
+import HangoverList from '../../components/lists/HangoverList';
+import { getSemester } from '../../actions';
+import { semesterFormatter } from '../../normalizers/adaptFormData';
+import { PADDING_UNIT } from '../../StyleConstants';
 
 class Semester extends Component {
   componentDidMount() {

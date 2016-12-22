@@ -2,9 +2,9 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { InfiniteLoader, List, AutoSizer } from 'react-virtualized';
 import { StyleSheet, css } from 'aphrodite';
-import ArrangementLink from '../components/links/ArrangementLink';
-import { getArrangements } from '../actions';
-import { ARRANGEMENT_HEIGHT, PADDING_UNIT } from '../StyleConstants';
+import ArrangementLink from '../../components/links/ArrangementLink';
+import { getArrangements } from '../../actions';
+import { ARRANGEMENT_HEIGHT, PADDING_UNIT } from '../../StyleConstants';
 
 class Arrangements extends Component {
   componentDidMount() {

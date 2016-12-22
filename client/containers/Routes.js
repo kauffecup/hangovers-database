@@ -1,23 +1,26 @@
 import React, { PropTypes } from 'react';
 import { Router, Route, IndexRoute } from 'react-router';
-import AddArrangement from './AddArrangement';
-import EditArrangement from './edit/EditArrangement';
-import Arrangements from './Arrangements';
-import Arrangement from './Arrangement';
-import Artists from './Artists';
-import Album from './Album';
-import Albums from './Albums';
-import Artist from './Artist';
 import Sage from './Sage';
-import Hangover from './Hangover';
-import EditHangover from './edit/EditHangover';
-import Hangovers from './Hangovers';
-import Semester from './Semester';
-import EditSemester from './edit/EditSemester';
-import Semesters from './Semesters';
-import Concert from './Concert';
+import AddArrangement from './AddArrangement';
+// lists
+import Albums from './lists/Albums';
+import Arrangements from './lists/Arrangements';
+import Artists from './lists/Artists';
+import Concerts from './lists/Concerts';
+import Hangovers from './lists/Hangovers';
+import Semesters from './lists/Semesters';
+// full
+import Album from './full/Album';
+import Arrangement from './full/Arrangement';
+import Artist from './full/Artist';
+import Concert from './full/Concert';
+import Hangover from './full/Hangover';
+import Semester from './full/Semester';
+// edit
+import EditArrangement from './edit/EditArrangement';
 import EditConcert from './edit/EditConcert';
-import Concerts from './Concerts';
+import EditHangover from './edit/EditHangover';
+import EditSemester from './edit/EditSemester';
 
 const App = ({ history }) =>
   <Router history={history}>

@@ -2,15 +2,15 @@ import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, css } from 'aphrodite';
 import { stringify } from 'query-string';
-import { getArrangement } from '../actions';
-import PathButton from '../components/PathButton';
-import AlbumList from '../components/lists/AlbumList';
-import ArtistList from '../components/lists/ArtistList';
-import ConcertList from '../components/lists/ConcertList';
-import HangoverList from '../components/lists/HangoverList';
-import SemesterList from '../components/lists/SemesterList';
-import { keyFormatter } from '../normalizers/adaptFormData';
-import { PADDING_UNIT } from '../StyleConstants';
+import { getArrangement } from '../../actions';
+import PathButton from '../../components/PathButton';
+import AlbumList from '../../components/lists/AlbumList';
+import ArtistList from '../../components/lists/ArtistList';
+import ConcertList from '../../components/lists/ConcertList';
+import HangoverList from '../../components/lists/HangoverList';
+import SemesterList from '../../components/lists/SemesterList';
+import { keyFormatter } from '../../normalizers/adaptFormData';
+import { PADDING_UNIT } from '../../StyleConstants';
 
 const Field = ({ title, text,  }) => typeof text === 'string' ? // eslint-disable-line
   <div>

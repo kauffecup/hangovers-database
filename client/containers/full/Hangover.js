@@ -1,13 +1,13 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, css } from 'aphrodite';
-import PathButton from '../components/PathButton';
-import ArrangementList from '../components/lists/ArrangementList';
-import ConcertList from '../components/lists/ConcertList';
-import SemesterList from '../components/lists/SemesterList';
-import { getHangover } from '../actions';
-import { hangoverFormatter } from '../normalizers/adaptFormData';
-import { PADDING_UNIT } from '../StyleConstants';
+import PathButton from '../../components/PathButton';
+import ArrangementList from '../../components/lists/ArrangementList';
+import ConcertList from '../../components/lists/ConcertList';
+import SemesterList from '../../components/lists/SemesterList';
+import { getHangover } from '../../actions';
+import { hangoverFormatter } from '../../normalizers/adaptFormData';
+import { PADDING_UNIT } from '../../StyleConstants';
 
 class Hangover extends Component {
   componentDidMount() {

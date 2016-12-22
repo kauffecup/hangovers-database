@@ -2,27 +2,27 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { List, AutoSizer } from 'react-virtualized';
 import { StyleSheet, css } from 'aphrodite';
-import AlbumLink from '../components/links/AlbumLink';
-import { PADDING_UNIT, ALBUM_HEIGHT } from '../StyleConstants';
+import SemesterLink from '../../components/links/SemesterLink';
+import { PADDING_UNIT, SEMESTER_HEIGHT } from '../../StyleConstants';
 
-const Albums = ({ albums, semesterMap }) => {
+const Semesters = ({ semesters }) => {
   const rowRenderer = ({ index, key, style }) => // eslint-disable-line
     <div key={key} style={style}>
-      <div className={css(styles.album)}>
-        <AlbumLink {...albums[index]} year={semesterMap[albums[index].semester].year} />
+      <div className={css(styles.semester)}>
+        <SemesterLink {...semesters[index]} />
       </div>
     </div>;
 
   return (
-    <div className={css(styles.albums)}>
+    <div className={css(styles.semesters)}>
       <AutoSizer>
         {({ height, width }) => (height && width) ? (
           <List
             rowRenderer={rowRenderer}
-            rowCount={albums.length}
+            rowCount={semesters.length}
             width={width}
             height={height}
-            rowHeight={ALBUM_HEIGHT}
+            rowHeight={SEMESTER_HEIGHT}
           />
         ) : null}
       </AutoSizer>
@@ -31,24 +31,22 @@ const Albums = ({ albums, semesterMap }) => {
 };
 
 const styles = StyleSheet.create({
-  albums: {
+  semesters: {
     flex: 1,
     padding: `${PADDING_UNIT}px`,
   },
-  album: {
-    height: `${ALBUM_HEIGHT}px`,
+  semester: {
+    height: `${SEMESTER_HEIGHT}px`,
   },
 });
 
-Albums.propTypes = {
-  albums: PropTypes.array.isRequired,
-  semesterMap: PropTypes.object.isRequired,
+Semesters.propTypes = {
+  semesters: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = state => ({
-  albums: state.app.albums,
-  semesterMap: state.app.semesterMap,
+  semesters: state.app.semesters,
 });
 
 // Wrap the component to inject dispatch and state into it
-export default connect(mapStateToProps)(Albums);
+export default connect(mapStateToProps)(Semesters);

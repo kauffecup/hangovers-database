@@ -1,10 +1,10 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, css } from 'aphrodite';
-import ArrangementList from '../components/lists/ArrangementList';
-import { getArtist } from '../actions';
-import { artistFormatter } from '../normalizers/adaptFormData';
-import { PADDING_UNIT } from '../StyleConstants';
+import ArrangementList from '../../components/lists/ArrangementList';
+import { getArtist } from '../../actions';
+import { artistFormatter } from '../../normalizers/adaptFormData';
+import { PADDING_UNIT } from '../../StyleConstants';
 
 class Artist extends Component {
   componentDidMount() {

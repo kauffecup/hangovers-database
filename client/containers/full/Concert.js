@@ -1,13 +1,13 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, css } from 'aphrodite';
-import PathButton from '../components/PathButton';
-import ArrangementList from '../components/lists/ArrangementList';
-import SemesterList from '../components/lists/SemesterList';
-import HangoverList from '../components/lists/HangoverList';
-import { getConcert } from '../actions';
-import { concertFormatter } from '../normalizers/adaptFormData';
-import { PADDING_UNIT } from '../StyleConstants';
+import PathButton from '../../components/PathButton';
+import ArrangementList from '../../components/lists/ArrangementList';
+import SemesterList from '../../components/lists/SemesterList';
+import HangoverList from '../../components/lists/HangoverList';
+import { getConcert } from '../../actions';
+import { concertFormatter } from '../../normalizers/adaptFormData';
+import { PADDING_UNIT } from '../../StyleConstants';
 
 class Concert extends Component {
   componentDidMount() {

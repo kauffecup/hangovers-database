@@ -2,8 +2,8 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { List, AutoSizer } from 'react-virtualized';
 import { StyleSheet, css } from 'aphrodite';
-import ConcertLink from '../components/links/ConcertLink';
-import { PADDING_UNIT, CONCERT_HEIGHT } from '../StyleConstants';
+import ConcertLink from '../../components/links/ConcertLink';
+import { PADDING_UNIT, CONCERT_HEIGHT } from '../../StyleConstants';
 
 const Concerts = ({ concerts }) => {
   const rowRenderer = ({ index, key, style }) => // eslint-disable-line

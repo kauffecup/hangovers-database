@@ -65,6 +65,16 @@ export const adaptAlbumSubmit = (values) => {
   return Object.assign({}, values, adaptedValues);
 };
 
+export const adaptArtistSubmit = (values) => {
+  const adaptedValues = {};
+  const aObjectArrayFields = ['arrangements'];
+  for (const objectArrayField of aObjectArrayFields) {
+    adaptedValues[objectArrayField] = adaptObjectArray(values[objectArrayField]);
+  }
+
+  return Object.assign({}, values, adaptedValues);
+};
+
 export const adaptConcertSubmit = (values) => {
   const adaptedValues = {};
   const cObjectFields = ['concertType', 'semester'];

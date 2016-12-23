@@ -106,6 +106,10 @@ export const fullArrangementAdapter = (a = {}) => Object.assign({}, a, {
   tags: (a.tags || []).map(tagAdapter),
 });
 
+export const fullArtistAdapter = (a = {}) => Object.assign({}, a, {
+  arrangements: (a.arrangements || []).map(arrangementAdapter),
+});
+
 export const fullConcertAdapter = (c = {}) => Object.assign({}, c, {
   concertType: (typeof c.concertType !== 'undefined') && concertTypeAdapter(c.concertType),
   md: (c.md || []).map(hangoverAdapter),

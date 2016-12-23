@@ -127,6 +127,7 @@ const edit = (doc, upsertMethod, res) =>
 
 /** endpoints that use the above helper */
 app.post('/api/edit/album', ({ body }, res) => edit(body, 'upsertAlbum', res));
+app.post('/api/edit/artist', ({ body }, res) => edit(body, 'upsertArtist', res));
 app.post('/api/edit/concert', ({ body }, res) => edit(body, 'upsertConcert', res));
 app.post('/api/edit/hangover', ({ body }, res) => edit(body, 'upsertHangover', res));
 app.post('/api/edit/semester', ({ body }, res) => edit(body, 'upsertSemester', res));

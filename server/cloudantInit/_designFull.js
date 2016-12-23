@@ -49,12 +49,8 @@ const arrangementMap = function (doc) {
 const artistMap = function (doc) {
   if (doc.type === 'artist') {
     emit([doc._id]);
-  } else if (doc.type === 'arrangement') {
-    if (doc.artists && doc.artists.length) {
-      for (var i = 0; i < doc.artists.length; i++) {
-        emit([doc.artists[i], 'arrangements'], { _id: doc._id });
-      }
-    }
+  } else if (doc.type === 'arrangement_artist_relationship') {
+    emit([doc.artist, 'arrangements'], { _id: doc.arrangement });
   }
 };
 

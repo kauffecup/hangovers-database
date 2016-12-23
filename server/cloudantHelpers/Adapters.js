@@ -32,6 +32,10 @@ const singleRelationshipAlbumFields = [
   { field: 'semester', relationshipField: 'semester', type: types.ALBUM_SEMESTER_RELATIONSHIP_TYPE, idGenerator: idgen.getAlbumSemesterID },
 ];
 
+const multiRelationshipArtistFields = [
+  { field: 'arrangements', relationshipField: 'arrangement', type: types.ARRANGEMENT_ARTIST_RELATIONSHIP_TYPE, idGenerator: idgen.getArrangementArtistID, second: true },
+];
+
 const multiRelationshipConcertFields = [
   { field: 'md', relationshipField: 'hangover', type: types.MD_CONCERT_RELATIONSHIP_TYPE, idGenerator: idgen.getMDConcertID, second: true },
   { field: 'setList', relationshipField: 'arrangement', type: types.ARRANGEMENT_CONCERTS_RELATIONSHIP_TYPE, idGenerator: idgen.getArrangementConcertID, second: true },
@@ -173,6 +177,16 @@ const adaptAlbum = (album) => {
 /**
  * Take a hangover object and make it cloudant friendly
  */
+const adaptArtist = (artist) => {
+  const toUpload = Object.assign({}, artist);
+  const id = idgen.getArtistID(toUpload);
+  const relationships = adaptRelationships(toUpload, id, 'artist', multiRelationshipArtistFields);
+  return { id, toUpload, relationships };
+};
+
+/**
+ * Take a hangover object and make it cloudant friendly
+ */
 const adaptConcert = (concert) => {
   const toUpload = Object.assign({}, concert);
   const id = idgen.getConcertID(toUpload);
@@ -232,6 +246,7 @@ module.exports.adaptFile = adaptFile;
 module.exports.adaptFiles = adaptFiles;
 module.exports.adaptArrangement = adaptArrangement;
 module.exports.adaptAlbum = adaptAlbum;
+module.exports.adaptArtist = adaptArtist;
 module.exports.adaptConcert = adaptConcert;
 module.exports.adaptHangover = adaptHangover;
 module.exports.adaptSemester = adaptSemester;

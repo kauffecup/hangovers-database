@@ -6,6 +6,7 @@ const {
   adaptAlbum,
   adaptFiles,
   adaptArrangement,
+  adaptArtist,
   adaptConcert,
   adaptHangover,
   adaptSemester,
@@ -156,11 +157,11 @@ module.exports = class SageDB {
   upsertAlbumFormat(af) { return this._upsertType(af, types.ALBUM_FORMAT_TYPE, idgen.getAlbumFormatID(af)); }
   upsertConcertType(ct) { return this._upsertType(ct, types.CONCERT_TYPE_TYPE, idgen.getConcertTypeID(ct)); }
   upsertGenre(g) { return this._upsertType(g, types.GENRE_TYPE, idgen.getGenreID(g)); }
-  upsertArtist(a) { return this._upsertType(a, types.ARTIST_TYPE, idgen.getArtistID(a)); }
   upsertTag(t) { return this._upsertType(t, types.TAG_TYPE, idgen.getTagID(t)); }
   upsertKey(k) { return this._upsertType(k, types.KEY_TYPE, idgen.getKeyID(k)); }
   /** Upserts for doc types with relationships */
   upsertAlbum(a) { return this._upsertWithRelationships(a, adaptAlbum, types.ALBUM_TYPE, 'album'); }
+  upsertArtist(a) { return this._upsertWithRelationships(a, adaptArtist, types.ARTIST_TYPE, 'artist'); }
   upsertConcert(c) { return this._upsertWithRelationships(c, adaptConcert, types.CONCERT_TYPE, 'concert'); }
   upsertSemester(s) { return this._upsertWithRelationships(s, adaptSemester, types.SEMESTER_TYPE, 'semester'); }
   upsertHangover(h) { return this._upsertWithRelationships(h, adaptHangover, types.HANGOVER_TYPE, 'hangover'); }

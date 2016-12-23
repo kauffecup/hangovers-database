@@ -1,6 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, css } from 'aphrodite';
+import PathButton from '../../components/PathButton';
 import ArrangementList from '../../components/lists/ArrangementList';
 import { getArtist } from '../../actions';
 import { artistFormatter } from '../../normalizers/adaptFormData';
@@ -13,12 +14,13 @@ class Artist extends Component {
   }
 
   render() {
-    const { artist, loading } = this.props;
+    const { artist, loading, id } = this.props;
     if (loading) {
       return <div>loading</div>;
     }
     return (
       <div className={css(styles.arrangement)}>
+        <PathButton text="edit" path={`/edit/artist/${id}`} />
         <h2>{artistFormatter(artist)}</h2>
         <h3>Arrangements</h3>
         <ArrangementList arrangements={artist.arrangements} />

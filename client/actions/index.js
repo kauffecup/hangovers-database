@@ -5,6 +5,7 @@ import myFetch from './myFetch';
 import {
   fullAlbumAdapter,
   fullArrangementAdapter,
+  fullArtistAdapter,
   fullConcertAdapter,
   fullHangoverAdapter,
   fullSemesterAdapter,
@@ -12,6 +13,7 @@ import {
 
 export const ALBUM_FORM = 'editAlbum';
 export const ARRANGEMENT_FORM = 'addArrangement';
+export const ARTIST_FORM = 'editArtist';
 export const CONCERT_FORM = 'editConcert';
 export const EDIT_FORM = 'editArrangement';
 export const HANGOVER_FORM = 'editHangover';
@@ -54,6 +56,9 @@ export const GET_EDIT_ALBUM_FAILURE = 'GET_EDIT_ALBUM_FAILURE';
 export const GET_EDIT_ARRANGEMENT = 'GET_EDIT_ARRANGEMENT';
 export const GET_EDIT_ARRANGEMENT_SUCCESS = 'GET_EDIT_ARRANGEMENT_SUCCESS';
 export const GET_EDIT_ARRANGEMENT_FAILURE = 'GET_EDIT_ARRANGEMENT_FAILURE';
+export const GET_EDIT_ARTIST = 'GET_EDIT_ARTIST';
+export const GET_EDIT_ARTIST_SUCCESS = 'GET_EDIT_ARTIST_SUCCESS';
+export const GET_EDIT_ARTIST_FAILURE = 'GET_EDIT_ARTIST_FAILURE';
 export const GET_EDIT_HANGOVER = 'GET_EDIT_HANGOVER';
 export const GET_EDIT_HANGOVER_SUCCESS = 'GET_EDIT_HANGOVER_SUCCESS';
 export const GET_EDIT_HANGOVER_FAILURE = 'GET_EDIT_HANGOVER_FAILURE';
@@ -119,6 +124,15 @@ export function getEditArrangementData(arrangementID) {
   };
 }
 
+export function getEditArtistData(artistID) {
+  return (dispatch) => {
+    dispatch({ type: GET_EDIT_ARTIST });
+    myFetch(`/api/full/artist?${stringify({ artistID })}`)
+      .then(data => dispatch({ type: GET_EDIT_ARTIST_SUCCESS, data: fullArtistAdapter(data) }))
+      .catch(error => dispatch({ type: GET_EDIT_ARTIST_FAILURE, error }));
+  };
+}
+
 export function getEditConcertData(concertID) {
   return (dispatch) => {
     dispatch({ type: GET_EDIT_CONCERT });
@@ -170,10 +184,28 @@ export function editAlbum(values) {
       // on success we show a happy message and head back to the home page
       dispatch(setBanner('Successfully edited album', BANNER_SUCCESS));
       dispatch(push('/'));
-      dispatch(reset(CONCERT_FORM));
+      dispatch(reset(ALBUM_FORM));
       return json;
     }).catch((error) => {
       dispatch(setBanner('Failed to edit album', BANNER_ERROR));
+      throw new SubmissionError(error);
+    });
+}
+
+export function editArtist(values) {
+  return dispatch =>
+    myFetch('/api/edit/artist', {
+      method: 'POST',
+      body: JSON.stringify(values),
+      headers: { 'Content-Type': 'application/json' },
+    }).then((json) => {
+      // on success we show a happy message and head back to the home page
+      dispatch(setBanner('Successfully edited artist', BANNER_SUCCESS));
+      dispatch(push('/'));
+      dispatch(reset(ARTIST_FORM));
+      return json;
+    }).catch((error) => {
+      dispatch(setBanner('Failed to edit artist', BANNER_ERROR));
       throw new SubmissionError(error);
     });
 }
@@ -255,6 +287,7 @@ export function editArrangement(values) {
         // on success we show a happy message and head back to the home page
         dispatch(setBanner('Successfully edited arrangement', BANNER_SUCCESS));
         dispatch(push('/'));
+        dispatch(reset(EDIT_FORM));
         return json;
       }).catch((e) => {
         // on failure we show a sad message but stay here in case user wants to resubmit

@@ -13,13 +13,13 @@ const semesterMapper = function (doc) {
   }
 };
 
-const arrangementMapper  = function (doc) {
+const arrangementMapper = function (doc) {
   if (doc.type === 'arrangement') {
     emit(doc._id, 1);
   }
 };
 
-const albumMapper  = function (doc) {
+const albumMapper = function (doc) {
   if (doc.type === 'album') {
     emit(doc._id, 1);
   }

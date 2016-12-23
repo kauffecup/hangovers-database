@@ -111,6 +111,14 @@ const semesterMap = function (doc) {
   }
 };
 
+const tagMap = function (doc) {
+  if (doc.type === 'tag') {
+    emit([doc._id]);
+  } else if (doc.type === 'arrangement_tag_relationship') {
+    emit([doc.tag, 'arrangements'], { _id: doc.arrangement });
+  }
+};
+
 const ddoc = {
   _id: '_design/full',
   language: 'javascript',
@@ -121,6 +129,7 @@ const ddoc = {
     concert: { map: concertMap },
     hangover: { map: hangoverMap },
     semester: { map: semesterMap },
+    tag: { map: tagMap },
   },
 };
 

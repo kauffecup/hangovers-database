@@ -29,4 +29,5 @@ export const ARTIST_HEIGHT = 30;
 export const CONCERT_HEIGHT = 30;
 export const HANGOVER_HEIGHT = 30;
 export const SEMESTER_HEIGHT = 30;
+export const TAG_HEIGHT = 30;
 export const ALBUM_HEIGHT = 30;

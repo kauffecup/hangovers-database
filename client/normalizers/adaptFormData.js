@@ -77,8 +77,10 @@ export const semesterAdapter = (s = {}) => ({
 export const syllableAdapter = s =>
   s && typeof s === 'boolean' ? 'yes' : 'no';
 
+export const tagFormatter = (t = {}) => t.name;
+
 export const tagAdapter = (t = {}) => ({
-  value: t._id, label: t.name,
+  value: t._id, label: tagFormatter(t),
 });
 
 export const fullAlbumAdapter = (a = {}) => Object.assign({}, a, {

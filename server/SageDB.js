@@ -52,6 +52,7 @@ module.exports = class SageDB {
   getFullConcert(concertID) { return this._getFullArrayRollup(concertID, 'concert', ['concertType', 'semester']); }
   getFullAlbum(albumID) { return this._getFullArrayRollup(albumID, 'album', ['format', 'semester']); }
   getFullArtist(artistID) { return this._getFullArrayRollup(artistID, 'artist'); }
+  getFullTag(tagID) { return this._getFullArrayRollup(tagID, 'tag'); }
 
   /**
    * Here we get a document's metadata along with the original docs for any ids
@@ -110,17 +111,18 @@ module.exports = class SageDB {
    * resolves with the response from cloudant. We do processing on the rows to
    * return the doc.
    */
-  getArrangements(limit, skip) { return this._view('arrangements', limit, skip); }
-  getArrangementTypes(limit, skip) { return this._view('arrangement_types', limit, skip); }
-  getHangovers(limit, skip) { return this._view('hangovers', limit, skip); }
-  getSemesters(limit, skip) { return this._view('semesters', limit, skip); }
   getAlbums(limit, skip) { return this._view('albums', limit, skip); }
   getAlbumFormats(limit, skip) { return this._view('album_formats', limit, skip); }
+  getArrangements(limit, skip) { return this._view('arrangements', limit, skip); }
+  getArrangementTypes(limit, skip) { return this._view('arrangement_types', limit, skip); }
+  getArtists(limit, skip) { return this._view('artists', limit, skip); }
   getConcerts(limit, skip) { return this._view('concerts', limit, skip); }
   getConcertTypes(limit, skip) { return this._view('concert_types', limit, skip); }
   getGenres(limit, skip) { return this._view('genres', limit, skip); }
-  getArtists(limit, skip) { return this._view('artists', limit, skip); }
+  getHangovers(limit, skip) { return this._view('hangovers', limit, skip); }
   getKeys(limit, skip) { return this._view('keys', limit, skip); }
+  getSemesters(limit, skip) { return this._view('semesters', limit, skip); }
+  getTags(limit, skip) { return this._view('tags', limit, skip); }
 
   /** Helper method for above getters */
   _view(type, limit = LIMIT, skip = 0) {

@@ -70,6 +70,7 @@ app.get('/api/full/semester', ({ query: { semesterID } }, res) => getFull(semest
 app.get('/api/full/concert', ({ query: { concertID } }, res) => getFull(concertID, 'getFullConcert', res));
 app.get('/api/full/album', ({ query: { albumID } }, res) => getFull(albumID, 'getFullAlbum', res));
 app.get('/api/full/artist', ({ query: { artistID } }, res) => getFull(artistID, 'getFullArtist', res));
+app.get('/api/full/tag', ({ query: { tagID } }, res) => getFull(tagID, 'getFullTag', res));
 
 /** Get a file from the database */
 app.get('/api/arrangementfile', ({ query: { arrangementID, attachmentID, type } }, res) => {
@@ -92,8 +93,9 @@ const getList = (limit, skip, method, res) =>
 
 /** Endpoints that use the above helper */
 app.get('/api/list/arrangements', ({ query: { limit, skip } }, res) => getList(limit, skip, 'getArrangements', res));
-app.get('/api/list/hangovers', ({ query: { limit, skip } }, res) => getList(limit, skip, 'getHangovers', res));
 app.get('/api/list/artists', ({ query: { limit, skip } }, res) => getList(limit, skip, 'getArtists', res));
+app.get('/api/list/hangovers', ({ query: { limit, skip } }, res) => getList(limit, skip, 'getHangovers', res));
+app.get('/api/list/tags', ({ query: { limit, skip } }, res) => getList(limit, skip, 'getTags', res));
 
 /** Perform a search in the database */
 const search = (text, method, res) =>

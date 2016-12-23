@@ -50,6 +50,9 @@ export const GET_ALBUM_FAILURE = 'GET_ALBUM_FAILURE';
 export const GET_ARTIST = 'GET_ARTIST';
 export const GET_ARTIST_SUCCESS = 'GET_ARTIST_SUCCESS';
 export const GET_ARTIST_FAILURE = 'GET_ARTIST_FAILURE';
+export const GET_TAG = 'GET_TAG';
+export const GET_TAG_SUCCESS = 'GET_TAG_SUCCESS';
+export const GET_TAG_FAILURE = 'GET_TAG_FAILURE';
 export const GET_EDIT_ALBUM = 'GET_EDIT_ALBUM';
 export const GET_EDIT_ALBUM_SUCCESS = 'GET_EDIT_ALBUM_SUCCESS';
 export const GET_EDIT_ALBUM_FAILURE = 'GET_EDIT_ALBUM_FAILURE';
@@ -74,6 +77,9 @@ export const GET_HANGOVERS_FAILURE = 'GET_HANGOVERS_FAILURE';
 export const GET_ARTISTS = 'GET_ARTISTS';
 export const GET_ARTISTS_SUCCESS = 'GET_ARTISTS_SUCCESS';
 export const GET_ARTISTS_FAILURE = 'GET_ARTISTS_FAILURE';
+export const GET_TAGS = 'GET_TAGS';
+export const GET_TAGS_SUCCESS = 'GET_TAGS_SUCCESS';
+export const GET_TAGS_FAILURE = 'GET_TAGS_FAILURE';
 
 export function setBanner(text, type) {
   return { type: SET_BANNER, text, bannerType: type };
@@ -100,11 +106,13 @@ export const getSemester = semesterID => actionFetch('/api/full/semester', GET_S
 export const getConcert = concertID => actionFetch('/api/full/concert', GET_CONCERT, GET_CONCERT_SUCCESS, GET_CONCERT_FAILURE, { concertID });
 export const getAlbum = albumID => actionFetch('/api/full/album', GET_ALBUM, GET_ALBUM_SUCCESS, GET_ALBUM_FAILURE, { albumID });
 export const getArtist = artistID => actionFetch('/api/full/artist', GET_ARTIST, GET_ARTIST_SUCCESS, GET_ARTIST_FAILURE, { artistID });
+export const getTag = tagID => actionFetch('/api/full/tag', GET_TAG, GET_TAG_SUCCESS, GET_TAG_FAILURE, { tagID });
 
 /** Actions for getting paged lists */
 export const getArrangements = skip => actionFetch('/api/list/arrangements', GET_ARRANGEMENTS, GET_ARRANGEMENTS_SUCCESS, GET_ARRANGEMENTS_FAILURE, { skip });
 export const getHangovers = skip => actionFetch('/api/list/hangovers', GET_HANGOVERS, GET_HANGOVERS_SUCCESS, GET_HANGOVERS_FAILURE, { skip });
 export const getArtists = skip => actionFetch('/api/list/artists', GET_ARTISTS, GET_ARTISTS_SUCCESS, GET_ARTISTS_FAILURE, { skip });
+export const getTags = skip => actionFetch('/api/list/tags', GET_TAGS, GET_TAGS_SUCCESS, GET_TAGS_FAILURE, { skip });
 
 export function getEditAlbumData(albumID) {
   return (dispatch) => {

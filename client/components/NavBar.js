@@ -11,6 +11,7 @@ import loudspeakerSVG from '../icons/loudspeaker.svg';
 import cdSVG from '../icons/cd.svg';
 import headphonesSVG from '../icons/headphones.svg';
 import plusSVG from '../icons/plus.svg';
+import tagSVG from '../icons/tag.svg';
 
 const NavBar = () =>
   <nav className={css(styles.nav)}>
@@ -23,6 +24,7 @@ const NavBar = () =>
       <Link to="/concerts"><li className={css(styles.iconLink)} dangerouslySetInnerHTML={{ __html: loudspeakerSVG }} /></Link>
       <Link to="/albums"><li className={css(styles.iconLink)} dangerouslySetInnerHTML={{ __html: cdSVG }} /></Link>
       <Link to="/artists"><li className={css(styles.iconLink)} dangerouslySetInnerHTML={{ __html: headphonesSVG }} /></Link>
+      <Link to="/tags"><li className={css(styles.iconLink)} dangerouslySetInnerHTML={{ __html: tagSVG }} /></Link>
       <Link to="/submitform"><li className={css(styles.iconLink)} dangerouslySetInnerHTML={{ __html: plusSVG }} /></Link>
     </ul>
   </nav>;

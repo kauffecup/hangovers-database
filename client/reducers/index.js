@@ -12,6 +12,8 @@ import concert from './concert';
 import hangover from './hangover';
 import hangovers from './hangovers';
 import semester from './semester';
+import tag from './tag';
+import tags from './tags';
 import {
   GET_EDIT_ALBUM_SUCCESS,
   GET_EDIT_ARRANGEMENT_SUCCESS,
@@ -33,6 +35,8 @@ export default combineReducers({
   hangover,
   hangovers,
   semester,
+  tag,
+  tags,
   routing: routerReducer,
   // update our edit forms when we receive the fetched data
   form: formReducer.plugin({

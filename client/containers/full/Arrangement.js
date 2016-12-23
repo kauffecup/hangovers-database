@@ -9,6 +9,7 @@ import ArtistList from '../../components/lists/ArtistList';
 import ConcertList from '../../components/lists/ConcertList';
 import HangoverList from '../../components/lists/HangoverList';
 import SemesterList from '../../components/lists/SemesterList';
+import TagList from '../../components/lists/TagList';
 import { keyFormatter } from '../../normalizers/adaptFormData';
 import { PADDING_UNIT } from '../../StyleConstants';
 
@@ -68,7 +69,7 @@ class Arrangement extends Component {
         <Field title="Spotify Link (Original Song)" text={arrangement.spotifyOriginalLink} />
         <Field title="Spotify Link (Hangovers Version)" text={arrangement.spotifyHangoverLink} />
         <h3>Odds and Ends</h3>
-        <Field title="Tags" text={arrangement.tags && arrangement.tags.length ? arrangement.tags.map(tag => tag.name).join(', ') : 'none!'} />
+        <TagList title="Tags" tags={arrangement.tags} />
         <Field title="Notes" text={arrangement.notes} />
       </div>
     );

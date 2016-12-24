@@ -9,7 +9,7 @@ import HangoverList from '../../components/lists/HangoverList';
 import SemesterList from '../../components/lists/SemesterList';
 import TagList from '../../components/lists/TagList';
 import { keyFormatter, arrangementFormatter } from '../../normalizers/adaptFormData';
-import Full from '../../components/Full';
+import Full from '../../components/pages/Full';
 
 const Field = ({ title, text,  }) => typeof text === 'string' ? // eslint-disable-line
   <div>

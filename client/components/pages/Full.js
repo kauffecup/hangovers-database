@@ -1,7 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import { StyleSheet, css } from 'aphrodite';
-import PathButton from './PathButton';
-import { PADDING_UNIT } from '../StyleConstants';
+import PathButton from '../PathButton';
+import { PADDING_UNIT } from '../../StyleConstants';
 
 class Full extends Component {
   componentDidMount() {

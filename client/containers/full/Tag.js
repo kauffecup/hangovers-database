@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import ArrangementList from '../../components/lists/ArrangementList';
 import { getTag } from '../../actions';
 import { tagFormatter } from '../../normalizers/adaptFormData';
-import Full from '../../components/Full';
+import Full from '../../components/pages/Full';
 
 const Tag = ({ dispatch, id, tag, loading }) =>
   <Full

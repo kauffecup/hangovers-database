@@ -5,7 +5,7 @@ import ConcertList from '../../components/lists/ConcertList';
 import SemesterList from '../../components/lists/SemesterList';
 import { getHangover } from '../../actions';
 import { hangoverFormatter } from '../../normalizers/adaptFormData';
-import Full from '../../components/Full';
+import Full from '../../components/pages/Full';
 
 const Hangover = ({ dispatch, id, hangover, loading }) =>
   <Full

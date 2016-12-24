@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import ArrangementList from '../../components/lists/ArrangementList';
 import { getArtist } from '../../actions';
 import { artistFormatter } from '../../normalizers/adaptFormData';
-import Full from '../../components/Full';
+import Full from '../../components/pages/Full';
 
 const Artist = ({ dispatch, id, artist, loading }) =>
   <Full

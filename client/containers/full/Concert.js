@@ -5,7 +5,7 @@ import SemesterList from '../../components/lists/SemesterList';
 import HangoverList from '../../components/lists/HangoverList';
 import { getConcert } from '../../actions';
 import { concertFormatter } from '../../normalizers/adaptFormData';
-import Full from '../../components/Full';
+import Full from '../../components/pages/Full';
 
 const Concert = ({ dispatch, id, concert, loading }) =>
   <Full

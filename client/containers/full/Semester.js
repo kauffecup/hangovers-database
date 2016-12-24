@@ -6,7 +6,7 @@ import ConcertList from '../../components/lists/ConcertList';
 import HangoverList from '../../components/lists/HangoverList';
 import { getSemester } from '../../actions';
 import { semesterFormatter } from '../../normalizers/adaptFormData';
-import Full from '../../components/Full';
+import Full from '../../components/pages/Full';
 
 const Semester = ({ dispatch, id, semester, loading }) =>
   <Full

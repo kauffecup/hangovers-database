@@ -4,7 +4,7 @@ import ArrangementList from '../../components/lists/ArrangementList';
 import SemesterList from '../../components/lists/SemesterList';
 import { getAlbum } from '../../actions';
 import { albumFormatter } from '../../normalizers/adaptFormData';
-import Full from '../../components/Full';
+import Full from '../../components/pages/Full';
 
 const Album = ({ dispatch, id, album, loading }) =>
   <Full

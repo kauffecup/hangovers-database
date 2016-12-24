@@ -24,10 +24,4 @@ export const ATLANTIS = '#A0D045';
 
 export const PADDING_UNIT = 20;
 export const NAVBAR_WIDTH = 80;
-export const ARRANGEMENT_HEIGHT = 30;
-export const ARTIST_HEIGHT = 30;
-export const CONCERT_HEIGHT = 30;
-export const HANGOVER_HEIGHT = 30;
-export const SEMESTER_HEIGHT = 30;
-export const TAG_HEIGHT = 30;
-export const ALBUM_HEIGHT = 30;
+export const LIST_ITEM_HEIGHT = 30;

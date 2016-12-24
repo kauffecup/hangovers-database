@@ -119,68 +119,22 @@ export const getHangovers = skip => actionFetch('/api/list/hangovers', GET_HANGO
 export const getArtists = skip => actionFetch('/api/list/artists', GET_ARTISTS, GET_ARTISTS_SUCCESS, GET_ARTISTS_FAILURE, { skip });
 export const getTags = skip => actionFetch('/api/list/tags', GET_TAGS, GET_TAGS_SUCCESS, GET_TAGS_FAILURE, { skip });
 
-export function getEditAlbumData(albumID) {
-  return (dispatch) => {
-    dispatch({ type: GET_EDIT_ALBUM });
-    myFetch(`/api/full/album?${stringify({ albumID })}`)
-      .then(data => dispatch({ type: GET_EDIT_ALBUM_SUCCESS, data: fullAlbumAdapter(data) }))
-      .catch(error => dispatch({ type: GET_EDIT_ALBUM_FAILURE, error }));
-  };
-}
+/** Helper action for everything that fetches and adapts data for editing */
+const actionFetchEdit = (endpoint, START, SUCCESS, FAILURE, params, adapter) => (dispatch) => {
+  dispatch({ type: START });
+  return myFetch(`${endpoint}${params ? `?${stringify(params)}` : ''}`)
+    .then(data => dispatch({ type: SUCCESS, data: adapter(data) }))
+    .catch(error => dispatch({ type: FAILURE, error }));
+};
 
-export function getEditArrangementData(arrangementID) {
-  return (dispatch) => {
-    dispatch({ type: GET_EDIT_ARRANGEMENT });
-    myFetch(`/api/full/arrangement?${stringify({ arrangementID })}`)
-      .then(data => dispatch({ type: GET_EDIT_ARRANGEMENT_SUCCESS, data: fullArrangementAdapter(data) }))
-      .catch(error => dispatch({ type: GET_EDIT_ARRANGEMENT_FAILURE, error }));
-  };
-}
-
-export function getEditArtistData(artistID) {
-  return (dispatch) => {
-    dispatch({ type: GET_EDIT_ARTIST });
-    myFetch(`/api/full/artist?${stringify({ artistID })}`)
-      .then(data => dispatch({ type: GET_EDIT_ARTIST_SUCCESS, data: fullArtistAdapter(data) }))
-      .catch(error => dispatch({ type: GET_EDIT_ARTIST_FAILURE, error }));
-  };
-}
-
-export function getEditConcertData(concertID) {
-  return (dispatch) => {
-    dispatch({ type: GET_EDIT_CONCERT });
-    myFetch(`/api/full/concert?${stringify({ concertID })}`)
-      .then(data => dispatch({ type: GET_EDIT_CONCERT_SUCCESS, data: fullConcertAdapter(data) }))
-      .catch(error => dispatch({ type: GET_EDIT_CONCERT_FAILURE, error }));
-  };
-}
-
-export function getEditHangoverData(hangoverID) {
-  return (dispatch) => {
-    dispatch({ type: GET_EDIT_HANGOVER });
-    myFetch(`/api/full/hangover?${stringify({ hangoverID })}`)
-      .then(data => dispatch({ type: GET_EDIT_HANGOVER_SUCCESS, data: fullHangoverAdapter(data) }))
-      .catch(error => dispatch({ type: GET_EDIT_HANGOVER_FAILURE, error }));
-  };
-}
-
-export function getEditSemesterData(semesterID) {
-  return (dispatch) => {
-    dispatch({ type: GET_EDIT_SEMESTER });
-    myFetch(`/api/full/semester?${stringify({ semesterID })}`)
-      .then(data => dispatch({ type: GET_EDIT_SEMESTER_SUCCESS, data: fullSemesterAdapter(data) }))
-      .catch(error => dispatch({ type: GET_EDIT_SEMESTER_FAILURE, error }));
-  };
-}
-
-export function getEditTagData(tagID) {
-  return (dispatch) => {
-    dispatch({ type: GET_EDIT_TAG });
-    myFetch(`/api/full/tag?${stringify({ tagID })}`)
-      .then(data => dispatch({ type: GET_EDIT_TAG_SUCCESS, data: fullTagAdapter(data) }))
-      .catch(error => dispatch({ type: GET_EDIT_TAG_FAILURE, error }));
-  };
-}
+/** Actions for getting and adapting data for edit forms */
+export const getEditAlbumData = albumID => actionFetchEdit('/api/full/album', GET_EDIT_ALBUM, GET_EDIT_ALBUM_SUCCESS, GET_EDIT_ALBUM_FAILURE, { albumID }, fullAlbumAdapter);
+export const getEditArrangementData = arrangementID => actionFetchEdit('/api/full/arrangement', GET_EDIT_ARRANGEMENT, GET_EDIT_ARRANGEMENT_SUCCESS, GET_EDIT_ARRANGEMENT_FAILURE, { arrangementID }, fullArrangementAdapter);
+export const getEditArtistData = artistID => actionFetchEdit('/api/full/artist', GET_EDIT_ARTIST, GET_EDIT_ARTIST_SUCCESS, GET_EDIT_ARTIST_FAILURE, { artistID }, fullArtistAdapter);
+export const getEditConcertData = concertID => actionFetchEdit('/api/full/concert', GET_EDIT_CONCERT, GET_EDIT_CONCERT_SUCCESS, GET_EDIT_CONCERT_FAILURE, { concertID }, fullConcertAdapter);
+export const getEditHangoverData = hangoverID => actionFetchEdit('/api/full/hangover', GET_EDIT_HANGOVER, GET_EDIT_HANGOVER_SUCCESS, GET_EDIT_HANGOVER_FAILURE, { hangoverID }, fullHangoverAdapter);
+export const getEditSemesterData = semesterID => actionFetchEdit('/api/full/semester', GET_EDIT_SEMESTER, GET_EDIT_SEMESTER_SUCCESS, GET_EDIT_SEMESTER_FAILURE, { semesterID }, fullSemesterAdapter);
+export const getEditTagData = tagID => actionFetchEdit('/api/full/tag', GET_EDIT_TAG, GET_EDIT_TAG_SUCCESS, GET_EDIT_TAG_FAILURE, { tagID }, fullTagAdapter);
 
 export function destroyDocument(_id, _rev) {
   return dispatch =>
@@ -196,113 +150,30 @@ export function destroyDocument(_id, _rev) {
       });
 }
 
-export function editAlbum(values) {
-  return dispatch =>
-    myFetch('/api/edit/album', {
-      method: 'POST',
-      body: JSON.stringify(values),
-      headers: { 'Content-Type': 'application/json' },
-    }).then((json) => {
-      // on success we show a happy message and head back to the home page
-      dispatch(setBanner('Successfully edited album', BANNER_SUCCESS));
-      dispatch(push('/'));
-      dispatch(reset(ALBUM_FORM));
-      return json;
-    }).catch((error) => {
-      dispatch(setBanner('Failed to edit album', BANNER_ERROR));
-      throw new SubmissionError(error);
-    });
-}
+/** Helper action for workflow of posting edit data, resetting forms, and setting banner message */
+const actionEdit = (values, endpoint, type, form) => dispatch =>
+  myFetch(endpoint, {
+    method: 'POST',
+    body: JSON.stringify(values),
+    headers: { 'Content-Type': 'application/json' },
+  }).then((json) => {
+    // on success we show a happy message and head back to the home page
+    dispatch(setBanner(`Successfully edited ${type}`, BANNER_SUCCESS));
+    dispatch(push('/'));
+    dispatch(reset(form));
+    return json;
+  }).catch((error) => {
+    dispatch(setBanner(`Failed to edit ${type}`, BANNER_ERROR));
+    throw new SubmissionError(error);
+  });
 
-export function editArtist(values) {
-  return dispatch =>
-    myFetch('/api/edit/artist', {
-      method: 'POST',
-      body: JSON.stringify(values),
-      headers: { 'Content-Type': 'application/json' },
-    }).then((json) => {
-      // on success we show a happy message and head back to the home page
-      dispatch(setBanner('Successfully edited artist', BANNER_SUCCESS));
-      dispatch(push('/'));
-      dispatch(reset(ARTIST_FORM));
-      return json;
-    }).catch((error) => {
-      dispatch(setBanner('Failed to edit artist', BANNER_ERROR));
-      throw new SubmissionError(error);
-    });
-}
-
-export function editConcert(values) {
-  return dispatch =>
-    myFetch('/api/edit/concert', {
-      method: 'POST',
-      body: JSON.stringify(values),
-      headers: { 'Content-Type': 'application/json' },
-    }).then((json) => {
-      // on success we show a happy message and head back to the home page
-      dispatch(setBanner('Successfully edited concert', BANNER_SUCCESS));
-      dispatch(push('/'));
-      dispatch(reset(CONCERT_FORM));
-      return json;
-    }).catch((error) => {
-      dispatch(setBanner('Failed to edit concert', BANNER_ERROR));
-      throw new SubmissionError(error);
-    });
-}
-
-export function editHangover(values) {
-  return dispatch =>
-    myFetch('/api/edit/hangover', {
-      method: 'POST',
-      body: JSON.stringify(values),
-      headers: { 'Content-Type': 'application/json' },
-    }).then((json) => {
-      // on success we show a happy message and head back to the home page
-      dispatch(setBanner('Successfully edited hangover', BANNER_SUCCESS));
-      dispatch(push('/'));
-      dispatch(reset(HANGOVER_FORM));
-      return json;
-    }).catch((error) => {
-      dispatch(setBanner('Failed to edit hangover', BANNER_ERROR));
-      throw new SubmissionError(error);
-    });
-}
-
-export function editSemester(values) {
-  return dispatch =>
-    myFetch('/api/edit/semester', {
-      method: 'POST',
-      body: JSON.stringify(values),
-      headers: { 'Content-Type': 'application/json' },
-    }).then((json) => {
-      // on success we show a happy message and head back to the home page
-      dispatch(setBanner('Successfully edited semester', BANNER_SUCCESS));
-      dispatch(push('/'));
-      dispatch(reset(SEMESTER_FORM));
-      return json;
-    }).catch((error) => {
-      dispatch(setBanner('Failed to edit semester', BANNER_ERROR));
-      throw new SubmissionError(error);
-    });
-}
-
-export function editTag(values) {
-  return dispatch =>
-    myFetch('/api/edit/tag', {
-      method: 'POST',
-      body: JSON.stringify(values),
-      headers: { 'Content-Type': 'application/json' },
-    }).then((json) => {
-      // on success we show a happy message and head back to the home page
-      dispatch(setBanner('Successfully edited tag', BANNER_SUCCESS));
-      dispatch(push('/'));
-      dispatch(reset(SEMESTER_FORM));
-      return json;
-    }).catch((error) => {
-      dispatch(setBanner('Failed to edit tag', BANNER_ERROR));
-      throw new SubmissionError(error);
-    });
-}
+/** Actions for handling edit workflows */
+export const editAlbum = v => actionEdit(v, '/api/edit/album', 'album', ALBUM_FORM);
+export const editArtist = v => actionEdit(v, '/api/edit/artist', 'artist', ARTIST_FORM);
+export const editConcert = v => actionEdit(v, '/api/edit/concert', 'concert', CONCERT_FORM);
+export const editHangover = v => actionEdit(v, '/api/edit/hangover', 'hangover', HANGOVER_FORM);
+export const editSemester = v => actionEdit(v, '/api/edit/semester', 'semester', SEMESTER_FORM);
+export const editTag = v => actionEdit(v, '/api/edit/tag', 'tag', TAG_FORM);
 
 export function addArrangement(values) {
   return dispatch =>

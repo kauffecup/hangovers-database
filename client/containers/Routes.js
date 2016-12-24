@@ -25,6 +25,7 @@ import EditArtist from './edit/EditArtist';
 import EditConcert from './edit/EditConcert';
 import EditHangover from './edit/EditHangover';
 import EditSemester from './edit/EditSemester';
+import EditTag from './edit/EditTag';
 
 const App = ({ history }) =>
   <Router history={history}>
@@ -56,6 +57,7 @@ const App = ({ history }) =>
 
       <Route path="tags" component={Tags} />
       <Route path="tags/:id" component={Tag} />
+      <Route path="edit/tag/:id" component={EditTag} />
     </Route>
   </Router>;
 

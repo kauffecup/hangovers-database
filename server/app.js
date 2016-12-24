@@ -133,6 +133,7 @@ app.post('/api/edit/artist', ({ body }, res) => edit(body, 'upsertArtist', res))
 app.post('/api/edit/concert', ({ body }, res) => edit(body, 'upsertConcert', res));
 app.post('/api/edit/hangover', ({ body }, res) => edit(body, 'upsertHangover', res));
 app.post('/api/edit/semester', ({ body }, res) => edit(body, 'upsertSemester', res));
+app.post('/api/edit/tag', ({ body }, res) => edit(body, 'upsertTag', res));
 
 /** GET: see if an arrangement exists */
 app.get('/api/arrangementexists', ({ query: { name } }, res) => {

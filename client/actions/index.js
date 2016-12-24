@@ -9,6 +9,7 @@ import {
   fullConcertAdapter,
   fullHangoverAdapter,
   fullSemesterAdapter,
+  fullTagAdapter,
 } from '../normalizers/adaptFormData';
 
 export const ALBUM_FORM = 'editAlbum';
@@ -18,6 +19,7 @@ export const CONCERT_FORM = 'editConcert';
 export const EDIT_FORM = 'editArrangement';
 export const HANGOVER_FORM = 'editHangover';
 export const SEMESTER_FORM = 'editSemester';
+export const TAG_FORM = 'editTag';
 
 export const SET_BANNER = 'SET_BANNER';
 export const BANNER_SUCCESS = 'BANNER_SUCCESS';
@@ -71,6 +73,9 @@ export const GET_EDIT_SEMESTER_FAILURE = 'GET_EDIT_SEMESTER_FAILURE';
 export const GET_EDIT_CONCERT = 'GET_EDIT_CONCERT';
 export const GET_EDIT_CONCERT_SUCCESS = 'GET_EDIT_CONCERT_SUCCESS';
 export const GET_EDIT_CONCERT_FAILURE = 'GET_EDIT_CONCERT_FAILURE';
+export const GET_EDIT_TAG = 'GET_EDIT_TAG';
+export const GET_EDIT_TAG_SUCCESS = 'GET_EDIT_TAG_SUCCESS';
+export const GET_EDIT_TAG_FAILURE = 'GET_EDIT_TAG_FAILURE';
 export const GET_HANGOVERS = 'GET_HANGOVERS';
 export const GET_HANGOVERS_SUCCESS = 'GET_HANGOVERS_SUCCESS';
 export const GET_HANGOVERS_FAILURE = 'GET_HANGOVERS_FAILURE';
@@ -165,6 +170,15 @@ export function getEditSemesterData(semesterID) {
     myFetch(`/api/full/semester?${stringify({ semesterID })}`)
       .then(data => dispatch({ type: GET_EDIT_SEMESTER_SUCCESS, data: fullSemesterAdapter(data) }))
       .catch(error => dispatch({ type: GET_EDIT_SEMESTER_FAILURE, error }));
+  };
+}
+
+export function getEditTagData(tagID) {
+  return (dispatch) => {
+    dispatch({ type: GET_EDIT_TAG });
+    myFetch(`/api/full/tag?${stringify({ tagID })}`)
+      .then(data => dispatch({ type: GET_EDIT_TAG_SUCCESS, data: fullTagAdapter(data) }))
+      .catch(error => dispatch({ type: GET_EDIT_TAG_FAILURE, error }));
   };
 }
 
@@ -268,6 +282,24 @@ export function editSemester(values) {
       return json;
     }).catch((error) => {
       dispatch(setBanner('Failed to edit semester', BANNER_ERROR));
+      throw new SubmissionError(error);
+    });
+}
+
+export function editTag(values) {
+  return dispatch =>
+    myFetch('/api/edit/tag', {
+      method: 'POST',
+      body: JSON.stringify(values),
+      headers: { 'Content-Type': 'application/json' },
+    }).then((json) => {
+      // on success we show a happy message and head back to the home page
+      dispatch(setBanner('Successfully edited tag', BANNER_SUCCESS));
+      dispatch(push('/'));
+      dispatch(reset(SEMESTER_FORM));
+      return json;
+    }).catch((error) => {
+      dispatch(setBanner('Failed to edit tag', BANNER_ERROR));
       throw new SubmissionError(error);
     });
 }

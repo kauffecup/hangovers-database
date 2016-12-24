@@ -139,3 +139,7 @@ export const fullSemesterAdapter = (s = {}) => Object.assign({}, s, {
   president: (s.president || []).map(hangoverAdapter),
   graduatingHangs: (s.graduatingHangs || []).map(hangoverAdapter),
 });
+
+export const fullTagAdapter = (t = {}) => Object.assign({}, t, {
+  arrangements: (t.arrangements || []).map(arrangementAdapter),
+});

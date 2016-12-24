@@ -21,6 +21,7 @@ import {
   GET_EDIT_CONCERT_SUCCESS,
   GET_EDIT_HANGOVER_SUCCESS,
   GET_EDIT_SEMESTER_SUCCESS,
+  GET_EDIT_TAG_SUCCESS,
 } from '../actions';
 
 export default combineReducers({
@@ -98,6 +99,17 @@ export default combineReducers({
     editSemester: (state, action) => {
       switch (action.type) {
         case GET_EDIT_SEMESTER_SUCCESS:
+          return Object.assign({}, state, {
+            values: action.data,
+          });
+
+        default:
+          return state;
+      }
+    },
+    editTag: (state, action) => {
+      switch (action.type) {
+        case GET_EDIT_TAG_SUCCESS:
           return Object.assign({}, state, {
             values: action.data,
           });

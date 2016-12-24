@@ -10,6 +10,7 @@ const {
   adaptConcert,
   adaptHangover,
   adaptSemester,
+  adaptTag,
 } = require('./cloudantHelpers/Adapters');
 
 const LIMIT = 20;
@@ -159,14 +160,14 @@ module.exports = class SageDB {
   upsertAlbumFormat(af) { return this._upsertType(af, types.ALBUM_FORMAT_TYPE, idgen.getAlbumFormatID(af)); }
   upsertConcertType(ct) { return this._upsertType(ct, types.CONCERT_TYPE_TYPE, idgen.getConcertTypeID(ct)); }
   upsertGenre(g) { return this._upsertType(g, types.GENRE_TYPE, idgen.getGenreID(g)); }
-  upsertTag(t) { return this._upsertType(t, types.TAG_TYPE, idgen.getTagID(t)); }
   upsertKey(k) { return this._upsertType(k, types.KEY_TYPE, idgen.getKeyID(k)); }
   /** Upserts for doc types with relationships */
   upsertAlbum(a) { return this._upsertWithRelationships(a, adaptAlbum, types.ALBUM_TYPE, 'album'); }
   upsertArtist(a) { return this._upsertWithRelationships(a, adaptArtist, types.ARTIST_TYPE, 'artist'); }
   upsertConcert(c) { return this._upsertWithRelationships(c, adaptConcert, types.CONCERT_TYPE, 'concert'); }
-  upsertSemester(s) { return this._upsertWithRelationships(s, adaptSemester, types.SEMESTER_TYPE, 'semester'); }
   upsertHangover(h) { return this._upsertWithRelationships(h, adaptHangover, types.HANGOVER_TYPE, 'hangover'); }
+  upsertSemester(s) { return this._upsertWithRelationships(s, adaptSemester, types.SEMESTER_TYPE, 'semester'); }
+  upsertTag(t) { return this._upsertWithRelationships(t, adaptTag, types.TAG_TYPE, 'tag'); }
   upsertArrangement(arrangement, files = {}) {
     const filesToUpload = adaptFiles(files, arrangement.name);
     const { arrID, toUpload, newArtists = [], newTags = [], relationships = [] } = adaptArrangement(arrangement, filesToUpload);

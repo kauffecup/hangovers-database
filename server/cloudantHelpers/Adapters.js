@@ -66,6 +66,10 @@ const multiRelationshipSemesterFields = [
   { field: 'graduatingHangs', relationshipField: 'hangover', type: types.HANGOVER_GRADUATION_SEMESTER_RELATIONSHIP_TYPE, idGenerator: idgen.getHangoverGraduationID, second: true },
 ];
 
+const multiRelationshipTagFields = [
+  { field: 'arrangements', relationshipField: 'arrangement', type: types.ARRANGEMENT_TAG_RELATIONSHIP_TYPE, idGenerator: idgen.getArrangementTagID, second: true },
+];
+
 /**
 * Adapt a file into a cloudant friendly file
 */
@@ -215,6 +219,16 @@ const adaptSemester = (semester) => {
 };
 
 /**
+ * Take a tag object and make it cloudant friendly
+ */
+const adaptTag = (tag) => {
+  const toUpload = Object.assign({}, tag);
+  const id = idgen.getTagID(toUpload);
+  const relationships = adaptRelationships(toUpload, id, 'tag', multiRelationshipTagFields);
+  return { id, toUpload, relationships };
+};
+
+/**
  * Iterate over the passed in doc. For the fields, types, and id generators
  * specified in the passed in multiFields and singleFields arrays, create an
  * array that identifies all of the relationships for the given doc. As we do
@@ -250,3 +264,4 @@ module.exports.adaptArtist = adaptArtist;
 module.exports.adaptConcert = adaptConcert;
 module.exports.adaptHangover = adaptHangover;
 module.exports.adaptSemester = adaptSemester;
+module.exports.adaptTag = adaptTag;

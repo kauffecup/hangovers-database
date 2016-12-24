@@ -1,43 +1,22 @@
-import React, { PropTypes, Component } from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { StyleSheet, css } from 'aphrodite';
-import PathButton from '../../components/PathButton';
 import ArrangementList from '../../components/lists/ArrangementList';
 import SemesterList from '../../components/lists/SemesterList';
 import { getAlbum } from '../../actions';
 import { albumFormatter } from '../../normalizers/adaptFormData';
-import { PADDING_UNIT } from '../../StyleConstants';
+import Full from '../../components/Full';
 
-class Album extends Component {
-  componentDidMount() {
-    const { dispatch, id } = this.props;
-    dispatch(getAlbum(id));
-  }
-
-  render() {
-    const { album, loading, id } = this.props;
-    if (loading) {
-      return <div>loading</div>;
-    }
-    return (
-      <div className={css(styles.arrangement)}>
-        <PathButton text="edit" path={`/edit/album/${id}`} />
-        <h2>{albumFormatter(album)}</h2>
-        <SemesterList semesters={album.semester} />
-        <h3>Track List</h3>
-        <ArrangementList arrangements={album.trackList} />
-      </div>
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  arrangement: {
-    flex: 1,
-    'overflow-y': 'auto',
-    padding: `${PADDING_UNIT}px`,
-  },
-});
+const Album = ({ dispatch, id, album, loading }) =>
+  <Full
+    title={albumFormatter(album)}
+    load={() => dispatch(getAlbum(id))}
+    path={`/edit/album/${id}`}
+    loading={loading}
+  >
+    <SemesterList semesters={album.semester} />
+    <h3>Track List</h3>
+    <ArrangementList arrangements={album.trackList} />
+  </Full>;
 
 Album.propTypes = {
   dispatch: PropTypes.func.isRequired,

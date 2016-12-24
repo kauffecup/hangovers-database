@@ -1,17 +1,15 @@
-import React, { PropTypes, Component } from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { StyleSheet, css } from 'aphrodite';
 import { stringify } from 'query-string';
 import { getArrangement } from '../../actions';
-import PathButton from '../../components/PathButton';
 import AlbumList from '../../components/lists/AlbumList';
 import ArtistList from '../../components/lists/ArtistList';
 import ConcertList from '../../components/lists/ConcertList';
 import HangoverList from '../../components/lists/HangoverList';
 import SemesterList from '../../components/lists/SemesterList';
 import TagList from '../../components/lists/TagList';
-import { keyFormatter } from '../../normalizers/adaptFormData';
-import { PADDING_UNIT } from '../../StyleConstants';
+import { keyFormatter, arrangementFormatter } from '../../normalizers/adaptFormData';
+import Full from '../../components/Full';
 
 const Field = ({ title, text,  }) => typeof text === 'string' ? // eslint-disable-line
   <div>
@@ -20,69 +18,50 @@ const Field = ({ title, text,  }) => typeof text === 'string' ? // eslint-disabl
   </div>
 : null;
 
-class Arrangement extends Component {
-  componentDidMount() {
-    const { dispatch, id } = this.props;
-    dispatch(getArrangement(id));
-  }
-
-  render() {
-    const { arrangement, loading, id } = this.props;
-    if (loading) {
-      return <div>loading</div>;
-    }
-    return (
-      <div className={css(styles.arrangement)}>
-        <PathButton text="edit" path={`/edit/arrangement/${id}`} />
-        <h2>{arrangement.name}</h2>
-        <h3>Song</h3>
-        <Field text={arrangement.alternateName} />
-        <ArtistList title="originally performed by" artists={arrangement.artists} />
-        <Field text={arrangement.genre && arrangement.genre.length && arrangement.genre.map(g => g.name).join(', ')} />
-        <Field text={arrangement.whenWritten} />
-        <h3>Arrangement</h3>
-        <HangoverList title="arranged by" hangovers={arrangement.arrangers} />
-        <Field text={keyFormatter(arrangement.key)} />
-        <SemesterList title="arranged" semesters={[arrangement.semesterArranged]} />
-        <Field text={arrangement.syllables ? 'has syllables' : 'doesn\'t have syllables'} />
-        <Field text={arrangement.arrangementType && arrangement.arrangementType.name} />
-        <h3>Performances</h3>
-        <Field text={arrangement.active ? 'active' : 'not active'} />
-        <SemesterList title="semester(s) performed" semesters={arrangement.semestersPerformed} />
-        <ConcertList title="concert(s) performed" concerts={arrangement.concerts} />
-        <AlbumList title="album(s) on" albums={arrangement.albums} />
-        <HangoverList title="soloist(s)" hangovers={arrangement.soloists} />
-        <h3>Files and Such</h3>
-        {arrangement._attachments ? Object.keys(arrangement._attachments).map(aid =>
-          <a
-            href={`/arrangementfile?${stringify({
-              arrangementID: id,
-              attachmentID: aid,
-              type: arrangement._attachments[aid].content_type,
-            })}`}
-            download
-          >
-            {`download ${aid}`}
-          </a>
-        ) : null}
-        <Field title="Youtube Link" text={arrangement.youtube} />
-        <Field title="Spotify Link (Original Song)" text={arrangement.spotifyOriginalLink} />
-        <Field title="Spotify Link (Hangovers Version)" text={arrangement.spotifyHangoverLink} />
-        <h3>Odds and Ends</h3>
-        <TagList title="Tags" tags={arrangement.tags} />
-        <Field title="Notes" text={arrangement.notes} />
-      </div>
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  arrangement: {
-    flex: 1,
-    'overflow-y': 'auto',
-    padding: `${PADDING_UNIT}px`,
-  },
-});
+const Arrangement = ({ dispatch, id, arrangement, loading }) =>
+  <Full
+    title={arrangementFormatter(arrangement)}
+    load={() => dispatch(getArrangement(id))}
+    path={`/edit/arrangement/${id}`}
+    loading={loading}
+  >
+    <h3>Song</h3>
+    <Field text={arrangement.alternateName} />
+    <ArtistList title="originally performed by" artists={arrangement.artists} />
+    <Field text={arrangement.genre && arrangement.genre.length && arrangement.genre.map(g => g.name).join(', ')} />
+    <Field text={arrangement.whenWritten} />
+    <h3>Arrangement</h3>
+    <HangoverList title="arranged by" hangovers={arrangement.arrangers} />
+    <Field text={keyFormatter(arrangement.key)} />
+    <SemesterList title="arranged" semesters={[arrangement.semesterArranged]} />
+    <Field text={arrangement.syllables ? 'has syllables' : 'doesn\'t have syllables'} />
+    <Field text={arrangement.arrangementType && arrangement.arrangementType.name} />
+    <h3>Performances</h3>
+    <Field text={arrangement.active ? 'active' : 'not active'} />
+    <SemesterList title="semester(s) performed" semesters={arrangement.semestersPerformed} />
+    <ConcertList title="concert(s) performed" concerts={arrangement.concerts} />
+    <AlbumList title="album(s) on" albums={arrangement.albums} />
+    <HangoverList title="soloist(s)" hangovers={arrangement.soloists} />
+    <h3>Files and Such</h3>
+    {arrangement._attachments ? Object.keys(arrangement._attachments).map(aid =>
+      <a
+        href={`/arrangementfile?${stringify({
+          arrangementID: id,
+          attachmentID: aid,
+          type: arrangement._attachments[aid].content_type,
+        })}`}
+        download
+      >
+        {`download ${aid}`}
+      </a>
+    ) : null}
+    <Field title="Youtube Link" text={arrangement.youtube} />
+    <Field title="Spotify Link (Original Song)" text={arrangement.spotifyOriginalLink} />
+    <Field title="Spotify Link (Hangovers Version)" text={arrangement.spotifyHangoverLink} />
+    <h3>Odds and Ends</h3>
+    <TagList title="Tags" tags={arrangement.tags} />
+    <Field title="Notes" text={arrangement.notes} />
+  </Full>;
 
 Arrangement.propTypes = {
   dispatch: PropTypes.func.isRequired,

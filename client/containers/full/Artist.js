@@ -1,41 +1,20 @@
-import React, { PropTypes, Component } from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { StyleSheet, css } from 'aphrodite';
-import PathButton from '../../components/PathButton';
 import ArrangementList from '../../components/lists/ArrangementList';
 import { getArtist } from '../../actions';
 import { artistFormatter } from '../../normalizers/adaptFormData';
-import { PADDING_UNIT } from '../../StyleConstants';
+import Full from '../../components/Full';
 
-class Artist extends Component {
-  componentDidMount() {
-    const { dispatch, id } = this.props;
-    dispatch(getArtist(id));
-  }
-
-  render() {
-    const { artist, loading, id } = this.props;
-    if (loading) {
-      return <div>loading</div>;
-    }
-    return (
-      <div className={css(styles.arrangement)}>
-        <PathButton text="edit" path={`/edit/artist/${id}`} />
-        <h2>{artistFormatter(artist)}</h2>
-        <h3>Arrangements</h3>
-        <ArrangementList arrangements={artist.arrangements} />
-      </div>
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  arrangement: {
-    flex: 1,
-    'overflow-y': 'auto',
-    padding: `${PADDING_UNIT}px`,
-  },
-});
+const Artist = ({ dispatch, id, artist, loading }) =>
+  <Full
+    title={artistFormatter(artist)}
+    load={() => dispatch(getArtist(id))}
+    path={`/edit/artist/${id}`}
+    loading={loading}
+  >
+    <h3>Arrangements</h3>
+    <ArrangementList arrangements={artist.arrangements} />
+  </Full>;
 
 Artist.propTypes = {
   dispatch: PropTypes.func.isRequired,

@@ -11,8 +11,10 @@ export const albumFormatAdapter = (af = {}) => ({
   value: af._id, label: af.name,
 });
 
+export const arrangementFormatter = (a = {}) => a.name;
+
 export const arrangementAdapter = (a = {}) => ({
-  value: a._id, label: a.name,
+  value: a._id, label: arrangementFormatter(a),
 });
 
 export const arrangementTypeAdapter = (at = {}) => ({

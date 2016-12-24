@@ -1,41 +1,20 @@
-import React, { PropTypes, Component } from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { StyleSheet, css } from 'aphrodite';
-import PathButton from '../../components/PathButton';
 import ArrangementList from '../../components/lists/ArrangementList';
 import { getTag } from '../../actions';
 import { tagFormatter } from '../../normalizers/adaptFormData';
-import { PADDING_UNIT } from '../../StyleConstants';
+import Full from '../../components/Full';
 
-class Tag extends Component {
-  componentDidMount() {
-    const { dispatch, id } = this.props;
-    dispatch(getTag(id));
-  }
-
-  render() {
-    const { tag, loading, id } = this.props;
-    if (loading) {
-      return <div>loading</div>;
-    }
-    return (
-      <div className={css(styles.tag)}>
-        <PathButton text="edit" path={`/edit/tag/${id}`} />
-        <h2>{tagFormatter(tag)}</h2>
-        <h3>Arrangements</h3>
-        <ArrangementList arrangements={tag.arrangements} />
-      </div>
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  tag: {
-    flex: 1,
-    'overflow-y': 'auto',
-    padding: `${PADDING_UNIT}px`,
-  },
-});
+const Tag = ({ dispatch, id, tag, loading }) =>
+  <Full
+    title={tagFormatter(tag)}
+    load={() => dispatch(getTag(id))}
+    path={`/edit/tag/${id}`}
+    loading={loading}
+  >
+    <h3>Arrangements</h3>
+    <ArrangementList arrangements={tag.arrangements} />
+  </Full>;
 
 Tag.propTypes = {
   dispatch: PropTypes.func.isRequired,

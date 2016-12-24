@@ -1,45 +1,24 @@
-import React, { PropTypes, Component } from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { StyleSheet, css } from 'aphrodite';
-import PathButton from '../../components/PathButton';
 import ArrangementList from '../../components/lists/ArrangementList';
 import SemesterList from '../../components/lists/SemesterList';
 import HangoverList from '../../components/lists/HangoverList';
 import { getConcert } from '../../actions';
 import { concertFormatter } from '../../normalizers/adaptFormData';
-import { PADDING_UNIT } from '../../StyleConstants';
+import Full from '../../components/Full';
 
-class Concert extends Component {
-  componentDidMount() {
-    const { dispatch, id } = this.props;
-    dispatch(getConcert(id));
-  }
-
-  render() {
-    const { concert, loading, id } = this.props;
-    if (loading) {
-      return <div>loading</div>;
-    }
-    return (
-      <div className={css(styles.arrangement)}>
-        <PathButton text="edit" path={`/edit/concert/${id}`} />
-        <h2>{concertFormatter(concert)}</h2>
-        <SemesterList semesters={concert.semester} />
-        <HangoverList title="MD" hangovers={concert.md} />
-        <h3>Set List</h3>
-        <ArrangementList arrangements={concert.setList} />
-      </div>
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  arrangement: {
-    flex: 1,
-    'overflow-y': 'auto',
-    padding: `${PADDING_UNIT}px`,
-  },
-});
+const Concert = ({ dispatch, id, concert, loading }) =>
+  <Full
+    title={concertFormatter(concert)}
+    load={() => dispatch(getConcert(id))}
+    path={`/edit/concert/${id}`}
+    loading={loading}
+  >
+    <SemesterList semesters={concert.semester} />
+    <HangoverList title="MD" hangovers={concert.md} />
+    <h3>Set List</h3>
+    <ArrangementList arrangements={concert.setList} />
+  </Full>;
 
 Concert.propTypes = {
   dispatch: PropTypes.func.isRequired,

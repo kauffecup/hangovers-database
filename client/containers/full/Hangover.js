@@ -1,50 +1,29 @@
-import React, { PropTypes, Component } from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { StyleSheet, css } from 'aphrodite';
-import PathButton from '../../components/PathButton';
 import ArrangementList from '../../components/lists/ArrangementList';
 import ConcertList from '../../components/lists/ConcertList';
 import SemesterList from '../../components/lists/SemesterList';
 import { getHangover } from '../../actions';
 import { hangoverFormatter } from '../../normalizers/adaptFormData';
-import { PADDING_UNIT } from '../../StyleConstants';
+import Full from '../../components/Full';
 
-class Hangover extends Component {
-  componentDidMount() {
-    const { dispatch, id } = this.props;
-    dispatch(getHangover(id));
-  }
-
-  render() {
-    const { hangover, loading, id } = this.props;
-    if (loading) {
-      return <div>loading</div>;
-    }
-    return (
-      <div className={css(styles.arrangement)}>
-        <PathButton text="edit" path={`/edit/hangover/${id}`} />
-        <h2>{hangoverFormatter(hangover)}</h2>
-        <SemesterList title="Graduated" semesters={hangover.graduationSemester} />
-        <SemesterList title="MDed" semesters={hangover.semestersMDed} />
-        <SemesterList title="BMed" semesters={hangover.semestersBMed} />
-        <SemesterList title="Presided" semesters={hangover.semestersPresided} />
-        <ConcertList title="MDed" concerts={hangover.concertsMDed} />
-        <h3>Arranged</h3>
-        <ArrangementList arrangements={hangover.arranged} />
-        <h3>Soloed</h3>
-        <ArrangementList arrangements={hangover.soloed} />
-      </div>
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  arrangement: {
-    flex: 1,
-    'overflow-y': 'auto',
-    padding: `${PADDING_UNIT}px`,
-  },
-});
+const Hangover = ({ dispatch, id, hangover, loading }) =>
+  <Full
+    title={hangoverFormatter(hangover)}
+    load={() => dispatch(getHangover(id))}
+    path={`/edit/hangover/${id}`}
+    loading={loading}
+  >
+    <SemesterList title="Graduated" semesters={hangover.graduationSemester} />
+    <SemesterList title="MDed" semesters={hangover.semestersMDed} />
+    <SemesterList title="BMed" semesters={hangover.semestersBMed} />
+    <SemesterList title="Presided" semesters={hangover.semestersPresided} />
+    <ConcertList title="MDed" concerts={hangover.concertsMDed} />
+    <h3>Arranged</h3>
+    <ArrangementList arrangements={hangover.arranged} />
+    <h3>Soloed</h3>
+    <ArrangementList arrangements={hangover.soloed} />
+  </Full>;
 
 Hangover.propTypes = {
   dispatch: PropTypes.func.isRequired,

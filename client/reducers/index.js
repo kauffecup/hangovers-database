@@ -1,11 +1,7 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 import app from './app';
-import artists from './artists';
-import arrangements from './arrangements';
 import banner from './banner';
-import hangovers from './hangovers';
-import tags from './tags';
 import form from './form';
 import {
   album,
@@ -16,6 +12,12 @@ import {
   semester,
   tag,
 } from './full';
+import {
+  artists,
+  arrangements,
+  hangovers,
+  tags,
+} from './list';
 
 export default combineReducers({
   app,

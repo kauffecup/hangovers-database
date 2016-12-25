@@ -1,34 +1,40 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 import app from './app';
-import album from './album';
-import artist from './artist';
 import artists from './artists';
-import arrangement from './arrangement';
 import arrangements from './arrangements';
 import banner from './banner';
-import concert from './concert';
-import hangover from './hangover';
 import hangovers from './hangovers';
-import semester from './semester';
-import tag from './tag';
 import tags from './tags';
 import form from './form';
+import {
+  album,
+  artist,
+  arrangement,
+  concert,
+  hangover,
+  semester,
+  tag,
+} from './full';
 
 export default combineReducers({
   app,
+  banner,
+  // full pages
   album,
   artist,
-  artists,
   arrangement,
-  arrangements,
-  banner,
   concert,
   hangover,
-  hangovers,
   semester,
   tag,
+  // lists
+  artists,
+  arrangements,
+  hangovers,
   tags,
+  // edit and submit forms
   form,
+  // routing
   routing: routerReducer,
 });

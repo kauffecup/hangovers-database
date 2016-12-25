@@ -5,7 +5,7 @@ import { adaptHangoverSubmit } from '../../normalizers/adaptSubmit';
 import RenderSelect from '../../components/form/RenderSelect';
 import RenderAsync from '../../components/form/RenderAsync';
 import Button from '../../components/Button';
-import { getEditHangoverData, editHangover } from '../../actions';
+import { getEditHangoverData, editHangover, HANGOVER_FORM } from '../../actions';
 import { searchArrangements } from '../../actions/search';
 import {
   semesterAdapter,
@@ -56,6 +56,6 @@ const mapStateToProps = (state, routerProps) => ({
 
 // Wrap the component to inject dispatch and state into it
 export default connect(mapStateToProps)(reduxForm({
-  form: 'editHangover',
+  form: HANGOVER_FORM,
   destroyOnUnmount: false,
 })(EditHangover));

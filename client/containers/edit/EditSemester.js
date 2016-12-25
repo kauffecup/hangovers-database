@@ -5,7 +5,7 @@ import { adaptSemesterSubmit } from '../../normalizers/adaptSubmit';
 import RenderSelect from '../../components/form/RenderSelect';
 import RenderAsync from '../../components/form/RenderAsync';
 import Button from '../../components/Button';
-import { getEditSemesterData, editSemester } from '../../actions';
+import { getEditSemesterData, editSemester, SEMESTER_FORM } from '../../actions';
 import {
   searchArrangements,
   searchHangovers,
@@ -60,6 +60,6 @@ const mapStateToProps = (state, routerProps) => ({
 
 // Wrap the component to inject dispatch and state into it
 export default connect(mapStateToProps)(reduxForm({
-  form: 'editSemester',
+  form: SEMESTER_FORM,
   destroyOnUnmount: false,
 })(EditSemester));

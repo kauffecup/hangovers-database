@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
-import { addArrangement } from '../actions';
+import { addArrangement, ARRANGEMENT_FORM } from '../actions';
 import validate, { asyncValidate } from '../normalizers/validate';
 import SubmitArrangementForm from '../components/SubmitArrangementForm';
 
@@ -20,7 +20,7 @@ const mapStateToProps = state => ({
 
 // Wrap the component to inject dispatch and state into it
 export default connect(mapStateToProps)(reduxForm({
-  form: 'addArrangement',
+  form: ARRANGEMENT_FORM,
   destroyOnUnmount: false,
   validate,
   asyncValidate,

@@ -4,7 +4,7 @@ import { reduxForm, Field } from 'redux-form';
 import { adaptArtistSubmit } from '../../normalizers/adaptSubmit';
 import RenderAsync from '../../components/form/RenderAsync';
 import Button from '../../components/Button';
-import { getEditArtistData, editArtist } from '../../actions';
+import { getEditArtistData, editArtist, ARTIST_FORM } from '../../actions';
 import { searchArrangements } from '../../actions/search';
 import { artistFormatter } from '../../normalizers/adaptFormData';
 
@@ -41,6 +41,6 @@ const mapStateToProps = (state, routerProps) => ({
 
 // Wrap the component to inject dispatch and state into it
 export default connect(mapStateToProps)(reduxForm({
-  form: 'editArtist',
+  form: ARTIST_FORM,
   destroyOnUnmount: false,
 })(EditArtist));

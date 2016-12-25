@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
-import { getEditArrangementData, editArrangement, destroyDocument } from '../../actions';
+import { getEditArrangementData, editArrangement, destroyDocument, EDIT_FORM } from '../../actions';
 import validate from '../../normalizers/validate';
 import SubmitArrangementForm from '../../components/SubmitArrangementForm';
 
@@ -44,7 +44,7 @@ const mapStateToProps = (state, routerProps) => ({
 
 // Wrap the component to inject dispatch and state into it
 export default connect(mapStateToProps)(reduxForm({
-  form: 'editArrangement',
+  form: EDIT_FORM,
   destroyOnUnmount: false,
   validate,
 })(EditArrangement));

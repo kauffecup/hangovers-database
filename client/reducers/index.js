@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux';
-import { reducer as formReducer } from 'redux-form';
 import { routerReducer } from 'react-router-redux';
 import app from './app';
 import album from './album';
@@ -14,15 +13,7 @@ import hangovers from './hangovers';
 import semester from './semester';
 import tag from './tag';
 import tags from './tags';
-import {
-  GET_EDIT_ALBUM_SUCCESS,
-  GET_EDIT_ARRANGEMENT_SUCCESS,
-  GET_EDIT_ARTIST_SUCCESS,
-  GET_EDIT_CONCERT_SUCCESS,
-  GET_EDIT_HANGOVER_SUCCESS,
-  GET_EDIT_SEMESTER_SUCCESS,
-  GET_EDIT_TAG_SUCCESS,
-} from '../actions';
+import form from './form';
 
 export default combineReducers({
   app,
@@ -38,85 +29,6 @@ export default combineReducers({
   semester,
   tag,
   tags,
+  form,
   routing: routerReducer,
-  // update our edit forms when we receive the fetched data
-  form: formReducer.plugin({
-    editAlbum: (state, action) => {
-      switch (action.type) {
-        case GET_EDIT_ALBUM_SUCCESS:
-          return Object.assign({}, state, {
-            values: action.data,
-          });
-
-        default:
-          return state;
-      }
-    },
-    editArrangement: (state, action) => {
-      switch (action.type) {
-        case GET_EDIT_ARRANGEMENT_SUCCESS:
-          return Object.assign({}, state, {
-            values: action.data,
-          });
-
-        default:
-          return state;
-      }
-    },
-    editArtist: (state, action) => {
-      switch (action.type) {
-        case GET_EDIT_ARTIST_SUCCESS:
-          return Object.assign({}, state, {
-            values: action.data,
-          });
-
-        default:
-          return state;
-      }
-    },
-    editConcert: (state, action) => {
-      switch (action.type) {
-        case GET_EDIT_CONCERT_SUCCESS:
-          return Object.assign({}, state, {
-            values: action.data,
-          });
-
-        default:
-          return state;
-      }
-    },
-    editHangover: (state, action) => {
-      switch (action.type) {
-        case GET_EDIT_HANGOVER_SUCCESS:
-          return Object.assign({}, state, {
-            values: action.data,
-          });
-
-        default:
-          return state;
-      }
-    },
-    editSemester: (state, action) => {
-      switch (action.type) {
-        case GET_EDIT_SEMESTER_SUCCESS:
-          return Object.assign({}, state, {
-            values: action.data,
-          });
-
-        default:
-          return state;
-      }
-    },
-    editTag: (state, action) => {
-      switch (action.type) {
-        case GET_EDIT_TAG_SUCCESS:
-          return Object.assign({}, state, {
-            values: action.data,
-          });
-
-        default:
-          return state;
-      }
-    },
-  }),
 });

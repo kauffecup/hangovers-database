@@ -5,7 +5,7 @@ import { adaptAlbumSubmit } from '../../normalizers/adaptSubmit';
 import RenderSelect from '../../components/form/RenderSelect';
 import RenderAsync from '../../components/form/RenderAsync';
 import Button from '../../components/Button';
-import { getEditAlbumData, editAlbum } from '../../actions';
+import { getEditAlbumData, editAlbum, ALBUM_FORM } from '../../actions';
 import { searchArrangements } from '../../actions/search';
 import {
   albumFormatAdapter,
@@ -52,6 +52,6 @@ const mapStateToProps = (state, routerProps) => ({
 
 // Wrap the component to inject dispatch and state into it
 export default connect(mapStateToProps)(reduxForm({
-  form: 'editAlbum',
+  form: ALBUM_FORM,
   destroyOnUnmount: false,
 })(EditAlbum));

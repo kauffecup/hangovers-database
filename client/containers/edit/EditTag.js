@@ -4,7 +4,7 @@ import { reduxForm, Field } from 'redux-form';
 import { adaptTagSubmit } from '../../normalizers/adaptSubmit';
 import RenderAsync from '../../components/form/RenderAsync';
 import Button from '../../components/Button';
-import { getEditTagData, editTag } from '../../actions';
+import { getEditTagData, editTag, TAG_FORM } from '../../actions';
 import { searchArrangements } from '../../actions/search';
 import { tagFormatter } from '../../normalizers/adaptFormData';
 
@@ -41,6 +41,6 @@ const mapStateToProps = (state, routerProps) => ({
 
 // Wrap the component to inject dispatch and state into it
 export default connect(mapStateToProps)(reduxForm({
-  form: 'editTag',
+  form: TAG_FORM,
   destroyOnUnmount: false,
 })(EditTag));

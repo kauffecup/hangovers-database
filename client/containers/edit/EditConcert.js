@@ -5,7 +5,7 @@ import { adaptConcertSubmit } from '../../normalizers/adaptSubmit';
 import RenderSelect from '../../components/form/RenderSelect';
 import RenderAsync from '../../components/form/RenderAsync';
 import Button from '../../components/Button';
-import { getEditConcertData, editConcert } from '../../actions';
+import { getEditConcertData, editConcert, CONCERT_FORM } from '../../actions';
 import {
   searchArrangements,
   searchHangovers,
@@ -56,6 +56,6 @@ const mapStateToProps = (state, routerProps) => ({
 
 // Wrap the component to inject dispatch and state into it
 export default connect(mapStateToProps)(reduxForm({
-  form: 'editConcert',
+  form: CONCERT_FORM,
   destroyOnUnmount: false,
 })(EditConcert));

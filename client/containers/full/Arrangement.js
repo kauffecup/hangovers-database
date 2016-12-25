@@ -10,13 +10,7 @@ import SemesterList from '../../components/lists/SemesterList';
 import TagList from '../../components/lists/TagList';
 import { keyFormatter, arrangementFormatter } from '../../normalizers/adaptFormData';
 import Full from '../../components/pages/Full';
-
-const Field = ({ title, text,  }) => typeof text === 'string' ? // eslint-disable-line
-  <div>
-    { typeof title === 'string' ? <span>{title}</span> : null }
-    { typeof text === 'string' ? <span>{text}</span> : null }
-  </div>
-: null;
+import DisplayField from '../../components/DisplayField';
 
 const Arrangement = ({ dispatch, id, arrangement, loading }) =>
   <Full
@@ -26,25 +20,24 @@ const Arrangement = ({ dispatch, id, arrangement, loading }) =>
     loading={loading}
   >
     <h3>Song</h3>
-    <Field text={arrangement.alternateName} />
     <ArtistList title="originally performed by" artists={arrangement.artists} />
-    <Field text={arrangement.genre && arrangement.genre.length && arrangement.genre.map(g => g.name).join(', ')} />
-    <Field text={arrangement.whenWritten} />
+    <DisplayField title="genre(s)" text={arrangement.genre && arrangement.genre.length && arrangement.genre.map(g => g.name).join(', ')} />
+    <DisplayField title="released" text={arrangement.whenWritten} />
     <h3>Arrangement</h3>
     <HangoverList title="arranged by" hangovers={arrangement.arrangers} />
-    <Field text={keyFormatter(arrangement.key)} />
+    <DisplayField text={keyFormatter(arrangement.key)} />
     <SemesterList title="arranged" semesters={[arrangement.semesterArranged]} />
-    <Field text={arrangement.syllables ? 'has syllables' : 'doesn\'t have syllables'} />
-    <Field text={arrangement.arrangementType && arrangement.arrangementType.name} />
-    <h3>Performances</h3>
-    <Field text={arrangement.active ? 'active' : 'not active'} />
+    <DisplayField text={arrangement.syllables ? 'has syllables' : 'doesn\'t have syllables'} />
+    <DisplayField text={arrangement.arrangementType && arrangement.arrangementType.name} />
+    <h3>Performance</h3>
+    <DisplayField text={arrangement.active ? 'active' : 'not active'} />
     <SemesterList title="semester(s) performed" semesters={arrangement.semestersPerformed} />
     <ConcertList title="concert(s) performed" concerts={arrangement.concerts} />
     <AlbumList title="album(s) on" albums={arrangement.albums} />
     <HangoverList title="soloist(s)" hangovers={arrangement.soloists} />
     <h3>Files and Such</h3>
     {arrangement._attachments ? Object.keys(arrangement._attachments).map(aid =>
-      <a
+      <div><a
         href={`/api/arrangementfile?${stringify({
           arrangementID: id,
           attachmentID: aid,
@@ -53,14 +46,14 @@ const Arrangement = ({ dispatch, id, arrangement, loading }) =>
         download
       >
         {`download ${aid}`}
-      </a>
+      </a></div>
     ) : null}
-    <Field title="Youtube Link" text={arrangement.youtube} />
-    <Field title="Spotify Link (Original Song)" text={arrangement.spotifyOriginalLink} />
-    <Field title="Spotify Link (Hangovers Version)" text={arrangement.spotifyHangoverLink} />
+    <DisplayField title="Youtube Link" text={arrangement.youtube} />
+    <DisplayField title="Spotify Link (Original Song)" text={arrangement.spotifyOriginalLink} />
+    <DisplayField title="Spotify Link (Hangovers Version)" text={arrangement.spotifyHangoverLink} />
     <h3>Odds and Ends</h3>
     <TagList title="Tags" tags={arrangement.tags} />
-    <Field title="Notes" text={arrangement.notes} />
+    <DisplayField title="Notes" text={arrangement.notes} />
   </Full>;
 
 Arrangement.propTypes = {

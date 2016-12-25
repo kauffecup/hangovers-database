@@ -58,7 +58,7 @@ const SubmitArrangementForm = ({ app, submit, handleSubmit, handleDelete, id, re
         <Field label="Type" name="arrangementType" component={RenderSelect} options={arrangementTypes} styles={styles.rowChild} />
         <Field label="Syllables" name="syllables" component={RenderBinary} styles={styles.rowChild} />
       </div>
-      <h3 className={css(styles.categoryLabel)}>Performances</h3>
+      <h3 className={css(styles.categoryLabel)}>Performance</h3>
       <Field label="Active" name="active" component={RenderBinary} />
       <Field label="Semester(s) Performed" name="semestersPerformed" component={RenderSelect} options={semesters} multi />
       <Field label="Concert(s) Featured In" name="concerts" component={RenderSelect} options={concerts} multi />

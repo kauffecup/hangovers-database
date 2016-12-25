@@ -1,17 +1,18 @@
 export const activeAdapter = a =>
   a && typeof a === 'boolean' ? 'yes' : 'no';
 
-export const albumFormatter = (a = {}) => `${a.name} ${semesterFormatter(a.semester)}`.trim();
+export const albumFormatter = (a = {}, useSemester) => useSemester ?
+  `${a.name} ${semesterFormatter(a.semester)}`.trim() : a.name;
 
-export const albumAdapter = (a = {}, sMap = {}) => ({
-  value: a._id, label: albumFormatter(a, sMap && sMap[a.semester] ? sMap[a.semester].year : ''),
+export const albumAdapter = (a = {}) => ({
+  value: a._id, label: albumFormatter(a, true),
 });
 
 export const albumFormatAdapter = (af = {}) => ({
   value: af._id, label: af.name,
 });
 
-export const arrangementFormatter = (a = {}) => a.name;
+export const arrangementFormatter = (a = {}) => `${a.name}${a.alternateName ? ` (${a.alternateName})` : ''}`;
 
 export const arrangementAdapter = (a = {}) => ({
   value: a._id, label: arrangementFormatter(a),
@@ -44,10 +45,12 @@ export const attatchmentAdapter = (a = {}, type = '') => {
   return null;
 };
 
-export const concertFormatter = (c = {}) => `${c.name} ${semesterFormatter(c.semester)}`.trim();
+export const concertFormatter = (c = {}, useSemester) => useSemester ?
+  `${c.name} ${semesterFormatter(c.semester)}`.trim() : c.name;
 
-export const concertAdapter = (c = {}, sMap = {}) => ({
-  value: c._id, label: concertFormatter(c, sMap && sMap[c.semester] ? sMap[c.semester].year : ''),
+
+export const concertAdapter = (c = {}) => ({
+  value: c._id, label: concertFormatter(c, true),
 });
 
 export const concertTypeAdapter = (ct = {}) => ({
@@ -58,7 +61,7 @@ export const genreAdapter = (g = {}) => ({
   value: g._id, label: g.name,
 });
 
-export const hangoverFormatter = (h = {}) => `${h.firstName} ${h.lastName}`;
+export const hangoverFormatter = (h = {}) => `${h.firstName}${h.hangsName ? ` "${h.hangsName}" ` : ' '}${h.lastName}`;
 
 export const hangoverAdapter = (h = {}) => ({
   value: h._id, label: hangoverFormatter(h),
@@ -70,7 +73,7 @@ export const keyAdapter = (k = {}) => ({
   value: k._id, label: keyFormatter(k),
 });
 
-export const semesterFormatter = (s = {}) => `${s.semester_type} ${s.year}`;
+export const semesterFormatter = (s = {}) => `${s.semester_type || ''} ${s.year || ''}`.trim();
 
 export const semesterAdapter = (s = {}) => ({
   value: s._id, label: semesterFormatter(s),

@@ -1,12 +1,13 @@
 import React, { PropTypes } from 'react';
+import DisplayField from '../DisplayField';
 
-const HangoverList = ({ title, items = [], Component }) => items.length ?
-  <div>
-    <span>{title}</span>
-    <span>{items.filter(item => !!item).map(item =>
-      <Component key={item._id} {...item} />
-    )}</span>
-  </div> : null;
+const HangoverList = ({ title, items = [], Component }) =>
+  <DisplayField title={title}>
+    <span>{[].concat(items).filter(item => !!item)
+      .map(item => <Component key={item._id} {...item} />)
+      .reduce((cs, c) => cs === null ? [c] : [...cs, ', ', c], null)
+    }</span>
+  </DisplayField>;
 
 HangoverList.propTypes = {
   title: PropTypes.string,

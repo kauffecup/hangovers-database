@@ -4,6 +4,7 @@ import ArrangementList from '../../components/lists/ArrangementList';
 import { getArtist } from '../../actions';
 import { artistFormatter } from '../../normalizers/adaptFormData';
 import Full from '../../components/pages/Full';
+import Card from '../../components/Card';
 
 const Artist = ({ dispatch, id, artist, loading }) =>
   <Full
@@ -12,8 +13,9 @@ const Artist = ({ dispatch, id, artist, loading }) =>
     path={`/edit/artist/${id}`}
     loading={loading}
   >
-    <h3>Arrangements</h3>
-    <ArrangementList arrangements={artist.arrangements} />
+    <Card title="Arrangements">
+      <ArrangementList arrangements={artist.arrangements} />
+    </Card>
   </Full>;
 
 Artist.propTypes = {

@@ -6,6 +6,7 @@ import HangoverList from '../../components/lists/HangoverList';
 import { getConcert } from '../../actions';
 import { concertFormatter } from '../../normalizers/adaptFormData';
 import Full from '../../components/pages/Full';
+import Card from '../../components/Card';
 
 const Concert = ({ dispatch, id, concert, loading }) =>
   <Full
@@ -16,8 +17,9 @@ const Concert = ({ dispatch, id, concert, loading }) =>
   >
     <SemesterList semesters={concert.semester} />
     <HangoverList title="MD" hangovers={concert.md} />
-    <h3>Set List</h3>
-    <ArrangementList arrangements={concert.setList} />
+    <Card title="Set List">
+      <ArrangementList arrangements={concert.setList} />
+    </Card>
   </Full>;
 
 Concert.propTypes = {

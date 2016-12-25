@@ -7,6 +7,7 @@ import HangoverList from '../../components/lists/HangoverList';
 import { getSemester } from '../../actions';
 import { semesterFormatter } from '../../normalizers/adaptFormData';
 import Full from '../../components/pages/Full';
+import Card from '../../components/Card';
 
 const Semester = ({ dispatch, id, semester, loading }) =>
   <Full
@@ -18,16 +19,21 @@ const Semester = ({ dispatch, id, semester, loading }) =>
     <HangoverList title="MD" hangovers={semester.md} />
     <HangoverList title="BM" hangovers={semester.bm} />
     <HangoverList title="President" hangovers={semester.president} />
-    <h3>Arrangements</h3>
-    <ArrangementList arrangements={semester.arrangements} />
-    <h3>Concerts</h3>
-    <ConcertList concerts={semester.concerts} />
-    <h3>Songs Performed</h3>
-    <ArrangementList arrangements={semester.performed} />
-    <h3>Albums</h3>
-    <AlbumList albums={semester.albums} />
-    <h3>Hangovers Graduated</h3>
-    <HangoverList hangovers={semester.graduatingHangs} />
+    <Card title="Arrangements">
+      <ArrangementList arrangements={semester.arrangements} />
+    </Card>
+    <Card title="Concerts">
+      <ConcertList concerts={semester.concerts} />
+    </Card>
+    <Card title="Songs Performed">
+      <ArrangementList arrangements={semester.performed} />
+    </Card>
+    <Card title="Albums">
+      <AlbumList albums={semester.albums} />
+    </Card>
+    <Card title="Hangovers Graduated">
+      <HangoverList hangovers={semester.graduatingHangs} />
+    </Card>
   </Full>;
 
 Semester.propTypes = {

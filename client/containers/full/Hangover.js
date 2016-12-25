@@ -6,6 +6,7 @@ import SemesterList from '../../components/lists/SemesterList';
 import { getHangover } from '../../actions';
 import { hangoverFormatter } from '../../normalizers/adaptFormData';
 import Full from '../../components/pages/Full';
+import Card from '../../components/Card';
 
 const Hangover = ({ dispatch, id, hangover, loading }) =>
   <Full
@@ -19,10 +20,12 @@ const Hangover = ({ dispatch, id, hangover, loading }) =>
     <SemesterList title="BMed" semesters={hangover.semestersBMed} />
     <SemesterList title="Presided" semesters={hangover.semestersPresided} />
     <ConcertList title="MDed" concerts={hangover.concertsMDed} />
-    <h3>Arranged</h3>
-    <ArrangementList arrangements={hangover.arranged} />
-    <h3>Soloed</h3>
-    <ArrangementList arrangements={hangover.soloed} />
+    <Card title="Arranged">
+      <ArrangementList arrangements={hangover.arranged} />
+    </Card>
+    <Card title="Soloed">
+      <ArrangementList arrangements={hangover.soloed} />
+    </Card>
   </Full>;
 
 Hangover.propTypes = {

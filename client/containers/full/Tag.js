@@ -4,6 +4,7 @@ import ArrangementList from '../../components/lists/ArrangementList';
 import { getTag } from '../../actions';
 import { tagFormatter } from '../../normalizers/adaptFormData';
 import Full from '../../components/pages/Full';
+import Card from '../../components/Card';
 
 const Tag = ({ dispatch, id, tag, loading }) =>
   <Full
@@ -12,8 +13,9 @@ const Tag = ({ dispatch, id, tag, loading }) =>
     path={`/edit/tag/${id}`}
     loading={loading}
   >
-    <h3>Arrangements</h3>
-    <ArrangementList arrangements={tag.arrangements} />
+    <Card title="Arrangements">
+      <ArrangementList arrangements={tag.arrangements} />
+    </Card>
   </Full>;
 
 Tag.propTypes = {

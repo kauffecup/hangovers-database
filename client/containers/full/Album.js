@@ -5,6 +5,7 @@ import SemesterList from '../../components/lists/SemesterList';
 import { getAlbum } from '../../actions';
 import { albumFormatter } from '../../normalizers/adaptFormData';
 import Full from '../../components/pages/Full';
+import Card from '../../components/Card';
 
 const Album = ({ dispatch, id, album, loading }) =>
   <Full
@@ -14,8 +15,9 @@ const Album = ({ dispatch, id, album, loading }) =>
     loading={loading}
   >
     <SemesterList semesters={album.semester} />
-    <h3>Track List</h3>
-    <ArrangementList arrangements={album.trackList} />
+    <Card title="Track List">
+      <ArrangementList arrangements={album.trackList} />
+    </Card>
   </Full>;
 
 Album.propTypes = {

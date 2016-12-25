@@ -1,14 +1,16 @@
 /* global emit */
 /* eslint-disable prefer-arrow-callback */
 
-const hangoverMapper = function (doc) {
-  if (doc.type === 'hangover') {
+const albumMapper = function (doc) {
+  if (doc.type === 'album') {
     emit(doc._id, 1);
+  } else if (doc.type === 'album_semester_relationship') {
+    emit([doc.album, 'semester'], { _id: doc.semester });
   }
 };
 
-const semesterMapper = function (doc) {
-  if (doc.type === 'semester') {
+const albumFormatMapper = function (doc) {
+  if (doc.type === 'album_format') {
     emit(doc._id, 1);
   }
 };
@@ -19,8 +21,14 @@ const arrangementMapper = function (doc) {
   }
 };
 
-const albumMapper = function (doc) {
-  if (doc.type === 'album') {
+const arrangementTypeMapper = function (doc) {
+  if (doc.type === 'arrangement_type') {
+    emit(doc._id, 1);
+  }
+};
+
+const artistMapper = function (doc) {
+  if (doc.type === 'artist') {
     emit(doc._id, 1);
   }
 };
@@ -28,18 +36,8 @@ const albumMapper = function (doc) {
 const concertMapper = function (doc) {
   if (doc.type === 'concert') {
     emit(doc._id, 1);
-  }
-};
-
-const albumFormatMapper = function (doc) {
-  if (doc.type === 'album_format') {
-    emit(doc._id, 1);
-  }
-};
-
-const arrangementTypeMapper = function (doc) {
-  if (doc.type === 'arrangement_type') {
-    emit(doc._id, 1);
+  } else if (doc.type === 'concert_semester_relationship') {
+    emit([doc.concert, 'semester'], { _id: doc.semester });
   }
 };
 
@@ -55,14 +53,20 @@ const genreMapper = function (doc) {
   }
 };
 
-const artistMapper = function (doc) {
-  if (doc.type === 'artist') {
+const hangoverMapper = function (doc) {
+  if (doc.type === 'hangover') {
     emit(doc._id, 1);
   }
 };
 
 const keyMapper = function (doc) {
   if (doc.type === 'key') {
+    emit(doc._id, 1);
+  }
+};
+
+const semesterMapper = function (doc) {
+  if (doc.type === 'semester') {
     emit(doc._id, 1);
   }
 };
@@ -77,17 +81,17 @@ const ddoc = {
   _id: '_design/types',
   language: 'javascript',
   views: {
-    hangovers: { map: hangoverMapper },
-    semesters: { map: semesterMapper },
-    arrangements: { map: arrangementMapper },
     albums: { map: albumMapper },
-    concerts: { map: concertMapper },
     album_formats: { map: albumFormatMapper },
+    arrangements: { map: arrangementMapper },
     arrangement_types: { map: arrangementTypeMapper },
+    artists: { map: artistMapper },
+    concerts: { map: concertMapper },
     concert_types: { map: concertTypeMapper },
     genres: { map: genreMapper },
-    artists: { map: artistMapper },
     keys: { map: keyMapper },
+    hangovers: { map: hangoverMapper },
+    semesters: { map: semesterMapper },
     tags: { map: tagMapper },
   },
 };

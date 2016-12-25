@@ -24,8 +24,8 @@ class EditSemester extends Component {
 
   render() {
     const { app, dispatch, handleSubmit, name } = this.props;
-    const { semesterMap, concerts: co, albums: al } = app;
-    const concerts = co.map(c => concertAdapter(c, semesterMap));
+    const { concerts: co, albums: al } = app;
+    const concerts = co.map(c => concertAdapter(c));
     const albums = al.map(albumAdapter);
     return (
       <form onSubmit={handleSubmit(values => dispatch(editSemester(adaptSemesterSubmit(values))))}>

@@ -21,9 +21,9 @@ class EditHangover extends Component {
 
   render() {
     const { app, dispatch, handleSubmit, name } = this.props;
-    const { semesterMap, semesters: s, concerts: co } = app;
+    const { semesters: s, concerts: co } = app;
     const semesters = s.map(semesterAdapter);
-    const concerts = co.map(c => concertAdapter(c, semesterMap));
+    const concerts = co.map(c => concertAdapter(c));
     return (
       <form onSubmit={handleSubmit(values => dispatch(editHangover(adaptHangoverSubmit(values))))}>
         <h2>{name}</h2>

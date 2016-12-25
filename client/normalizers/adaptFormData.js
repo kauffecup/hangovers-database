@@ -1,7 +1,7 @@
 export const activeAdapter = a =>
   a && typeof a === 'boolean' ? 'yes' : 'no';
 
-export const albumFormatter = (a = {}, y = '') => `${a.name} ${y}`.trim();
+export const albumFormatter = (a = {}) => `${a.name} ${semesterFormatter(a.semester)}`.trim();
 
 export const albumAdapter = (a = {}, sMap = {}) => ({
   value: a._id, label: albumFormatter(a, sMap && sMap[a.semester] ? sMap[a.semester].year : ''),
@@ -44,7 +44,7 @@ export const attatchmentAdapter = (a = {}, type = '') => {
   return null;
 };
 
-export const concertFormatter = (c = {}, y = '') => `${c.name} ${y}`.trim();
+export const concertFormatter = (c = {}) => `${c.name} ${semesterFormatter(c.semester)}`.trim();
 
 export const concertAdapter = (c = {}, sMap = {}) => ({
   value: c._id, label: concertFormatter(c, sMap && sMap[c.semester] ? sMap[c.semester].year : ''),

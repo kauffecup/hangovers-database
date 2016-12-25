@@ -15,7 +15,6 @@ Concerts.propTypes = {
 
 const mapStateToProps = state => ({
   concerts: state.app.concerts,
-  semesterMap: state.app.semesterMap,
 });
 
 // Wrap the component to inject dispatch and state into it

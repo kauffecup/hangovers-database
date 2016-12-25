@@ -27,11 +27,11 @@ import {
 } from '../normalizers/adaptFormData';
 
 const SubmitArrangementForm = ({ app, submit, handleSubmit, handleDelete, id, rev, edit, name }) => {
-  const { semesterMap, arrangementTypes: at, semesters: s, albums: al, concerts: co, keys: k } = app;
+  const { arrangementTypes: at, semesters: s, albums: al, concerts: co, keys: k } = app;
   const arrangementTypes = at.map(arrangementTypeAdapter);
   const semesters = s.map(semesterAdapter);
-  const albums = al.map(a => albumAdapter(a, semesterMap));
-  const concerts = co.map(c => concertAdapter(c, semesterMap));
+  const albums = al.map(a => albumAdapter(a));
+  const concerts = co.map(c => concertAdapter(c));
   const keys = k.map(keyAdapter);
   return (
     <form className={css(styles.form)} onSubmit={handleSubmit(values => submit(adaptSubmit(values)))}>

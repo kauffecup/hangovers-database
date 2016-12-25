@@ -112,18 +112,19 @@ module.exports = class SageDB {
    * resolves with the response from cloudant. We do processing on the rows to
    * return the doc.
    */
-  getAlbums(limit, skip) { return this._view('albums', limit, skip); }
   getAlbumFormats(limit, skip) { return this._view('album_formats', limit, skip); }
   getArrangements(limit, skip) { return this._view('arrangements', limit, skip); }
   getArrangementTypes(limit, skip) { return this._view('arrangement_types', limit, skip); }
   getArtists(limit, skip) { return this._view('artists', limit, skip); }
-  getConcerts(limit, skip) { return this._view('concerts', limit, skip); }
   getConcertTypes(limit, skip) { return this._view('concert_types', limit, skip); }
   getGenres(limit, skip) { return this._view('genres', limit, skip); }
   getHangovers(limit, skip) { return this._view('hangovers', limit, skip); }
   getKeys(limit, skip) { return this._view('keys', limit, skip); }
   getSemesters(limit, skip) { return this._view('semesters', limit, skip); }
   getTags(limit, skip) { return this._view('tags', limit, skip); }
+  // these views also have semester data we need to roll in
+  getAlbums(limit, skip) { return this._viewWithSemester('albums', types.ALBUM_TYPE, limit, skip); }
+  getConcerts(limit, skip) { return this._viewWithSemester('concerts', types.CONCERT_TYPE, limit, skip); }
 
   /** Helper method for above getters */
   _view(type, limit = LIMIT, skip = 0) {
@@ -134,6 +135,33 @@ module.exports = class SageDB {
     }).then(response => Object.assign({}, response, {
       rows: response.rows.map(r => r.doc),
     }));
+  }
+
+  /** Get all of a kind of view along with its semester data, roll the semester data into doc data */
+  _viewWithSemester(type, docType, limit = LIMIT, skip = 0) {
+    return this._sageDB.viewAsync('types', type, {
+      include_docs: true,
+      limit,
+      skip,
+    }).then((response) => {
+      const docs = [];
+      const docMap = {};
+      const semesters = [];
+      for (const row of (response.rows || [{}])) {
+        if (row.doc.type === docType) {
+          docMap[row.doc._id] = row.doc;
+        } else if (row.key.length === 2) {
+          semesters.push({
+            docID: row.key[0],
+            semester: row.doc,
+          });
+        }
+      }
+      for (const { docID, semester } of semesters) {
+        docs.push(Object.assign({}, docMap[docID], { semester }));
+      }
+      return Object.assign({}, response, { rows: docs });
+    });
   }
 
   /**

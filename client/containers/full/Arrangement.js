@@ -45,7 +45,7 @@ const Arrangement = ({ dispatch, id, arrangement, loading }) =>
     <h3>Files and Such</h3>
     {arrangement._attachments ? Object.keys(arrangement._attachments).map(aid =>
       <a
-        href={`/arrangementfile?${stringify({
+        href={`/api/arrangementfile?${stringify({
           arrangementID: id,
           attachmentID: aid,
           type: arrangement._attachments[aid].content_type,

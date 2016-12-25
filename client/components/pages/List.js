@@ -2,15 +2,10 @@ import React, { PropTypes } from 'react';
 import { List, AutoSizer } from 'react-virtualized';
 import { StyleSheet, css } from 'aphrodite';
 import { LIST_ITEM_HEIGHT, PADDING_UNIT } from '../../StyleConstants';
+import rowRender from '../rowRender';
 
 const VirtualList = ({ list, ChildComponent }) => {
-  const rowRenderer = ({ index, key, style }) => // eslint-disable-line
-    <div key={key} style={style}>
-      <div className={css(styles.album)}>
-        <ChildComponent {...list[index]} />
-      </div>
-    </div>;
-
+  const rowRenderer = rowRender(list, ChildComponent);
   return (
     <div className={css(styles.list)}>
       <AutoSizer>
@@ -20,7 +15,7 @@ const VirtualList = ({ list, ChildComponent }) => {
             rowCount={list.length}
             width={width}
             height={height}
-            rowHeight={LIST_ITEM_HEIGHT}
+            rowHeight={LIST_ITEM_HEIGHT + PADDING_UNIT}
           />
         ) : null}
       </AutoSizer>

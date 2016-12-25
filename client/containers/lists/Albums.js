@@ -2,11 +2,12 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import AlbumLink from '../../components/links/AlbumLink';
 import List from '../../components/pages/List';
+import rowWithSemester from '../../components/rowWithSemester';
 
 const Albums = ({ albums }) =>
   <List
     list={albums}
-    ChildComponent={AlbumLink}
+    ChildComponent={rowWithSemester(AlbumLink)}
   />;
 
 Albums.propTypes = {

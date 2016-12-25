@@ -37,6 +37,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 0,
     right: 0,
+    overflow: 'hidden',
   },
   notNavBar: {
     'padding-left': `${NAVBAR_WIDTH}px`,

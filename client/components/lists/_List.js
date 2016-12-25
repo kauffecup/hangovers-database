@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import DisplayField from '../DisplayField';
 
-const HangoverList = ({ title, items = [], Component }) =>
+const List = ({ title, items = [], Component }) =>
   <DisplayField title={title}>
     <span>{[].concat(items).filter(item => !!item)
       .map(item => <Component key={item._id} {...item} />)
@@ -9,10 +9,10 @@ const HangoverList = ({ title, items = [], Component }) =>
     }</span>
   </DisplayField>;
 
-HangoverList.propTypes = {
+List.propTypes = {
   title: PropTypes.string,
   items: PropTypes.array,
   Component: PropTypes.object.isRequired,
 };
 
-export default HangoverList;
+export default List;

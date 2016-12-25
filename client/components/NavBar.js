@@ -37,6 +37,7 @@ const styles = StyleSheet.create({
     height: '100%',
     width: `${NAVBAR_WIDTH}px`,
     background: BERMUDA_GRAY,
+    overflow: 'auto',
   },
   iconLink: {
     fill: HEATHER,

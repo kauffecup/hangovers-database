@@ -16,8 +16,10 @@ class Full extends Component {
     }
     return (
       <div className={css(styles.full)}>
-        <PathButton text="edit" path={path} />
-        <h2>{title}</h2>
+        <div className={css(styles.subHeader)}>
+          <h2 className={css(styles.headerName)}>{title}</h2>
+          <PathButton text="edit" path={path} />
+        </div>
         {children}
       </div>
     );
@@ -29,6 +31,12 @@ const styles = StyleSheet.create({
     flex: 1,
     'overflow-y': 'auto',
     padding: `${PADDING_UNIT}px`,
+  },
+  subHeader: {
+    display: 'flex',
+  },
+  headerName: {
+    flex: 1,
   },
 });
 

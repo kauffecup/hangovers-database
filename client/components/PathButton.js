@@ -1,14 +1,14 @@
 import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite';
 import { Link } from 'react-router';
-import { LIGHT_ORCHID } from '../StyleConstants';
+import { MALIBU } from '../StyleConstants';
 
 const Button = ({ text, path }) =>
   <button className={css(styles.button)}><Link className={css(styles.link)} to={path}>{text}</Link></button>;
 
 const styles = StyleSheet.create({
   button: {
-    background: LIGHT_ORCHID,
+    background: MALIBU,
     'box-shadow': '0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12)',
     'border-radius': '2px',
     'min-width': '64px',

@@ -1,42 +1,36 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
 import { adaptTagSubmit } from '../../normalizers/adaptSubmit';
 import RenderAsync from '../../components/form/RenderAsync';
-import Button from '../../components/Button';
-import { getEditTagData, editTag, TAG_FORM } from '../../actions';
+import { getEditTagData, destroyTag, editTag, TAG_FORM } from '../../actions';
 import { searchArrangements } from '../../actions/search';
 import { tagFormatter } from '../../normalizers/adaptFormData';
+import Edit from '../../components/pages/Edit';
 
-class EditTag extends Component {
-  componentDidMount() {
-    const { dispatch, id } = this.props;
-    dispatch(getEditTagData(id));
-  }
-
-  render() {
-    const { dispatch, handleSubmit, name } = this.props;
-    return (
-      <form onSubmit={handleSubmit(values => dispatch(editTag(adaptTagSubmit(values))))}>
-        <h2>{name}</h2>
-        <Field label="Arrangements" name="arrangements" component={RenderAsync} loadOptions={searchArrangements} multi />
-        <Button type="submit" text="Submit" />
-      </form>
-    );
-  }
-}
+const EditTag = ({ dispatch, handleSubmit, name, id, rev }) =>
+  <Edit
+    title={name}
+    getEditData={() => dispatch(getEditTagData(id))}
+    handleSubmit={handleSubmit(values => dispatch(editTag(adaptTagSubmit(values))))}
+    handleDelete={() => dispatch(destroyTag(id, rev))}
+  >
+    <Field label="Arrangements" name="arrangements" component={RenderAsync} loadOptions={searchArrangements} multi />
+  </Edit>;
 
 EditTag.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   dispatch: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
+  rev: PropTypes.string,
   name: PropTypes.string,
 };
 
 const mapStateToProps = (state, routerProps) => ({
   app: state.app,
   id: routerProps.params.id,
-  name: tagFormatter(state.form.editTag && state.form.editTag.values),
+  name: tagFormatter(state.form[TAG_FORM] && state.form[TAG_FORM].values),
+  rev: state.form && state.form[TAG_FORM] && state.form[TAG_FORM].values && state.form[TAG_FORM].values._rev,
 });
 
 // Wrap the component to inject dispatch and state into it

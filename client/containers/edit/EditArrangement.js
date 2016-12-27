@@ -1,9 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
-import { getEditArrangementData, editArrangement, destroyDocument, EDIT_FORM } from '../../actions';
+import { getEditArrangementData, editArrangement, destroyArrangement, EDIT_FORM } from '../../actions';
 import validate from '../../normalizers/validate';
 import SubmitArrangementForm from '../../components/SubmitArrangementForm';
+import { arrangementFormatter } from '../../normalizers/adaptFormData';
 
 class EditArrangement extends Component {
   componentDidMount() {
@@ -17,7 +18,7 @@ class EditArrangement extends Component {
       <SubmitArrangementForm
         {...this.props}
         submit={values => dispatch(editArrangement(values))}
-        handleDelete={(_id, _rev) => dispatch(destroyDocument(_id, _rev))}
+        handleDelete={(_id, _rev) => dispatch(destroyArrangement(_id, _rev))}
         id={id}
         name={name}
         rev={rev}
@@ -29,7 +30,7 @@ class EditArrangement extends Component {
 
 EditArrangement.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  id: PropTypes.string.isReuired,
+  id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   rev: PropTypes.string,
 };
@@ -38,8 +39,8 @@ EditArrangement.propTypes = {
 const mapStateToProps = (state, routerProps) => ({
   app: state.app,
   id: routerProps.params.id,
-  name: state.form.editArrangement && state.form.editArrangement.values && state.form.editArrangement.values.name,
-  rev: state.form && state.form.editArrangement && state.form.editArrangement.values && state.form.editArrangement.values._rev,
+  name: arrangementFormatter(state.form[EDIT_FORM] && state.form[EDIT_FORM].values),
+  rev: state.form && state.form[EDIT_FORM] && state.form[EDIT_FORM].values && state.form[EDIT_FORM].values._rev,
 });
 
 // Wrap the component to inject dispatch and state into it

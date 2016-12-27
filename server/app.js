@@ -142,12 +142,16 @@ app.get('/api/arrangementexists', ({ query: { name } }, res) => {
     .catch(e => res.status(500).json(e));
 });
 
-/** DELETE: a document from the database */
-app.delete('/api/destroy', ({ query: { _id, _rev } }, res) => {
-  sageDB.destroy(_id, _rev)
+/** delete documents from the database */
+const destroy = (_id, _rev, deleteMethod, res) =>
+  sageDB[deleteMethod](_id, _rev)
     .then(() => res.json({}))
     .catch(e => res.status(500).json(e));
-});
+
+/** endpoints for deleting */
+app.delete('/api/destroy/artist', ({ query: { _id, _rev } }, res) => destroy(_id, _rev, 'destroyArtist', res));
+app.delete('/api/destroy/arrangement', ({ query: { _id, _rev } }, res) => destroy(_id, _rev, 'destroyArrangement', res));
+app.delete('/api/destroy/tag', ({ query: { _id, _rev } }, res) => destroy(_id, _rev, 'destroyTag', res));
 
 /** For everything else, serve the index */
 app.get('*', (req, res) => {

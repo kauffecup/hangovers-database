@@ -180,7 +180,7 @@ module.exports = class SageDB {
       q,
       limit,
       include_docs: true,
-    }).then(response => response.rows.map(r => r.doc));
+    }).then(response => (response.rows || []).map(r => r.doc));
   }
 
   /** Upserts for given doc types without relationships */
@@ -260,25 +260,22 @@ module.exports = class SageDB {
       );
   }
 
-  /** Destroy an existing doc and add it with a new ID */
-  _destroyAndAdd(doc, newID) {
-    const newDoc = Object.assign({}, doc, { _id: newID });
-    delete newDoc._rev;
-    return this.destroy(doc._id, doc._rev)
-      .then(() => this._sageDB.insertAsync(newDoc));
-  }
+  /** Destroy docs! And their relationships! */
+  destroyArtist(_id, _rev) { return this._destroyWithRelationships(_id, _rev, 'artist'); }
+  destroyArrangement(_id, _rev) { return this._destroyWithRelationships(_id, _rev, 'arrangement'); }
+  destroyTag(_id, _rev) { return this._destroyWithRelationships(_id, _rev, 'tag'); }
 
-  /** Destroy an existing doc and add it with a new ID and some files */
-  _destroyAndAddWithFiles(doc, newID, files) {
-    const newDoc = Object.assign({}, doc, { _id: newID });
-    delete newDoc._rev;
-    return this.destroy(doc._id, doc._rev)
-      .then(() => this._sageDBMulti.insertAsync(newDoc, files, newDoc._id));
+  /** Destroy a doc and all of its relationships */
+  _destroyWithRelationships(id, rev, relationshipField) {
+    return this.searchRelationships(relationshipField, id)
+      .then(relationships => this._sageDB.bulkAsync({
+        docs: [...relationships, { _id: id, _rev: rev }].map(({ _id, _rev }) => ({ _id, _rev, _deleted: true })),
+      }));
   }
 
   /** Destroy a doc */
-  destroy(id, rev) {
-    return this._sageDB.destroyAsync(id, rev);
+  _destroy(_id, _rev) {
+    return this._sageDB.destroyAsync(_id, _rev);
   }
 
   /** Guarantee that the only relationships are the passed in array in as few deletes/adds as possible */
@@ -300,7 +297,7 @@ module.exports = class SageDB {
     console.log('creating new relationships and deleting stale ones');
     return Promise.join(
       Promise.map(relationshipsToUpload, ({ doc, type, id }) => this._upsertType(doc, type, id), OPTS),
-      Promise.map(relationshipsToDelete, ({ _id, _rev }) => this.destroy(_id, _rev), OPTS),
+      Promise.map(relationshipsToDelete, ({ _id, _rev }) => this._destroy(_id, _rev), OPTS),
       () => {}
     );
   }

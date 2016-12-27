@@ -1,44 +1,38 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
 import { adaptHangoverSubmit } from '../../normalizers/adaptSubmit';
-import RenderSelect from '../../components/form/RenderSelect';
-import RenderAsync from '../../components/form/RenderAsync';
-import Button from '../../components/Button';
 import { getEditHangoverData, editHangover, HANGOVER_FORM } from '../../actions';
 import { searchArrangements } from '../../actions/search';
+import RenderSelect from '../../components/form/RenderSelect';
+import RenderAsync from '../../components/form/RenderAsync';
+import Edit from '../../components/pages/Edit';
 import {
   semesterAdapter,
   concertAdapter,
   hangoverFormatter,
 } from '../../normalizers/adaptFormData';
 
-class EditHangover extends Component {
-  componentDidMount() {
-    const { dispatch, id } = this.props;
-    dispatch(getEditHangoverData(id));
-  }
-
-  render() {
-    const { app, dispatch, handleSubmit, name } = this.props;
-    const { semesters: s, concerts: co } = app;
-    const semesters = s.map(semesterAdapter);
-    const concerts = co.map(c => concertAdapter(c));
-    return (
-      <form onSubmit={handleSubmit(values => dispatch(editHangover(adaptHangoverSubmit(values))))}>
-        <h2>{name}</h2>
-        <Field label="Graduated" name="graduationSemester" component={RenderSelect} options={semesters} multi />
-        <Field label="Concert(s) MDed" name="concertsMDed" component={RenderSelect} options={concerts} multi />
-        <Field label="Semester(s) MDed" name="semestersMDed" component={RenderSelect} options={semesters} multi />
-        <Field label="Semester(s) BMed" name="semestersBMed" component={RenderSelect} options={semesters} multi />
-        <Field label="Semester(s) Presided" name="semestersPresided" component={RenderSelect} options={semesters} multi />
-        <Field label="Arranged" name="arranged" component={RenderAsync} loadOptions={searchArrangements} multi />
-        <Field label="Soloed" name="soloed" component={RenderAsync} loadOptions={searchArrangements} multi />
-        <Button type="submit" text="Submit" />
-      </form>
-    );
-  }
-}
+const EditHangover = ({ app, dispatch, handleSubmit, name, id }) => {
+  const { semesters: s, concerts: co } = app;
+  const semesters = s.map(semesterAdapter);
+  const concerts = co.map(c => concertAdapter(c));
+  return (
+    <Edit
+      title={name}
+      getEditData={() => dispatch(getEditHangoverData(id))}
+      handleSubmit={handleSubmit(values => dispatch(editHangover(adaptHangoverSubmit(values))))}
+    >
+      <Field label="Graduated" name="graduationSemester" component={RenderSelect} options={semesters} multi />
+      <Field label="Concert(s) MDed" name="concertsMDed" component={RenderSelect} options={concerts} multi />
+      <Field label="Semester(s) MDed" name="semestersMDed" component={RenderSelect} options={semesters} multi />
+      <Field label="Semester(s) BMed" name="semestersBMed" component={RenderSelect} options={semesters} multi />
+      <Field label="Semester(s) Presided" name="semestersPresided" component={RenderSelect} options={semesters} multi />
+      <Field label="Arranged" name="arranged" component={RenderAsync} loadOptions={searchArrangements} multi />
+      <Field label="Soloed" name="soloed" component={RenderAsync} loadOptions={searchArrangements} multi />
+    </Edit>
+  );
+};
 
 EditHangover.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
@@ -51,7 +45,7 @@ EditHangover.propTypes = {
 const mapStateToProps = (state, routerProps) => ({
   app: state.app,
   id: routerProps.params.id,
-  name: hangoverFormatter(state.form.editHangover && state.form.editHangover.values),
+  name: hangoverFormatter(state.form[HANGOVER_FORM] && state.form[HANGOVER_FORM].values),
 });
 
 // Wrap the component to inject dispatch and state into it

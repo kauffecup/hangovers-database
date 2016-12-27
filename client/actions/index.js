@@ -136,19 +136,21 @@ export const getEditHangoverData = hangoverID => actionFetchEdit('/api/full/hang
 export const getEditSemesterData = semesterID => actionFetchEdit('/api/full/semester', GET_EDIT_SEMESTER, GET_EDIT_SEMESTER_SUCCESS, GET_EDIT_SEMESTER_FAILURE, { semesterID }, fullSemesterAdapter);
 export const getEditTagData = tagID => actionFetchEdit('/api/full/tag', GET_EDIT_TAG, GET_EDIT_TAG_SUCCESS, GET_EDIT_TAG_FAILURE, { tagID }, fullTagAdapter);
 
-export function destroyDocument(_id, _rev) {
-  return dispatch =>
-    myFetch(`/api/destroy?${stringify({ _id, _rev })}`, { method: 'DELETE' })
-      .then(() => {
-        // on success we show a happy message and head back to the home page
-        dispatch(setBanner('Successfully deleted that!', BANNER_SUCCESS));
-        dispatch(push('/'));
-      }).catch((e) => {
-        // on failure we show a sad message but stay here in case user wants to try again
-        dispatch(setBanner('Failed to delete that!', BANNER_ERROR));
-        return e;
-      });
-}
+const actionDestroy = (_id, _rev, endpoint, type, form) => dispatch =>
+  myFetch(`${endpoint}?${stringify({ _id, _rev })}`, { method: 'DELETE' })
+    .then(() => {
+      dispatch(setBanner(`Successfully deleted ${type}`, BANNER_SUCCESS));
+      dispatch(push('/'));
+      dispatch(reset(form));
+    }).catch((e) => {
+      dispatch(setBanner(`Failed to delete ${type}`, BANNER_ERROR));
+      return e;
+    });
+
+/** actions for destroying documents */
+export const destroyArtist = (_id, _rev) => actionDestroy(_id, _rev, '/api/destroy/artist', 'artist', ARTIST_FORM);
+export const destroyArrangement = (_id, _rev) => actionDestroy(_id, _rev, '/api/destroy/arrangement', 'arrangement', EDIT_FORM);
+export const destroyTag = (_id, _rev) => actionDestroy(_id, _rev, '/api/destroy/tag', 'tag', TAG_FORM);
 
 /** Helper action for workflow of posting edit data, resetting forms, and setting banner message */
 const actionEdit = (values, endpoint, type, form) => dispatch =>

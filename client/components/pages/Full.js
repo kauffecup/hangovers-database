@@ -24,9 +24,9 @@ const styles = StyleSheet.create({
 Full.propTypes = {
   load: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
-  title: PropTypes.string.isRequired,
-  path: PropTypes.string.isRequired,
-  children: PropTypes.array,
+  title: PropTypes.string,
+  path: PropTypes.string,
+  children: PropTypes.node,
 };
 
 export default Full;

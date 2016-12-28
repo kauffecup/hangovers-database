@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
 Loadable.propTypes = {
   load: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
-  children: PropTypes.array,
+  children: PropTypes.node,
 };
 
 export default Loadable;

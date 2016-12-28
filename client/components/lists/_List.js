@@ -11,8 +11,14 @@ const List = ({ title, items = [], Component }) =>
 
 List.propTypes = {
   title: PropTypes.string,
-  items: PropTypes.array,
-  Component: PropTypes.object.isRequired,
+  items: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object,
+  ]),
+  Component: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.func,
+  ]).isRequired,
 };
 
 export default List;

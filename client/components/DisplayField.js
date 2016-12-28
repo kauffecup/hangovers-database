@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
 DisplayField.propTypes = {
   title: PropTypes.string,
   text: PropTypes.string,
-  children: PropTypes.array,
+  children: PropTypes.node,
 };
 
 export default DisplayField;

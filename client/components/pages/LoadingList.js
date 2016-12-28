@@ -63,7 +63,10 @@ LoadingList.propTypes = {
   loading: PropTypes.bool.isRequired,
   list: PropTypes.array.isRequired,
   totalRows: PropTypes.number.isRequired,
-  ChildComponent: React.PropTypes.object,
+  ChildComponent: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.func,
+  ]).isRequired,
 };
 
 // Wrap the component to inject dispatch and state into it

@@ -7,7 +7,10 @@ const ArrangementList = ({ title, arrangements = [] }) =>
 
 ArrangementList.propTypes = {
   title: PropTypes.string,
-  arrangements: PropTypes.array,
+  arrangements: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object,
+  ]),
 };
 
 export default ArrangementList;

@@ -7,7 +7,10 @@ const TagList = ({ title, tags = [] }) =>
 
 TagList.propTypes = {
   title: PropTypes.string,
-  tags: PropTypes.array,
+  tags: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object,
+  ]),
 };
 
 export default TagList;

@@ -7,7 +7,10 @@ const AlbumList = ({ title, albums = [] }) =>
 
 AlbumList.propTypes = {
   title: PropTypes.string,
-  albums: PropTypes.array,
+  albums: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object,
+  ]),
 };
 
 export default AlbumList;

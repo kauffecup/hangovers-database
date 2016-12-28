@@ -17,8 +17,8 @@ Edit.propTypes = {
   handleDelete: PropTypes.func,
   getEditData: PropTypes.func.isRequired,
   loading: PropTypes.bool,
-  children: PropTypes.array,
   title: PropTypes.string,
+  children: PropTypes.node,
 };
 
 export default Edit;

@@ -35,7 +35,10 @@ const styles = StyleSheet.create({
 
 VirtualList.propTypes = {
   list: PropTypes.array.isRequired,
-  ChildComponent: PropTypes.object,
+  ChildComponent: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.func,
+  ]).isRequired,
 };
 
 export default VirtualList;

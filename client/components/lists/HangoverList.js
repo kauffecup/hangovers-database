@@ -7,7 +7,10 @@ const HangoverList = ({ title, hangovers = [] }) =>
 
 HangoverList.propTypes = {
   title: PropTypes.string,
-  hangovers: PropTypes.array,
+  hangovers: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object,
+  ]),
 };
 
 export default HangoverList;

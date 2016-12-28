@@ -7,7 +7,10 @@ const SemesterList = ({ title, semesters = [] }) =>
 
 SemesterList.propTypes = {
   title: PropTypes.string,
-  semesters: PropTypes.array,
+  semesters: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object,
+  ]),
 };
 
 export default SemesterList;

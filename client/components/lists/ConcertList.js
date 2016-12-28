@@ -7,7 +7,10 @@ const ConcertList = ({ title, concerts = [] }) =>
 
 ConcertList.propTypes = {
   title: PropTypes.string,
-  concerts: PropTypes.array,
+  concerts: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object,
+  ]),
 };
 
 export default ConcertList;

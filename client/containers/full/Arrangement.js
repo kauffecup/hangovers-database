@@ -41,7 +41,7 @@ const Arrangement = ({ dispatch, id, arrangement, loading }) =>
     </Card>
     <Card title="Files and Such">
       {arrangement._attachments ? Object.keys(arrangement._attachments).map(aid =>
-        <div><a
+        <div key={aid}><a
           href={`/api/arrangementfile?${stringify({
             arrangementID: id,
             attachmentID: aid,

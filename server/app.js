@@ -121,19 +121,19 @@ app.post('/api/arrangementsubmit', upload.fields([
     .catch(e => res.status(500).json(e));
 });
 
-/** Upsert a doc that we're editing */
-const edit = (doc, upsertMethod, res) =>
+/** Upsert a doc that we're adding or editing */
+const submit = (doc, upsertMethod, res) =>
   sageDB[upsertMethod](doc)
     .then(() => res.json({}))
     .catch(e => res.status(500).json(e));
 
 /** endpoints that use the above helper */
-app.post('/api/edit/album', ({ body }, res) => edit(body, 'upsertAlbum', res));
-app.post('/api/edit/artist', ({ body }, res) => edit(body, 'upsertArtist', res));
-app.post('/api/edit/concert', ({ body }, res) => edit(body, 'upsertConcert', res));
-app.post('/api/edit/hangover', ({ body }, res) => edit(body, 'upsertHangover', res));
-app.post('/api/edit/semester', ({ body }, res) => edit(body, 'upsertSemester', res));
-app.post('/api/edit/tag', ({ body }, res) => edit(body, 'upsertTag', res));
+app.post('/api/submit/album', ({ body }, res) => submit(body, 'upsertAlbum', res));
+app.post('/api/submit/artist', ({ body }, res) => submit(body, 'upsertArtist', res));
+app.post('/api/submit/concert', ({ body }, res) => submit(body, 'upsertConcert', res));
+app.post('/api/submit/hangover', ({ body }, res) => submit(body, 'upsertHangover', res));
+app.post('/api/submit/semester', ({ body }, res) => submit(body, 'upsertSemester', res));
+app.post('/api/submit/tag', ({ body }, res) => submit(body, 'upsertTag', res));
 
 /** GET: see if an arrangement exists */
 app.get('/api/arrangementexists', ({ query: { name } }, res) => {

@@ -11,6 +11,8 @@ const Artists = ({ dispatch, loading, list, totalRows }) =>
     list={list}
     totalRows={totalRows}
     ChildComponent={ArtistLink}
+    addPath="submit/artist"
+    addType="artist"
   />;
 
 Artists.propTypes = {

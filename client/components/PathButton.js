@@ -3,8 +3,8 @@ import { StyleSheet, css } from 'aphrodite';
 import { Link } from 'react-router';
 import { MALIBU } from '../StyleConstants';
 
-const Button = ({ text, path }) =>
-  <button className={css(styles.button)}><Link className={css(styles.link)} to={path}>{text}</Link></button>;
+const Button = ({ text, path, styles: propStyles }) =>
+  <button className={css(styles.button, propStyles)}><Link className={css(styles.link)} to={path}>{text}</Link></button>;
 
 const styles = StyleSheet.create({
   button: {
@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
 Button.propTypes = {
   text: PropTypes.string,
   path: PropTypes.string,
+  styles: PropTypes.object,
 };
 
 export default Button;

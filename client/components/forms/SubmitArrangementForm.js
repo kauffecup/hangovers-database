@@ -1,32 +1,30 @@
 import React, { PropTypes } from 'react';
 import { Field } from 'redux-form';
 import { StyleSheet, css } from 'aphrodite';
-import normalizeFileList from '../normalizers/normalizeFileList';
-import adaptSubmit from '../normalizers/adaptSubmit';
-import RenderCreatableAsync from './form/RenderCreatableAsync';
-import RenderField from './form/RenderField';
-import RenderTextArea from './form/RenderTextArea';
-import RenderBinary from './form/RenderBinary';
-import RenderSelect from './form/RenderSelect';
-import RenderAsync from './form/RenderAsync';
-import RenderDropzone from './form/RenderDropzone';
-import Button from './Button';
-import { BERMUDA_GRAY, PADDING_UNIT } from '../StyleConstants';
+import normalizeFileList from '../../normalizers/normalizeFileList';
+import RenderCreatableAsync from '../form/RenderCreatableAsync';
+import RenderField from '../form/RenderField';
+import RenderTextArea from '../form/RenderTextArea';
+import RenderBinary from '../form/RenderBinary';
+import RenderSelect from '../form/RenderSelect';
+import RenderAsync from '../form/RenderAsync';
+import RenderDropzone from '../form/RenderDropzone';
+import { BERMUDA_GRAY, PADDING_UNIT } from '../../StyleConstants';
 import {
   searchHangovers,
   searchArtists,
   searchGenres,
   searchTags,
-} from '../actions/search';
+} from '../../actions/search';
 import {
   arrangementTypeAdapter,
   semesterAdapter,
   albumAdapter,
   concertAdapter,
   keyAdapter,
-} from '../normalizers/adaptFormData';
+} from '../../normalizers/adaptFormData';
 
-const SubmitArrangementForm = ({ app, submit, handleSubmit, handleDelete, id, rev, edit, name }) => {
+const SubmitArrangementForm = ({ app, editName, name }) => {
   const { arrangementTypes: at, semesters: s, albums: al, concerts: co, keys: k } = app;
   const arrangementTypes = at.map(arrangementTypeAdapter);
   const semesters = s.map(semesterAdapter);
@@ -34,12 +32,12 @@ const SubmitArrangementForm = ({ app, submit, handleSubmit, handleDelete, id, re
   const concerts = co.map(c => concertAdapter(c));
   const keys = k.map(keyAdapter);
   return (
-    <form className={css(styles.form)} onSubmit={handleSubmit(values => submit(adaptSubmit(values)))}>
+    <div>
       <h3 className={css(styles.categoryLabel)}>Song</h3>
       <div className={css(styles.row)}>
-        { edit ?
-          <h3 className={css(styles.rowChild)}>{name}</h3> :
-          <Field label="Name" name="name" component={RenderField} type="text" autoComplete="off" styles={styles.rowChild} />
+        { editName ?
+          <Field label="Name" name="name" component={RenderField} type="text" autoComplete="off" styles={styles.rowChild} /> :
+          <h3 className={css(styles.rowChild)}>{name}</h3>
         }
         <Field label="Abbreviation/Hangs Name" name="alternateName" component={RenderField} type="text" autoComplete="off" styles={styles.rowChild} />
       </div>
@@ -78,38 +76,22 @@ const SubmitArrangementForm = ({ app, submit, handleSubmit, handleDelete, id, re
       <h3 className={css(styles.categoryLabel)}>Odds and Ends</h3>
       <Field label="Tags" name="tags" component={RenderCreatableAsync} loadOptions={searchTags} multi />
       <Field label="Notes" name="notes" component={RenderTextArea} />
-      <Button type="submit" text="Submit" />
-      {handleDelete && id && rev ? <Button text="Delete" handleClick={() => handleDelete(id, rev)} error type="button" /> : null}
-    </form>
+    </div>
   );
 };
 
 const styles = StyleSheet.create({
-  form: {
-    flex: 1,
-    'overflow-y': 'auto',
-    padding: `${PADDING_UNIT}px`,
-  },
   categoryLabel: {
     color: BERMUDA_GRAY,
     'margin-left': `${PADDING_UNIT}px`,
   },
-  row: {
-    display: 'flex',
-  },
-  rowChild: {
-    flex: 1,
-  },
+  row: { display: 'flex' },
+  rowChild: { flex: 1 },
 });
 
 SubmitArrangementForm.propTypes = {
-  handleSubmit: PropTypes.func.isRequired,
-  handleDelete: PropTypes.func,
-  submit: PropTypes.func.isRequired,
   app: PropTypes.object.isRequired,
-  id: PropTypes.string,
-  rev: PropTypes.string,
-  edit: PropTypes.bool,
+  editName: PropTypes.bool,
   name: PropTypes.string,
 };
 

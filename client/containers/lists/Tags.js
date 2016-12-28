@@ -11,6 +11,8 @@ const Tags = ({ dispatch, loading, list, totalRows }) =>
     list={list}
     totalRows={totalRows}
     ChildComponent={TagLink}
+    addPath="submit/tag"
+    addType="tag"
   />;
 
 Tags.propTypes = {

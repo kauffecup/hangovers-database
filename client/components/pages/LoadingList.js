@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { InfiniteLoader, List, AutoSizer } from 'react-virtualized';
 import { StyleSheet, css } from 'aphrodite';
+import PathButton from '../PathButton';
 import { LIST_ITEM_HEIGHT, PADDING_UNIT } from '../../StyleConstants';
 import rowRender from '../rowRender';
 
@@ -11,7 +12,7 @@ class LoadingList extends Component {
   }
 
   render() {
-    const { loading, list, totalRows, page, ChildComponent } = this.props;
+    const { loading, list, totalRows, page, ChildComponent, addPath, addType } = this.props;
     const hasNextPage = list.length < totalRows;
     const loadNextPage = () => page(list.length);
     const rowRenderer = rowRender(list, ChildComponent);
@@ -46,6 +47,7 @@ class LoadingList extends Component {
             </AutoSizer>
           )}
         </InfiniteLoader>
+        {addPath ? <PathButton text={`add ${addType}`} path={addPath} styles={styles.addButton} /> : null}
       </div>
     );
   }
@@ -56,6 +58,11 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: `${PADDING_UNIT}px`,
   },
+  addButton: {
+    position: 'fixed',
+    bottom: '10px',
+    right: '10px',
+  },
 });
 
 LoadingList.propTypes = {
@@ -63,6 +70,8 @@ LoadingList.propTypes = {
   loading: PropTypes.bool.isRequired,
   list: PropTypes.array.isRequired,
   totalRows: PropTypes.number.isRequired,
+  addPath: PropTypes.string,
+  addType: PropTypes.string,
   ChildComponent: PropTypes.oneOfType([
     PropTypes.element,
     PropTypes.func,

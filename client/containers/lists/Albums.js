@@ -8,6 +8,8 @@ const Albums = ({ albums }) =>
   <List
     list={albums}
     ChildComponent={rowWithSemester(AlbumLink)}
+    addPath="submit/album"
+    addType="album"
   />;
 
 Albums.propTypes = {

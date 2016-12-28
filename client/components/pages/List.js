@@ -1,10 +1,11 @@
 import React, { PropTypes } from 'react';
 import { List, AutoSizer } from 'react-virtualized';
 import { StyleSheet, css } from 'aphrodite';
+import PathButton from '../PathButton';
 import { LIST_ITEM_HEIGHT, PADDING_UNIT } from '../../StyleConstants';
 import rowRender from '../rowRender';
 
-const VirtualList = ({ list, ChildComponent }) => {
+const VirtualList = ({ list, ChildComponent, addPath, addType }) => {
   const rowRenderer = rowRender(list, ChildComponent);
   return (
     <div className={css(styles.list)}>
@@ -19,6 +20,7 @@ const VirtualList = ({ list, ChildComponent }) => {
           />
         ) : null}
       </AutoSizer>
+      {addPath ? <PathButton text={`add ${addType}`} path={addPath} styles={styles.addButton} /> : null}
     </div>
   );
 };
@@ -31,10 +33,17 @@ const styles = StyleSheet.create({
   album: {
     height: `${LIST_ITEM_HEIGHT}px`,
   },
+  addButton: {
+    position: 'fixed',
+    bottom: '10px',
+    right: '10px',
+  },
 });
 
 VirtualList.propTypes = {
   list: PropTypes.array.isRequired,
+  addPath: PropTypes.string,
+  addType: PropTypes.string,
   ChildComponent: PropTypes.oneOfType([
     PropTypes.element,
     PropTypes.func,

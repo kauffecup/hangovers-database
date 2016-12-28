@@ -1,12 +1,11 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { reduxForm, Field } from 'redux-form';
+import { reduxForm } from 'redux-form';
 import { adaptArtistSubmit } from '../../normalizers/adaptSubmit';
-import RenderAsync from '../../components/form/RenderAsync';
-import { getEditArtistData, destroyArtist, editArtist, ARTIST_FORM } from '../../actions';
-import { searchArrangements } from '../../actions/search';
+import { getEditArtistData, destroyArtist, editArtist, EDIT_ARTIST_FORM } from '../../actions';
 import { artistFormatter } from '../../normalizers/adaptFormData';
 import Edit from '../../components/pages/Edit';
+import SubmitArtistForm from '../../components/forms/SubmitArtistForm';
 
 const EditArtist = ({ dispatch, handleSubmit, name, id, rev, loading }) =>
   <Edit
@@ -16,7 +15,7 @@ const EditArtist = ({ dispatch, handleSubmit, name, id, rev, loading }) =>
     handleDelete={() => dispatch(destroyArtist(id, rev))}
     loading={loading}
   >
-    <Field label="Arrangements" name="arrangements" component={RenderAsync} loadOptions={searchArrangements} multi />
+    <SubmitArtistForm />
   </Edit>;
 
 EditArtist.propTypes = {
@@ -29,15 +28,14 @@ EditArtist.propTypes = {
 };
 
 const mapStateToProps = (state, routerProps) => ({
-  app: state.app,
   id: routerProps.params.id,
-  name: artistFormatter(state.form[ARTIST_FORM] && state.form[ARTIST_FORM].values),
-  rev: state.form && state.form[ARTIST_FORM] && state.form[ARTIST_FORM].values && state.form[ARTIST_FORM].values._rev,
-  loading: state.form[ARTIST_FORM] && state.form[ARTIST_FORM].loading,
+  name: artistFormatter(state.form[EDIT_ARTIST_FORM] && state.form[EDIT_ARTIST_FORM].values),
+  rev: state.form && state.form[EDIT_ARTIST_FORM] && state.form[EDIT_ARTIST_FORM].values && state.form[EDIT_ARTIST_FORM].values._rev,
+  loading: state.form[EDIT_ARTIST_FORM] && state.form[EDIT_ARTIST_FORM].loading,
 });
 
 // Wrap the component to inject dispatch and state into it
 export default connect(mapStateToProps)(reduxForm({
-  form: ARTIST_FORM,
+  form: EDIT_ARTIST_FORM,
   destroyOnUnmount: false,
 })(EditArtist));

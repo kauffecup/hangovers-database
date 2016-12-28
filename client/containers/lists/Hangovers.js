@@ -11,6 +11,8 @@ const Hangovers = ({ dispatch, loading, list, totalRows }) =>
     list={list}
     totalRows={totalRows}
     ChildComponent={HangoverLink}
+    addPath="submit/hangover"
+    addType="hangover"
   />;
 
 Hangovers.propTypes = {

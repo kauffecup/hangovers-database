@@ -1,12 +1,11 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { reduxForm, Field } from 'redux-form';
+import { reduxForm } from 'redux-form';
 import { adaptTagSubmit } from '../../normalizers/adaptSubmit';
-import RenderAsync from '../../components/form/RenderAsync';
-import { getEditTagData, destroyTag, editTag, TAG_FORM } from '../../actions';
-import { searchArrangements } from '../../actions/search';
+import { getEditTagData, destroyTag, editTag, EDIT_TAG_FORM } from '../../actions';
 import { tagFormatter } from '../../normalizers/adaptFormData';
 import Edit from '../../components/pages/Edit';
+import SubmitTagForm from '../../components/forms/SubmitTagForm';
 
 const EditTag = ({ dispatch, handleSubmit, name, id, rev, loading }) =>
   <Edit
@@ -16,7 +15,7 @@ const EditTag = ({ dispatch, handleSubmit, name, id, rev, loading }) =>
     handleDelete={() => dispatch(destroyTag(id, rev))}
     loading={loading}
   >
-    <Field label="Arrangements" name="arrangements" component={RenderAsync} loadOptions={searchArrangements} multi />
+    <SubmitTagForm />
   </Edit>;
 
 EditTag.propTypes = {
@@ -31,13 +30,13 @@ EditTag.propTypes = {
 const mapStateToProps = (state, routerProps) => ({
   app: state.app,
   id: routerProps.params.id,
-  name: tagFormatter(state.form[TAG_FORM] && state.form[TAG_FORM].values),
-  rev: state.form && state.form[TAG_FORM] && state.form[TAG_FORM].values && state.form[TAG_FORM].values._rev,
-  loading: state.form[TAG_FORM] && state.form[TAG_FORM].loading,
+  name: tagFormatter(state.form[EDIT_TAG_FORM] && state.form[EDIT_TAG_FORM].values),
+  rev: state.form && state.form[EDIT_TAG_FORM] && state.form[EDIT_TAG_FORM].values && state.form[EDIT_TAG_FORM].values._rev,
+  loading: state.form[EDIT_TAG_FORM] && state.form[EDIT_TAG_FORM].loading,
 });
 
 // Wrap the component to inject dispatch and state into it
 export default connect(mapStateToProps)(reduxForm({
-  form: TAG_FORM,
+  form: EDIT_TAG_FORM,
   destroyOnUnmount: false,
 })(EditTag));

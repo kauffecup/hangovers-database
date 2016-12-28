@@ -21,7 +21,7 @@ const adaptFile = f => (f && f.inCloudant) ? `${f.name},${f.type}` : f;
  * before submit time. For the fields described above, adapt 'em. The final
  * return will be the original data with the described fields adapted.
  */
-export default (values) => {
+export const adaptArrangementSubmit = (values) => {
   const adaptedValues = {};
   for (const objectField of objectFields) {
     adaptedValues[objectField] = adaptObject(values[objectField]);
@@ -102,6 +102,11 @@ export const adaptHangoverSubmit = (values) => {
 
 export const adaptSemesterSubmit = (values) => {
   const adaptedValues = {};
+  const cObjectFields = ['semester_type'];
+  for (const objectField of cObjectFields) {
+    adaptedValues[objectField] = adaptObject(values[objectField]);
+  }
+
   const sObjectArrayFields = ['albums', 'arrangements', 'bm', 'concerts', 'md', 'performed', 'president', 'graduatingHangs'];
   for (const objectArrayField of sObjectArrayFields) {
     adaptedValues[objectArrayField] = adaptObjectArray(values[objectArrayField]);

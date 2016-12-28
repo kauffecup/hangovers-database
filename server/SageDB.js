@@ -268,9 +268,12 @@ module.exports = class SageDB {
   /** Destroy a doc and all of its relationships */
   _destroyWithRelationships(id, rev, relationshipField) {
     return this.searchRelationships(relationshipField, id)
-      .then(relationships => this._sageDB.bulkAsync({
-        docs: [...relationships, { _id: id, _rev: rev }].map(({ _id, _rev }) => ({ _id, _rev, _deleted: true })),
-      }));
+      .then(relationships => !relationships.length ?
+        this._destroy(id, rev) :
+        this._sageDB.bulkAsync({
+          docs: [...relationships, { _id: id, _rev: rev }].map(({ _id, _rev }) => ({ _id, _rev, _deleted: true })),
+        })
+      );
   }
 
   /** Destroy a doc */

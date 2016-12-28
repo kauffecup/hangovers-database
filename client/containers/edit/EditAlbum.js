@@ -13,7 +13,7 @@ import {
   semesterAdapter,
 } from '../../normalizers/adaptFormData';
 
-const EditAlbum = ({ app, dispatch, handleSubmit, name, id }) => {
+const EditAlbum = ({ app, dispatch, handleSubmit, name, id, loading }) => {
   const { albumFormats: af, semesters: s } = app;
   const albumFormats = af.map(albumFormatAdapter);
   const semesters = s.map(semesterAdapter);
@@ -22,6 +22,7 @@ const EditAlbum = ({ app, dispatch, handleSubmit, name, id }) => {
       title={name}
       getEditData={() => dispatch(getEditAlbumData(id))}
       handleSubmit={handleSubmit(values => dispatch(editAlbum(adaptAlbumSubmit(values))))}
+      loading={loading}
     >
       <Field label="Format" name="format" component={RenderSelect} options={albumFormats} />
       <Field label="Semester" name="semester" component={RenderSelect} options={semesters} />
@@ -36,12 +37,14 @@ EditAlbum.propTypes = {
   id: PropTypes.string.isRequired,
   app: PropTypes.object.isRequired,
   name: PropTypes.string,
+  loading: PropTypes.bool,
 };
 
 const mapStateToProps = (state, routerProps) => ({
   app: state.app,
   id: routerProps.params.id,
   name: albumFormatter(state.form[ALBUM_FORM] && state.form[ALBUM_FORM].values),
+  loading: state.form[ALBUM_FORM] && state.form[ALBUM_FORM].loading,
 });
 
 // Wrap the component to inject dispatch and state into it

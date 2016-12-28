@@ -13,7 +13,7 @@ class EditArrangement extends Component {
   }
 
   render() {
-    const { dispatch, id, rev, name } = this.props;
+    const { dispatch, id, rev, name, loading } = this.props;
     return (
       <SubmitArrangementForm
         {...this.props}
@@ -22,6 +22,7 @@ class EditArrangement extends Component {
         id={id}
         name={name}
         rev={rev}
+        loading={loading}
         edit
       />
     );
@@ -33,6 +34,7 @@ EditArrangement.propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   rev: PropTypes.string,
+  loading: PropTypes.bool,
 };
 
 // we want the app state
@@ -41,6 +43,7 @@ const mapStateToProps = (state, routerProps) => ({
   id: routerProps.params.id,
   name: arrangementFormatter(state.form[EDIT_FORM] && state.form[EDIT_FORM].values),
   rev: state.form && state.form[EDIT_FORM] && state.form[EDIT_FORM].values && state.form[EDIT_FORM].values._rev,
+  loading: state.form[EDIT_FORM] && state.form[EDIT_FORM].loading,
 });
 
 // Wrap the component to inject dispatch and state into it

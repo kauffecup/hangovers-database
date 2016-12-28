@@ -13,7 +13,7 @@ import {
   hangoverFormatter,
 } from '../../normalizers/adaptFormData';
 
-const EditHangover = ({ app, dispatch, handleSubmit, name, id }) => {
+const EditHangover = ({ app, dispatch, handleSubmit, name, id, loading }) => {
   const { semesters: s, concerts: co } = app;
   const semesters = s.map(semesterAdapter);
   const concerts = co.map(c => concertAdapter(c));
@@ -22,6 +22,7 @@ const EditHangover = ({ app, dispatch, handleSubmit, name, id }) => {
       title={name}
       getEditData={() => dispatch(getEditHangoverData(id))}
       handleSubmit={handleSubmit(values => dispatch(editHangover(adaptHangoverSubmit(values))))}
+      loading={loading}
     >
       <Field label="Graduated" name="graduationSemester" component={RenderSelect} options={semesters} multi />
       <Field label="Concert(s) MDed" name="concertsMDed" component={RenderSelect} options={concerts} multi />
@@ -40,12 +41,14 @@ EditHangover.propTypes = {
   id: PropTypes.string.isRequired,
   app: PropTypes.object.isRequired,
   name: PropTypes.string,
+  loading: PropTypes.bool,
 };
 
 const mapStateToProps = (state, routerProps) => ({
   app: state.app,
   id: routerProps.params.id,
   name: hangoverFormatter(state.form[HANGOVER_FORM] && state.form[HANGOVER_FORM].values),
+  loading: state.form[HANGOVER_FORM] && state.form[HANGOVER_FORM].loading,
 });
 
 // Wrap the component to inject dispatch and state into it

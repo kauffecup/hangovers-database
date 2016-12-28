@@ -16,7 +16,7 @@ import {
   semesterFormatter,
 } from '../../normalizers/adaptFormData';
 
-const EditSemester = ({ app, dispatch, handleSubmit, name, id }) => {
+const EditSemester = ({ app, dispatch, handleSubmit, name, id, loading }) => {
   const { concerts: co, albums: al } = app;
   const concerts = co.map(c => concertAdapter(c));
   const albums = al.map(albumAdapter);
@@ -25,6 +25,7 @@ const EditSemester = ({ app, dispatch, handleSubmit, name, id }) => {
       title={name}
       getEditData={() => dispatch(getEditSemesterData(id))}
       handleSubmit={handleSubmit(values => dispatch(editSemester(adaptSemesterSubmit(values))))}
+      loading={loading}
     >
       <Field label="MD" name="md" component={RenderAsync} loadOptions={searchHangovers} multi />
       <Field label="BM" name="bm" component={RenderAsync} loadOptions={searchHangovers} multi />
@@ -44,12 +45,14 @@ EditSemester.propTypes = {
   id: PropTypes.string.isRequired,
   app: PropTypes.object.isRequired,
   name: PropTypes.string,
+  loading: PropTypes.bool,
 };
 
 const mapStateToProps = (state, routerProps) => ({
   app: state.app,
   id: routerProps.params.id,
   name: semesterFormatter(state.form[SEMESTER_FORM] && state.form[SEMESTER_FORM].values),
+  loading: state.form[SEMESTER_FORM] && state.form[SEMESTER_FORM].loading,
 });
 
 // Wrap the component to inject dispatch and state into it

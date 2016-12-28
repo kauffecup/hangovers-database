@@ -153,7 +153,7 @@ export const destroyArrangement = (_id, _rev) => actionDestroy(_id, _rev, '/api/
 export const destroyTag = (_id, _rev) => actionDestroy(_id, _rev, '/api/destroy/tag', 'tag', TAG_FORM);
 
 /** Helper action for workflow of posting edit data, resetting forms, and setting banner message */
-const actionEdit = (values, endpoint, type, form) => dispatch =>
+const actionEdit = (values, postPush = '/', endpoint, type, form) => dispatch =>
   myFetch(endpoint, {
     method: 'POST',
     body: JSON.stringify(values),
@@ -161,7 +161,7 @@ const actionEdit = (values, endpoint, type, form) => dispatch =>
   }).then((json) => {
     // on success we show a happy message and head back to the home page
     dispatch(setBanner(`Successfully edited ${type}`, BANNER_SUCCESS));
-    dispatch(push('/'));
+    dispatch(push(postPush));
     dispatch(reset(form));
     return json;
   }).catch((error) => {
@@ -170,27 +170,28 @@ const actionEdit = (values, endpoint, type, form) => dispatch =>
   });
 
 /** Actions for handling edit workflows */
-export const editAlbum = v => actionEdit(v, '/api/edit/album', 'album', ALBUM_FORM);
-export const editArtist = v => actionEdit(v, '/api/edit/artist', 'artist', ARTIST_FORM);
-export const editConcert = v => actionEdit(v, '/api/edit/concert', 'concert', CONCERT_FORM);
-export const editHangover = v => actionEdit(v, '/api/edit/hangover', 'hangover', HANGOVER_FORM);
-export const editSemester = v => actionEdit(v, '/api/edit/semester', 'semester', SEMESTER_FORM);
-export const editTag = v => actionEdit(v, '/api/edit/tag', 'tag', TAG_FORM);
+export const editAlbum = v => actionEdit(v, `albums/${v._id}`, '/api/edit/album', 'album', ALBUM_FORM);
+export const editArtist = v => actionEdit(v, `artists/${v._id}`, '/api/edit/artist', 'artist', ARTIST_FORM);
+export const editConcert = v => actionEdit(v, `concerts/${v._id}`, '/api/edit/concert', 'concert', CONCERT_FORM);
+export const editHangover = v => actionEdit(v, `hangovers/${v._id}`, '/api/edit/hangover', 'hangover', HANGOVER_FORM);
+export const editSemester = v => actionEdit(v, `semesters/${v._id}`, '/api/edit/semester', 'semester', SEMESTER_FORM);
+export const editTag = v => actionEdit(v, `tags/${v._id}`, '/api/edit/tag', 'tag', TAG_FORM);
 
 export function addArrangement(values) {
-  return dispatch =>
-    submitArrangement(values)
+  return (dispatch) => {
+    dispatch(setBanner('Arrangement submitted. We\'ll let you know when it\'s up. Can take up to a minute depending on file sizes.', BANNER_SUCCESS));
+    dispatch(push('/'));
+    return submitArrangement(values)
       .then((json) => {
-        // on success we show a happy message and head back to the home page
         dispatch(setBanner('Successfully added arrangement', BANNER_SUCCESS));
-        dispatch(push('/'));
         dispatch(reset(ARRANGEMENT_FORM));
+        dispatch(getArrangements());
         return json;
       }).catch((e) => {
-        // on failure we show a sad message but stay here in case user wants to resubmit
         dispatch(setBanner('Failed to add arrangement', BANNER_ERROR));
         return e;
       });
+  };
 }
 
 export function editArrangement(values) {
@@ -199,7 +200,7 @@ export function editArrangement(values) {
       .then((json) => {
         // on success we show a happy message and head back to the home page
         dispatch(setBanner('Successfully edited arrangement', BANNER_SUCCESS));
-        dispatch(push('/'));
+        dispatch(push(`arrangement/${values._id}`));
         dispatch(reset(EDIT_FORM));
         return json;
       }).catch((e) => {

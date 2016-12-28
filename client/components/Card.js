@@ -1,8 +1,9 @@
 import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite';
 import { PADDING_UNIT } from '../StyleConstants';
+import testChildren from '../testChildren';
 
-const DisplayField = ({ title, children }) => children ?
+const DisplayField = ({ title, children }) => testChildren(children) ?
   <div className={css(styles.card)}>
     { typeof title === 'string' ? <h3>{title}</h3> : null }
     { children }

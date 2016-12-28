@@ -1,7 +1,8 @@
 import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite';
+import testChildren from '../testChildren';
 
-const DisplayField = ({ title, children, text }) => (text || children) ?
+const DisplayField = ({ title, children, text }) => (text || testChildren(children)) ?
   <div>
     { typeof title === 'string' ? <span className={css(styles.title)}>{title}</span> : null }
     { typeof text === 'string' ? <span>{text}</span> : null }

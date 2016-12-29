@@ -8,8 +8,10 @@ export const albumAdapter = (a = {}) => ({
   value: a._id, label: albumFormatter(a, true),
 });
 
+export const albumFormatFormatter = (af = {}) => af.name;
+
 export const albumFormatAdapter = (af = {}) => ({
-  value: af._id, label: af.name,
+  value: af._id, label: albumFormatFormatter(af),
 });
 
 export const arrangementFormatter = (a = {}) => `${a.name}${a.alternateName ? ` (${a.alternateName})` : ''}`;
@@ -18,8 +20,10 @@ export const arrangementAdapter = (a = {}) => ({
   value: a._id, label: arrangementFormatter(a),
 });
 
+export const arrangementTypeFormatter = (at = {}) => at.name;
+
 export const arrangementTypeAdapter = (at = {}) => ({
-  value: at._id, label: `${at.name}`,
+  value: at._id, label: arrangementTypeFormatter(at),
 });
 
 export const artistFormatter = (a = {}) => a.name;
@@ -89,7 +93,7 @@ export const tagAdapter = (t = {}) => ({
 });
 
 export const fullAlbumAdapter = (a = {}) => Object.assign({}, a, {
-  format: (typeof a.format !== 'undefined') && albumFormatAdapter(a.format),
+  format: (a.format || []).map(albumFormatAdapter),
   semester: (typeof a.semester !== 'undefined') && semesterAdapter(a.semester),
   trackList: (a.trackList || []).map(arrangementAdapter),
 });

@@ -51,7 +51,7 @@ module.exports = class SageDB {
   getFullHangover(hangoverID) { return this._getFullArrayRollup(hangoverID, 'hangover'); }
   getFullSemester(semesterID) { return this._getFullArrayRollup(semesterID, 'semester'); }
   getFullConcert(concertID) { return this._getFullArrayRollup(concertID, 'concert', ['concertType', 'semester']); }
-  getFullAlbum(albumID) { return this._getFullArrayRollup(albumID, 'album', ['format', 'semester']); }
+  getFullAlbum(albumID) { return this._getFullArrayRollup(albumID, 'album', ['semester']); }
   getFullArtist(artistID) { return this._getFullArrayRollup(artistID, 'artist'); }
   getFullTag(tagID) { return this._getFullArrayRollup(tagID, 'tag'); }
 

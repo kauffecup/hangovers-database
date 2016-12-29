@@ -16,7 +16,7 @@ const SubmitAlbumForm = ({ app, editName }) => {
   return (
     <div>
       {editName ? <Field label="Name" name="name" component={RenderField} type="text" autoComplete="off" /> : null}
-      <Field label="Format" name="format" component={RenderSelect} options={albumFormats} />
+      <Field label="Format" name="format" component={RenderSelect} options={albumFormats} multi />
       <Field label="Semester" name="semester" component={RenderSelect} options={semesters} />
       <Field label="Track List" name="trackList" component={RenderAsync} loadOptions={searchArrangements} multi />
     </div>

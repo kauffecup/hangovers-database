@@ -51,8 +51,8 @@ const adaptSubmit = (values, { objectFields = [], objectArrayFields = [], binary
 };
 
 export const adaptAlbumSubmit = values => adaptSubmit(values, {
-  objectFields: ['format', 'semester'],
-  objectArrayFields: ['trackList'],
+  objectFields: ['semester'],
+  objectArrayFields: ['format', 'trackList'],
 });
 export const adaptArrangementSubmit = values => adaptSubmit(values, {
   objectFields: ofs, objectArrayFields: oafs, binaryFields: bs, newFields: nfs, newArrayFields: nafs, fileFields: ffs,

@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 import ArrangementList from '../../components/lists/ArrangementList';
 import SemesterList from '../../components/lists/SemesterList';
 import { getAlbum } from '../../actions';
-import { albumFormatter } from '../../normalizers/adaptFormData';
+import { albumFormatter, albumFormatFormatter } from '../../normalizers/adaptFormData';
 import Full from '../../components/pages/Full';
 import Card from '../../components/Card';
+import DisplayField from '../../components/DisplayField';
 
 const Album = ({ dispatch, id, album, loading }) =>
   <Full
@@ -15,6 +16,7 @@ const Album = ({ dispatch, id, album, loading }) =>
     loading={loading}
   >
     <SemesterList semesters={album.semester} />
+    <DisplayField title="Released on" text={(album.format || []).map(albumFormatFormatter).join(', ')} />
     <Card title="Track List">
       <ArrangementList arrangements={album.trackList} />
     </Card>

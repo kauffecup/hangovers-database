@@ -1,70 +1,106 @@
 [
   {
     "name": "A Flight - EP",
-    "format": "album_format_digital"
+    "format": [
+      "album_format_digital"
+    ]
   },
   {
     "name": "Final Draught",
-    "format": "album_format_cd"
+    "format": [
+      "album_format_cd",
+      "album_format_digital"
+    ]
   },
   {
     "name": "Three Sheets to the Wind",
-    "format": "album_format_cd"
+    "format": [
+      "album_format_cd",
+      "album_format_digital"
+    ]
   },
   {
     "name": "Blackout",
-    "format": "album_format_cd"
+    "format": [
+      "album_format_cd"
+    ]
   },
   {
     "name": "Vintage",
-    "format": "album_format_cd"
+    "format": [
+      "album_format_cd"
+    ]
   },
   {
     "name": "Shot in the Dark",
-    "format": "album_format_cd"
+    "format": [
+      "album_format_cd"
+    ]
   },
   {
     "name": "Spirits",
-    "format": "album_format_cd"
+    "format": [
+      "album_format_cd"
+    ]
   },
   {
     "name": "Moonshine",
-    "format": "album_format_cd"
+    "format": [
+      "album_format_cd"
+    ]
   },
   {
     "name": "On the Rocks",
-    "format": "album_format_cd"
+    "format": [
+      "album_format_cd"
+    ]
   },
   {
     "name": "Behind Bars",
-    "format": "album_format_casette"
+    "format": [
+      "album_format_casette"
+    ]
   },
   {
     "name": "Cheers",
-    "format": "album_format_33_lp"
+    "format": [
+      "album_format_33_lp"
+    ]
   },
   {
     "name": "Hangin' Out",
-    "format": "album_format_33_lp"
+    "format": [
+      "album_format_33_lp"
+    ]
   },
   {
     "name": "Facetime (Single)",
-    "format": "album_format_45_rpm"
+    "format": [
+      "album_format_45_rpm"
+    ]
   },
   {
     "name": "Facetime",
-    "format": "album_format_33_lp"
+    "format": [
+      "album_format_33_lp"
+    ]
   },
   {
     "name": "Slightly Sober",
-    "format": "album_format_33_lp"
+    "format": [
+      "album_format_33_lp"
+    ]
   },
   {
     "name": "Alma Mater",
-    "format": "album_format_33_lp"
+    "format": [
+      "album_format_33_lp"
+    ]
   },
   {
     "name": "The Hangovers",
-    "format": "album_format_33_lp"
+    "format": [
+      "album_format_33_lp"
+    ]
   }
 ]

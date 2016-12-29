@@ -8,10 +8,14 @@ import ConcertList from '../../components/lists/ConcertList';
 import HangoverList from '../../components/lists/HangoverList';
 import SemesterList from '../../components/lists/SemesterList';
 import TagList from '../../components/lists/TagList';
-import { keyFormatter, arrangementFormatter } from '../../normalizers/adaptFormData';
 import Full from '../../components/pages/Full';
 import DisplayField from '../../components/DisplayField';
 import Card from '../../components/Card';
+import {
+  keyFormatter,
+  arrangementFormatter,
+  arrangementTypeFormatter,
+} from '../../normalizers/adaptFormData';
 
 const Arrangement = ({ dispatch, id, arrangement, loading }) =>
   <Full
@@ -30,7 +34,7 @@ const Arrangement = ({ dispatch, id, arrangement, loading }) =>
       <DisplayField text={keyFormatter(arrangement.key)} />
       <SemesterList title="arranged" semesters={[arrangement.semesterArranged]} />
       <DisplayField text={arrangement.syllables ? 'has syllables' : 'doesn\'t have syllables'} />
-      <DisplayField text={arrangement.arrangementType && arrangement.arrangementType.name} />
+      <DisplayField text={arrangementTypeFormatter(arrangement.arrangementType)} />
     </Card>
     <Card title="Performance">
       <DisplayField text={arrangement.active ? 'active' : 'not active'} />

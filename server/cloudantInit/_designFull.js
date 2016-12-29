@@ -6,8 +6,10 @@
 const albumMap = function (doc) {
   if (doc.type === 'album') {
     emit([doc._id]);
-    if (doc.format) {
-      emit([doc._id, 'format'], { _id: doc.format });
+    if (doc.format && doc.format.length) {
+      for (var i = 0; i < doc.format.length; i++) {
+        emit([doc._id, 'format'], { _id: doc.format[i] });
+      }
     }
   } else if (doc.type === 'album_semester_relationship') {
     emit([doc.album, 'semester'], { _id: doc.semester });

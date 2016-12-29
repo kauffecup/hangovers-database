@@ -33,6 +33,7 @@ export const SET_BANNER = 'SET_BANNER';
 export const BANNER_SUCCESS = 'BANNER_SUCCESS';
 export const BANNER_ERROR = 'BANNER_ERROR';
 export const CLOSE_BANNER = 'CLOSE_BANNER';
+export const TOGGLE_NAVBAR = 'TOGGLE_NAVBAR';
 export const INITIALIZE_FORMS = 'INITIALIZE_FORMS';
 export const INITIALIZE_FORMS_SUCCESS = 'INITIALIZE_FORMS_SUCCESS';
 export const INITIALIZE_FORMS_FAILURE = 'INITIALIZE_FORMS_FAILURE';
@@ -100,6 +101,10 @@ export function setBanner(text, type) {
 
 export function closeBanner() {
   return { type: CLOSE_BANNER };
+}
+
+export function toggleNavBar() {
+  return { type: TOGGLE_NAVBAR };
 }
 
 /** Helper action for everything that follows this basic format */

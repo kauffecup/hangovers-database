@@ -8,7 +8,7 @@ const ArrangementLink = ({ _id, name, alternateName }) =>
 ArrangementLink.propTypes = {
   _id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  alternateName: PropTypes.string.isRequired,
+  alternateName: PropTypes.string,
 };
 
 export default ArrangementLink;

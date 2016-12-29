@@ -22,8 +22,6 @@ const styles = StyleSheet.create({
     color: '#fff',
     padding: '0 16px',
     'text-transform': 'uppercase',
-    outline: 'none',
-    border: 'none',
     cursor: 'pointer',
     'line-height': '36px',
     'vertical-align': 'middle',

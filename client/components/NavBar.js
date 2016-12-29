@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import { StyleSheet, css } from 'aphrodite';
 import { NAVBAR_WIDTH, BERMUDA_GRAY, HEATHER } from '../StyleConstants';
@@ -12,10 +12,10 @@ import cdSVG from '../icons/cd.svg';
 import headphonesSVG from '../icons/headphones.svg';
 import tagSVG from '../icons/tag.svg';
 
-const NavBar = () =>
+const NavBar = ({ handleHamburger }) =>
   <nav className={css(styles.nav)}>
     <ul>
-      <Link to="/"><li className={css(styles.iconLink)} dangerouslySetInnerHTML={{ __html: menuSVG }} /></Link>
+      <button onClick={() => handleHamburger()} className={css(styles.iconLink)} dangerouslySetInnerHTML={{ __html: menuSVG }} />
       <Link to="/"><li className={css(styles.iconLink)} dangerouslySetInnerHTML={{ __html: homeSVG }} /></Link>
       <Link to="/"><li className={css(styles.iconLink)} dangerouslySetInnerHTML={{ __html: musicSVG }} /></Link>
       <Link to="/hangovers"><li className={css(styles.iconLink)} dangerouslySetInnerHTML={{ __html: manSVG }} /></Link>
@@ -43,5 +43,9 @@ const styles = StyleSheet.create({
     padding: `${(NAVBAR_WIDTH - 24) / 2}px`,
   },
 });
+
+NavBar.propTypes = {
+  handleHamburger: PropTypes.func.isRequired,
+};
 
 export default NavBar;

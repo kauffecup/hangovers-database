@@ -3,6 +3,7 @@ import { routerReducer } from 'react-router-redux';
 import app from './app';
 import banner from './banner';
 import form from './form';
+import view from './view';
 import {
   album,
   artist,
@@ -22,6 +23,7 @@ import {
 export default combineReducers({
   app,
   banner,
+  view,
   // full pages
   album,
   artist,

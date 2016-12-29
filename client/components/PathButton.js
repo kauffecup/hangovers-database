@@ -13,9 +13,6 @@ const styles = StyleSheet.create({
     'border-radius': '2px',
     'min-width': '64px',
     padding: '0 16px',
-    outline: 'none',
-    border: 'none',
-    cursor: 'pointer',
     'vertical-align': 'middle',
   },
   link: {

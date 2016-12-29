@@ -34,6 +34,7 @@ export const BANNER_SUCCESS = 'BANNER_SUCCESS';
 export const BANNER_ERROR = 'BANNER_ERROR';
 export const CLOSE_BANNER = 'CLOSE_BANNER';
 export const TOGGLE_NAVBAR = 'TOGGLE_NAVBAR';
+export const DELETE_ATTACHMENT = 'DELETE_ATTACHMENT';
 export const INITIALIZE_FORMS = 'INITIALIZE_FORMS';
 export const INITIALIZE_FORMS_SUCCESS = 'INITIALIZE_FORMS_SUCCESS';
 export const INITIALIZE_FORMS_FAILURE = 'INITIALIZE_FORMS_FAILURE';
@@ -105,6 +106,10 @@ export function closeBanner() {
 
 export function toggleNavBar() {
   return { type: TOGGLE_NAVBAR };
+}
+
+export function deleteAttachment(form, fileField, fileName) {
+  return { type: DELETE_ATTACHMENT, form, fileName, fileField };
 }
 
 /** Helper action for everything that follows this basic format */

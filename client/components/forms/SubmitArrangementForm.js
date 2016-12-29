@@ -24,7 +24,7 @@ import {
   keyAdapter,
 } from '../../normalizers/adaptFormData';
 
-const SubmitArrangementForm = ({ app, editName, name }) => {
+const SubmitArrangementForm = ({ app, editName, name, handleFileRemove }) => {
   const { arrangementTypes: at, semesters: s, albums: al, concerts: co, keys: k } = app;
   const arrangementTypes = at.map(arrangementTypeAdapter);
   const semesters = s.map(semesterAdapter);
@@ -64,9 +64,9 @@ const SubmitArrangementForm = ({ app, editName, name }) => {
       <Field label="Soloist(s)" name="soloists" component={RenderAsync} loadOptions={searchHangovers} multi />
       <h3 className={css(styles.categoryLabel)}>Files and Such</h3>
       <div className={css(styles.row)}>
-        <Field label="PDF" name="pdf" component={RenderDropzone} normalize={normalizeFileList} styles={styles.rowChild} />
-        <Field label="Finale" name="finale" component={RenderDropzone} normalize={normalizeFileList} styles={styles.rowChild} />
-        <Field label="Recording" name="recording" component={RenderDropzone} normalize={normalizeFileList} styles={styles.rowChild} />
+        <Field label="PDF" name="pdf" component={RenderDropzone} normalize={normalizeFileList} styles={styles.rowChild} handleFileRemove={fileName => handleFileRemove('pdf', fileName)} />
+        <Field label="Finale" name="finale" component={RenderDropzone} normalize={normalizeFileList} styles={styles.rowChild} handleFileRemove={fileName => handleFileRemove('finale', fileName)} />
+        <Field label="Recording" name="recording" component={RenderDropzone} normalize={normalizeFileList} styles={styles.rowChild} handleFileRemove={fileName => handleFileRemove('recording', fileName)} />
       </div>
       <Field label="Youtube Link (Hangovers Performance)" name="youtube" component={RenderField} type="text" autoComplete="off" />
       <div className={css(styles.row)}>
@@ -92,6 +92,7 @@ const styles = StyleSheet.create({
 SubmitArrangementForm.propTypes = {
   app: PropTypes.object.isRequired,
   editName: PropTypes.bool,
+  handleFileRemove: PropTypes.func.isRequired,
   name: PropTypes.string,
 };
 

@@ -52,13 +52,13 @@ const Arrangement = ({ dispatch, id, arrangement, loading }) =>
           {`download ${aid}`}
         </a></div>
         ) : null}
-      <DisplayField title="Youtube Link" text={arrangement.youtube} />
-      <DisplayField title="Spotify Link (Original Song)" text={arrangement.spotifyOriginalLink} />
-      <DisplayField title="Spotify Link (Hangovers Version)" text={arrangement.spotifyHangoverLink} />
+      <DisplayField title="Youtube Link" link={arrangement.youtube} />
+      <DisplayField title="Spotify Link (Original Song)" link={arrangement.spotifyOriginalLink} />
+      <DisplayField title="Spotify Link (Hangovers Version)" link={arrangement.spotifyHangoverLink} />
     </Card>
     <Card title="Odds and Ends">
       <TagList title="Tags" tags={arrangement.tags} />
-      <DisplayField title="Notes" text={arrangement.notes} />
+      <DisplayField title="Notes:" text={arrangement.notes} />
     </Card>
   </Full>;
 

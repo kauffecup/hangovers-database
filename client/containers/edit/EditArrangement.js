@@ -1,12 +1,18 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
-import { getEditArrangementData, editArrangement, destroyArrangement, EDIT_ARRANGEMENT_FORM } from '../../actions';
 import validate from '../../normalizers/validate';
 import { adaptArrangementSubmit } from '../../normalizers/adaptSubmit';
 import { arrangementFormatter } from '../../normalizers/adaptFormData';
 import SubmitArrangementForm from '../../components/forms/SubmitArrangementForm';
 import Edit from '../../components/pages/Edit';
+import {
+  destroyArrangement,
+  deleteAttachment,
+  editArrangement,
+  EDIT_ARRANGEMENT_FORM,
+  getEditArrangementData,
+} from '../../actions';
 
 const EditArrangement = ({ app, dispatch, handleSubmit, name, id, rev, loading }) =>
   <Edit
@@ -16,7 +22,10 @@ const EditArrangement = ({ app, dispatch, handleSubmit, name, id, rev, loading }
     handleDelete={() => dispatch(destroyArrangement(id, rev))}
     loading={loading}
   >
-    <SubmitArrangementForm app={app} />
+    <SubmitArrangementForm
+      app={app}
+      handleFileRemove={(fileField, fileName) => dispatch(deleteAttachment(EDIT_ARRANGEMENT_FORM, fileField, fileName))}
+    />
   </Edit>;
 
 EditArrangement.propTypes = {

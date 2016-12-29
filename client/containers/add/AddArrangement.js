@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
-import { addArrangement, ADD_ARRANGEMENT_FORM } from '../../actions';
+import { addArrangement, deleteAttachment, ADD_ARRANGEMENT_FORM } from '../../actions';
 import validate, { asyncValidate } from '../../normalizers/validate';
 import { adaptArrangementSubmit } from '../../normalizers/adaptSubmit';
 import Add from '../../components/pages/Add';
@@ -12,7 +12,11 @@ const AddArrangement = ({ app, handleSubmit, dispatch }) =>
     title="Add Arrangement"
     handleSubmit={handleSubmit(values => dispatch(addArrangement(adaptArrangementSubmit(values))))}
   >
-    <SubmitArrangementForm app={app} editName />;
+    <SubmitArrangementForm
+      app={app}
+      editName
+      handleFileRemove={(fileField, fileName) => dispatch(deleteAttachment(ADD_ARRANGEMENT_FORM, fileField, fileName))}
+    />;
   </Add>;
 
 AddArrangement.propTypes = {

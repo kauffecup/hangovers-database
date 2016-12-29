@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite';
 import Dropzone from 'react-dropzone';
 import _Render from './_Render';
+import { BERMUDA_GRAY } from '../../StyleConstants';
 
 const _RenderDropzone = (props) => {
   const hasFile = props.input.value;
@@ -19,9 +20,12 @@ const _RenderDropzone = (props) => {
       >
         <div>{text}</div>
       </Dropzone>
-      {props.input.value ? <div>
-        {props.input.value.name}
-      </div> : null}
+      {props.input.value ?
+        <div>
+          {props.input.value.name}
+          <button type="button" className={css(styles.removeButton)} onClick={() => props.handleFileRemove(props.input.value.name)}>x</button>
+        </div>
+      : null}
     </div>
   );
 };
@@ -47,11 +51,18 @@ const styles = StyleSheet.create({
     backgroundColor: '#eee',
     color: '#000',
   },
+  removeButton: {
+    color: BERMUDA_GRAY,
+    height: '20px',
+    'line-height': '20px',
+    'margin-left': '6px',
+  },
 });
 
 _RenderDropzone.propTypes = {
   input: PropTypes.object.isRequired,
   name: PropTypes.string.isRequired,
+  handleFileRemove: PropTypes.func,
 };
 
 export default _Render(_RenderDropzone);

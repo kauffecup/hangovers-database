@@ -22,7 +22,6 @@ const styles = StyleSheet.create({
     color: '#fff',
     padding: '0 16px',
     'text-transform': 'uppercase',
-    cursor: 'pointer',
     'line-height': '36px',
     'vertical-align': 'middle',
     'font-family': '\'Lato\', sans-serif',

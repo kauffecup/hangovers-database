@@ -1,10 +1,10 @@
 import {
-  objectFields,
-  objectArrayFields,
-  binaryFields,
-  newFields,
-  newArrayFields,
-  fileFields,
+  objectFields as ofs,
+  objectArrayFields as oafs,
+  binaryFields as bs,
+  newFields as nfs,
+  newArrayFields as nafs,
+  fileField as ffs,
   NEW_IDENTIFIER,
 } from '../../shared/FormConstants';
 
@@ -21,7 +21,7 @@ const adaptFile = f => (f && f.inCloudant) ? `${f.name},${f.type}` : f;
  * before submit time. For the fields described above, adapt 'em. The final
  * return will be the original data with the described fields adapted.
  */
-export const adaptArrangementSubmit = (values) => {
+const adaptSubmit = (values, { objectFields = [], objectArrayFields = [], binaryFields = [], newFields = [], newArrayFields = [], fileFields = [] }) => {
   const adaptedValues = {};
   for (const objectField of objectFields) {
     adaptedValues[objectField] = adaptObject(values[objectField]);
@@ -50,77 +50,27 @@ export const adaptArrangementSubmit = (values) => {
   return Object.assign({}, values, adaptedValues);
 };
 
-export const adaptAlbumSubmit = (values) => {
-  const adaptedValues = {};
-  const aObjectFields = ['format', 'semester'];
-  for (const objectField of aObjectFields) {
-    adaptedValues[objectField] = adaptObject(values[objectField]);
-  }
-
-  const aObjectArrayFields = ['trackList'];
-  for (const objectArrayField of aObjectArrayFields) {
-    adaptedValues[objectArrayField] = adaptObjectArray(values[objectArrayField]);
-  }
-
-  return Object.assign({}, values, adaptedValues);
-};
-
-export const adaptArtistSubmit = (values) => {
-  const adaptedValues = {};
-  const aObjectArrayFields = ['arrangements'];
-  for (const objectArrayField of aObjectArrayFields) {
-    adaptedValues[objectArrayField] = adaptObjectArray(values[objectArrayField]);
-  }
-
-  return Object.assign({}, values, adaptedValues);
-};
-
-export const adaptConcertSubmit = (values) => {
-  const adaptedValues = {};
-  const cObjectFields = ['concertType', 'semester'];
-  for (const objectField of cObjectFields) {
-    adaptedValues[objectField] = adaptObject(values[objectField]);
-  }
-
-  const cObjectArrayFields = ['md', 'setList'];
-  for (const objectArrayField of cObjectArrayFields) {
-    adaptedValues[objectArrayField] = adaptObjectArray(values[objectArrayField]);
-  }
-
-  return Object.assign({}, values, adaptedValues);
-};
-
-export const adaptHangoverSubmit = (values) => {
-  const adaptedValues = {};
-  const hObjectArrayFields = ['arranged', 'concertsMDed', 'graduationSemester', 'semestersBMed', 'semestersMDed', 'semestersPresided', 'soloed'];
-  for (const objectArrayField of hObjectArrayFields) {
-    adaptedValues[objectArrayField] = adaptObjectArray(values[objectArrayField]);
-  }
-
-  return Object.assign({}, values, adaptedValues);
-};
-
-export const adaptSemesterSubmit = (values) => {
-  const adaptedValues = {};
-  const cObjectFields = ['semester_type'];
-  for (const objectField of cObjectFields) {
-    adaptedValues[objectField] = adaptObject(values[objectField]);
-  }
-
-  const sObjectArrayFields = ['albums', 'arrangements', 'bm', 'concerts', 'md', 'performed', 'president', 'graduatingHangs'];
-  for (const objectArrayField of sObjectArrayFields) {
-    adaptedValues[objectArrayField] = adaptObjectArray(values[objectArrayField]);
-  }
-
-  return Object.assign({}, values, adaptedValues);
-};
-
-export const adaptTagSubmit = (values) => {
-  const adaptedValues = {};
-  const aObjectArrayFields = ['arrangements'];
-  for (const objectArrayField of aObjectArrayFields) {
-    adaptedValues[objectArrayField] = adaptObjectArray(values[objectArrayField]);
-  }
-
-  return Object.assign({}, values, adaptedValues);
-};
+export const adaptAlbumSubmit = values => adaptSubmit(values, {
+  objectFields: ['format', 'semester'],
+  objectArrayFields: ['trackList'],
+});
+export const adaptArrangementSubmit = values => adaptSubmit(values, {
+  objectFields: ofs, objectArrayFields: oafs, binaryFields: bs, newFields: nfs, newArrayFields: nafs, fileFields: ffs,
+});
+export const adaptArtistSubmit = values => adaptSubmit(values, {
+  objectArrayFields: ['arrangements'],
+});
+export const adaptConcertSubmit = values => adaptSubmit(values, {
+  objectFields: ['concertType', 'semester'],
+  objectArrayFields: ['md', 'setList'],
+});
+export const adaptHangoverSubmit = values => adaptSubmit(values, {
+  objectArrayFields: ['arranged', 'concertsMDed', 'graduationSemester', 'semestersBMed', 'semestersMDed', 'semestersPresided', 'soloed'],
+});
+export const adaptSemesterSubmit = values => adaptSubmit(values, {
+  objectFields: ['semester_type'],
+  objectArrayFields: ['albums', 'arrangements', 'bm', 'concerts', 'md', 'performed', 'president', 'graduatingHangs'],
+});
+export const adaptTagSubmit = values => adaptSubmit(values, {
+  objectArrayFields: ['arrangements'],
+});

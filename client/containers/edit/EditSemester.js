@@ -2,35 +2,38 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 import { adaptSemesterSubmit } from '../../normalizers/adaptSubmit';
-import { getEditSemesterData, editSemester, EDIT_SEMESTER_FORM } from '../../actions';
+import { getEditSemesterData, editSemester, destroySemester, EDIT_SEMESTER_FORM } from '../../actions';
 import Edit from '../../components/pages/Edit';
 import SubmitSemesterForm from '../../components/forms/SubmitSemesterForm';
 import { semesterFormatter } from '../../normalizers/adaptFormData';
 
-const EditSemester = ({ app, dispatch, handleSubmit, name, id, loading }) =>
+const EditSemester = ({ app, dispatch, handleSubmit, name, id, rev, loading }) =>
   <Edit
     title={name}
     getEditData={() => dispatch(getEditSemesterData(id))}
     handleSubmit={handleSubmit(values => dispatch(editSemester(adaptSemesterSubmit(values))))}
+    handleDelete={() => dispatch(destroySemester(id, rev))}
     loading={loading}
   >
     <SubmitSemesterForm app={app} />
   </Edit>;
 
 EditSemester.propTypes = {
-  handleSubmit: PropTypes.func.isRequired,
-  dispatch: PropTypes.func.isRequired,
-  id: PropTypes.string.isRequired,
   app: PropTypes.object.isRequired,
-  name: PropTypes.string,
+  dispatch: PropTypes.func.isRequired,
   loading: PropTypes.bool,
+  handleSubmit: PropTypes.func.isRequired,
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string,
+  rev: PropTypes.string,
 };
 
 const mapStateToProps = (state, routerProps) => ({
   app: state.app,
+  loading: state.form[EDIT_SEMESTER_FORM] && state.form[EDIT_SEMESTER_FORM].loading,
   id: routerProps.params.id,
   name: semesterFormatter(state.form[EDIT_SEMESTER_FORM] && state.form[EDIT_SEMESTER_FORM].values),
-  loading: state.form[EDIT_SEMESTER_FORM] && state.form[EDIT_SEMESTER_FORM].loading,
+  rev: state.form && state.form[EDIT_SEMESTER_FORM] && state.form[EDIT_SEMESTER_FORM].values && state.form[EDIT_SEMESTER_FORM].values._rev,
 });
 
 // Wrap the component to inject dispatch and state into it

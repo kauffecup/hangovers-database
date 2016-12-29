@@ -149,8 +149,12 @@ const destroy = (_id, _rev, deleteMethod, res) =>
     .catch(e => res.status(500).json(e));
 
 /** endpoints for deleting */
-app.delete('/api/destroy/artist', ({ query: { _id, _rev } }, res) => destroy(_id, _rev, 'destroyArtist', res));
+app.delete('/api/destroy/album', ({ query: { _id, _rev } }, res) => destroy(_id, _rev, 'destroyAlbum', res));
 app.delete('/api/destroy/arrangement', ({ query: { _id, _rev } }, res) => destroy(_id, _rev, 'destroyArrangement', res));
+app.delete('/api/destroy/artist', ({ query: { _id, _rev } }, res) => destroy(_id, _rev, 'destroyArtist', res));
+app.delete('/api/destroy/concert', ({ query: { _id, _rev } }, res) => destroy(_id, _rev, 'destroyConcert', res));
+app.delete('/api/destroy/hangover', ({ query: { _id, _rev } }, res) => destroy(_id, _rev, 'destroyHangover', res));
+app.delete('/api/destroy/semester', ({ query: { _id, _rev } }, res) => destroy(_id, _rev, 'destroySemester', res));
 app.delete('/api/destroy/tag', ({ query: { _id, _rev } }, res) => destroy(_id, _rev, 'destroyTag', res));
 
 /** For everything else, serve the index */

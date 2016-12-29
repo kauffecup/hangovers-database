@@ -19,20 +19,20 @@ const EditTag = ({ dispatch, handleSubmit, name, id, rev, loading }) =>
   </Edit>;
 
 EditTag.propTypes = {
-  handleSubmit: PropTypes.func.isRequired,
   dispatch: PropTypes.func.isRequired,
-  id: PropTypes.string.isRequired,
-  rev: PropTypes.string,
-  name: PropTypes.string,
   loading: PropTypes.bool,
+  handleSubmit: PropTypes.func.isRequired,
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string,
+  rev: PropTypes.string,
 };
 
 const mapStateToProps = (state, routerProps) => ({
   app: state.app,
   id: routerProps.params.id,
+  loading: state.form[EDIT_TAG_FORM] && state.form[EDIT_TAG_FORM].loading,
   name: tagFormatter(state.form[EDIT_TAG_FORM] && state.form[EDIT_TAG_FORM].values),
   rev: state.form && state.form[EDIT_TAG_FORM] && state.form[EDIT_TAG_FORM].values && state.form[EDIT_TAG_FORM].values._rev,
-  loading: state.form[EDIT_TAG_FORM] && state.form[EDIT_TAG_FORM].loading,
 });
 
 // Wrap the component to inject dispatch and state into it

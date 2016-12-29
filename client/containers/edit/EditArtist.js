@@ -19,12 +19,12 @@ const EditArtist = ({ dispatch, handleSubmit, name, id, rev, loading }) =>
   </Edit>;
 
 EditArtist.propTypes = {
-  handleSubmit: PropTypes.func.isRequired,
   dispatch: PropTypes.func.isRequired,
-  id: PropTypes.string.isRequired,
-  rev: PropTypes.string,
-  name: PropTypes.string,
   loading: PropTypes.bool,
+  handleSubmit: PropTypes.func.isRequired,
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string,
+  rev: PropTypes.string,
 };
 
 const mapStateToProps = (state, routerProps) => ({

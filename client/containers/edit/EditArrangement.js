@@ -22,11 +22,11 @@ const EditArrangement = ({ app, dispatch, handleSubmit, name, id, rev, loading }
 EditArrangement.propTypes = {
   app: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired,
+  loading: PropTypes.bool,
   handleSubmit: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
+  name: PropTypes.string,
   rev: PropTypes.string,
-  loading: PropTypes.bool,
 };
 
 // we want the app state

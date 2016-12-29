@@ -261,8 +261,12 @@ module.exports = class SageDB {
   }
 
   /** Destroy docs! And their relationships! */
-  destroyArtist(_id, _rev) { return this._destroyWithRelationships(_id, _rev, 'artist'); }
+  destroyAlbum(_id, _rev) { return this._destroyWithRelationships(_id, _rev, 'album'); }
   destroyArrangement(_id, _rev) { return this._destroyWithRelationships(_id, _rev, 'arrangement'); }
+  destroyArtist(_id, _rev) { return this._destroyWithRelationships(_id, _rev, 'artist'); }
+  destroyConcert(_id, _rev) { return this._destroyWithRelationships(_id, _rev, 'concert'); }
+  destroyHangover(_id, _rev) { return this._destroyWithRelationships(_id, _rev, 'hangover'); }
+  destroySemester(_id, _rev) { return this._destroyWithRelationships(_id, _rev, 'semester'); }
   destroyTag(_id, _rev) { return this._destroyWithRelationships(_id, _rev, 'tag'); }
 
   /** Destroy a doc and all of its relationships */

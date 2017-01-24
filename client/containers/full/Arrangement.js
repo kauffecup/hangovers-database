@@ -54,7 +54,7 @@ const Arrangement = ({ dispatch, id, arrangement, loading }) =>
           download
         >
           {`download ${aid}`}
-        </a></div>
+        </a></div>,
         ) : null}
       <DisplayField title="Youtube Link" link={arrangement.youtube} />
       <DisplayField title="Spotify Link (Original Song)" link={arrangement.spotifyOriginalLink} />

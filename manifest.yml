@@ -1,5 +1,5 @@
 applications:
-- buildpack: sdk-for-nodejs
+- buildpack: https://github.com/cloudfoundry/nodejs-buildpack.git
   command: npm run start
   path: .
   instances: 1

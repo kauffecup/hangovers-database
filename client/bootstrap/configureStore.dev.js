@@ -15,7 +15,7 @@ const createDevStoreWithMiddleware = compose(
   applyMiddleware(thunk),
   applyMiddleware(routerMiddleware(history)),
   applyMiddleware(createLogger()),
-  DevTools.instrument()
+  DevTools.instrument(),
 )(createStore);
 
 export default function configureStore() {

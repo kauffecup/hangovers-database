@@ -80,7 +80,9 @@ Before you do anything else, you'll need to:
 
 ```
 npm install -g yarn
-yarn install
+yarn
+cd client
+yarn
 ```
 
 (If you don't want to use yarn for whatever reason, `npm install` will work).
@@ -111,8 +113,7 @@ middleware (the correct environment variables are set via `npm better run`),
 which rebuilds the bundle on css or js changes and injects it into the browser
 using magic. No reloading necessary! Also through the powers of redux there's
 time travel so you can edit code on the fly and go forwards and backwards with
-your actions. This is accomplished by loading in `server/appDevServer.js` and
-using that configured middleware in the express server.
+your actions.
 
 ```sh
 npm run dev
@@ -235,7 +236,10 @@ chmod +x $yarn_dir/bin/*
 PATH=$yarn_dir/bin:$PATH
 echo "Installed yarn $(yarn --version)"
 
-yarn install
+yarn
+cd client
+yarn
+cd ..
 npm run build
 ```
 

@@ -7,7 +7,7 @@ import history from './bootstrap/history';
 
 // load our css. there probably is a better way to do this
 // but for now this is our move
-require('./style.less');
+require('./style.css');
 require('react-select/dist/react-select.css');
 
 const store = configureStore();

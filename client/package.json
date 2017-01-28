@@ -1,0 +1,35 @@
+{
+  "name": "client",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "eject": "react-scripts eject",
+    "test": "react-scripts test --env=jsdom"
+  },
+  "dependencies": {
+    "aphrodite": "^1.1.0",
+    "query-string": "^4.3.1",
+    "react": "^15.4.2",
+    "react-addons-shallow-compare": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-dropzone": "^3.6.0",
+    "react-progress": "0.0.12",
+    "react-redux": "^5.0.2",
+    "react-router": "^3.0.2",
+    "react-router-redux": "^4.0.7",
+    "react-select": "git+https://github.com/kauffecup/react-select.git#keep-input-case-with-build-files",
+    "react-virtualized": "^8.11.3",
+    "redux": "^3.6.0",
+    "redux-form": "^6.4.3",
+    "redux-thunk": "^2.1.0",
+    "youtube-regex": "^1.0.5"
+  },
+  "devDependencies": {
+    "react-scripts": "^0.8.5",
+    "redux-devtools": "^3.3.2",
+    "redux-devtools-dock-monitor": "^1.1.1",
+    "redux-devtools-log-monitor": "^1.2.0",
+    "redux-logger": "^2.7.4"
+  },
+  "proxy": "http://localhost:3001/"
+}

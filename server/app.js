@@ -3,11 +3,11 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const logger = require('morgan');
 const multer = require('multer');
-const paths = require('../config/paths');
+const path = require('path');
 const cloudantConfig = require('../config/cloudantConfig');
 const SageDB = require('./SageDB');
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 
 // configure the express server
 const app = express();
@@ -17,20 +17,11 @@ const sageDB = new SageDB(cloudantConfig);
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
-// if we're developing, use webpack middleware for module hot reloading
-if (process.env.NODE_ENV === 'development') {
-  console.log('==> 🌎 using webpack');
-  const { webpackDevMiddleware, webpackHotMiddleware } = require('./appDevServer');
-
-  app.use(webpackDevMiddleware);
-  app.use(webpackHotMiddleware);
-}
-
 app.set('port', port);
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static(paths.appBuild));
+app.use(express.static(path.resolve(__dirname, '../client/build')));
 
 /** GET: get the initial data necessary for form stuff */
 app.get('/api/initializeforms', (req, res) => {
@@ -159,7 +150,7 @@ app.delete('/api/destroy/tag', ({ query: { _id, _rev } }, res) => destroy(_id, _
 
 /** For everything else, serve the index */
 app.get('*', (req, res) => {
-  res.sendFile(paths.buildHtml);
+  res.sendFile(path.resolve(__dirname, '../client/build/index.html'));
 });
 
 /** Start her up, boys */

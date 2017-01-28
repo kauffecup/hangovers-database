@@ -1,4 +1,4 @@
-extends: airbnb
+extends: react-app
 rules:
   global-require: 0
   max-len: 0

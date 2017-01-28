@@ -1,5 +1,3 @@
-const paths = require('./paths');
-
 let cloudantConfig;
 
 if (process.env.CLOUDANT_USERNAME && process.env.CLOUDANT_PASSWORD) {
@@ -8,7 +6,7 @@ if (process.env.CLOUDANT_USERNAME && process.env.CLOUDANT_PASSWORD) {
     password: process.env.CLOUDANT_PASSWORD,
   };
 } else {
-  cloudantConfig = require(paths.cloudantConfig);
+  cloudantConfig = require('./cloudant.json');
 }
 
 module.exports = cloudantConfig;

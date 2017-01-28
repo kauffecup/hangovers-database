@@ -1,5 +1,5 @@
 import { reducer as formReducer } from 'redux-form';
-import { DELETE_IDENTIFIER } from '../../shared/FormConstants';
+import { DELETE_IDENTIFIER } from '../../../shared/FormConstants';
 import {
   // actions
   DELETE_ATTACHMENT,

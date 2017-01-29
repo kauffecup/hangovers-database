@@ -7,6 +7,7 @@ module.exports.CONCERT_TYPE = 'concert';
 module.exports.GENRE_TYPE = 'genre';
 module.exports.ARTIST_TYPE = 'artist';
 module.exports.TAG_TYPE = 'tag';
+module.exports.NON_HANGOVER_TYPE = 'non_hangover';
 // essentially enums
 module.exports.ARRANGEMENT_TYPE_TYPE = 'arrangement_type';
 module.exports.ALBUM_FORMAT_TYPE = 'album_format';
@@ -16,6 +17,7 @@ module.exports.KEY_TYPE = 'key';
 module.exports.ALBUM_SEMESTER_RELATIONSHIP_TYPE = 'album_semester_relationship';
 module.exports.ARRANGEMENT_ALBUMS_RELATIONSHIP_TYPE = 'arrangement_albums_relationship';
 module.exports.ARRANGEMENT_ARRANGERS_RELATIONSHIP_TYPE = 'arrangement_arrangers_relationship';
+module.exports.ARRANGEMENT_NON_HANGOVER_ARRANGERS_RELATIONSHIP_TYPE = 'arrangement_non_hangover_arrangers_relationship';
 module.exports.ARRANGEMENT_ARTIST_RELATIONSHIP_TYPE = 'arrangement_artist_relationship';
 module.exports.ARRANGEMENT_CONCERTS_RELATIONSHIP_TYPE = 'arrangement_concerts_relationship';
 module.exports.ARRANGEMENT_GENRE_RELATIONSHIP_TYPE = 'arrangement_genre_relationship';

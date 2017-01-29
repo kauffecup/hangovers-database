@@ -31,6 +31,8 @@ const arrangementMap = function (doc) {
     emit([doc.arrangement, 'albums'], { _id: doc.album });
   } else if (doc.type === 'arrangement_arrangers_relationship') {
     emit([doc.arrangement, 'arrangers'], { _id: doc.hangover });
+  } else if (doc.type === 'arrangement_non_hangover_arrangers_relationship') {
+    emit([doc.arrangement, 'nonHangoverArrangers'], { _id: doc.nonHangover });
   } else if (doc.type === 'arrangement_artist_relationship') {
     emit([doc.arrangement, 'artists'], { _id: doc.artist });
   } else if (doc.type === 'arrangement_concerts_relationship') {
@@ -121,6 +123,14 @@ const tagMap = function (doc) {
   }
 };
 
+const nonHangoverMap = function (doc) {
+  if (doc.type === 'non_hangover') {
+    emit([doc._id]);
+  } else if (doc.type === 'arrangement_non_hangover_arrangers_relationship') {
+    emit([doc.nonHangover, 'arrangements'], { _id: doc.arrangement });
+  }
+}
+
 const ddoc = {
   _id: '_design/full',
   language: 'javascript',
@@ -132,6 +142,7 @@ const ddoc = {
     hangover: { map: hangoverMap },
     semester: { map: semesterMap },
     tag: { map: tagMap },
+    non_hangover: { map: nonHangoverMap },
   },
 };
 

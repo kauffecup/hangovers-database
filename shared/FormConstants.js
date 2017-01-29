@@ -10,16 +10,19 @@ module.exports.textFields = ['alternateName', 'name', 'notes', 'spotifyHangoverL
 module.exports.objectFields = ['arrangementType', 'key', 'quality', 'semesterArranged'];
 
  /** Fields that are arrays of the above datatype */
-module.exports.objectArrayFields = ['albums', 'arrangers', 'concerts', 'genre', 'soloists', 'semestersPerformed'];
+module.exports.objectArrayFields = ['albums', 'arrangers', 'nonHangoverArrangers', 'concerts', 'genre', 'soloists', 'semestersPerformed'];
 
  /** Fields that are "yes"/"no" that we want to convert into booleans */
 module.exports.binaryFields = ['active', 'syllables'];
+
+/** Fields that are on/off */
+module.exports.checkFields = ['arrangerNotAHangover'];
 
  /** Fields that allow the user to define new input dynamically */
 module.exports.newFields = [];
 
  /** Fields that are arrays of the above datatype */
-module.exports.newArrayFields = ['artists', 'tags'];
+module.exports.newArrayFields = ['artists', 'tags', 'nonHangoverArrangers'];
 
  /** Fields that are files */
 module.exports.fileFields = ['finale', 'recording', 'pdf'];

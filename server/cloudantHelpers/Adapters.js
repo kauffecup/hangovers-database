@@ -3,6 +3,7 @@ const idgen = require('./IDGenerators');
 const types = require('./DBTypes');
 const {
   binaryFields,
+  checkFields,
   fileFields,
   objectArrayFields,
   NEW_IDENTIFIER,
@@ -12,6 +13,7 @@ const {
 const multiRelationshipArrangementFields = [
   { field: 'albums', relationshipField: 'album', type: types.ARRANGEMENT_ALBUMS_RELATIONSHIP_TYPE, idGenerator: idgen.getArrangementAlbumID },
   { field: 'arrangers', relationshipField: 'hangover', type: types.ARRANGEMENT_ARRANGERS_RELATIONSHIP_TYPE, idGenerator: idgen.getArrangementArrangerID },
+  { field: 'nonHangoverArrangers', relationshipField: 'nonHangover', type: types.ARRANGEMENT_NON_HANGOVER_ARRANGERS_RELATIONSHIP_TYPE, idGenerator: idgen.getArrangementNonHangoverArrangerID },
   { field: 'artists', relationshipField: 'artist', type: types.ARRANGEMENT_ARTIST_RELATIONSHIP_TYPE, idGenerator: idgen.getArrangementArtistID },
   { field: 'concerts', relationshipField: 'concert', type: types.ARRANGEMENT_CONCERTS_RELATIONSHIP_TYPE, idGenerator: idgen.getArrangementConcertID },
   { field: 'genre', relationshipField: 'genre', type: types.ARRANGEMENT_GENRE_RELATIONSHIP_TYPE, idGenerator: idgen.getArrangementGenreID },
@@ -70,6 +72,10 @@ const multiRelationshipTagFields = [
   { field: 'arrangements', relationshipField: 'arrangement', type: types.ARRANGEMENT_TAG_RELATIONSHIP_TYPE, idGenerator: idgen.getArrangementTagID, second: true },
 ];
 
+const multiRelationshipNonHangoverFields = [
+  { field: 'arrangements', relationshipField: 'arrangement', type: types.ARRANGEMENT_NON_HANGOVER_ARRANGERS_RELATIONSHIP_TYPE, idGenerator: idgen.getArrangementNonHangoverArrangerID, second: true },
+];
+
 /**
 * Adapt a file into a cloudant friendly file
 */
@@ -105,8 +111,11 @@ const adaptArrangement = (arrangement, files = []) => {
   const arrID = idgen.getArrangementID(toUpload);
 
   // booleans are sent to us as the strings '1' or '0'
-  for (const binaryField of binaryFields) {
-    toUpload[binaryField] = typeof toUpload[binaryField] === 'string' ? toUpload[binaryField] === '1' : null;
+  for (const checkField of checkFields) {
+    console.log(checkField, toUpload[checkField]);
+  }
+  for (const field of [...binaryFields, ...checkFields]) {
+    toUpload[field] = typeof toUpload[field] === 'string' ? toUpload[field] === '1' : null;
   }
   // make sure array fields are actually arrays - if there's only a single key
   // it'll be treated as a string
@@ -120,6 +129,7 @@ const adaptArrangement = (arrangement, files = []) => {
   for (const fileField of fileFields) {
     delete toUpload[fileField];
   }
+
   // file time! parse the _attachments object. if we're going to be uploading
   // a new file of that name, or if the delete identifier is specified, remove
   // that file object from _attachments so that it is removed from cloudant
@@ -136,36 +146,30 @@ const adaptArrangement = (arrangement, files = []) => {
       }
     } catch (e) { console.error(e); }
   }
-  // in this field we allow the user to define a new artist. if that's what's
-  // going down, strip the new identifier and return a new artist object
-  const newArtists = [];
-  if (toUpload.artists) {
-    toUpload.artists = [].concat(toUpload.artists).map((oa) => {
-      if (oa.indexOf(NEW_IDENTIFIER) > -1) {
-        const artistName = oa.substring(oa.indexOf(NEW_IDENTIFIER) + NEW_IDENTIFIER.length);
-        const newArtist = { name: artistName };
-        newArtists.push(newArtist);
-        return idgen.getArtistID(newArtist);
-      }
-      return oa;
-    });
-  }
-  // likewise for new tags
-  const newTags = [];
-  if (toUpload.tags) {
-    toUpload.tags = [].concat(toUpload.tags).map((tag) => {
-      if (tag.indexOf(NEW_IDENTIFIER) > -1) {
-        const tagName = tag.substring(tag.indexOf(NEW_IDENTIFIER) + NEW_IDENTIFIER.length);
-        const newTag = { name: tagName };
-        newTags.push(newTag);
-        return idgen.getTagID(newTag);
-      }
-      return tag;
-    });
-  }
+  // in these fields we allow the user to define new objects. if that's what's
+  // going down, strip the new identifier and return a new object with a name field
+  const [ newArtists, newTags, newNonHangovers ] = [
+    { field: 'artists', idGenerator: idgen.getArtistID },
+    { field: 'tags', idGenerator: idgen.getTagID },
+    { field: 'nonHangoverArrangers', idGenerator: idgen.getNonHangoverID },
+  ].map(({ field, idGenerator }) => {
+    const newObjects = [];
+    if (toUpload[field]) {
+      toUpload[field] = [].concat(toUpload[field]).map((value) => {
+        if (value.indexOf(NEW_IDENTIFIER) > -1) {
+          const newName = value.substring(value.indexOf(NEW_IDENTIFIER) + NEW_IDENTIFIER.length);
+          const newObject = { name: newName };
+          newObjects.push(newObject);
+          return idGenerator(newObject);
+        }
+        return value;
+      });
+    }
+    return newObjects;
+  });
 
   const relationships = adaptRelationships(toUpload, arrID, 'arrangement', multiRelationshipArrangementFields, singleRelationshipArrangementFields);
-  return { arrID, toUpload, newArtists, newTags, relationships };
+  return { arrID, toUpload, newArtists, newTags, newNonHangovers, relationships };
 };
 
 /**
@@ -229,6 +233,16 @@ const adaptTag = (tag) => {
 };
 
 /**
+ * Take a nonHangover object and make it cloudant friendly
+ */
+const adaptNonHangover = (nonHangover) => {
+  const toUpload = Object.assign({}, nonHangover);
+  const id = idgen.getNonHangoverID(toUpload);
+  const relationships = adaptRelationships(toUpload, id, 'nonHangover', multiRelationshipNonHangoverFields);
+  return { id, toUpload, relationships };
+};
+
+/**
  * Iterate over the passed in doc. For the fields, types, and id generators
  * specified in the passed in multiFields and singleFields arrays, create an
  * array that identifies all of the relationships for the given doc. As we do
@@ -265,3 +279,4 @@ module.exports.adaptConcert = adaptConcert;
 module.exports.adaptHangover = adaptHangover;
 module.exports.adaptSemester = adaptSemester;
 module.exports.adaptTag = adaptTag;
+module.exports.adaptNonHangover = adaptNonHangover;

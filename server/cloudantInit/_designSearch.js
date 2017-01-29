@@ -55,12 +55,21 @@ const tagIndexer = function (doc) {
   }
 };
 
+const nonHangoverIndexer = function (doc) {
+  if (typeof doc.type === 'string' && doc.type === 'non_hangover') {
+    if (typeof doc.name === 'string') {
+      index('name', doc.name.toLowerCase());
+    }
+  }
+};
+
 
 const relationshipIndexer = function (doc) {
   if (typeof doc.type === 'string' && (
     doc.type === 'album_semester_relationship' ||
     doc.type === 'arrangement_albums_relationship' ||
     doc.type === 'arrangement_arrangers_relationship' ||
+    doc.type === 'arrangement_non_hangover_arrangers_relationship' ||
     doc.type === 'arrangement_artist_relationship' ||
     doc.type === 'arrangement_concerts_relationship' ||
     doc.type === 'arrangement_genre_relationship' ||
@@ -93,6 +102,9 @@ const relationshipIndexer = function (doc) {
     if (typeof doc.hangover === 'string') {
       index('hangover', doc.hangover);
     }
+    if (typeof doc.nonHangover === 'string') {
+      index('nonHangover', doc.nonHangover);
+    }
     if (typeof doc.semester === 'string') {
       index('semester', doc.semester);
     }
@@ -108,6 +120,10 @@ const ddoc = {
     hangovers: {
       analyzer: 'standard',
       index: hangoverIndexer,
+    },
+    non_hangovers: {
+      analyzer: 'standard',
+      index: nonHangoverIndexer,
     },
     artists: {
       analyzer: 'standard',

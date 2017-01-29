@@ -1,6 +1,12 @@
 import { stringify } from 'query-string';
-import { hangoverAdapter, artistAdapter, genreAdapter, arrangementAdapter } from '../normalizers/adaptFormData';
 import myFetch from './myFetch';
+import {
+  hangoverAdapter,
+  artistAdapter,
+  genreAdapter,
+  arrangementAdapter,
+  nonHangoverAdapter,
+} from '../normalizers/adaptFormData';
 
 export function searchHangovers(hangover) {
   if (!hangover) {
@@ -40,6 +46,14 @@ export function searchTags(tag) {
   }
   return myFetch(`/api/search/tags?${stringify({ tag: tag.trim() })}`)
     .then(genres => ({ options: genres.map(genreAdapter) }));
+}
+
+export function searchNonHangovers(nonHangover) {
+  if (!nonHangover) {
+    return Promise.resolve({ options: [] });
+  }
+  return myFetch(`/api/search/nonhangovers?${stringify({ nonHangover: nonHangover.trim() })}`)
+    .then(nonHangovers => ({ options: nonHangovers.map(nonHangoverAdapter) }));
 }
 
 export function arrangementExists(name) {

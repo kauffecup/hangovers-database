@@ -100,6 +100,7 @@ app.get('/api/search/arrangements', ({ query: { arrangement } }, res) => search(
 app.get('/api/search/genres', ({ query: { genre } }, res) => search(genre, 'searchGenres', res));
 app.get('/api/search/hangovers', ({ query: { hangover } }, res) => search(hangover, 'searchHangovers', res));
 app.get('/api/search/tags', ({ query: { tag } }, res) => search(tag, 'searchTags', res));
+app.get('/api/search/nonhangovers', ({ query: { nonHangover } }, res) => search(nonHangover, 'searchNonHangovers', res));
 
 /** POST: Submit a new arrangement */
 app.post('/api/arrangementsubmit', upload.fields([

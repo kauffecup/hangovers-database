@@ -77,6 +77,12 @@ const tagMapper = function (doc) {
   }
 };
 
+const nonHangoverMapper = function (doc) {
+  if (doc.type === 'non_hangover') {
+    emit(doc._id, 1);
+  }
+};
+
 const ddoc = {
   _id: '_design/types',
   language: 'javascript',
@@ -93,6 +99,7 @@ const ddoc = {
     hangovers: { map: hangoverMapper },
     semesters: { map: semesterMapper },
     tags: { map: tagMapper },
+    non_hangovers: { map: nonHangoverMapper },
   },
 };
 

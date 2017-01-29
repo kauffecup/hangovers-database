@@ -7,7 +7,7 @@ import { adaptArrangementSubmit } from '../../normalizers/adaptSubmit';
 import Add from '../../components/pages/Add';
 import SubmitArrangementForm from '../../components/forms/SubmitArrangementForm';
 
-const AddArrangement = ({ app, handleSubmit, dispatch }) =>
+const AddArrangement = ({ app, handleSubmit, dispatch, arrangerNotAHangover }) =>
   <Add
     title="Add Arrangement"
     handleSubmit={handleSubmit(values => dispatch(addArrangement(adaptArrangementSubmit(values))))}
@@ -15,6 +15,7 @@ const AddArrangement = ({ app, handleSubmit, dispatch }) =>
     <SubmitArrangementForm
       app={app}
       editName
+      arrangerNotAHangover={arrangerNotAHangover}
       handleFileRemove={(fileField, fileName) => dispatch(deleteAttachment(ADD_ARRANGEMENT_FORM, fileField, fileName))}
     />;
   </Add>;
@@ -28,6 +29,7 @@ AddArrangement.propTypes = {
 // for now, we want the app state
 const mapStateToProps = state => ({
   app: state.app,
+  arrangerNotAHangover: state.form[ADD_ARRANGEMENT_FORM] && state.form[ADD_ARRANGEMENT_FORM].values && state.form[ADD_ARRANGEMENT_FORM].values.arrangerNotAHangover,
 });
 
 // Wrap the component to inject dispatch and state into it

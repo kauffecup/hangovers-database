@@ -36,6 +36,9 @@ module.exports.getKeyID = key =>
 module.exports.getTagID = tag =>
   `${types.TAG_TYPE}_${tag.name.toLowerCase().replace(/\s/g, '_')}`;
 
+module.exports.getNonHangoverID = nonHangover =>
+  `${types.NON_HANGOVER_TYPE}_${nonHangover.name.toLowerCase().replace(/\s/g, '_')}`;
+
 
 // relationship IDs
 
@@ -47,6 +50,9 @@ module.exports.getArrangementAlbumID = (arrangementID, albumID) =>
 
 module.exports.getArrangementArrangerID = (arrangementID, hangoverID) =>
   `${types.ARRANGEMENT_ARRANGERS_RELATIONSHIP_TYPE}_${arrangementID}_${hangoverID}`;
+
+module.exports.getArrangementNonHangoverArrangerID = (arrangementID, nonHangoverID) =>
+  `${types.ARRANGEMENT_NON_HANGOVER_ARRANGERS_RELATIONSHIP_TYPE}_${arrangementID}_${nonHangoverID}`;
 
 module.exports.getArrangementArtistID = (arrangementID, artistID) =>
   `${types.ARRANGEMENT_ARTIST_RELATIONSHIP_TYPE}_${arrangementID}_${artistID}`;

@@ -15,6 +15,7 @@ import {
   searchArtists,
   searchGenres,
   searchTags,
+  searchNonHangovers,
 } from '../../actions/search';
 import {
   arrangementTypeAdapter,
@@ -24,7 +25,7 @@ import {
   keyAdapter,
 } from '../../normalizers/adaptFormData';
 
-const SubmitArrangementForm = ({ app, editName, name, handleFileRemove }) => {
+const SubmitArrangementForm = ({ app, editName, name, handleFileRemove, arrangerNotAHangover }) => {
   const { arrangementTypes: at, semesters: s, albums: al, concerts: co, keys: k } = app;
   const arrangementTypes = at.map(arrangementTypeAdapter);
   const semesters = s.map(semesterAdapter);
@@ -47,7 +48,11 @@ const SubmitArrangementForm = ({ app, editName, name, handleFileRemove }) => {
       </div>
       <Field label="Genre(s)" name="genre" component={RenderAsync} loadOptions={searchGenres} multi />
       <h3 className={css(styles.categoryLabel)}>Arrangement</h3>
-      <Field label="Arranger(s)" name="arrangers" component={RenderAsync} loadOptions={searchHangovers} multi />
+      <div className={css(styles.row)}>
+        <Field label="Arranger(s)" name="arrangers" component={RenderAsync} loadOptions={searchHangovers} multi styles={styles.rowChild} />
+        <Field label="Not a Hangover?" name="arrangerNotAHangover" component={RenderField} type="checkbox" />
+      </div>
+      { arrangerNotAHangover ? <Field label="Non-Hangover Arranger(s)" name="nonHangoverArrangers" component={RenderCreatableAsync} loadOptions={searchNonHangovers} multi /> : null}
       <div className={css(styles.row)}>
         <Field label="When Arranged" name="semesterArranged" component={RenderSelect} options={semesters} styles={styles.rowChild} />
         <Field label="Key" name="key" component={RenderSelect} options={keys} styles={styles.rowChild} />
@@ -94,6 +99,7 @@ SubmitArrangementForm.propTypes = {
   editName: PropTypes.bool,
   handleFileRemove: PropTypes.func.isRequired,
   name: PropTypes.string,
+  notAHangover: PropTypes.bool,
 };
 
 export default SubmitArrangementForm;

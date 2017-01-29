@@ -25,6 +25,12 @@ const arrangementArrangerMapper = function (doc) {
   }
 };
 
+const arrangementNonHangoverArrangerMapper = function (doc) {
+  if (doc.type === 'arrangement_non_hangover_arrangers_relationship') {
+    emit(doc._id, 1);
+  }
+};
+
 const arrangementConcertMapper = function (doc) {
   if (doc.type === 'arrangement_concerts_relationship') {
     emit(doc._id, 1);
@@ -104,6 +110,7 @@ const ddoc = {
     album_semester: { map: albumSemesterMapper },
     arrangement_album: { map: arrangementAlbumsMapper },
     arrangement_arranger: { map: arrangementArrangerMapper },
+    arrangement_non_hangover_arranger: { map: arrangementNonHangoverArrangerMapper },
     arrangement_artist: { map: arrangementArtistMapper },
     arrangement_concert: { map: arrangementConcertMapper },
     arrangement_genre: { map: arrangementGenreMapper },

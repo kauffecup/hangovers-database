@@ -14,7 +14,7 @@ import {
   getEditArrangementData,
 } from '../../actions';
 
-const EditArrangement = ({ app, dispatch, handleSubmit, name, id, rev, loading }) =>
+const EditArrangement = ({ app, dispatch, handleSubmit, name, id, rev, loading, arrangerNotAHangover }) =>
   <Edit
     title={name}
     getEditData={() => dispatch(getEditArrangementData(id))}
@@ -24,6 +24,7 @@ const EditArrangement = ({ app, dispatch, handleSubmit, name, id, rev, loading }
   >
     <SubmitArrangementForm
       app={app}
+      arrangerNotAHangover={arrangerNotAHangover}
       handleFileRemove={(fileField, fileName) => dispatch(deleteAttachment(EDIT_ARRANGEMENT_FORM, fileField, fileName))}
     />
   </Edit>;
@@ -43,6 +44,7 @@ const mapStateToProps = (state, routerProps) => ({
   app: state.app,
   id: routerProps.params.id,
   name: arrangementFormatter(state.form[EDIT_ARRANGEMENT_FORM] && state.form[EDIT_ARRANGEMENT_FORM].values),
+  arrangerNotAHangover: state.form[EDIT_ARRANGEMENT_FORM] && state.form[EDIT_ARRANGEMENT_FORM].values && state.form[EDIT_ARRANGEMENT_FORM].values.arrangerNotAHangover,
   rev: state.form && state.form[EDIT_ARRANGEMENT_FORM] && state.form[EDIT_ARRANGEMENT_FORM].values && state.form[EDIT_ARRANGEMENT_FORM].values._rev,
   loading: state.form[EDIT_ARRANGEMENT_FORM] && state.form[EDIT_ARRANGEMENT_FORM].loading,
 });

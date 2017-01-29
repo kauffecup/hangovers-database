@@ -11,6 +11,7 @@ const {
   adaptHangover,
   adaptSemester,
   adaptTag,
+  adaptNonHangover,
 } = require('./cloudantHelpers/Adapters');
 
 const LIMIT = 20;
@@ -173,6 +174,7 @@ module.exports = class SageDB {
   searchHangovers(text = '') { return this._search('hangovers', `nameString:(${text.toLowerCase()}*)`); }
   searchRelationships(field, id) { return this._search('relationships', `${field}:${id}`, 200); }
   searchTags(text = '') { return this._search('tags', `name:(${text.toLowerCase()}*)`); }
+  searchNonHangovers(text = '') { return this._search('non_hangovers', `name:(${text.toLowerCase()}*)`); }
 
   /** Helper method for the above searchers */
   _search(index, q, limit = LIMIT) {
@@ -196,13 +198,15 @@ module.exports = class SageDB {
   upsertHangover(h) { return this._upsertWithRelationships(h, adaptHangover, types.HANGOVER_TYPE, 'hangover'); }
   upsertSemester(s) { return this._upsertWithRelationships(s, adaptSemester, types.SEMESTER_TYPE, 'semester'); }
   upsertTag(t) { return this._upsertWithRelationships(t, adaptTag, types.TAG_TYPE, 'tag'); }
+  upsertNonHangover(t) { return this._upsertWithRelationships(t, adaptNonHangover, types.NON_HANGOVER_TYPE, 'nonHangover'); }
   upsertArrangement(arrangement, files = {}) {
     const filesToUpload = adaptFiles(files, arrangement.name);
-    const { arrID, toUpload, newArtists = [], newTags = [], relationships = [] } = adaptArrangement(arrangement, filesToUpload);
-    console.log('creating new artists and tags');
+    const { arrID, toUpload, newArtists = [], newTags = [], newNonHangovers = [], relationships = [] } = adaptArrangement(arrangement, filesToUpload);
+    console.log('creating new artists, tags, and nonHangovers');
     return Promise.join(
       Promise.map(newArtists, a => this.upsertArtist(a), OPTS),
       Promise.map(newTags, t => this.upsertTag(t), OPTS),
+      Promise.map(newNonHangovers, nh => this.upsertNonHangover(nh), OPTS),
       () => {}
     ).then(() => {
       console.log('upserting arrangement doc');
@@ -268,6 +272,7 @@ module.exports = class SageDB {
   destroyHangover(_id, _rev) { return this._destroyWithRelationships(_id, _rev, 'hangover'); }
   destroySemester(_id, _rev) { return this._destroyWithRelationships(_id, _rev, 'semester'); }
   destroyTag(_id, _rev) { return this._destroyWithRelationships(_id, _rev, 'tag'); }
+  destroyNonHangover(_id, _rev) { return this._destroyWithRelationships(_id, _rev, 'nonHangover'); }
 
   /** Destroy a doc and all of its relationships */
   _destroyWithRelationships(id, rev, relationshipField) {

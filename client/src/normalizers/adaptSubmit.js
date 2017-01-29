@@ -5,6 +5,7 @@ import {
   newFields as nfs,
   newArrayFields as nafs,
   fileField as ffs,
+  checkFields as cfs,
   NEW_IDENTIFIER,
 } from '../../../shared/FormConstants';
 
@@ -15,13 +16,14 @@ const adaptBinary = b => (b && typeof b.value === 'boolean') ? (b.value ? '1' : 
 const adaptNew = n => n && (n.value === n.label ? `${NEW_IDENTIFIER}${n.value}` : n.value); // allows the server to identify a new value
 const adaptNewArray = na => na && na.length && na.map(adaptNew);
 const adaptFile = f => (f && f.inCloudant) ? `${f.name},${f.type}` : f;
+const adaptCheck = c => c ? '1' : '0';
 
 /**
  * Our adapter function. Iterate over the fields and the form and adapt the data
  * before submit time. For the fields described above, adapt 'em. The final
  * return will be the original data with the described fields adapted.
  */
-const adaptSubmit = (values, { objectFields = [], objectArrayFields = [], binaryFields = [], newFields = [], newArrayFields = [], fileFields = [] }) => {
+const adaptSubmit = (values, { objectFields = [], objectArrayFields = [], binaryFields = [], newFields = [], newArrayFields = [], fileFields = [], checkFields = [] }) => {
   const adaptedValues = {};
   for (const objectField of objectFields) {
     adaptedValues[objectField] = adaptObject(values[objectField]);
@@ -47,6 +49,10 @@ const adaptSubmit = (values, { objectFields = [], objectArrayFields = [], binary
     adaptedValues[fileField] = adaptFile(values[fileField]);
   }
 
+  for (const checkField of checkFields) {
+    adaptedValues[checkField] = adaptCheck(values[checkField]);
+  }
+
   return Object.assign({}, values, adaptedValues);
 };
 
@@ -55,7 +61,7 @@ export const adaptAlbumSubmit = values => adaptSubmit(values, {
   objectArrayFields: ['format', 'trackList'],
 });
 export const adaptArrangementSubmit = values => adaptSubmit(values, {
-  objectFields: ofs, objectArrayFields: oafs, binaryFields: bs, newFields: nfs, newArrayFields: nafs, fileFields: ffs,
+  objectFields: ofs, objectArrayFields: oafs, binaryFields: bs, newFields: nfs, newArrayFields: nafs, fileFields: ffs, checkFields: cfs,
 });
 export const adaptArtistSubmit = values => adaptSubmit(values, {
   objectArrayFields: ['arrangements'],

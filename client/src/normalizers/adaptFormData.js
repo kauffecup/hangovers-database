@@ -92,6 +92,12 @@ export const tagAdapter = (t = {}) => ({
   value: t._id, label: tagFormatter(t),
 });
 
+export const nonHangoverFormatter = (nh = {}) => nh.name;
+
+export const nonHangoverAdapter = (nh = {}) => ({
+  value: nh._id, label: nonHangoverFormatter(nh),
+});
+
 export const fullAlbumAdapter = (a = {}) => Object.assign({}, a, {
   format: (a.format || []).map(albumFormatAdapter),
   semester: (typeof a.semester !== 'undefined') && semesterAdapter(a.semester),
@@ -102,6 +108,7 @@ export const fullArrangementAdapter = (a = {}) => Object.assign({}, a, {
   active: activeAdapter(a.active),
   albums: (a.albums || []).map(albumAdapter),
   arrangers: (a.arrangers || []).map(hangoverAdapter),
+  nonHangoverArrangers: (a.nonHangoverArrangers || []).map(nonHangoverAdapter),
   arrangementType: (typeof a.arrangementType !== 'undefined') && arrangementTypeAdapter(a.arrangementType),
   artists: (a.artists || []).map(artistAdapter),
   concerts: (a.concerts || []).map(concertAdapter),

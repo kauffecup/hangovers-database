@@ -10,6 +10,7 @@ import {
   fullHangoverAdapter,
   fullSemesterAdapter,
   fullTagAdapter,
+  fullNonHangoverAdapter,
 } from '../normalizers/adaptFormData';
 
 // add forms
@@ -28,6 +29,7 @@ export const EDIT_CONCERT_FORM = 'editConcert';
 export const EDIT_HANGOVER_FORM = 'editHangover';
 export const EDIT_SEMESTER_FORM = 'editSemester';
 export const EDIT_TAG_FORM = 'editTag';
+export const EDIT_NON_HANGOVER_FORM = 'editNonHangover';
 
 export const SET_BANNER = 'SET_BANNER';
 export const BANNER_SUCCESS = 'BANNER_SUCCESS';
@@ -41,6 +43,7 @@ export const INITIALIZE_FORMS_FAILURE = 'INITIALIZE_FORMS_FAILURE';
 export const ARRANGEMENT_SUBMIT = 'ARRANGEMENT_SUBMIT';
 export const ARRANGEMENT_SUBMIT_SUCCESS = 'ARRANGEMENT_SUBMIT_SUCCESS';
 export const ARRANGEMENT_SUBMIT_FAILURE = 'ARRANGEMENT_SUBMIT_FAILURE';
+// full
 export const GET_ARRANGEMENTS = 'GET_ARRANGEMENTS';
 export const GET_ARRANGEMENTS_SUCCESS = 'GET_ARRANGEMENTS_SUCCESS';
 export const GET_ARRANGEMENTS_FAILURE = 'GET_ARRANGEMENTS_FAILURE';
@@ -65,6 +68,10 @@ export const GET_ARTIST_FAILURE = 'GET_ARTIST_FAILURE';
 export const GET_TAG = 'GET_TAG';
 export const GET_TAG_SUCCESS = 'GET_TAG_SUCCESS';
 export const GET_TAG_FAILURE = 'GET_TAG_FAILURE';
+export const GET_NON_HANGOVER = 'GET_NON_HANGOVER';
+export const GET_NON_HANGOVER_SUCCESS = 'GET_NON_HANGOVER_SUCCESS';
+export const GET_NON_HANGOVER_FAILURE = 'GET_NON_HANGOVER_FAILURE';
+// edit
 export const GET_EDIT_ALBUM = 'GET_EDIT_ALBUM';
 export const GET_EDIT_ALBUM_SUCCESS = 'GET_EDIT_ALBUM_SUCCESS';
 export const GET_EDIT_ALBUM_FAILURE = 'GET_EDIT_ALBUM_FAILURE';
@@ -86,6 +93,10 @@ export const GET_EDIT_CONCERT_FAILURE = 'GET_EDIT_CONCERT_FAILURE';
 export const GET_EDIT_TAG = 'GET_EDIT_TAG';
 export const GET_EDIT_TAG_SUCCESS = 'GET_EDIT_TAG_SUCCESS';
 export const GET_EDIT_TAG_FAILURE = 'GET_EDIT_TAG_FAILURE';
+export const GET_EDIT_NON_HANGOVER = 'GET_EDIT_NON_HANGOVER';
+export const GET_EDIT_NON_HANGOVER_SUCCESS = 'GET_EDIT_NON_HANGOVER_SUCCESS';
+export const GET_EDIT_NON_HANGOVER_FAILURE = 'GET_EDIT_NON_HANGOVER_FAILURE';
+// lists
 export const GET_HANGOVERS = 'GET_HANGOVERS';
 export const GET_HANGOVERS_SUCCESS = 'GET_HANGOVERS_SUCCESS';
 export const GET_HANGOVERS_FAILURE = 'GET_HANGOVERS_FAILURE';
@@ -130,6 +141,7 @@ export const getConcert = concertID => actionFetch('/api/full/concert', GET_CONC
 export const getAlbum = albumID => actionFetch('/api/full/album', GET_ALBUM, GET_ALBUM_SUCCESS, GET_ALBUM_FAILURE, { albumID });
 export const getArtist = artistID => actionFetch('/api/full/artist', GET_ARTIST, GET_ARTIST_SUCCESS, GET_ARTIST_FAILURE, { artistID });
 export const getTag = tagID => actionFetch('/api/full/tag', GET_TAG, GET_TAG_SUCCESS, GET_TAG_FAILURE, { tagID });
+export const getNonHangover = nonHangoverID => actionFetch('/api/full/nonhangover', GET_NON_HANGOVER, GET_NON_HANGOVER_SUCCESS, GET_NON_HANGOVER_FAILURE, { nonHangoverID });
 
 /** Actions for getting paged lists */
 export const getArrangements = skip => actionFetch('/api/list/arrangements', GET_ARRANGEMENTS, GET_ARRANGEMENTS_SUCCESS, GET_ARRANGEMENTS_FAILURE, { skip });
@@ -153,6 +165,7 @@ export const getEditConcertData = concertID => actionFetchEdit('/api/full/concer
 export const getEditHangoverData = hangoverID => actionFetchEdit('/api/full/hangover', GET_EDIT_HANGOVER, GET_EDIT_HANGOVER_SUCCESS, GET_EDIT_HANGOVER_FAILURE, { hangoverID }, fullHangoverAdapter);
 export const getEditSemesterData = semesterID => actionFetchEdit('/api/full/semester', GET_EDIT_SEMESTER, GET_EDIT_SEMESTER_SUCCESS, GET_EDIT_SEMESTER_FAILURE, { semesterID }, fullSemesterAdapter);
 export const getEditTagData = tagID => actionFetchEdit('/api/full/tag', GET_EDIT_TAG, GET_EDIT_TAG_SUCCESS, GET_EDIT_TAG_FAILURE, { tagID }, fullTagAdapter);
+export const getEditNonHangoverData = nonHangoverID => actionFetchEdit('/api/full/nonhangover', GET_EDIT_NON_HANGOVER, GET_EDIT_NON_HANGOVER_SUCCESS, GET_EDIT_NON_HANGOVER_FAILURE, { nonHangoverID }, fullNonHangoverAdapter);
 
 const actionDestroy = (_id, _rev, postPush = '/', endpoint, type, form, reInit) => dispatch =>
   myFetch(`${endpoint}?${stringify({ _id, _rev })}`, { method: 'DELETE' })
@@ -176,6 +189,7 @@ export const destroyConcert = (_id, _rev) => actionDestroy(_id, _rev, 'concerts'
 export const destroyHangover = (_id, _rev) => actionDestroy(_id, _rev, 'hangovers', '/api/destroy/hangover', 'hangover', EDIT_HANGOVER_FORM);
 export const destroySemester = (_id, _rev) => actionDestroy(_id, _rev, 'semesters', '/api/destroy/semester', 'semester', EDIT_SEMESTER_FORM, true);
 export const destroyTag = (_id, _rev) => actionDestroy(_id, _rev, 'tags', '/api/destroy/tag', 'tag', EDIT_TAG_FORM);
+export const destroyNonHangover = (_id, _rev) => actionDestroy(_id, _rev, '/', '/api/destroy/nonhangover', 'non hangover', EDIT_NON_HANGOVER_FORM);
 
 /** Helper action for workflow of creating db objects, handling forms, and setting banner message */
 const actionAdd = (values, postPush = '/', endpoint, type, form, reInit) => dispatch =>
@@ -229,6 +243,7 @@ export const editConcert = v => actionEdit(v, `concerts/${v._id}`, '/api/submit/
 export const editHangover = v => actionEdit(v, `hangovers/${v._id}`, '/api/submit/hangover', 'hangover', EDIT_HANGOVER_FORM);
 export const editSemester = v => actionEdit(v, `semesters/${v._id}`, '/api/submit/semester', 'semester', EDIT_SEMESTER_FORM);
 export const editTag = v => actionEdit(v, `tags/${v._id}`, '/api/submit/tag', 'tag', EDIT_TAG_FORM);
+export const editNonHangover = v => actionEdit(v, `nonhangovers/${v._id}`, '/api/submit/nonhangover', 'non hangover', EDIT_NON_HANGOVER_FORM);
 
 export function addArrangement(values) {
   return (dispatch) => {

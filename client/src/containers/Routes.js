@@ -17,6 +17,7 @@ import Concert from './full/Concert';
 import Hangover from './full/Hangover';
 import Semester from './full/Semester';
 import Tag from './full/Tag';
+import NonHangover from './full/NonHangover';
 // edit
 import EditAlbum from './edit/EditAlbum';
 import EditArrangement from './edit/EditArrangement';
@@ -25,6 +26,7 @@ import EditConcert from './edit/EditConcert';
 import EditHangover from './edit/EditHangover';
 import EditSemester from './edit/EditSemester';
 import EditTag from './edit/EditTag';
+import EditNonHangover from './edit/EditNonHangover';
 // add
 import AddAlbum from './add/AddAlbum';
 import AddArrangement from './add/AddArrangement';
@@ -71,6 +73,9 @@ const App = ({ history }) =>
       <Route path="tags/:id" component={Tag} />
       <Route path="edit/tag/:id" component={EditTag} />
       <Route path="submit/tag" component={AddTag} />
+
+      <Route path="nonhangovers/:id" component={NonHangover} />
+      <Route path="edit/nonhangover/:id" component={EditNonHangover} />
     </Route>
   </Router>;
 

@@ -62,6 +62,7 @@ app.get('/api/full/concert', ({ query: { concertID } }, res) => getFull(concertI
 app.get('/api/full/album', ({ query: { albumID } }, res) => getFull(albumID, 'getFullAlbum', res));
 app.get('/api/full/artist', ({ query: { artistID } }, res) => getFull(artistID, 'getFullArtist', res));
 app.get('/api/full/tag', ({ query: { tagID } }, res) => getFull(tagID, 'getFullTag', res));
+app.get('/api/full/nonhangover', ({ query: { nonHangoverID } }, res) => getFull(nonHangoverID, 'getFullNonHangover', res));
 
 /** Get a file from the database */
 app.get('/api/arrangementfile', ({ query: { arrangementID, attachmentID, type } }, res) => {
@@ -126,6 +127,7 @@ app.post('/api/submit/concert', ({ body }, res) => submit(body, 'upsertConcert',
 app.post('/api/submit/hangover', ({ body }, res) => submit(body, 'upsertHangover', res));
 app.post('/api/submit/semester', ({ body }, res) => submit(body, 'upsertSemester', res));
 app.post('/api/submit/tag', ({ body }, res) => submit(body, 'upsertTag', res));
+app.post('/api/submit/nonhangover', ({ body }, res) => submit(body, 'upsertNonHangover', res));
 
 /** GET: see if an arrangement exists */
 app.get('/api/arrangementexists', ({ query: { name } }, res) => {
@@ -148,6 +150,7 @@ app.delete('/api/destroy/concert', ({ query: { _id, _rev } }, res) => destroy(_i
 app.delete('/api/destroy/hangover', ({ query: { _id, _rev } }, res) => destroy(_id, _rev, 'destroyHangover', res));
 app.delete('/api/destroy/semester', ({ query: { _id, _rev } }, res) => destroy(_id, _rev, 'destroySemester', res));
 app.delete('/api/destroy/tag', ({ query: { _id, _rev } }, res) => destroy(_id, _rev, 'destroyTag', res));
+app.delete('/api/destroy/nonhangover', ({ query: { _id, _rev } }, res) => destroy(_id, _rev, 'destroyNonHangover', res));
 
 /** For everything else, serve the index */
 app.get('*', (req, res) => {

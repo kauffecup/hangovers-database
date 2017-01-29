@@ -6,6 +6,7 @@ import AlbumList from '../../components/lists/AlbumList';
 import ArtistList from '../../components/lists/ArtistList';
 import ConcertList from '../../components/lists/ConcertList';
 import HangoverList from '../../components/lists/HangoverList';
+import NonHangoversList from '../../components/lists/NonHangoversList';
 import SemesterList from '../../components/lists/SemesterList';
 import TagList from '../../components/lists/TagList';
 import Full from '../../components/pages/Full';
@@ -31,6 +32,10 @@ const Arrangement = ({ dispatch, id, arrangement, loading }) =>
     </Card>
     <Card title="Arrangement">
       <HangoverList title="arranged by" hangovers={arrangement.arrangers} />
+      <NonHangoversList
+        title={arrangement.arrangers && arrangement.arrangers.length ? 'and' : 'arranged by'}
+        nonHangovers={arrangement.nonHangoverArrangers}
+      />
       <DisplayField text={keyFormatter(arrangement.key)} />
       <SemesterList title="arranged" semesters={[arrangement.semesterArranged]} />
       <DisplayField text={arrangement.syllables ? 'has syllables' : 'doesn\'t have syllables'} />

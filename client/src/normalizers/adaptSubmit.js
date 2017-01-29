@@ -56,12 +56,15 @@ const adaptSubmit = (values, { objectFields = [], objectArrayFields = [], binary
   return Object.assign({}, values, adaptedValues);
 };
 
+// if the arrangerNotAHangover box is not checked, remove the non hangover arrangers before adapting the rest
+export const adaptArrangementSubmit = values => adaptSubmit(Object.assign({}, values, {
+  nonHangoverArrangers: values.arrangerNotAHangover ? values.nonHangoverArrangers : [],
+}), {
+  objectFields: ofs, objectArrayFields: oafs, binaryFields: bs, newFields: nfs, newArrayFields: nafs, fileFields: ffs, checkFields: cfs,
+});
 export const adaptAlbumSubmit = values => adaptSubmit(values, {
   objectFields: ['semester'],
   objectArrayFields: ['format', 'trackList'],
-});
-export const adaptArrangementSubmit = values => adaptSubmit(values, {
-  objectFields: ofs, objectArrayFields: oafs, binaryFields: bs, newFields: nfs, newArrayFields: nafs, fileFields: ffs, checkFields: cfs,
 });
 export const adaptArtistSubmit = values => adaptSubmit(values, {
   objectArrayFields: ['arrangements'],
@@ -78,5 +81,8 @@ export const adaptSemesterSubmit = values => adaptSubmit(values, {
   objectArrayFields: ['albums', 'arrangements', 'bm', 'concerts', 'md', 'performed', 'president', 'graduatingHangs'],
 });
 export const adaptTagSubmit = values => adaptSubmit(values, {
+  objectArrayFields: ['arrangements'],
+});
+export const adaptNonHangoverSubmit = values => adaptSubmit(values, {
   objectArrayFields: ['arrangements'],
 });

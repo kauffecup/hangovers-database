@@ -109,6 +109,7 @@ export const fullArrangementAdapter = (a = {}) => Object.assign({}, a, {
   albums: (a.albums || []).map(albumAdapter),
   arrangers: (a.arrangers || []).map(hangoverAdapter),
   nonHangoverArrangers: (a.nonHangoverArrangers || []).map(nonHangoverAdapter),
+  arrangerNotAHangover: (a.nonHangoverArrangers || []).length > 0,
   arrangementType: (typeof a.arrangementType !== 'undefined') && arrangementTypeAdapter(a.arrangementType),
   artists: (a.artists || []).map(artistAdapter),
   concerts: (a.concerts || []).map(concertAdapter),
@@ -158,4 +159,8 @@ export const fullSemesterAdapter = (s = {}) => Object.assign({}, s, {
 
 export const fullTagAdapter = (t = {}) => Object.assign({}, t, {
   arrangements: (t.arrangements || []).map(arrangementAdapter),
+});
+
+export const fullNonHangoverAdapter = (nh = {}) => Object.assign({}, nh, {
+  arrangements: (nh.arrangements || []).map(arrangementAdapter),
 });

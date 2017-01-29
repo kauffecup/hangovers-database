@@ -12,6 +12,7 @@ import {
   hangover,
   semester,
   tag,
+  nonHangover,
 } from './full';
 import {
   artists,
@@ -32,6 +33,7 @@ export default combineReducers({
   hangover,
   semester,
   tag,
+  nonHangover,
   // lists
   artists,
   arrangements,

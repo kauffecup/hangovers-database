@@ -1,5 +1,5 @@
 export const activeAdapter = a =>
-  a && typeof a === 'boolean' ? 'yes' : 'no';
+  typeof a === 'boolean' ?  { value: a, label: a ? 'Yes' : 'No'} : {};
 
 export const albumFormatter = (a = {}, useSemester) => useSemester ?
   `${a.name} ${semesterFormatter(a.semester)}`.trim() : a.name;
@@ -83,8 +83,8 @@ export const semesterAdapter = (s = {}) => ({
   value: s._id, label: semesterFormatter(s),
 });
 
-export const syllableAdapter = s =>
-  s && typeof s === 'boolean' ? 'yes' : 'no';
+export const syllableAdapter = a =>
+  typeof a === 'boolean' ?  { value: a, label: a ? 'Yes' : 'No'} : {};
 
 export const tagFormatter = (t = {}) => t.name;
 
@@ -99,7 +99,7 @@ export const fullAlbumAdapter = (a = {}) => Object.assign({}, a, {
 });
 
 export const fullArrangementAdapter = (a = {}) => Object.assign({}, a, {
-  active: (typeof a.active !== 'undefined') && activeAdapter(a.active),
+  active: activeAdapter(a.active),
   albums: (a.albums || []).map(albumAdapter),
   arrangers: (a.arrangers || []).map(hangoverAdapter),
   arrangementType: (typeof a.arrangementType !== 'undefined') && arrangementTypeAdapter(a.arrangementType),
@@ -111,7 +111,7 @@ export const fullArrangementAdapter = (a = {}) => Object.assign({}, a, {
   recording: attatchmentAdapter(a._attachments, 'audio'),
   pdf: attatchmentAdapter(a._attachments, 'pdf'),
   soloists: (a.soloists || []).map(hangoverAdapter),
-  syllables: (typeof a.syllables !== 'undefined') && syllableAdapter(a.syllables),
+  syllables: syllableAdapter(a.syllables),
   semesterArranged: (typeof a.semesterArranged !== 'undefined') && semesterAdapter(a.semesterArranged),
   semestersPerformed: (a.semestersPerformed || []).map(semesterAdapter),
   tags: (a.tags || []).map(tagAdapter),

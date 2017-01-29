@@ -37,7 +37,7 @@ const Arrangement = ({ dispatch, id, arrangement, loading }) =>
       <DisplayField text={arrangementTypeFormatter(arrangement.arrangementType)} />
     </Card>
     <Card title="Performance">
-      <DisplayField text={arrangement.active ? 'active' : 'not active'} />
+      <DisplayField text={typeof arrangement.active === 'boolean' ? (arrangement.active ? 'active' : 'not active') : null} />
       <SemesterList title="semester(s) performed" semesters={arrangement.semestersPerformed} />
       <ConcertList title="concert(s) performed" concerts={arrangement.concerts} />
       <AlbumList title="album(s) on" albums={arrangement.albums} />

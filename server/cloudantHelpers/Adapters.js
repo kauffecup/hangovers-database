@@ -104,9 +104,9 @@ const adaptArrangement = (arrangement, files = []) => {
   const toUpload = Object.assign({}, arrangement);
   const arrID = idgen.getArrangementID(toUpload);
 
-  // make sure booleans are actually booleans
+  // booleans are sent to us as the strings '1' or '0'
   for (const binaryField of binaryFields) {
-    toUpload[binaryField] = toUpload[binaryField] === 'true';
+    toUpload[binaryField] = typeof toUpload[binaryField] === 'string' ? toUpload[binaryField] === '1' : null;
   }
   // make sure array fields are actually arrays - if there's only a single key
   // it'll be treated as a string

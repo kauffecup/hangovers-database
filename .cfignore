@@ -1,7 +1,12 @@
 node_modules
+yarn.lock
+README.md
+.eslintrc
+.editorconfig
 client/src
 client/public
 client/node_modules
 client/package.json
 client/yarn.lock
 client/.eslintrc
+config/cloudant.json

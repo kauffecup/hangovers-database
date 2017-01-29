@@ -43,10 +43,6 @@ export default (values) => {
     errors.syllables = REQUIRED_ERROR;
   }
 
-  if (!values.active) {
-    errors.active = REQUIRED_ERROR;
-  }
-
   if (values.youtube && !youtubeRegex().test(values.youtube)) {
     errors.youtube = 'Enter a valid YouTube url';
   }

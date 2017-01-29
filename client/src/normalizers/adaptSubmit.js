@@ -11,7 +11,7 @@ import {
 /** Helper methods for adapting the datatypes into what the backend is expecting */
 const adaptObject = o => o && o.value;
 const adaptObjectArray = oa => oa && oa.length && oa.map(adaptObject);
-const adaptBinary = b => b && b === 'yes';
+const adaptBinary = b => (b && typeof b.value === 'boolean') ? (b.value ? '1' : '0') : null;
 const adaptNew = n => n && (n.value === n.label ? `${NEW_IDENTIFIER}${n.value}` : n.value); // allows the server to identify a new value
 const adaptNewArray = na => na && na.length && na.map(adaptNew);
 const adaptFile = f => (f && f.inCloudant) ? `${f.name},${f.type}` : f;

@@ -9,7 +9,7 @@ import RenderBinary from '../form/RenderBinary';
 import RenderSelect from '../form/RenderSelect';
 import RenderAsync from '../form/RenderAsync';
 import RenderDropzone from '../form/RenderDropzone';
-import { BERMUDA_GRAY, PADDING_UNIT } from '../../StyleConstants';
+import { REGENT_GRAY, PADDING_UNIT } from '../../StyleConstants';
 import {
   searchHangovers,
   searchArtists,
@@ -87,7 +87,7 @@ const SubmitArrangementForm = ({ app, editName, name, handleFileRemove, arranger
 
 const styles = StyleSheet.create({
   categoryLabel: {
-    color: BERMUDA_GRAY,
+    color: REGENT_GRAY,
     'margin-left': `${PADDING_UNIT}px`,
   },
   row: { display: 'flex' },

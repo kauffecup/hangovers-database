@@ -12,9 +12,10 @@ const DisplayField = ({ title, children }) => testChildren(children) ?
 const styles = StyleSheet.create({
   card: {
     background: '#fff',
-    padding: `${PADDING_UNIT / 2}px`,
-    'margin-bottom': `${PADDING_UNIT / 2}px`,
-    'margin-top': `${PADDING_UNIT / 2}px`,
+    'box-shadow': '0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12)',
+    'border-radius': '5px',
+    padding: `${PADDING_UNIT}px`,
+    'margin': `${PADDING_UNIT}px 0px`,
   },
 });
 

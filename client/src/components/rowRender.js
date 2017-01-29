@@ -12,7 +12,7 @@ const rowRender = (list, ChildComponent) => ({ index, key, style }) => // eslint
 const styles = StyleSheet.create({
   row: {
     height: `${LIST_ITEM_HEIGHT}px`,
-    padding: `${PADDING_UNIT / 2}px`,
+    padding: `${PADDING_UNIT / 2}px 0px`,
   },
 });
 

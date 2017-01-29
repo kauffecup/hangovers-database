@@ -1,8 +1,7 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import { Link } from 'react-router';
 import { StyleSheet, css } from 'aphrodite';
-import { NAVBAR_WIDTH, BERMUDA_GRAY, HEATHER } from '../StyleConstants';
-import Menu from '../icons/menu';
+import { NAVBAR_WIDTH, OXFORD_GRAY, REGENT_GRAY } from '../StyleConstants';
 import Home from '../icons/home';
 import Music from '../icons/music';
 import Calendar from '../icons/calendar';
@@ -12,18 +11,17 @@ import Cd from '../icons/cd';
 import Headphones from '../icons/headphones';
 import Tag from '../icons/tag';
 
-const NavBar = ({ handleHamburger }) =>
+const NavBar = () =>
   <nav className={css(styles.nav)}>
     <ul>
-      <button onClick={() => handleHamburger()} className={css(styles.iconLink)}><Menu fill={HEATHER} className={css(styles.svgButton)} /></button>
-      <Link to="/"><li className={css(styles.iconLink)}><Home fill={HEATHER} /></li></Link>
-      <Link to="/"><li className={css(styles.iconLink)}><Music fill={HEATHER} /></li></Link>
-      <Link to="/hangovers"><li className={css(styles.iconLink)}><Man fill={HEATHER} /></li></Link>
-      <Link to="/semesters"><li className={css(styles.iconLink)}><Calendar fill={HEATHER} /></li></Link>
-      <Link to="/concerts"><li className={css(styles.iconLink)}><Loudspeaker fill={HEATHER} /></li></Link>
-      <Link to="/albums"><li className={css(styles.iconLink)}><Cd fill={HEATHER} /></li></Link>
-      <Link to="/artists"><li className={css(styles.iconLink)}><Headphones fill={HEATHER} /></li></Link>
-      <Link to="/tags"><li className={css(styles.iconLink)}><Tag fill={HEATHER} /></li></Link>
+      <Link to="/"><li className={css(styles.iconLink)}><Home fill={REGENT_GRAY} /></li></Link>
+      <Link to="/"><li className={css(styles.iconLink)}><Music fill={REGENT_GRAY} /></li></Link>
+      <Link to="/hangovers"><li className={css(styles.iconLink)}><Man fill={REGENT_GRAY} /></li></Link>
+      <Link to="/semesters"><li className={css(styles.iconLink)}><Calendar fill={REGENT_GRAY} /></li></Link>
+      <Link to="/concerts"><li className={css(styles.iconLink)}><Loudspeaker fill={REGENT_GRAY} /></li></Link>
+      <Link to="/albums"><li className={css(styles.iconLink)}><Cd fill={REGENT_GRAY} /></li></Link>
+      <Link to="/artists"><li className={css(styles.iconLink)}><Headphones fill={REGENT_GRAY} /></li></Link>
+      <Link to="/tags"><li className={css(styles.iconLink)}><Tag fill={REGENT_GRAY} /></li></Link>
     </ul>
   </nav>;
 
@@ -34,8 +32,9 @@ const styles = StyleSheet.create({
     left: 0,
     height: '100%',
     width: `${NAVBAR_WIDTH}px`,
-    background: BERMUDA_GRAY,
+    background: OXFORD_GRAY,
     overflow: 'auto',
+    'padding-top': `${NAVBAR_WIDTH}px`,
   },
   iconLink: {
     cursor: 'pointer',
@@ -46,9 +45,5 @@ const styles = StyleSheet.create({
     height: '24px',
   }
 });
-
-NavBar.propTypes = {
-  handleHamburger: PropTypes.func.isRequired,
-};
 
 export default NavBar;

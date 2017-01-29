@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite';
 import Dropzone from 'react-dropzone';
 import _Render from './_Render';
-import { BERMUDA_GRAY } from '../../StyleConstants';
+import { REGENT_GRAY } from '../../StyleConstants';
 
 const _RenderDropzone = (props) => {
   const hasFile = props.input.value;
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     color: '#000',
   },
   removeButton: {
-    color: BERMUDA_GRAY,
+    color: REGENT_GRAY,
     height: '20px',
     'line-height': '20px',
     'margin-left': '6px',

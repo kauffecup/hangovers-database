@@ -60,8 +60,8 @@ const styles = StyleSheet.create({
   },
   addButton: {
     position: 'fixed',
-    bottom: '10px',
-    right: '10px',
+    top: '21px',
+    right: `${PADDING_UNIT}px`,
   },
 });
 

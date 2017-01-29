@@ -11,7 +11,7 @@ body {
 body, h1, h2, h3, h4, h5, h6 {
   font-size-adjust: 0.5;
   margin: 0;
-  color: #45596B;
+  color: #333A4C;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -21,6 +21,13 @@ h1, h2, h3, h4, h5, h6 {
 body {
   font-family: 'Lato', sans-serif;
   font-weight: lighter;
+}
+
+a:visited, a:link {
+  color: #333A4C;
+}
+a:hover, a:active {
+  color: #58ACD6;
 }
 
 /* Body Content */

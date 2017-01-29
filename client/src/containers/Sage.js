@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, css } from 'aphrodite';
 import { closeBanner, initializeForms, toggleNavBar } from '../actions';
-import { CATSKILL_WHITE, NAVBAR_WIDTH } from '../StyleConstants';
+import { BLACK_SQUEEZE, NAVBAR_WIDTH } from '../StyleConstants';
 import Header from '../components/Header';
 import NavBar from '../components/NavBar';
 import Banner from '../components/Banner';
@@ -32,7 +32,7 @@ class Sage extends Component {
 
 const styles = StyleSheet.create({
   sage: {
-    background: CATSKILL_WHITE,
+    background: BLACK_SQUEEZE,
     height: '100%',
     width: '100%',
     position: 'absolute',

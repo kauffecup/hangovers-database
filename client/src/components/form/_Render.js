@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, css } from 'aphrodite';
-import { FROLY, BERMUDA_GRAY } from '../../StyleConstants';
+import { FROLY, REGENT_GRAY } from '../../StyleConstants';
 
 const _Render = Component => (props) => {
   const { label, name, styles: propStyles, meta: { touched, error } } = props; // eslint-disable-line
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     width: '200px',
     'text-align': 'right',
     'margin-right': '10px',
-    color: BERMUDA_GRAY,
+    color: REGENT_GRAY,
   },
   component: {
     flex: '1 1px',

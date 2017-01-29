@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite';
-import { ATLANTIS, PEPPERMINT, BRIGHT_TURQUOISE, FROLY } from '../StyleConstants';
+import { SHAKESPEARE, FROLY } from '../StyleConstants';
 
 const Button = ({ type, handleClick, text, simple, success, error }) =>
   <button
@@ -18,7 +18,7 @@ const Button = ({ type, handleClick, text, simple, success, error }) =>
 
 const styles = StyleSheet.create({
   button: {
-    background: BRIGHT_TURQUOISE,
+    background: SHAKESPEARE,
     color: '#fff',
     padding: '0 16px',
     'text-transform': 'uppercase',
@@ -33,10 +33,6 @@ const styles = StyleSheet.create({
     'min-width': '64px',
     'border-radius': '2px',
   },
-  success: {
-    background: PEPPERMINT,
-    color: ATLANTIS,
-  },
   error: {
     background: FROLY,
   },
@@ -46,7 +42,6 @@ Button.propTypes = {
   type: PropTypes.string,
   handleClick: PropTypes.func,
   text: PropTypes.string,
-  simple: PropTypes.bool,
   success: PropTypes.bool,
   error: PropTypes.bool,
 };

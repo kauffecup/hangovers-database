@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite';
-import { SHAKESPEARE, FROLY } from '../StyleConstants';
+import { SHAKESPEARE, FROLY, PEPPERMINT, ATLANTIS } from '../StyleConstants';
 
 const Button = ({ type, handleClick, text, simple, success, error }) =>
   <button
@@ -35,6 +35,10 @@ const styles = StyleSheet.create({
   },
   error: {
     background: FROLY,
+  },
+  success: {
+    background: PEPPERMINT,
+    color: ATLANTIS,
   },
 });
 

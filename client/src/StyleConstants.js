@@ -14,3 +14,8 @@ export const ATLANTIS = '#A0D045';
 export const PADDING_UNIT = 20;
 export const NAVBAR_WIDTH = 80;
 export const LIST_ITEM_HEIGHT = 30;
+
+// wrap a style object in a mediaquery for tiny things
+export const mobilize = styleObj => ({
+  '@media (max-device-width: 750px)': styleObj,
+});

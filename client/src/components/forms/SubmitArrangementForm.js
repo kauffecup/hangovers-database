@@ -9,7 +9,7 @@ import RenderBinary from '../form/RenderBinary';
 import RenderSelect from '../form/RenderSelect';
 import RenderAsync from '../form/RenderAsync';
 import RenderDropzone from '../form/RenderDropzone';
-import { REGENT_GRAY, PADDING_UNIT } from '../../StyleConstants';
+import { REGENT_GRAY, PADDING_UNIT, mobilize } from '../../StyleConstants';
 import {
   searchHangovers,
   searchArtists,
@@ -86,12 +86,22 @@ const SubmitArrangementForm = ({ app, editName, name, handleFileRemove, arranger
 };
 
 const styles = StyleSheet.create({
-  categoryLabel: {
+  categoryLabel: Object.assign({
     color: REGENT_GRAY,
     'margin-left': `${PADDING_UNIT}px`,
-  },
-  row: { display: 'flex' },
-  rowChild: { flex: 1 },
+  }, mobilize({
+    'margin-left': 0,
+  })),
+  row: Object.assign({
+    display: 'flex',
+  }, mobilize({
+    'flex-wrap': 'wrap',
+  })),
+  rowChild: Object.assign({
+    flex: 1,
+  }, mobilize({
+    flex: '1 100%',
+  })),
 });
 
 SubmitArrangementForm.propTypes = {

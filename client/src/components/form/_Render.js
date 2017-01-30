@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, css } from 'aphrodite';
-import { FROLY, REGENT_GRAY } from '../../StyleConstants';
+import { FROLY, REGENT_GRAY, mobilize } from '../../StyleConstants';
 
 const _Render = Component => (props) => {
   const { label, name, styles: propStyles, meta: { touched, error } } = props; // eslint-disable-line
@@ -20,15 +20,19 @@ const styles = StyleSheet.create({
     padding: '5px',
     'flex-wrap': 'wrap',
   },
-  label: {
+  label: Object.assign({
     width: '200px',
     'text-align': 'right',
     'margin-right': '10px',
     color: REGENT_GRAY,
-  },
-  component: {
+  }, mobilize({
+    'text-align': 'left',
+  })),
+  component: Object.assign({
     flex: '1 1px',
-  },
+  }, mobilize({
+    flex: '1 100%',
+  })),
   error: {
     flex: '1 100%',
     color: FROLY,

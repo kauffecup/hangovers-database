@@ -18,6 +18,7 @@ const styles = StyleSheet.create({
     'overflow-y': 'auto',
     padding: `${PADDING_UNIT}px`,
     position: 'relative',
+    '-webkit-overflow-scrolling': 'touch',
   },
 });
 

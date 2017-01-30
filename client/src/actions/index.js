@@ -268,7 +268,7 @@ export function editArrangement(values) {
       .then((json) => {
         // on success we show a happy message and head back to the home page
         dispatch(setBanner('Successfully edited arrangement', BANNER_SUCCESS));
-        dispatch(push(`arrangement/${values._id}`));
+        dispatch(push(`arrangements/${values._id}`));
         dispatch(reset(EDIT_ARRANGEMENT_FORM));
         return json;
       }).catch((e) => {

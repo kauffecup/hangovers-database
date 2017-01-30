@@ -8,7 +8,7 @@ import SubmitTagForm from '../../components/forms/SubmitTagForm';
 
 const AddTag = ({ dispatch, handleSubmit }) =>
   <Add
-    title={name}
+    title="Add Tag"
     handleSubmit={handleSubmit(values => dispatch(addTag(adaptTagSubmit(values))))}
   >
     <SubmitTagForm editName />

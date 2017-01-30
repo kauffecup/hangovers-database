@@ -10,7 +10,7 @@ const Tag = ({ dispatch, id, tag, loading }) =>
   <Full
     title={tagFormatter(tag)}
     load={() => dispatch(getTag(id))}
-    path={`/edit/tag/${id}`}
+    path={`tags/edit/${id}`}
     loading={loading}
   >
     <Card title="Arrangements">

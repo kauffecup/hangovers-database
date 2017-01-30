@@ -10,7 +10,7 @@ const Artist = ({ dispatch, id, artist, loading }) =>
   <Full
     title={artistFormatter(artist)}
     load={() => dispatch(getArtist(id))}
-    path={`/edit/artist/${id}`}
+    path={`artists/edit/${id}`}
     loading={loading}
   >
     <Card title="Arrangements">

@@ -40,42 +40,43 @@ const App = ({ history }) =>
   <Router history={history}>
     <Route path="/" component={Sage}>
       <IndexRoute component={Arrangements} />
-      <Route path="arrangement/:id" component={Arrangement} />
-      <Route path="edit/arrangement/:id" component={EditArrangement} />
-      <Route path="submit/arrangement" component={AddArrangement} />
+      <Route path="arrangements" component={Arrangements} />
+      <Route path="arrangements/submit" component={AddArrangement} />
+      <Route path="arrangements/edit/:id" component={EditArrangement} />
+      <Route path="arrangements/:id" component={Arrangement} />
 
       <Route path="albums" component={Albums} />
+      <Route path="albums/submit" component={AddAlbum} />
+      <Route path="albums/edit/:id" component={EditAlbum} />
       <Route path="albums/:id" component={Album} />
-      <Route path="edit/album/:id" component={EditAlbum} />
-      <Route path="submit/album" component={AddAlbum} />
 
       <Route path="artists" component={Artists} />
+      <Route path="artists/submit" component={AddArtist} />
+      <Route path="artists/edit/:id" component={EditArtist} />
       <Route path="artists/:id" component={Artist} />
-      <Route path="edit/artist/:id" component={EditArtist} />
-      <Route path="submit/artist" component={AddArtist} />
 
       <Route path="concerts" component={Concerts} />
+      <Route path="concerts/submit" component={AddConcert} />
+      <Route path="concerts/edit/:id" component={EditConcert} />
       <Route path="concerts/:id" component={Concert} />
-      <Route path="edit/concert/:id" component={EditConcert} />
-      <Route path="submit/concert" component={AddConcert} />
 
       <Route path="hangovers" component={Hangovers} />
+      <Route path="hangovers/submit" component={AddHangover} />
+      <Route path="hangovers/edit/:id" component={EditHangover} />
       <Route path="hangovers/:id" component={Hangover} />
-      <Route path="edit/hangover/:id" component={EditHangover} />
-      <Route path="submit/hangover" component={AddHangover} />
 
       <Route path="semesters" component={Semesters} />
+      <Route path="semesters/submit" component={AddSemester} />
+      <Route path="semesters/edit/:id" component={EditSemester} />
       <Route path="semesters/:id" component={Semester} />
-      <Route path="edit/semester/:id" component={EditSemester} />
-      <Route path="submit/semester" component={AddSemester} />
 
       <Route path="tags" component={Tags} />
+      <Route path="tags/submit" component={AddTag} />
+      <Route path="tags/edit/:id" component={EditTag} />
       <Route path="tags/:id" component={Tag} />
-      <Route path="edit/tag/:id" component={EditTag} />
-      <Route path="submit/tag" component={AddTag} />
 
+      <Route path="nonhangovers/edit/:id" component={EditNonHangover} />
       <Route path="nonhangovers/:id" component={NonHangover} />
-      <Route path="edit/nonhangover/:id" component={EditNonHangover} />
     </Route>
   </Router>;
 

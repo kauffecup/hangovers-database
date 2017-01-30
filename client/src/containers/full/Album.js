@@ -12,7 +12,7 @@ const Album = ({ dispatch, id, album, loading }) =>
   <Full
     title={albumFormatter(album)}
     load={() => dispatch(getAlbum(id))}
-    path={`/edit/album/${id}`}
+    path={`albums/edit/${id}`}
     loading={loading}
   >
     <SemesterList semesters={album.semester} />

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { StyleSheet, css } from 'aphrodite';
-import { NAVBAR_WIDTH, OXFORD_GRAY, REGENT_GRAY } from '../StyleConstants';
+import { NAVBAR_WIDTH, OXFORD_GRAY, REGENT_GRAY, SHAKESPEARE } from '../StyleConstants';
 import Home from '../icons/home';
 import Music from '../icons/music';
 import Calendar from '../icons/calendar';
@@ -11,17 +11,20 @@ import Cd from '../icons/cd';
 import Headphones from '../icons/headphones';
 import Tag from '../icons/tag';
 
+const NavLink = props =>
+  <li className={css(styles.link)}><Link {...props} className={css(styles.svgLink)} activeClassName={css(styles.active)} /></li>
+
 const NavBar = () =>
   <nav className={css(styles.nav)}>
     <ul>
-      <Link to="/"><li className={css(styles.iconLink)}><Home className={css(styles.svgButton)} /></li></Link>
-      <Link to="/"><li className={css(styles.iconLink)}><Music className={css(styles.svgButton)} /></li></Link>
-      <Link to="/hangovers"><li className={css(styles.iconLink)}><Man className={css(styles.svgButton)} /></li></Link>
-      <Link to="/semesters"><li className={css(styles.iconLink)}><Calendar className={css(styles.svgButton)} /></li></Link>
-      <Link to="/concerts"><li className={css(styles.iconLink)}><Loudspeaker className={css(styles.svgButton)} /></li></Link>
-      <Link to="/albums"><li className={css(styles.iconLink)}><Cd className={css(styles.svgButton)} /></li></Link>
-      <Link to="/artists"><li className={css(styles.iconLink)}><Headphones className={css(styles.svgButton)} /></li></Link>
-      <Link to="/tags"><li className={css(styles.iconLink)}><Tag className={css(styles.svgButton)} /></li></Link>
+      <li className={css(styles.link)}><Link to="/" className={css(styles.svgLink)}><Home className={css(styles.svgButton)} /></Link></li>
+      <NavLink to="/arrangements"><Music className={css(styles.svgButton)} /></NavLink>
+      <NavLink to="/hangovers"><Man className={css(styles.svgButton)} /></NavLink>
+      <NavLink to="/semesters"><Calendar className={css(styles.svgButton)} /></NavLink>
+      <NavLink to="/concerts"><Loudspeaker className={css(styles.svgButton)} /></NavLink>
+      <NavLink to="/albums"><Cd className={css(styles.svgButton)} /></NavLink>
+      <NavLink to="/artists"><Headphones className={css(styles.svgButton)} /></NavLink>
+      <NavLink to="/tags"><Tag className={css(styles.svgButton)} /></NavLink>
     </ul>
   </nav>;
 
@@ -37,13 +40,22 @@ const styles = StyleSheet.create({
     'padding-top': `${NAVBAR_WIDTH}px`,
     '-webkit-overflow-scrolling': 'touch',
   },
-  iconLink: {
+  link: {
     cursor: 'pointer',
     padding: `${(NAVBAR_WIDTH - 24) / 2}px`,
   },
+  active: {
+    fill: '#fff',
+  },
+  svgLink: {
+    fill: REGENT_GRAY,
+    position: 'relative',
+    ':hover': {
+      fill: '#fff',
+    },
+  },
   svgButton: {
     width: '100%',
-    fill: REGENT_GRAY,
   },
 });
 

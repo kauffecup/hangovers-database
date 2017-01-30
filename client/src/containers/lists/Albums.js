@@ -8,7 +8,7 @@ const Albums = ({ albums }) =>
   <List
     list={albums}
     ChildComponent={rowWithSemester(AlbumLink)}
-    addPath="submit/album"
+    addPath="albums/submit"
     addType="album"
   />;
 

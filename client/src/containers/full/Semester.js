@@ -13,7 +13,7 @@ const Semester = ({ dispatch, id, semester, loading }) =>
   <Full
     title={semesterFormatter(semester)}
     load={() => dispatch(getSemester(id))}
-    path={`/edit/semester/${id}`}
+    path={`semesters/edit/${id}`}
     loading={loading}
   >
     <HangoverList title="MD" hangovers={semester.md} />

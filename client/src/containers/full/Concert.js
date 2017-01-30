@@ -12,7 +12,7 @@ const Concert = ({ dispatch, id, concert, loading }) =>
   <Full
     title={concertFormatter(concert)}
     load={() => dispatch(getConcert(id))}
-    path={`/edit/concert/${id}`}
+    path={`concerts/edit/${id}`}
     loading={loading}
   >
     <SemesterList semesters={concert.semester} />

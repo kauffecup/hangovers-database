@@ -167,13 +167,9 @@ backwards in time. It also logs all the state changes.
 
 Cloudant docs [here](https://docs.cloudant.com/).
 
-To hook up to a cloudant backend, simply fill out the username and password in
-`config/cloudant.json`. If git is picking up changes in this file, which'd be
-annoying to me, simply:
-
-```sh
-git update-index --assume-unchanged config/cloudant.json
-```
+To hook up to cloudant and backblaze, simply fill out the environment variables
+listed in `config/.env.example` in a new file `config/.env` (git ignored for
+obvious reasons).
 
 ## Deploying to Bluemix
 

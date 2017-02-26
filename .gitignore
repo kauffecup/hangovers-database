@@ -1,7 +1,11 @@
 node_modules
 client/node_modules
+
+config/.env
+
 coverage
+
 client/build
 public/*.css
+
 *.log
-config/cloudant.json

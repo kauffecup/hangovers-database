@@ -1,9 +1,12 @@
+// configure environment variables first
+const path = require('path');
+require('dotenv').config({ path: path.resolve(__dirname, '../config/.env') });
+// module imports
 const Promise = require('bluebird');
 const express = require('express');
 const bodyParser = require('body-parser');
 const logger = require('morgan');
 const multer = require('multer');
-const path = require('path');
 const cloudantConfig = require('../config/cloudantConfig');
 const SageDB = require('./SageDB');
 

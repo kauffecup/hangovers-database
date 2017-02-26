@@ -1,6 +1,9 @@
+// configure environment variables first
+const path = require('path');
+require('dotenv').config({ path: path.resolve(__dirname, '../../config/.env') });
+// module imports
 const Promise = require('bluebird');
-const SageDB = require('../SageDB');
-const config = require('../../config/cloudant.json');
+const sageDB = require('../sageDB');
 const semesters = require('./semesters.json');
 const hangovers = require('./hangovers.json');
 const arrangementTypes = require('./arrangementTypes.json');
@@ -22,15 +25,13 @@ const pres = require('./relationships/Presidents.json');
 const grad = require('./relationships/hangoversGraduated.json');
 const concertMDs = require('./relationships/concertMDs.json');
 
-const sageDB = new SageDB(config);
-
 // limit the number of promises we have out at a given time. helpful when
 // writing hundreds of documents to the database
 const CONCURRENCY = 3;
 const opts = { concurrency: CONCURRENCY };
 
 // first we add our design docs
-sageDB.initialize(config)
+sageDB.initialize()
   .then(() => console.log('inserting/updating design documents'))
   .then(() => sageDB._upsert(designFull))
   .then(() => sageDB._upsert(designTypes))

@@ -7,14 +7,12 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const logger = require('morgan');
 const multer = require('multer');
-const cloudantConfig = require('../config/cloudantConfig');
-const SageDB = require('./SageDB');
+const sageDB = require('./sageDB');
 
 const port = process.env.PORT || 3001;
 
 // configure the express server
 const app = express();
-const sageDB = new SageDB(cloudantConfig);
 
 // configure file uploader
 const storage = multer.memoryStorage();

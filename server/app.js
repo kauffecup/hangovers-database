@@ -8,6 +8,7 @@ const bodyParser = require('body-parser');
 const logger = require('morgan');
 const multer = require('multer');
 const sageDB = require('./sageDB');
+const backblaze = require('./backblaze');
 
 const port = process.env.PORT || 3001;
 
@@ -15,8 +16,7 @@ const port = process.env.PORT || 3001;
 const app = express();
 
 // configure file uploader
-const storage = multer.memoryStorage();
-const upload = multer({ storage });
+const upload = multer({ dest: 'tmp' });
 
 app.set('port', port);
 app.use(logger('dev'));
@@ -110,8 +110,12 @@ app.post('/api/arrangementsubmit', upload.fields([
   { name: 'finale', maxCount: 1 },
   { name: 'recording', maxCount: 1 },
 ]), ({ body, files }, res) => {
-  sageDB.upsertArrangement(body, files)
-    .then(() => res.json({}))
+  const adaptedFiles = backblaze.adaptFiles(files, body.name);
+  Promise.join(
+    backblaze.uploadFiles(adaptedFiles),
+    sageDB.upsertArrangement(body, adaptedFiles),
+    (files, arrangement) => {}
+  ).then(() => res.json({}))
     .catch(e => res.status(500).json(e));
 });
 

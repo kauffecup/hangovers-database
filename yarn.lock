@@ -161,6 +161,12 @@ async@2.1.2:
   dependencies:
     lodash "^4.14.0"
 
+async@latest:
+  version "2.1.5"
+  resolved "https://registry.yarnpkg.com/async/-/async-2.1.5.tgz#e587c68580994ac67fc56ff86d3ac56bdbe810bc"
+  dependencies:
+    lodash "^4.14.0"
+
 asynckit@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/asynckit/-/asynckit-0.4.0.tgz#c79ed97f7f34cb8f2ba1bc9790bcc366474b4b79"
@@ -1820,6 +1826,14 @@ negotiator@0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.1.tgz#2b327184e8992101177b28563fb5e7102acd0ca9"
 
+node-backblaze-b2:
+  version "1.0.7-c"
+  resolved "https://registry.yarnpkg.com/node-backblaze-b2/-/node-backblaze-b2-1.0.7-c.tgz#681f23b7407c035a57ffaed19fb823f511c1cd6a"
+  dependencies:
+    async latest
+    request latest
+    sha1-file latest
+
 node-pre-gyp@^0.6.29:
   version "0.6.32"
   resolved "https://registry.yarnpkg.com/node-pre-gyp/-/node-pre-gyp-0.6.32.tgz#fc452b376e7319b3d255f5f34853ef6fd8fe1fd5"
@@ -2217,7 +2231,7 @@ repeat-string@^1.5.0, repeat-string@^1.5.2:
   version "1.6.1"
   resolved "https://registry.yarnpkg.com/repeat-string/-/repeat-string-1.6.1.tgz#8dcae470e1c88abc2d600fff4a776286da75e637"
 
-request@^2.76.0, request@^2.79.0:
+request@^2.76.0, request@^2.79.0, request@latest:
   version "2.79.0"
   resolved "https://registry.yarnpkg.com/request/-/request-2.79.0.tgz#4dfe5bf6be8b8cdc37fcf93e04b65577722710de"
   dependencies:
@@ -2392,6 +2406,10 @@ set-immediate-shim@^1.0.1:
 setprototypeof@1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/setprototypeof/-/setprototypeof-1.0.2.tgz#81a552141ec104b88e89ce383103ad5c66564d08"
+
+sha1-file@latest:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/sha1-file/-/sha1-file-1.0.0.tgz#ed0c1463e9d3346dacf58904ddb3b99d25577075"
 
 shelljs@^0.7.5:
   version "0.7.6"

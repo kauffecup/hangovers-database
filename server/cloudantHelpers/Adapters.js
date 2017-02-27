@@ -1,4 +1,3 @@
-const mime = require('mime-types');
 const idgen = require('./IDGenerators');
 const types = require('./DBTypes');
 const {
@@ -77,36 +76,9 @@ const multiRelationshipNonHangoverFields = [
 ];
 
 /**
-* Adapt a file into a cloudant friendly file
-*/
-const adaptFile = (data, arrangementName, contentType, dot) => ({
-  name: `${arrangementName.toLowerCase().replace(/\s/g, '_')}.${dot}`,
-  content_type: contentType,
-  data,
-});
-const fileAdapt = (f, name, dot) => adaptFile(f.buffer, name, f.mimetype, dot);
-
-/**
- * Adapt a files object with pdf/mus/recording keys into cloudant friendly files
- */
-const adaptFiles = (files, name) => {
-  const returnFiles = [];
-  if (files.pdf && files.pdf.length) {
-    returnFiles.push(fileAdapt(files.pdf[0], name, 'pdf'));
-  }
-  if (files.finale && files.finale.length) {
-    returnFiles.push(fileAdapt(files.finale[0], name, 'mus'));
-  }
-  if (files.recording && files.recording.length) {
-    returnFiles.push(fileAdapt(files.recording[0], name, mime.extension(files.recording[0].mimetype)));
-  }
-  return returnFiles;
-};
-
-/**
  * Take an arrangement obejct and make it cloudant friendly
  */
-const adaptArrangement = (arrangement, files = []) => {
+const adaptArrangement = (arrangement, files = {}) => {
   const toUpload = Object.assign({}, arrangement);
   const arrID = idgen.getArrangementID(toUpload);
 
@@ -124,27 +96,17 @@ const adaptArrangement = (arrangement, files = []) => {
       toUpload[arrayField] = [].concat(toUpload[arrayField]);
     }
   }
-  // if these fields are in the arrangement object and not the files object it
-  // means we're editing and they are unchanged
+  // file time!
   for (const fileField of fileFields) {
-    delete toUpload[fileField];
-  }
-
-  // file time! parse the _attachments object. if we're going to be uploading
-  // a new file of that name, or if the delete identifier is specified, remove
-  // that file object from _attachments so that it is removed from cloudant
-  if (toUpload._attachments) {
-    try {
-      toUpload._attachments = JSON.parse(toUpload._attachments);
-      for (const { name } of files) {
-        delete toUpload._attachments[name];
-      }
-      for (const key of Object.keys(toUpload._attachments)) {
-        if (toUpload._attachments[key] === DELETE_IDENTIFIER) {
-          delete toUpload._attachments[key];
-        }
-      }
-    } catch (e) { console.error(e); }
+    if (toUpload[fileField] === DELETE_IDENTIFIER) {
+      delete toUpload[fileField]; // TODO this isn't going to work maybe
+    };
+    for (const file of Object.keys(files)) {
+      toUpload[file] = {
+        fileName: files[file].name,
+        bucketName: files[file].bucketName,
+      };
+    }
   }
   // in these fields we allow the user to define new objects. if that's what's
   // going down, strip the new identifier and return a new object with a name field
@@ -270,8 +232,6 @@ const adaptRelationships = (myDoc, id, myRelationshipField, multiFields = [], si
   return relationships;
 };
 
-module.exports.adaptFile = adaptFile;
-module.exports.adaptFiles = adaptFiles;
 module.exports.adaptArrangement = adaptArrangement;
 module.exports.adaptAlbum = adaptAlbum;
 module.exports.adaptArtist = adaptArtist;

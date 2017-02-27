@@ -17,7 +17,7 @@ const AddArrangement = ({ app, handleSubmit, dispatch, arrangerNotAHangover }) =
       editName
       arrangerNotAHangover={arrangerNotAHangover}
       handleFileRemove={(fileField, fileName) => dispatch(deleteAttachment(ADD_ARRANGEMENT_FORM, fileField, fileName))}
-    />;
+    />
   </Add>;
 
 AddArrangement.propTypes = {

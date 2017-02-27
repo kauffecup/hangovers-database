@@ -39,14 +39,16 @@ const addIndex = (index) => _sageDB.indexAsync(index);
  * Getters for retrieving a "full" object and rolling up similar key fields
  * into an array.
  */
-const getFullArrangement = (arrangementID) => _getFullArrayRollup(arrangementID, 'arrangement', ['arrangementType', 'key', 'semesterArranged']);
-const getFullHangover = (hangoverID) => _getFullArrayRollup(hangoverID, 'hangover');
-const getFullSemester = (semesterID) => _getFullArrayRollup(semesterID, 'semester');
-const getFullConcert = (concertID) => _getFullArrayRollup(concertID, 'concert', ['concertType', 'semester']);
-const getFullAlbum = (albumID) => _getFullArrayRollup(albumID, 'album', ['semester']);
-const getFullArtist = (artistID) => _getFullArrayRollup(artistID, 'artist');
-const getFullTag = (tagID) => _getFullArrayRollup(tagID, 'tag');
-const getFullNonHangover = (nonHangoverID) => _getFullArrayRollup(nonHangoverID, 'non_hangover');
+const getFullArrangement = arrangementID => _getFullArrayRollup(arrangementID, 'arrangement', ['arrangementType', 'key', 'semesterArranged']);
+const getFullHangover = hangoverID => _getFullArrayRollup(hangoverID, 'hangover');
+const getFullSemester = semesterID => _getFullArrayRollup(semesterID, 'semester');
+const getFullConcert = concertID => _getFullArrayRollup(concertID, 'concert', ['concertType', 'semester']);
+const getFullAlbum = albumID => _getFullArrayRollup(albumID, 'album', ['semester']);
+const getFullArtist = artistID => _getFullArrayRollup(artistID, 'artist');
+const getFullTag = tagID => _getFullArrayRollup(tagID, 'tag');
+const getFullNonHangover = nonHangoverID => _getFullArrayRollup(nonHangoverID, 'non_hangover');
+const getArrangementFiles = arrangementID =>
+  _sageDB.getAsync(arrangementID).then(({ pdf, recording, finale }) => ({ pdf, recording, finale }));
 
 /**
  * Here we get a document's metadata along with the original docs for any ids
@@ -267,7 +269,7 @@ module.exports = {
   // get full objects
   getFullArrangement,  getFullHangover, getFullSemester, getFullConcert, getFullAlbum, getFullArtist, getFullTag, getFullNonHangover,
   // async checkers
-  arrangementExists,
+  arrangementExists, getArrangementFiles,
   // get list views
   getAlbumFormats, getArrangements, getArrangementTypes, getArtists, getConcertTypes, getGenres, getHangovers, getKeys, getSemesters, getTags, getAlbums, getConcerts,
   // search town

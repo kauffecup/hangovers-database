@@ -26,7 +26,7 @@ DisplayField.propTypes = {
   text: PropTypes.string,
   link: PropTypes.string,
   children: PropTypes.node,
-  download: PropTypes.boolean,
+  download: PropTypes.bool,
 };
 
 export default DisplayField;

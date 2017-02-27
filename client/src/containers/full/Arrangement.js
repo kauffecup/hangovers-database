@@ -36,7 +36,7 @@ const Arrangement = ({ dispatch, id, arrangement, loading }) =>
         title={arrangement.arrangers && arrangement.arrangers.length ? 'and' : 'arranged by'}
         nonHangovers={arrangement.nonHangoverArrangers}
       />
-      <DisplayField text={keyFormatter(arrangement.key)} />
+      <DisplayField text={arrangement.key && keyFormatter(arrangement.key)} />
       <SemesterList title="arranged" semesters={[arrangement.semesterArranged]} />
       <DisplayField text={arrangement.syllables ? 'has syllables' : 'doesn\'t have syllables'} />
       <DisplayField text={arrangementTypeFormatter(arrangement.arrangementType)} />

@@ -105,11 +105,14 @@ app.post('/api/arrangementsubmit', upload.fields([
   { name: 'finale', maxCount: 1 },
   { name: 'recording', maxCount: 1 },
 ]), ({ body, files }, res) => {
-  const adaptedFiles = backblaze.adaptFiles(files, body.name);
+  const { adaptedFiles, deletedFiles } = backblaze.adaptFiles(files, body);
+  console.log('adapted', adaptedFiles);
+  console.log('deleted', deletedFiles);
   Promise.join(
+    sageDB.upsertArrangement(body, adaptedFiles, deletedFiles),
     backblaze.uploadFiles(adaptedFiles),
-    sageDB.upsertArrangement(body, adaptedFiles),
-    (files, arrangement) => {}
+    backblaze.deleteFiles(deletedFiles),
+    () => {}
   ).then(() => res.json({}))
     .catch(e => res.status(500).json(e));
 });

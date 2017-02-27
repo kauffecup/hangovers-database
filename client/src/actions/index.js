@@ -119,8 +119,8 @@ export function toggleNavBar() {
   return { type: TOGGLE_NAVBAR };
 }
 
-export function deleteAttachment(form, fileField, fileName) {
-  return { type: DELETE_ATTACHMENT, form, fileName, fileField };
+export function deleteAttachment(form, fileField, fileName, bucketName) {
+  return { type: DELETE_ATTACHMENT, form, fileName, fileField, bucketName };
 }
 
 /** Helper action for everything that follows this basic format */

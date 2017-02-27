@@ -3,10 +3,8 @@ const types = require('./DBTypes');
 const {
   binaryFields,
   checkFields,
-  fileFields,
   objectArrayFields,
   NEW_IDENTIFIER,
-  DELETE_IDENTIFIER,
 } = require('../../shared/FormConstants');
 
 const multiRelationshipArrangementFields = [
@@ -78,7 +76,7 @@ const multiRelationshipNonHangoverFields = [
 /**
  * Take an arrangement obejct and make it cloudant friendly
  */
-const adaptArrangement = (arrangement, files = {}) => {
+const adaptArrangement = (arrangement, adaptedFiles = {}, deletedFiles = {}) => {
   const toUpload = Object.assign({}, arrangement);
   const arrID = idgen.getArrangementID(toUpload);
 
@@ -97,16 +95,14 @@ const adaptArrangement = (arrangement, files = {}) => {
     }
   }
   // file time!
-  for (const fileField of fileFields) {
-    if (toUpload[fileField] === DELETE_IDENTIFIER) {
-      delete toUpload[fileField]; // TODO this isn't going to work maybe
-    }
-    for (const file of Object.keys(files)) {
-      toUpload[file] = {
-        fileName: files[file].name,
-        bucketName: files[file].bucketName,
-      };
-    }
+  for (const file of Object.keys(adaptedFiles)) {
+    toUpload[file] = {
+      fileName: adaptedFiles[file].name || adaptedFiles[file].fileName,
+      bucketName: adaptedFiles[file].bucketName,
+    };
+  }
+  for (const file of Object.keys(deletedFiles)) {
+    delete toUpload[file];
   }
   // in these fields we allow the user to define new objects. if that's what's
   // going down, strip the new identifier and return a new object with a name field

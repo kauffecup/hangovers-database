@@ -9,7 +9,9 @@ const PDF_BUCKET = 'hangovers-arrangement-pdfs';
 let ARRANGEMENT_BUCKET_ID;
 let RECORDING_BUCKET_ID;
 let PDF_BUCKET_ID;
+let bucketNameToIdMap = {};
 
+/** Configure b2 - authenticate and grab ids for buckets */
 const b2 = Promise.promisifyAll(new backblaze(backblazeConfig));
 b2.authorizeAsync()
   .then(() => b2.listBucketsAsync())
@@ -17,6 +19,9 @@ b2.authorizeAsync()
     ARRANGEMENT_BUCKET_ID = buckets.find(({ bucketName }) => bucketName === ARRANGEMENT_BUCKET).bucketId;
     RECORDING_BUCKET_ID = buckets.find(({ bucketName }) => bucketName === RECORDING_BUCKET).bucketId;
     PDF_BUCKET_ID = buckets.find(({ bucketName }) => bucketName === PDF_BUCKET).bucketId;
+    bucketNameToIdMap[ARRANGEMENT_BUCKET] = ARRANGEMENT_BUCKET_ID;
+    bucketNameToIdMap[RECORDING_BUCKET] = RECORDING_BUCKET_ID;
+    bucketNameToIdMap[PDF_BUCKET] = PDF_BUCKET_ID;
   })
   .then(() => console.log('authenticated to backblaze and configured bucket ids'))
   .catch(e => {
@@ -33,13 +38,13 @@ const downloadFile = (fileName, bucketName, cb) => b2.getFileStream({
 const uploadFiles = (adaptedFiles) => {
   const { pdf, finale, recording } = adaptedFiles;
   const proms = [];
-  if (pdf) {
+  if (pdf && pdf.path) {
     proms.push(uploadPDF(pdf.name, pdf.path, pdf.mimetype));
   }
-  if (finale) {
+  if (finale && finale.path) {
     proms.push(uploadArrangement(finale.name, finale.path, finale.mimetype));
   }
-  if (recording) {
+  if (recording && recording.path) {
     proms.push(uploadRecording(recording.name, recording.path, recording.mimetype));
   }
   return Promise.all(proms);
@@ -57,6 +62,35 @@ const _upload = (fileName, file, contentType, bucketId) => b2.uploadFileAsync({
   retryAttempts: 3,
 });
 
+/** Given the return from adaptFiles, delete all of them */
+const deleteFiles = (deletedFiles) => {
+  const { pdf, finale, recording } = deletedFiles;
+  const proms = [];
+  if (pdf) {
+    proms.push(deleteFile(pdf.fileName, pdf.bucketName));
+  }
+  if (finale) {
+    proms.push(deleteFile(finale.fileName, finale.bucketName));
+  }
+  if (recording) {
+    proms.push(deleteFile(recording.fileName, recording.bucketName));
+  }
+  return Promise.all(proms);
+}
+
+/** Delete all versions of a file */
+const deleteFile = (fileName, bucketName) => b2.listFileVersionsAsync({
+  startFileName: fileName,
+  bucketId: bucketNameToIdMap[bucketName],
+  strict: true,
+}).then(({ files }) => Promise.map(files, ({ fileId }) => {
+  console.log(`deleting ${fileName} version ${fileId}`);
+  return b2.deleteFileAsync({
+    fileId,
+    fileName,
+  });
+}));
+
 /** Adapt a file into a friendly file */
 const adaptFile = (path, mimetype, arrangementName, bucketName, dot) => ({
   name: `${arrangementName.toLowerCase().replace(/\s/g, '_')}.${dot || mime.extension(mimetype)}`,
@@ -67,25 +101,57 @@ const adaptFile = (path, mimetype, arrangementName, bucketName, dot) => ({
 const fileAdapt = (f, name, bucket, dot) => adaptFile(f.path, f.mimetype, name, bucket, dot);
 
 /** Adapt a files object with pdf/mus/recording keys into friendly files */
-const adaptFiles = (files, name) => {
-  const returnFiles = {};
+const adaptFiles = (files, arrangement) => {
+  const name = arrangement.name;
+
+  const deletedFiles = {};
+  const adaptedFiles = {};
+
   if (files.pdf && files.pdf.length) {
-    returnFiles.pdf = fileAdapt(files.pdf[0], name, PDF_BUCKET);
+    adaptedFiles.pdf = fileAdapt(files.pdf[0], name, PDF_BUCKET);
+  } else if (arrangement.pdf) {
+    try {
+      const pdf = JSON.parse(arrangement.pdf);
+      if (pdf.deleted) {
+        deletedFiles.pdf = pdf;
+      } else {
+        adaptedFiles.pdf = pdf;
+      }
+    } catch(e) {}
   }
+
   if (files.finale && files.finale.length) {
-    returnFiles.finale = fileAdapt(files.finale[0], name, ARRANGEMENT_BUCKET, 'mus');
+    adaptedFiles.finale = fileAdapt(files.finale[0], name, ARRANGEMENT_BUCKET, 'mus');
+  } else if (arrangement.finale) {
+    try {
+      const finale = JSON.parse(arrangement.finale);
+      if (finale.deleted) {
+        deletedFiles.finale = finale;
+      } else {
+        adaptedFiles.finale = finale;
+      }
+    } catch(e) {}
   }
+
   if (files.recording && files.recording.length) {
-    returnFiles.recording = fileAdapt(files.recording[0], name, RECORDING_BUCKET);
+    adaptedFiles.recording = fileAdapt(files.recording[0], name, RECORDING_BUCKET);
+  } else if (arrangement.recording) {
+    try {
+      const recording = JSON.parse(arrangement.recording);
+      if (recording.deleted) {
+        deletedFiles.recording = recording;
+      } else {
+        adaptedFiles.recording = recording;
+      }
+    } catch(e) {}
   }
-  return returnFiles;
+
+  return { adaptedFiles, deletedFiles };
 };
 
 module.exports = {
-  uploadArrangement,
-  uploadRecording,
-  uploadPDF,
-  uploadFiles,
   adaptFiles,
+  uploadFiles, uploadArrangement, uploadRecording, uploadPDF,
   downloadFile,
+  deleteFiles, deleteFile,
 };

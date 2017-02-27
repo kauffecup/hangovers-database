@@ -4,7 +4,7 @@ import {
   binaryFields as bs,
   newFields as nfs,
   newArrayFields as nafs,
-  fileField as ffs,
+  fileFields as ffs,
   checkFields as cfs,
   NEW_IDENTIFIER,
 } from '../../../shared/FormConstants';
@@ -15,7 +15,7 @@ const adaptObjectArray = oa => oa && oa.length && oa.map(adaptObject);
 const adaptBinary = b => (b && typeof b.value === 'boolean') ? (b.value ? '1' : '0') : null;
 const adaptNew = n => n && (n.value === n.label ? `${NEW_IDENTIFIER}${n.value}` : n.value); // allows the server to identify a new value
 const adaptNewArray = na => na && na.length && na.map(adaptNew);
-const adaptFile = f => (f && f.inCloudant) ? `${f.name},${f.type}` : f;
+const adaptFile = f => (f && f.fileName && f.bucketName) ? JSON.stringify(f) : f;
 const adaptCheck = c => c ? '1' : '0';
 
 /**
@@ -47,6 +47,7 @@ const adaptSubmit = (values, { objectFields = [], objectArrayFields = [], binary
 
   for (const fileField of fileFields) {
     adaptedValues[fileField] = adaptFile(values[fileField]);
+    console.log(adaptedValues[fileField]);
   }
 
   for (const checkField of checkFields) {

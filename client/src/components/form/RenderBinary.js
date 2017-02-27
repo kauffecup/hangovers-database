@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import RenderSelect from './RenderSelect';
 
 const options = [
@@ -8,9 +8,5 @@ const options = [
 
 const RenderBinary = props =>
   <RenderSelect {...props} options={options} />;
-
-RenderBinary.propTypes = {
-  name: PropTypes.string.isRequired,
-};
 
 export default RenderBinary;

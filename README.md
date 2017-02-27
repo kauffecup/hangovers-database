@@ -34,6 +34,7 @@ welcome to Sage.
   - [bluemix](http://bluemix.net)
   - [cloudant deployment](https://sage.cloudant.com/dashboard.html)
   - [build pipeline](https://hub.jazz.net/pipeline/jdkaufma/hangovers-database)
+  - [backblaze dashboard](https://secure.backblaze.com/b2_buckets.htm)
 
 ## Arrangement Info
 
@@ -163,7 +164,7 @@ awesomeness. In dev mode, the `DevTools` react component loads and renders which
 provides a visual history of all the actions and allows you to go forwards and
 backwards in time. It also logs all the state changes.
 
-## Hooking up to Cloudant Backend
+## Hooking up to Cloudant and Backblaze Backend
 
 Cloudant docs [here](https://docs.cloudant.com/).
 
@@ -184,7 +185,8 @@ npm run build
 cf push sage
 ```
 
-This'll look at `manifest.yml` and deploy this puppy.
+This'll look at `manifest.yml` and deploy this puppy. Make sure the environment
+variables used in .env are set in your Bluemix runtime.
 
 ## Using Build pipeline
 

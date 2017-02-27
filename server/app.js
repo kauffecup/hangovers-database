@@ -7,6 +7,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const logger = require('morgan');
 const multer = require('multer');
+const fs = require('fs');
 const sageDB = require('./sageDB');
 const backblaze = require('./backblaze');
 
@@ -99,21 +100,28 @@ app.get('/api/search/hangovers', ({ query: { hangover } }, res) => search(hangov
 app.get('/api/search/tags', ({ query: { tag } }, res) => search(tag, 'searchTags', res));
 app.get('/api/search/nonhangovers', ({ query: { nonHangover } }, res) => search(nonHangover, 'searchNonHangovers', res));
 
-/** POST: Submit a new arrangement */
+/** POST: Submit a new arrangement: handle file management and db management */
 app.post('/api/arrangementsubmit', upload.fields([
   { name: 'pdf', maxCount: 1 },
   { name: 'finale', maxCount: 1 },
   { name: 'recording', maxCount: 1 },
 ]), ({ body, files }, res) => {
   const { adaptedFiles, deletedFiles } = backblaze.adaptFiles(files, body);
-  console.log('adapted', adaptedFiles);
-  console.log('deleted', deletedFiles);
+  // to add/edit an arrangement need to update cloudant data and backblaze files
   Promise.join(
     sageDB.upsertArrangement(body, adaptedFiles, deletedFiles),
     backblaze.uploadFiles(adaptedFiles),
     backblaze.deleteFiles(deletedFiles),
     () => {}
-  ).then(() => res.json({}))
+  ).then(() => {
+    // once everything is uploaded, remove the temporary files
+    for (const file of Object.keys(adaptedFiles)) {
+      if (adaptedFiles[file].path) {
+        console.log(`removing ${adaptedFiles[file].path}`);
+        fs.unlinkSync(adaptedFiles[file].path);
+      }
+    }
+  }).then(() => res.json({}))
     .catch(e => res.status(500).json(e));
 });
 

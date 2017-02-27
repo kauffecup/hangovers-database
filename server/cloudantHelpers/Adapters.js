@@ -81,9 +81,6 @@ const adaptArrangement = (arrangement, adaptedFiles = {}, deletedFiles = {}) => 
   const arrID = idgen.getArrangementID(toUpload);
 
   // booleans are sent to us as the strings '1' or '0'
-  for (const checkField of checkFields) {
-    console.log(checkField, toUpload[checkField]);
-  }
   for (const field of [...binaryFields, ...checkFields]) {
     toUpload[field] = typeof toUpload[field] === 'string' ? toUpload[field] === '1' : null;
   }

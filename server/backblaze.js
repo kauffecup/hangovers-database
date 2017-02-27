@@ -54,13 +54,16 @@ const uploadFiles = (adaptedFiles) => {
 const uploadArrangement = (name, path, mimetype) => _upload(name, path, mimetype, ARRANGEMENT_BUCKET_ID);
 const uploadRecording = (name, path, mimetype) => _upload(name, path, mimetype, RECORDING_BUCKET_ID);
 const uploadPDF = (name, path, mimetype) => _upload(name, path, mimetype, PDF_BUCKET_ID);
-const _upload = (fileName, file, contentType, bucketId) => b2.uploadFileAsync({
-  bucketId,
-  fileName,
-  file,
-  contentType,
-  retryAttempts: 3,
-});
+const _upload = (fileName, file, contentType, bucketId) => {
+  console.log(`uploading ${fileName} in ${bucketId}`);
+  b2.uploadFileAsync({
+    bucketId,
+    fileName,
+    file,
+    contentType,
+    retryAttempts: 3,
+  });
+};
 
 /** Given the return from adaptFiles, delete all of them */
 const deleteFiles = (deletedFiles) => {

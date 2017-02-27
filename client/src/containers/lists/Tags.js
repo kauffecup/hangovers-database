@@ -11,7 +11,7 @@ const Tags = ({ dispatch, loading, list, totalRows }) =>
     list={list}
     totalRows={totalRows}
     ChildComponent={TagLink}
-    addPath="tags/submit"
+    addPath="/tags/submit"
     addType="tag"
   />;
 

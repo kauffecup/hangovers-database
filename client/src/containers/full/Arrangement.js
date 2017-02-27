@@ -22,7 +22,7 @@ const Arrangement = ({ dispatch, id, arrangement, loading }) =>
   <Full
     title={arrangementFormatter(arrangement)}
     load={() => dispatch(getArrangement(id))}
-    path={`arrangements/edit/${id}`}
+    path={`/arrangements/edit/${id}`}
     loading={loading}
   >
     <Card title="Song">

@@ -51,7 +51,7 @@ export default (values) => {
     errors.youtube = 'Enter a valid YouTube url';
   }
 
-  if (!values.pdf || (values.pdf.bucketName && values.pdf.deleted)) {
+  if (!values.pdf || values.pdf.deleted) {
     errors.pdf = REQUIRED_ERROR;
   } else if (!values.pdf.bucketName && values.pdf.type !== 'application/pdf') {
     errors.pdf = 'PDF must be a... pdf';

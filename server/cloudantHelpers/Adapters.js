@@ -100,7 +100,7 @@ const adaptArrangement = (arrangement, files = {}) => {
   for (const fileField of fileFields) {
     if (toUpload[fileField] === DELETE_IDENTIFIER) {
       delete toUpload[fileField]; // TODO this isn't going to work maybe
-    };
+    }
     for (const file of Object.keys(files)) {
       toUpload[file] = {
         fileName: files[file].name,

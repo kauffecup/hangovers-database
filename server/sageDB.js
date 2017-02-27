@@ -19,7 +19,6 @@ const OPTS = { concurrency: 3 };
 
 const c = cloudant({ account: cloudantConfig.username, password: cloudantConfig.password });
 let _sageDB = Promise.promisifyAll(c.use('sage'));
-const _sageDBAttachment = Promise.promisifyAll(_sageDB.attachment);
 
 const initialize = () => new Promise((resolve, reject) => {
   const c = cloudant({ account: cloudantConfig.username, password: cloudantConfig.password });
@@ -91,9 +90,6 @@ const arrangementExists = (name = '') => new Promise((resolve, reject) =>
     .then(() => resolve(true))
     .catch(e => e.error === 'not_found' ? resolve(false) : reject(e))
 );
-
-/** Get an attachment (file) from the database. Resolves with a buffer. */
-const getArrangementAttachment = (arrangementID, attachmentID) => _sageDBAttachment.getAsync(arrangementID, attachmentID);
 
 /**
  * Getters for all the types defined above. Each method returns a promise that
@@ -270,8 +266,8 @@ module.exports = {
   initialize, addIndex, _upsert,
   // get full objects
   getFullArrangement,  getFullHangover, getFullSemester, getFullConcert, getFullAlbum, getFullArtist, getFullTag, getFullNonHangover,
-  // misc helpers
-  arrangementExists, getArrangementAttachment,
+  // async checkers
+  arrangementExists,
   // get list views
   getAlbumFormats, getArrangements, getArrangementTypes, getArtists, getConcertTypes, getGenres, getHangovers, getKeys, getSemesters, getTags, getAlbums, getConcerts,
   // search town

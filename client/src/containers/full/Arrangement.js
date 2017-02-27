@@ -49,18 +49,30 @@ const Arrangement = ({ dispatch, id, arrangement, loading }) =>
       <HangoverList title="soloist(s)" hangovers={arrangement.soloists} />
     </Card>
     <Card title="Files and Such">
-      {arrangement._attachments ? Object.keys(arrangement._attachments).map(aid =>
-        <div key={aid}><a
-          href={`/api/arrangementfile?${stringify({
-            arrangementID: id,
-            attachmentID: aid,
-            type: arrangement._attachments[aid].content_type,
-          })}`}
-          download
-        >
-          {`download ${aid}`}
-        </a></div>,
-        ) : null}
+      <DisplayField
+        title={`download ${arrangement.pdf && arrangement.pdf.fileName}`}
+        download
+        link={arrangement.pdf ? `/api/file?${stringify({
+          fileName: arrangement.pdf.fileName,
+          bucketName: arrangement.pdf.bucketName,
+        })}` : null}
+      />
+      <DisplayField
+        title={`download ${arrangement.finale && arrangement.finale.fileName}`}
+        download
+        link={arrangement.finale ? `/api/file?${stringify({
+          fileName: arrangement.finale.fileName,
+          bucketName: arrangement.finale.bucketName,
+        })}` : null}
+      />
+      <DisplayField
+        title={`download ${arrangement.recording && arrangement.recording.fileName}`}
+        download
+        link={arrangement.recording ? `/api/file?${stringify({
+          fileName: arrangement.recording.fileName,
+          bucketName: arrangement.recording.bucketName,
+        })}` : null}
+      />
       <DisplayField title="Youtube Link" link={arrangement.youtube} />
       <DisplayField title="Spotify Link (Original Song)" link={arrangement.spotifyOriginalLink} />
       <DisplayField title="Spotify Link (Hangovers Version)" link={arrangement.spotifyHangoverLink} />

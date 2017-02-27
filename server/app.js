@@ -66,16 +66,11 @@ app.get('/api/full/tag', ({ query: { tagID } }, res) => getFull(tagID, 'getFullT
 app.get('/api/full/nonhangover', ({ query: { nonHangoverID } }, res) => getFull(nonHangoverID, 'getFullNonHangover', res));
 
 /** Get a file from the database */
-app.get('/api/arrangementfile', ({ query: { arrangementID, attachmentID, type } }, res) => {
-  sageDB.getArrangementAttachment(arrangementID, attachmentID)
-    .then((buffer) => {
-      res.set({
-        'Content-Disposition': `attachment; filename="${attachmentID}"`,
-        'Content-Type': type,
-      });
-      res.send(buffer);
-    })
-    .catch(e => res.status(500).json(e));
+app.get('/api/file', ({ query: { fileName, bucketName } }, res) => {
+  backblaze.downloadFile(fileName, bucketName, stream => {
+    res.set({ 'Content-Disposition': `attachment; filename="${fileName}"` });
+    stream.pipe(res)
+  });
 });
 
 /** Get a paged list of documents */

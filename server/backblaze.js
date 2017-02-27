@@ -24,6 +24,11 @@ b2.authorizeAsync()
     console.error(e);
   });
 
+const downloadFile = (fileName, bucketName, cb) => b2.getFileStream({
+  fileName,
+  bucketName,
+}, cb);
+
 /** Given the return from adaptFiles, upload all of them */
 const uploadFiles = (adaptedFiles) => {
   const { pdf, finale, recording } = adaptedFiles;
@@ -82,4 +87,5 @@ module.exports = {
   uploadPDF,
   uploadFiles,
   adaptFiles,
+  downloadFile,
 };

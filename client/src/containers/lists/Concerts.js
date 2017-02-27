@@ -8,7 +8,7 @@ const Concerts = ({ concerts }) =>
   <List
     list={concerts}
     ChildComponent={rowWithSemester(ConcertLink)}
-    addPath="concerts/submit"
+    addPath="/concerts/submit"
     addType="concert"
   />;
 

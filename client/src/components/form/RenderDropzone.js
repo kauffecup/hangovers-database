@@ -5,8 +5,9 @@ import _Render from './_Render';
 import { REGENT_GRAY } from '../../StyleConstants';
 
 const _RenderDropzone = (props) => {
-  const hasFile = props.input.value;
-  const text = hasFile ? `To replace ${props.input.value.name}, drop a file here, or click to select one to upload.`
+  const hasFile = props.input.value && !props.input.value.deleted;
+  const fileName = hasFile ? (props.input.value.name || props.input.value.fileName) : null;
+  const text = hasFile ? `To replace ${fileName}, drop a file here, or click to select one to upload.`
     : 'Drop a file here, or click to select one to upload.';
   return (
     <div className={css(styles.dropContainer)}>
@@ -20,10 +21,10 @@ const _RenderDropzone = (props) => {
       >
         <div>{text}</div>
       </Dropzone>
-      {props.input.value ?
+      {hasFile ?
         <div>
-          {props.input.value.name}
-          <button type="button" className={css(styles.removeButton)} onClick={() => props.handleFileRemove(props.input.value.name)}>x</button>
+          {fileName}
+          <button type="button" className={css(styles.removeButton)} onClick={() => props.handleFileRemove(fileName, props.input.value.bucketName)}>x</button>
         </div>
       : null}
     </div>

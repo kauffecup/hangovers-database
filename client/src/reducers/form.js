@@ -1,5 +1,4 @@
 import { reducer as formReducer } from 'redux-form';
-import { DELETE_IDENTIFIER } from '../../../shared/FormConstants';
 import {
   // actions
   DELETE_ATTACHMENT,
@@ -17,10 +16,7 @@ const handleDelete = (state, action, form) => {
   if (action.form === form) {
     return Object.assign({}, state, {
       values: Object.assign({}, state.values, {
-        [action.fileField]: undefined,
-        _attachments: Object.assign({}, state.values._attachments, {
-          [action.fileName]: DELETE_IDENTIFIER,
-        }),
+        [action.fileField]: action.bucketName ? { deleted: true, fileName: action.fileName, bucketName: action.bucketName } : undefined,
       }),
     });
   }

@@ -39,6 +39,10 @@ export default (values) => {
     errors.arrangementType = REQUIRED_ERROR;
   }
 
+  if (!values.key) {
+    errors.key = REQUIRED_ERROR;
+  }
+
   if (!values.syllables) {
     errors.syllables = REQUIRED_ERROR;
   }
@@ -47,13 +51,13 @@ export default (values) => {
     errors.youtube = 'Enter a valid YouTube url';
   }
 
-  if (!values.pdf) {
+  if (!values.pdf || values.pdf.deleted) {
     errors.pdf = REQUIRED_ERROR;
-  } else if (values.pdf.type !== 'application/pdf') {
+  } else if (!values.pdf.bucketName && values.pdf.type !== 'application/pdf') {
     errors.pdf = 'PDF must be a... pdf';
   }
 
-  if (values.recording && values.recording.type.indexOf('audio') === -1) {
+  if (values.recording && !values.recording.bucketName && values.recording.type.indexOf('audio') === -1) {
     errors.recording = 'Recording must be a... recording.';
   }
 

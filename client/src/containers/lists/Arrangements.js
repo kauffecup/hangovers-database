@@ -11,8 +11,8 @@ const Arrangements = ({ dispatch, loading, list, totalRows }) =>
     list={list}
     totalRows={totalRows}
     ChildComponent={ArrangementLink}
-    addPath="arrangements/submit"
-    addType="arrangement"
+    addPath="/arrangements/submit"
+    addType=""
   />;
 
 Arrangements.propTypes = {

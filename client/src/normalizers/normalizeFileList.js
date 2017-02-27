@@ -1,5 +1,5 @@
 const normalizeFileList = (fileList) => {
-  if (!fileList || !fileList.length || fileList.inCloudant) {
+  if (!fileList || !fileList.length) {
     return fileList;
   }
   return fileList[0];

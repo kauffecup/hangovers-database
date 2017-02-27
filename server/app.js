@@ -7,7 +7,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const logger = require('morgan');
 const multer = require('multer');
+const fs = require('fs');
 const sageDB = require('./sageDB');
+const backblaze = require('./backblaze');
 
 const port = process.env.PORT || 3001;
 
@@ -15,8 +17,7 @@ const port = process.env.PORT || 3001;
 const app = express();
 
 // configure file uploader
-const storage = multer.memoryStorage();
-const upload = multer({ storage });
+const upload = multer({ dest: 'tmp' });
 
 app.set('port', port);
 app.use(logger('dev'));
@@ -66,16 +67,11 @@ app.get('/api/full/tag', ({ query: { tagID } }, res) => getFull(tagID, 'getFullT
 app.get('/api/full/nonhangover', ({ query: { nonHangoverID } }, res) => getFull(nonHangoverID, 'getFullNonHangover', res));
 
 /** Get a file from the database */
-app.get('/api/arrangementfile', ({ query: { arrangementID, attachmentID, type } }, res) => {
-  sageDB.getArrangementAttachment(arrangementID, attachmentID)
-    .then((buffer) => {
-      res.set({
-        'Content-Disposition': `attachment; filename="${attachmentID}"`,
-        'Content-Type': type,
-      });
-      res.send(buffer);
-    })
-    .catch(e => res.status(500).json(e));
+app.get('/api/file', ({ query: { fileName, bucketName } }, res) => {
+  backblaze.downloadFile(fileName, bucketName, stream => {
+    res.set({ 'Content-Disposition': `attachment; filename="${fileName}"` });
+    stream.pipe(res)
+  });
 });
 
 /** Get a paged list of documents */
@@ -104,14 +100,28 @@ app.get('/api/search/hangovers', ({ query: { hangover } }, res) => search(hangov
 app.get('/api/search/tags', ({ query: { tag } }, res) => search(tag, 'searchTags', res));
 app.get('/api/search/nonhangovers', ({ query: { nonHangover } }, res) => search(nonHangover, 'searchNonHangovers', res));
 
-/** POST: Submit a new arrangement */
+/** POST: Submit a new arrangement: handle file management and db management */
 app.post('/api/arrangementsubmit', upload.fields([
   { name: 'pdf', maxCount: 1 },
   { name: 'finale', maxCount: 1 },
   { name: 'recording', maxCount: 1 },
 ]), ({ body, files }, res) => {
-  sageDB.upsertArrangement(body, files)
-    .then(() => res.json({}))
+  const { adaptedFiles, deletedFiles } = backblaze.adaptFiles(files, body);
+  // to add/edit an arrangement need to update cloudant data and backblaze files
+  Promise.join(
+    sageDB.upsertArrangement(body, adaptedFiles, deletedFiles),
+    backblaze.uploadFiles(adaptedFiles),
+    backblaze.deleteFiles(deletedFiles),
+    () => {}
+  ).then(() => {
+    // once everything is uploaded, remove the temporary files
+    for (const file of Object.keys(adaptedFiles)) {
+      if (adaptedFiles[file].path) {
+        console.log(`removing ${adaptedFiles[file].path}`);
+        fs.unlinkSync(adaptedFiles[file].path);
+      }
+    }
+  }).then(() => res.json({}))
     .catch(e => res.status(500).json(e));
 });
 
@@ -145,13 +155,20 @@ const destroy = (_id, _rev, deleteMethod, res) =>
 
 /** endpoints for deleting */
 app.delete('/api/destroy/album', ({ query: { _id, _rev } }, res) => destroy(_id, _rev, 'destroyAlbum', res));
-app.delete('/api/destroy/arrangement', ({ query: { _id, _rev } }, res) => destroy(_id, _rev, 'destroyArrangement', res));
 app.delete('/api/destroy/artist', ({ query: { _id, _rev } }, res) => destroy(_id, _rev, 'destroyArtist', res));
 app.delete('/api/destroy/concert', ({ query: { _id, _rev } }, res) => destroy(_id, _rev, 'destroyConcert', res));
 app.delete('/api/destroy/hangover', ({ query: { _id, _rev } }, res) => destroy(_id, _rev, 'destroyHangover', res));
 app.delete('/api/destroy/semester', ({ query: { _id, _rev } }, res) => destroy(_id, _rev, 'destroySemester', res));
 app.delete('/api/destroy/tag', ({ query: { _id, _rev } }, res) => destroy(_id, _rev, 'destroyTag', res));
 app.delete('/api/destroy/nonhangover', ({ query: { _id, _rev } }, res) => destroy(_id, _rev, 'destroyNonHangover', res));
+app.delete('/api/destroy/arrangement', ({ query: { _id, _rev } }, res) => {
+  sageDB.getArrangementFiles(_id).then(files => Promise.join(
+    backblaze.deleteFiles(files),
+    sageDB.destroyArrangement(_id, _rev),
+    () => {}
+  )).then(() => res.json({}))
+    .catch(e => res.status(500).json(e));
+});
 
 /** For everything else, serve the index */
 app.get('*', (req, res) => {

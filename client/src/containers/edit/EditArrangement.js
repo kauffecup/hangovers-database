@@ -25,7 +25,7 @@ const EditArrangement = ({ app, dispatch, handleSubmit, name, id, rev, loading, 
     <SubmitArrangementForm
       app={app}
       arrangerNotAHangover={arrangerNotAHangover}
-      handleFileRemove={(fileField, fileName) => dispatch(deleteAttachment(EDIT_ARRANGEMENT_FORM, fileField, fileName))}
+      handleFileRemove={(fileField, fileName, bucketName) => dispatch(deleteAttachment(EDIT_ARRANGEMENT_FORM, fileField, fileName, bucketName))}
     />
   </Edit>;
 

@@ -119,8 +119,8 @@ export function toggleNavBar() {
   return { type: TOGGLE_NAVBAR };
 }
 
-export function deleteAttachment(form, fileField, fileName) {
-  return { type: DELETE_ATTACHMENT, form, fileName, fileField };
+export function deleteAttachment(form, fileField, fileName, bucketName) {
+  return { type: DELETE_ATTACHMENT, form, fileName, fileField, bucketName };
 }
 
 /** Helper action for everything that follows this basic format */
@@ -182,13 +182,13 @@ const actionDestroy = (_id, _rev, postPush = '/', endpoint, type, form, reInit) 
     });
 
 /** actions for destroying documents */
-export const destroyAlbum = (_id, _rev) => actionDestroy(_id, _rev, 'albums', '/api/destroy/album', 'album', EDIT_ALBUM_FORM, true);
+export const destroyAlbum = (_id, _rev) => actionDestroy(_id, _rev, '/albums', '/api/destroy/album', 'album', EDIT_ALBUM_FORM, true);
 export const destroyArrangement = (_id, _rev) => actionDestroy(_id, _rev, '/', '/api/destroy/arrangement', 'arrangement', EDIT_ARRANGEMENT_FORM);
-export const destroyArtist = (_id, _rev) => actionDestroy(_id, _rev, 'artists', '/api/destroy/artist', 'artist', EDIT_ARTIST_FORM);
-export const destroyConcert = (_id, _rev) => actionDestroy(_id, _rev, 'concerts', '/api/destroy/concert', 'concert', EDIT_CONCERT_FORM, true);
-export const destroyHangover = (_id, _rev) => actionDestroy(_id, _rev, 'hangovers', '/api/destroy/hangover', 'hangover', EDIT_HANGOVER_FORM);
-export const destroySemester = (_id, _rev) => actionDestroy(_id, _rev, 'semesters', '/api/destroy/semester', 'semester', EDIT_SEMESTER_FORM, true);
-export const destroyTag = (_id, _rev) => actionDestroy(_id, _rev, 'tags', '/api/destroy/tag', 'tag', EDIT_TAG_FORM);
+export const destroyArtist = (_id, _rev) => actionDestroy(_id, _rev, '/artists', '/api/destroy/artist', 'artist', EDIT_ARTIST_FORM);
+export const destroyConcert = (_id, _rev) => actionDestroy(_id, _rev, '/concerts', '/api/destroy/concert', 'concert', EDIT_CONCERT_FORM, true);
+export const destroyHangover = (_id, _rev) => actionDestroy(_id, _rev, '/hangovers', '/api/destroy/hangover', 'hangover', EDIT_HANGOVER_FORM);
+export const destroySemester = (_id, _rev) => actionDestroy(_id, _rev, '/semesters', '/api/destroy/semester', 'semester', EDIT_SEMESTER_FORM, true);
+export const destroyTag = (_id, _rev) => actionDestroy(_id, _rev, '/tags', '/api/destroy/tag', 'tag', EDIT_TAG_FORM);
 export const destroyNonHangover = (_id, _rev) => actionDestroy(_id, _rev, '/', '/api/destroy/nonhangover', 'non hangover', EDIT_NON_HANGOVER_FORM);
 
 /** Helper action for workflow of creating db objects, handling forms, and setting banner message */
@@ -212,12 +212,12 @@ const actionAdd = (values, postPush = '/', endpoint, type, form, reInit) => disp
   });
 
   /** Actions for handling edit workflows */
-export const addAlbum = v => actionAdd(v, 'albums', '/api/submit/album', 'album', ADD_ALBUM_FORM, true);
-export const addArtist = v => actionAdd(v, 'artists', '/api/submit/artist', 'artist', ADD_ARTIST_FORM);
-export const addConcert = v => actionAdd(v, 'concerts', '/api/submit/concert', 'concert', ADD_CONCERT_FORM, true);
-export const addHangover = v => actionAdd(v, 'hangovers', '/api/submit/hangover', 'hangover', ADD_HANGOVER_FORM);
-export const addSemester = v => actionAdd(v, 'semesters', '/api/submit/semester', 'semester', ADD_SEMESTER_FORM, true);
-export const addTag = v => actionAdd(v, 'tags', '/api/submit/tag', 'tag', ADD_TAG_FORM);
+export const addAlbum = v => actionAdd(v, '/albums', '/api/submit/album', 'album', ADD_ALBUM_FORM, true);
+export const addArtist = v => actionAdd(v, '/artists', '/api/submit/artist', 'artist', ADD_ARTIST_FORM);
+export const addConcert = v => actionAdd(v, '/concerts', '/api/submit/concert', 'concert', ADD_CONCERT_FORM, true);
+export const addHangover = v => actionAdd(v, '/hangovers', '/api/submit/hangover', 'hangover', ADD_HANGOVER_FORM);
+export const addSemester = v => actionAdd(v, '/semesters', '/api/submit/semester', 'semester', ADD_SEMESTER_FORM, true);
+export const addTag = v => actionAdd(v, '/tags', '/api/submit/tag', 'tag', ADD_TAG_FORM);
 
 /** Helper action for workflow of posting edit data, resetting forms, and setting banner message */
 const actionEdit = (values, postPush = '/', endpoint, type, form) => dispatch =>
@@ -237,13 +237,13 @@ const actionEdit = (values, postPush = '/', endpoint, type, form) => dispatch =>
   });
 
 /** Actions for handling edit workflows */
-export const editAlbum = v => actionEdit(v, `albums/${v._id}`, '/api/submit/album', 'album', EDIT_ALBUM_FORM);
-export const editArtist = v => actionEdit(v, `artists/${v._id}`, '/api/submit/artist', 'artist', EDIT_ARTIST_FORM);
-export const editConcert = v => actionEdit(v, `concerts/${v._id}`, '/api/submit/concert', 'concert', EDIT_CONCERT_FORM);
-export const editHangover = v => actionEdit(v, `hangovers/${v._id}`, '/api/submit/hangover', 'hangover', EDIT_HANGOVER_FORM);
-export const editSemester = v => actionEdit(v, `semesters/${v._id}`, '/api/submit/semester', 'semester', EDIT_SEMESTER_FORM);
-export const editTag = v => actionEdit(v, `tags/${v._id}`, '/api/submit/tag', 'tag', EDIT_TAG_FORM);
-export const editNonHangover = v => actionEdit(v, `nonhangovers/${v._id}`, '/api/submit/nonhangover', 'non hangover', EDIT_NON_HANGOVER_FORM);
+export const editAlbum = v => actionEdit(v, `/albums/${v._id}`, '/api/submit/album', 'album', EDIT_ALBUM_FORM);
+export const editArtist = v => actionEdit(v, `/artists/${v._id}`, '/api/submit/artist', 'artist', EDIT_ARTIST_FORM);
+export const editConcert = v => actionEdit(v, `/concerts/${v._id}`, '/api/submit/concert', 'concert', EDIT_CONCERT_FORM);
+export const editHangover = v => actionEdit(v, `/hangovers/${v._id}`, '/api/submit/hangover', 'hangover', EDIT_HANGOVER_FORM);
+export const editSemester = v => actionEdit(v, `/semesters/${v._id}`, '/api/submit/semester', 'semester', EDIT_SEMESTER_FORM);
+export const editTag = v => actionEdit(v, `/tags/${v._id}`, '/api/submit/tag', 'tag', EDIT_TAG_FORM);
+export const editNonHangover = v => actionEdit(v, `/nonhangovers/${v._id}`, '/api/submit/nonhangover', 'non hangover', EDIT_NON_HANGOVER_FORM);
 
 export function addArrangement(values) {
   return (dispatch) => {
@@ -268,7 +268,7 @@ export function editArrangement(values) {
       .then((json) => {
         // on success we show a happy message and head back to the home page
         dispatch(setBanner('Successfully edited arrangement', BANNER_SUCCESS));
-        dispatch(push(`arrangements/${values._id}`));
+        dispatch(push(`/arrangements/${values._id}`));
         dispatch(reset(EDIT_ARRANGEMENT_FORM));
         return json;
       }).catch((e) => {

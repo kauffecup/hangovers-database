@@ -11,7 +11,7 @@ const Artists = ({ dispatch, loading, list, totalRows }) =>
     list={list}
     totalRows={totalRows}
     ChildComponent={ArtistLink}
-    addPath="artists/submit"
+    addPath="/artists/submit"
     addType="artist"
   />;
 

@@ -32,23 +32,6 @@ export const artistAdapter = (a = {}) => ({
   value: a._id, label: artistFormatter(a),
 });
 
-export const attatchmentAdapter = (a = {}, type = '') => {
-  for (const fileName of Object.keys(a)) {
-    const split = (fileName || '').split('.');
-    if ((split.length && split[split.length - 1] === type) ||
-      (a[fileName].content_type && a[fileName].content_type.indexOf(type) > -1)
-    ) {
-      return {
-        name: fileName,
-        type: a[fileName].content_type,
-        size: a[fileName].length,
-        inCloudant: true,
-      };
-    }
-  }
-  return null;
-};
-
 export const concertFormatter = (c = {}, useSemester) => useSemester ?
   `${c.name} ${semesterFormatter(c.semester)}`.trim() : c.name;
 
@@ -113,11 +96,8 @@ export const fullArrangementAdapter = (a = {}) => Object.assign({}, a, {
   arrangementType: (typeof a.arrangementType !== 'undefined') && arrangementTypeAdapter(a.arrangementType),
   artists: (a.artists || []).map(artistAdapter),
   concerts: (a.concerts || []).map(concertAdapter),
-  finale: attatchmentAdapter(a._attachments, 'mus'),
   genre: (a.genre || []).map(genreAdapter),
   key: (typeof a.key !== 'undefined') && keyAdapter(a.key),
-  recording: attatchmentAdapter(a._attachments, 'audio'),
-  pdf: attatchmentAdapter(a._attachments, 'pdf'),
   soloists: (a.soloists || []).map(hangoverAdapter),
   syllables: syllableAdapter(a.syllables),
   semesterArranged: (typeof a.semesterArranged !== 'undefined') && semesterAdapter(a.semesterArranged),

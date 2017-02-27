@@ -10,7 +10,7 @@ const NonHangover = ({ dispatch, id, nonHangover, loading }) =>
   <Full
     title={nonHangoverFormatter(nonHangover)}
     load={() => dispatch(getNonHangover(id))}
-    path={`nonhangovers/edit/${id}`}
+    path={`/nonhangovers/edit/${id}`}
     loading={loading}
   >
     <Card title="Arrangements">

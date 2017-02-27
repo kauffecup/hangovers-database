@@ -7,7 +7,7 @@ const Semesters = ({ semesters }) =>
   <List
     list={semesters}
     ChildComponent={SemesterLink}
-    addPath="semesters/submit"
+    addPath="/semesters/submit"
     addType="semester"
   />;
 

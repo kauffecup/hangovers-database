@@ -5,7 +5,6 @@ const idgen = require('./cloudantHelpers/IDGenerators');
 const cloudantConfig = require('../config/cloudantConfig');
 const {
   adaptAlbum,
-  adaptFiles,
   adaptArrangement,
   adaptArtist,
   adaptConcert,
@@ -20,8 +19,6 @@ const OPTS = { concurrency: 3 };
 
 const c = cloudant({ account: cloudantConfig.username, password: cloudantConfig.password });
 let _sageDB = Promise.promisifyAll(c.use('sage'));
-const _sageDBMulti = Promise.promisifyAll(_sageDB.multipart);
-const _sageDBAttachment = Promise.promisifyAll(_sageDB.attachment);
 
 const initialize = () => new Promise((resolve, reject) => {
   const c = cloudant({ account: cloudantConfig.username, password: cloudantConfig.password });
@@ -42,14 +39,16 @@ const addIndex = (index) => _sageDB.indexAsync(index);
  * Getters for retrieving a "full" object and rolling up similar key fields
  * into an array.
  */
-const getFullArrangement = (arrangementID) => _getFullArrayRollup(arrangementID, 'arrangement', ['arrangementType', 'key', 'semesterArranged']);
-const getFullHangover = (hangoverID) => _getFullArrayRollup(hangoverID, 'hangover');
-const getFullSemester = (semesterID) => _getFullArrayRollup(semesterID, 'semester');
-const getFullConcert = (concertID) => _getFullArrayRollup(concertID, 'concert', ['concertType', 'semester']);
-const getFullAlbum = (albumID) => _getFullArrayRollup(albumID, 'album', ['semester']);
-const getFullArtist = (artistID) => _getFullArrayRollup(artistID, 'artist');
-const getFullTag = (tagID) => _getFullArrayRollup(tagID, 'tag');
-const getFullNonHangover = (nonHangoverID) => _getFullArrayRollup(nonHangoverID, 'non_hangover');
+const getFullArrangement = arrangementID => _getFullArrayRollup(arrangementID, 'arrangement', ['arrangementType', 'key', 'semesterArranged']);
+const getFullHangover = hangoverID => _getFullArrayRollup(hangoverID, 'hangover');
+const getFullSemester = semesterID => _getFullArrayRollup(semesterID, 'semester');
+const getFullConcert = concertID => _getFullArrayRollup(concertID, 'concert', ['concertType', 'semester']);
+const getFullAlbum = albumID => _getFullArrayRollup(albumID, 'album', ['semester']);
+const getFullArtist = artistID => _getFullArrayRollup(artistID, 'artist');
+const getFullTag = tagID => _getFullArrayRollup(tagID, 'tag');
+const getFullNonHangover = nonHangoverID => _getFullArrayRollup(nonHangoverID, 'non_hangover');
+const getArrangementFiles = arrangementID =>
+  _sageDB.getAsync(arrangementID).then(({ pdf, recording, finale }) => ({ pdf, recording, finale }));
 
 /**
  * Here we get a document's metadata along with the original docs for any ids
@@ -88,14 +87,11 @@ const _getFullArrayRollup = (id, view, flatten = []) => _sageDB.viewAsync('full'
 });
 
 /** Resolves with true if an arrangement exists, false otherwise */
-const arrangementExists = (name = '') =>Promise((resolve, reject) =>
+const arrangementExists = (name = '') => new Promise((resolve, reject) =>
   _sageDB.getAsync(idgen.getArrangementID({ name }))
     .then(() => resolve(true))
     .catch(e => e.error === 'not_found' ? resolve(false) : reject(e))
 );
-
-/** Get an attachment (file) from the database. Resolves with a buffer. */
-const getArrangementAttachment = (arrangementID, attachmentID) => _sageDBAttachment.getAsync(arrangementID, attachmentID);
 
 /**
  * Getters for all the types defined above. Each method returns a promise that
@@ -182,9 +178,8 @@ const upsertHangover = (h) => _upsertWithRelationships(h, adaptHangover, types.H
 const upsertSemester = (s) => _upsertWithRelationships(s, adaptSemester, types.SEMESTER_TYPE, 'semester');
 const upsertTag = (t) => _upsertWithRelationships(t, adaptTag, types.TAG_TYPE, 'tag');
 const upsertNonHangover = (t) => _upsertWithRelationships(t, adaptNonHangover, types.NON_HANGOVER_TYPE, 'nonHangover');
-const upsertArrangement = (arrangement, files = {}) => {
-  const filesToUpload = adaptFiles(files, arrangement.name);
-  const { arrID, toUpload, newArtists = [], newTags = [], newNonHangovers = [], relationships = [] } = adaptArrangement(arrangement, filesToUpload);
+const upsertArrangement = (arrangement, adaptedFiles = {}, deletedFiles = {}) => {
+  const { arrID, toUpload, newArtists = [], newTags = [], newNonHangovers = [], relationships = [] } = adaptArrangement(arrangement, adaptedFiles, deletedFiles);
   console.log('creating new artists, tags, and nonHangovers');
   return Promise.join(
     Promise.map(newArtists, a => upsertArtist(a), OPTS),
@@ -193,9 +188,6 @@ const upsertArrangement = (arrangement, files = {}) => {
     () => {}
   ).then(() => {
     console.log('upserting arrangement doc');
-    if (filesToUpload.length) {
-      return _upsertTypeWithFiles(toUpload, filesToUpload, types.ARRANGEMENT_TYPE, arrID);
-    }
     return _upsertType(toUpload, types.ARRANGEMENT_TYPE, arrID);
   })
   .then(() => console.log('fetching existing relationships'))
@@ -214,9 +206,6 @@ const _upsertWithRelationships = (doc, adapter, type, relationshipField) => {
 /** Format the call to _upsert for the above doc types */
 const _upsertType = (doc, type, _id) => _upsert(Object.assign({}, doc, { _id, type }));
 
-/** Format the call to _upsertWithFiles for the above doc types */
-const _upsertTypeWithFiles = (doc, files, type, _id) => _upsertWithFiles(Object.assign({}, doc, { _id, type }), files, _id);
-
 /** Handle the upserting logic for cloudant */
 const _upsert = (doc) => _sageDB.getAsync(doc._id)
   .then(returnedDoc =>
@@ -225,18 +214,6 @@ const _upsert = (doc) => _sageDB.getAsync(doc._id)
     )
   ).catch(e =>
     e.error === 'not_found' ? _sageDB.insertAsync(doc) : e
-  );
-
-/** Handles upserting logic for docs with files */
-const _upsertWithFiles = (doc, files) => _sageDB.getAsync(doc._id)
-  .then(returnedDoc =>
-    _sageDBMulti.insertAsync(
-      Object.assign({}, doc, { _rev: returnedDoc._rev }),
-      files,
-      doc._id
-    )
-  ).catch(e =>
-    e.error === 'not_found' ? _sageDBMulti.insertAsync(doc, files, doc._id) : e
   );
 
 /** Destroy docs! And their relationships! */
@@ -291,8 +268,8 @@ module.exports = {
   initialize, addIndex, _upsert,
   // get full objects
   getFullArrangement,  getFullHangover, getFullSemester, getFullConcert, getFullAlbum, getFullArtist, getFullTag, getFullNonHangover,
-  // misc helpers
-  arrangementExists, getArrangementAttachment,
+  // async checkers
+  arrangementExists, getArrangementFiles,
   // get list views
   getAlbumFormats, getArrangements, getArrangementTypes, getArtists, getConcertTypes, getGenres, getHangovers, getKeys, getSemesters, getTags, getAlbums, getConcerts,
   // search town

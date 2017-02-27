@@ -69,9 +69,9 @@ const SubmitArrangementForm = ({ app, editName, name, handleFileRemove, arranger
       <Field label="Soloist(s)" name="soloists" component={RenderAsync} loadOptions={searchHangovers} multi />
       <h3 className={css(styles.categoryLabel)}>Files and Such</h3>
       <div className={css(styles.row)}>
-        <Field label="PDF" name="pdf" component={RenderDropzone} normalize={normalizeFileList} styles={styles.rowChild} handleFileRemove={fileName => handleFileRemove('pdf', fileName)} />
-        <Field label="Finale" name="finale" component={RenderDropzone} normalize={normalizeFileList} styles={styles.rowChild} handleFileRemove={fileName => handleFileRemove('finale', fileName)} />
-        <Field label="Recording" name="recording" component={RenderDropzone} normalize={normalizeFileList} styles={styles.rowChild} handleFileRemove={fileName => handleFileRemove('recording', fileName)} />
+        <Field label="PDF" name="pdf" component={RenderDropzone} normalize={normalizeFileList} styles={styles.rowChild} handleFileRemove={(fileName, bucketName) => handleFileRemove('pdf', fileName, bucketName)} />
+        <Field label="Finale" name="finale" component={RenderDropzone} normalize={normalizeFileList} styles={styles.rowChild} handleFileRemove={(fileName, bucketName) => handleFileRemove('finale', fileName, bucketName)} />
+        <Field label="Recording" name="recording" component={RenderDropzone} normalize={normalizeFileList} styles={styles.rowChild} handleFileRemove={(fileName, bucketName) => handleFileRemove('recording', fileName, bucketName)} />
       </div>
       <Field label="Youtube Link (Hangovers Performance)" name="youtube" component={RenderField} type="text" autoComplete="off" />
       <div className={css(styles.row)}>

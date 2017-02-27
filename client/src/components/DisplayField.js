@@ -3,11 +3,11 @@ import { StyleSheet, css } from 'aphrodite';
 import testChildren from '../testChildren';
 import { PADDING_UNIT } from '../StyleConstants';
 
-const DisplayField = ({ title, children, text, link }) => (text || link || testChildren(children)) ?
+const DisplayField = ({ title, children, text, link, download }) => (text || link || testChildren(children)) ?
   <div className={css(styles.displayField)}>
     { title && !link ? <span className={css(styles.title)}>{title}</span> : null }
     { text ? <span>{text}</span> : null }
-    { link ? <a href={link} target="_blank" rel="noopener noreferrer">{title || link}</a> : null }
+    { link ? <a href={link} target="_blank" rel="noopener noreferrer" download={download}>{title || link}</a> : null }
     { children }
   </div> : null;
 
@@ -26,6 +26,7 @@ DisplayField.propTypes = {
   text: PropTypes.string,
   link: PropTypes.string,
   children: PropTypes.node,
+  download: PropTypes.bool,
 };
 
 export default DisplayField;

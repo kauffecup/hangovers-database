@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { StyleSheet, css } from 'aphrodite';
-import { NAVBAR_WIDTH, OXFORD_GRAY, REGENT_GRAY, SHAKESPEARE } from '../StyleConstants';
-import Home from '../icons/home';
+import { NAVBAR_WIDTH, OXFORD_GRAY, REGENT_GRAY } from '../StyleConstants';
 import Music from '../icons/music';
 import Calendar from '../icons/calendar';
 import Man from '../icons/man';
@@ -17,7 +16,6 @@ const NavLink = props =>
 const NavBar = () =>
   <nav className={css(styles.nav)}>
     <ul>
-      <li className={css(styles.link)}><Link to="/" className={css(styles.svgLink)}><Home className={css(styles.svgButton)} /></Link></li>
       <NavLink to="/arrangements"><Music className={css(styles.svgButton)} /></NavLink>
       <NavLink to="/hangovers"><Man className={css(styles.svgButton)} /></NavLink>
       <NavLink to="/semesters"><Calendar className={css(styles.svgButton)} /></NavLink>

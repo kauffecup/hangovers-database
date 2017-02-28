@@ -7,7 +7,7 @@ const DisplayField = ({ title, children, text, link, download }) => (text || lin
   <div className={css(styles.displayField)}>
     { title && !link ? <span className={css(styles.title)}>{title}</span> : null }
     { text ? <span>{text}</span> : null }
-    { link ? <a href={link} target="_blank" rel="noopener noreferrer" download={download}>{title || link}</a> : null }
+    { link ? <a href={link} target={download ? null : "_blank"} rel="noopener noreferrer" download={download}>{title || link}</a> : null }
     { children }
   </div> : null;
 

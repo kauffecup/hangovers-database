@@ -4,7 +4,7 @@ import DisplayField from '../DisplayField';
 const List = ({ title, items = [], Component }) =>
   <DisplayField title={title}>
     <span>{[].concat(items).filter(item => !!item)
-      .map(item => <Component key={item._id} {...item} />)
+      .map(item => <Component {...item} key={item._id} />)
       .reduce((cs, c) => cs === null ? [c] : [...cs, ', ', c], null)
     }</span>
   </DisplayField>;

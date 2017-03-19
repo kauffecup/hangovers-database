@@ -1,43 +1,43 @@
 const types = require('./DBTypes');
 
 module.exports.getArrangementID = arrangement =>
-  `${types.ARRANGEMENT_TYPE}_${arrangement.name.toLowerCase().replace(/\s/g, '_')}`;
+  `${types.ARRANGEMENT_TYPE}_${arrangement.name.toLowerCase().replace(/\s|\//g, '_')}`;
 
 module.exports.getArrangementTypeID = arrangementType =>
-  `${types.ARRANGEMENT_TYPE_TYPE}_${arrangementType.name.toLowerCase().replace(/\s/g, '_')}`;
+  `${types.ARRANGEMENT_TYPE_TYPE}_${arrangementType.name.toLowerCase().replace(/\s|\//g, '_')}`;
 
 module.exports.getHangoverID = hangover =>
-  `${types.HANGOVER_TYPE}_${hangover.lastName.toLowerCase().replace(/\s/g, '_')}_${hangover.firstName.toLowerCase().replace('.', '').replace(/\s/g, '_')}`;
+  `${types.HANGOVER_TYPE}_${hangover.lastName.toLowerCase().replace(/\s|\//g, '_')}_${hangover.firstName.toLowerCase().replace('.', '').replace(/\s|\//g, '_')}`;
 
 module.exports.getSemesterID = semester =>
   `${types.SEMESTER_TYPE}_${semester.year}_${semester.semester_type.toLowerCase()}`;
 
 module.exports.getAlbumID = album =>
-  `${types.ALBUM_TYPE}_${album.name.toLowerCase().replace(/\s/g, '_')}`;
+  `${types.ALBUM_TYPE}_${album.name.toLowerCase().replace(/\s|\//g, '_')}`;
 
 module.exports.getAlbumFormatID = albumFormat =>
-  `${types.ALBUM_FORMAT_TYPE}_${albumFormat.name.toLowerCase().replace(/\s/g, '_')}`;
+  `${types.ALBUM_FORMAT_TYPE}_${albumFormat.name.toLowerCase().replace(/\s|\//g, '_')}`;
 
 module.exports.getConcertID = concert =>
-  `${types.CONCERT_TYPE}_${concert.name.toLowerCase().replace(/\s/g, '_')}`;
+  `${types.CONCERT_TYPE}_${concert.name.toLowerCase().replace(/\s|\//g, '_')}`;
 
 module.exports.getConcertTypeID = concertType =>
-  `${types.CONCERT_TYPE_TYPE}_${concertType.name.toLowerCase().replace(/\s/g, '_')}`;
+  `${types.CONCERT_TYPE_TYPE}_${concertType.name.toLowerCase().replace(/\s|\//g, '_')}`;
 
 module.exports.getGenreID = genre =>
-  `${types.GENRE_TYPE}_${genre.name.toLowerCase().replace(/\s/g, '_')}`;
+  `${types.GENRE_TYPE}_${genre.name.toLowerCase().replace(/\s|\//g, '_')}`;
 
 module.exports.getArtistID = artist =>
-  `${types.ARTIST_TYPE}_${artist.name.toLowerCase().replace(/\s/g, '_')}`;
+  `${types.ARTIST_TYPE}_${artist.name.toLowerCase().replace(/\s|\//g, '_')}`;
 
 module.exports.getKeyID = key =>
-  `${types.KEY_TYPE}_${key.name.toLowerCase().replace(/\s/g, '_')}_${key.tonality.toLowerCase().replace(/\s/g, '_')}`;
+  `${types.KEY_TYPE}_${key.name.toLowerCase().replace(/\s|\//g, '_')}_${key.tonality.toLowerCase().replace(/\s|\//g, '_')}`;
 
 module.exports.getTagID = tag =>
-  `${types.TAG_TYPE}_${tag.name.toLowerCase().replace(/\s/g, '_')}`;
+  `${types.TAG_TYPE}_${tag.name.toLowerCase().replace(/\s|\//g, '_')}`;
 
 module.exports.getNonHangoverID = nonHangover =>
-  `${types.NON_HANGOVER_TYPE}_${nonHangover.name.toLowerCase().replace(/\s/g, '_')}`;
+  `${types.NON_HANGOVER_TYPE}_${nonHangover.name.toLowerCase().replace(/\s|\//g, '_')}`;
 
 
 // relationship IDs

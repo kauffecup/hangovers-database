@@ -29,7 +29,7 @@
     "mime-types": "^2.1.14",
     "morgan": "^1.7.0",
     "multer": "^1.2.0",
-    "node-backblaze-b2": "^1.0.7-c"
+    "node-backblaze-b2": "git+https://github.com/kauffecup/node-b2.git#patch-1"
   },
   "devDependencies": {
     "babel-eslint": "^7.1.1",

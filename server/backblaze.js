@@ -3,6 +3,8 @@ const backblaze = require('node-backblaze-b2');
 const mime = require('mime-types');
 const backblazeConfig = require('../config/backblazeConfig');
 
+const REAUTH_INTERVAL = 60 * 60 * 1000;  // one hour
+
 const ARRANGEMENT_BUCKET = 'hangovers-arrangements';
 const RECORDING_BUCKET = 'hangovers-recordings';
 const PDF_BUCKET = 'hangovers-arrangement-pdfs';
@@ -29,6 +31,29 @@ b2.authorizeAsync()
     console.error(e);
   });
 
+/**
+ * Every hour reauthenticat to backblaze
+ * Note that this is a "temporary" workaround. Ideally, when we get a 401 auth
+ * token expired, we should generate a new token as detailed here:
+ * https://www.backblaze.com/b2/docs/integration_checklist.html
+ * As this will probably involve either finding a new library or writing our own,
+ * gonna hold out on that for the time being.
+ */
+const reauthenticate = () => setTimeout(() => {
+  console.log('reauthenticating to backblaze');
+  b2.authorizeAsync()
+    .then(() => {
+      console.log('successfully reauthenticated to backblaze');
+      reauthenticate();
+    })
+    .catch(e => {
+      console.error('unable to authenticate to backblze');
+      console.error(e);
+    });
+}, REAUTH_INTERVAL);
+reauthenticate();
+
+/** Download a file */
 const downloadFile = (fileName, bucketName, cb) => b2.getFileStream({
   fileName,
   bucketName,

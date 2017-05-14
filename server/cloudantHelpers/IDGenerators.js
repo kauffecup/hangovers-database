@@ -1,43 +1,48 @@
 const types = require('./DBTypes');
 
+/** Helper that replaces spaces and slashes with _ and removes all other non alphanumeric characters */
+const normalizeString = string =>
+  string.toLowerCase().replace(/\s|\//g, '_').replace(/[^_a-z0-9+]/g, '');
+module.exports.normalizeString = normalizeString;
+
 module.exports.getArrangementID = arrangement =>
-  `${types.ARRANGEMENT_TYPE}_${arrangement.name.toLowerCase().replace(/\s|\//g, '_').replace(/['".]/g, '')}`;
+  `${types.ARRANGEMENT_TYPE}_${normalizeString(arrangement.name)}`;
 
 module.exports.getArrangementTypeID = arrangementType =>
-  `${types.ARRANGEMENT_TYPE_TYPE}_${arrangementType.name.toLowerCase().replace(/\s|\//g, '_').replace(/['".]/g, '')}`;
+  `${types.ARRANGEMENT_TYPE_TYPE}_${normalizeString(arrangementType.name)}`;
 
 module.exports.getHangoverID = hangover =>
-  `${types.HANGOVER_TYPE}_${hangover.lastName.toLowerCase().replace(/\s|\//g, '_').replace(/['".]/g, '')}_${hangover.firstName.toLowerCase().replace(/\s|\//g, '_').replace(/['".]/g, '')}`;
+  `${types.HANGOVER_TYPE}_${normalizeString(hangover.lastName)}_${normalizeString(hangover.firstName)}`;
 
 module.exports.getSemesterID = semester =>
   `${types.SEMESTER_TYPE}_${semester.year}_${semester.semester_type.toLowerCase()}`;
 
 module.exports.getAlbumID = album =>
-  `${types.ALBUM_TYPE}_${album.name.toLowerCase().replace(/\s|\//g, '_').replace(/['".]/g, '')}`;
+  `${types.ALBUM_TYPE}_${normalizeString(album.name)}`;
 
 module.exports.getAlbumFormatID = albumFormat =>
-  `${types.ALBUM_FORMAT_TYPE}_${albumFormat.name.toLowerCase().replace(/\s|\//g, '_').replace(/['".]/g, '')}`;
+  `${types.ALBUM_FORMAT_TYPE}_${normalizeString(albumFormat.name)}`;
 
 module.exports.getConcertID = concert =>
-  `${types.CONCERT_TYPE}_${concert.name.toLowerCase().replace(/\s|\//g, '_').replace(/['".]/g, '')}`;
+  `${types.CONCERT_TYPE}_${normalizeString(concert.name)}`;
 
 module.exports.getConcertTypeID = concertType =>
-  `${types.CONCERT_TYPE_TYPE}_${concertType.name.toLowerCase().replace(/\s|\//g, '_').replace(/['".]/g, '')}`;
+  `${types.CONCERT_TYPE_TYPE}_${normalizeString(concertType.name)}`;
 
 module.exports.getGenreID = genre =>
-  `${types.GENRE_TYPE}_${genre.name.toLowerCase().replace(/\s|\//g, '_').replace(/['".]/g, '')}`;
+  `${types.GENRE_TYPE}_${normalizeString(genre.name)}`;
 
 module.exports.getArtistID = artist =>
-  `${types.ARTIST_TYPE}_${artist.name.toLowerCase().replace(/\s|\//g, '_').replace(/['".]/g, '')}`;
+  `${types.ARTIST_TYPE}_${normalizeString(artist.name)}`;
 
 module.exports.getKeyID = key =>
-  `${types.KEY_TYPE}_${key.name.toLowerCase().replace(/\s|\//g, '_').replace(/['".]/g, '')}_${key.tonality.toLowerCase().replace(/\s|\//g, '_').replace(/['".]/g, '')}`;
+  `${types.KEY_TYPE}_${normalizeString(key.name)}_${normalizeString(key.tonality)}`;
 
 module.exports.getTagID = tag =>
-  `${types.TAG_TYPE}_${tag.name.toLowerCase().replace(/\s|\//g, '_').replace(/['".]/g, '')}`;
+  `${types.TAG_TYPE}_${normalizeString(tag.name)}`;
 
 module.exports.getNonHangoverID = nonHangover =>
-  `${types.NON_HANGOVER_TYPE}_${nonHangover.name.toLowerCase().replace(/\s|\//g, '_').replace(/['".]/g, '')}`;
+  `${types.NON_HANGOVER_TYPE}_${normalizeString(nonHangover.name)}`;
 
 
 // relationship IDs

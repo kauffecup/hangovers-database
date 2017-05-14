@@ -2,6 +2,7 @@ const Promise = require('bluebird');
 const backblaze = require('node-backblaze-b2');
 const mime = require('mime-types');
 const backblazeConfig = require('../config/backblazeConfig');
+const { normalizeString } = require('./cloudantHelpers/IDGenerators');
 
 const REAUTH_INTERVAL = 60 * 60 * 1000;  // one hour
 
@@ -81,7 +82,7 @@ const uploadRecording = (name, path, mimetype) => _upload(name, path, mimetype, 
 const uploadPDF = (name, path, mimetype) => _upload(name, path, mimetype, PDF_BUCKET_ID);
 const _upload = (fileName, file, contentType, bucketId) => {
   console.log(`uploading ${fileName} in ${bucketId}`);
-  b2.uploadFileAsync({
+  return b2.uploadFileAsync({
     bucketId,
     fileName,
     file,
@@ -121,7 +122,7 @@ const deleteFile = (fileName, bucketName) => b2.listFileVersionsAsync({
 
 /** Adapt a file into a friendly file */
 const adaptFile = (path, mimetype, arrangementName, bucketName, dot) => ({
-  name: `${arrangementName.toLowerCase().replace(/\s/g, '_')}.${dot || mime.extension(mimetype)}`,
+  name: `${normalizeString(arrangementName)}.${dot || mime.extension(mimetype)}`,
   mimetype,
   path,
   bucketName,

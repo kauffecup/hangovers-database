@@ -30,6 +30,12 @@ const concertMDs = require('./relationships/concertMDs.json');
 const CONCURRENCY = 3;
 const opts = { concurrency: CONCURRENCY };
 
+// prevent from running on production db
+if (process.env.CLOUDANT_USERNAME === 'sage') {
+  console.log('dont run on production!');
+  process.exit(0);
+}
+
 // first we add our design docs
 sageDB.initialize()
   .then(() => console.log('inserting/updating design documents'))

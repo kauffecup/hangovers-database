@@ -80,18 +80,15 @@ There are a few pre-configured npm scripts.
 Before you do anything else, you'll need to:
 
 ```
-npm install -g yarn
-yarn
+npm i
 cd client
-yarn
+npm i
 ```
-
-(If you don't want to use yarn for whatever reason, `npm install` will work).
 
 ### Build (and run) the Production Bundle
 
 To build a minifed JS bundle and minified CSS bundle uner the `build` directory,
-this is the script for you. It also will copy any resources (such as `inex.html`
+this is the script for you. It also will copy any resources (such as `index.html`
 and the favicon) placed in the `public` directory and place them in `build`.
 
 ```sh
@@ -202,8 +199,8 @@ scripts, so at least they're like sort of in source control, ya know?
 
 ```sh
 #!/bin/bash
-node_version=v6.9.4
-install_name=node-v6.9.4-linux-x64
+node_version=v8.9.4
+install_name=node-v8.9.4-linux-x64
 if [ ! -e $install_name.tar.gz ]; then
     wget "http://nodejs.org/dist/$node_version/$install_name.tar.gz"
     echo 'Untarring'
@@ -213,30 +210,12 @@ NODE_6_INSTALL_DIR=`pwd`/$install_name/bin
 PATH=$NODE_6_INSTALL_DIR:$PATH
 node -v
 
-echo "Downloading and installing yarn..."
-yarn_url="https://yarnpkg.com/latest.tar.gz"
-yarn_dir=`pwd`/yarn
+echo 'Updating npm'
+npm i npm@latest -g
 
-code=$(curl "$yarn_url" -L --silent --fail --retry 5 --retry-max-time 15 -o /tmp/yarn.tar.gz --write-out "%{http_code}")
-if [ "$code" != "200" ]; then
-  echo "Unable to download yarn: $code" && false
-fi
-rm -rf $yarn_dir
-mkdir -p "$yarn_dir"
-# https://github.com/yarnpkg/yarn/issues/770
-if tar --version | grep -q 'gnu'; then
-  tar xzf /tmp/yarn.tar.gz -C "$yarn_dir" --strip 1 --warning=no-unknown-keyword
-else
-  tar xzf /tmp/yarn.tar.gz -C "$yarn_dir" --strip 1
-fi
-chmod +x $yarn_dir/bin/*
-
-PATH=$yarn_dir/bin:$PATH
-echo "Installed yarn $(yarn --version)"
-
-yarn
+npm i
 cd client
-yarn
+npm i
 cd ..
 npm run build
 ```

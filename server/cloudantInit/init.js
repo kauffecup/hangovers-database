@@ -27,7 +27,7 @@ const concertMDs = require('./relationships/concertMDs.json');
 
 // limit the number of promises we have out at a given time. helpful when
 // writing hundreds of documents to the database
-const CONCURRENCY = 3;
+const CONCURRENCY = 1;
 const opts = { concurrency: CONCURRENCY };
 
 // prevent from running on production db

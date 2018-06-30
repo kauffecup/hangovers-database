@@ -26,28 +26,41 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.resolve(__dirname, '../client/build')));
 
 /** GET: get the initial data necessary for form stuff */
-app.get('/api/initializeforms', (req, res) => {
-  Promise.join(
-    // this is fine until there are more than 200 of these bad boys
-    sageDB.getArrangementTypes(200),
-    sageDB.getAlbumFormats(200),
-    sageDB.getConcertTypes(200),
-    sageDB.getSemesters(200),
-    sageDB.getAlbums(200),
-    sageDB.getConcerts(200),
-    sageDB.getKeys(200),
-    (at, af, ct, s, a, c, k) => ({
-      arrangementTypes: at,
-      albumFormats: af,
-      concertTypes: ct,
-      semesters: s,
-      albums: a,
-      concerts: c,
-      keys: k,
+app.get('/api/initializeforms', async (req, res) => {
+  
+  // requestion 200 is fine until there are more than 200 of these bad boys
+  try {
+    // cloudant limits us to 5 queries/sec in the free tier so to get around that
+    // we execute these requests sequentially. may make sense to, if we ever upgrade,
+    // execute these in parallel. also these sleeps are ridiculous.
+    const sleep = (ms) => new Promise((resolve, reject) => {
+      setTimeout(() => resolve(), ms);
+    });
+    const arrangementTypes = await sageDB.getArrangementTypes(200);
+    await sleep(100);
+    const albumFormats = await sageDB.getAlbumFormats(200);
+    await sleep(100);
+    const concertTypes = await sageDB.getConcertTypes(200);
+    await sleep(100);
+    const semesters = await sageDB.getSemesters(200);
+    await sleep(100);
+    const albums = await sageDB.getAlbums(200);
+    await sleep(100);
+    const concerts = await sageDB.getConcerts(200);
+    await sleep(100);
+    const keys = await sageDB.getKeys(200);
+    res.json({
+      arrangementTypes,
+      albumFormats,
+      concertTypes,
+      semesters,
+      albums,
+      concerts,
+      keys,
     })
-  )
-  .then(data => res.json(data))
-  .catch(e => res.status(500).json(e));
+  } catch (e) {
+    res.status(500).json(e);
+  }
 });
 
 /** Get the full doc */

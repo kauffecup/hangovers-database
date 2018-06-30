@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react'
+import PropTypes from 'prop-types';
 import { StyleSheet, css } from 'aphrodite';
 import { BANNER_SUCCESS, BANNER_ERROR } from '../actions';
 import Button from './Button';

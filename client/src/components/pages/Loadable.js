@@ -1,4 +1,5 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { StyleSheet, css } from 'aphrodite';
 import ProgressBar from 'react-progress';
 import { PADDING_UNIT } from '../../StyleConstants';

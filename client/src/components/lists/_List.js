@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import DisplayField from '../DisplayField';
 
 const List = ({ title, items = [], Component }) =>

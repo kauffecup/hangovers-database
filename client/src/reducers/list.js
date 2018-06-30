@@ -47,7 +47,7 @@ const listReducer = (getConstant, successConstant, failureConstant) =>
     }
   };
 
-module.exports.arrangements = listReducer(GET_ARRANGEMENTS, GET_ARRANGEMENTS_SUCCESS, GET_ARRANGEMENTS_FAILURE);
-module.exports.artists = listReducer(GET_ARTISTS, GET_ARTISTS_SUCCESS, GET_ARTISTS_FAILURE);
-module.exports.hangovers = listReducer(GET_HANGOVERS, GET_HANGOVERS_SUCCESS, GET_HANGOVERS_FAILURE);
-module.exports.tags = listReducer(GET_TAGS, GET_TAGS_SUCCESS, GET_TAGS_FAILURE);
+export const arrangements = listReducer(GET_ARRANGEMENTS, GET_ARRANGEMENTS_SUCCESS, GET_ARRANGEMENTS_FAILURE);
+export const artists = listReducer(GET_ARTISTS, GET_ARTISTS_SUCCESS, GET_ARTISTS_FAILURE);
+export const hangovers = listReducer(GET_HANGOVERS, GET_HANGOVERS_SUCCESS, GET_HANGOVERS_FAILURE);
+export const tags = listReducer(GET_TAGS, GET_TAGS_SUCCESS, GET_TAGS_FAILURE);

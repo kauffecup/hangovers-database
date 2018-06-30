@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { StyleSheet, css } from 'aphrodite';
 import testChildren from '../testChildren';
 import { PADDING_UNIT } from '../StyleConstants';

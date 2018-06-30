@@ -7,7 +7,7 @@ import {
   fileFields as ffs,
   checkFields as cfs,
   NEW_IDENTIFIER,
-} from '../../../shared/FormConstants';
+} from '../shared/FormConstants';
 
 /** Helper methods for adapting the datatypes into what the backend is expecting */
 const adaptObject = o => o && o.value;

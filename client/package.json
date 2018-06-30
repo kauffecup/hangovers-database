@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "aphrodite": "^1.1.0",
+    "prop-types": "15.6.2",
     "query-string": "^4.3.1",
     "react": "^15.4.2",
     "react-addons-shallow-compare": "^15.4.2",
@@ -25,7 +26,7 @@
     "youtube-regex": "^1.0.5"
   },
   "devDependencies": {
-    "react-scripts": "^0.8.5",
+    "react-scripts": "1.1.0",
     "redux-devtools": "^3.3.2",
     "redux-devtools-dock-monitor": "^1.1.1",
     "redux-devtools-log-monitor": "^1.2.0",

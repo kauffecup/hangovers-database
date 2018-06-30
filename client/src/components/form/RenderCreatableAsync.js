@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { AsyncCreatable } from 'react-select';
 import _Render from './_Render';
 

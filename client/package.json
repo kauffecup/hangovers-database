@@ -10,7 +10,7 @@
     "aphrodite": "^1.1.0",
     "prop-types": "15.6.2",
     "query-string": "^4.3.1",
-    "react": "^15.4.2",
+    "react": "15.4.2",
     "react-addons-shallow-compare": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-dropzone": "^3.6.0",
@@ -22,15 +22,12 @@
     "react-virtualized": "^8.11.3",
     "redux": "^3.6.0",
     "redux-form": "^6.4.3",
+    "redux-logger": "3.0.6",
     "redux-thunk": "^2.1.0",
     "youtube-regex": "^1.0.5"
   },
   "devDependencies": {
-    "react-scripts": "1.1.0",
-    "redux-devtools": "^3.3.2",
-    "redux-devtools-dock-monitor": "^1.1.1",
-    "redux-devtools-log-monitor": "^1.2.0",
-    "redux-logger": "^2.7.4"
+    "react-scripts": "1.1.0"
   },
   "proxy": "http://localhost:3001/"
 }

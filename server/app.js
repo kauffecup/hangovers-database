@@ -30,24 +30,12 @@ app.get('/api/initializeforms', async (req, res) => {
   
   // requestion 200 is fine until there are more than 200 of these bad boys
   try {
-    // cloudant limits us to 5 queries/sec in the free tier so to get around that
-    // we execute these requests sequentially. may make sense to, if we ever upgrade,
-    // execute these in parallel. also these sleeps are ridiculous.
-    const sleep = (ms) => new Promise((resolve, reject) => {
-      setTimeout(() => resolve(), ms);
-    });
     const arrangementTypes = await sageDB.getArrangementTypes(200);
-    await sleep(100);
     const albumFormats = await sageDB.getAlbumFormats(200);
-    await sleep(100);
     const concertTypes = await sageDB.getConcertTypes(200);
-    await sleep(100);
     const semesters = await sageDB.getSemesters(200);
-    await sleep(100);
     const albums = await sageDB.getAlbums(200);
-    await sleep(100);
     const concerts = await sageDB.getConcerts(200);
-    await sleep(100);
     const keys = await sageDB.getKeys(200);
     res.json({
       arrangementTypes,

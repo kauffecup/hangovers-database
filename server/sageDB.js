@@ -1,5 +1,5 @@
 const Promise = require('bluebird');
-const cloudant = require('cloudant');
+const cloudant = require('@cloudant/cloudant');
 const types = require('./cloudantHelpers/DBTypes');
 const idgen = require('./cloudantHelpers/IDGenerators');
 const cloudantConfig = require('../config/cloudantConfig');
@@ -17,7 +17,12 @@ const {
 const LIMIT = 20;
 const OPTS = { concurrency: 3 };
 
-const c = cloudant({ account: cloudantConfig.username, password: cloudantConfig.password });
+const c = cloudant({
+  account: cloudantConfig.username,
+  password: cloudantConfig.password,
+  maxAttempt: 5,
+  plugins: { retry: { retryErrors: false, retryStatusCodes: [ 429 ] } }
+});
 let _sageDB = Promise.promisifyAll(c.use('sage'));
 
 const initialize = () => new Promise((resolve, reject) => {

@@ -6,6 +6,8 @@ import {
   newArrayFields as nafs,
   fileFields as ffs,
   checkFields as cfs,
+  fileMetadata,
+  FILE_METADATA_MODIFIER,
   NEW_IDENTIFIER,
 } from '../shared/FormConstants';
 
@@ -17,6 +19,9 @@ const adaptNew = n => n && (n.value === n.label ? `${NEW_IDENTIFIER}${n.value}` 
 const adaptNewArray = na => na && na.length && na.map(adaptNew);
 const adaptFile = ff => (ff || []).map(f => (f && f.fileName && f.bucketName) ? JSON.stringify(f) : f);
 const adaptCheck = c => c ? '1' : '0';
+const adaptFileMetadata = ff => (ff || []).map(file =>
+  fileMetadata.reduce((md, field) => ({ ...md, [field]: file[field] }), {})
+);
 
 /**
  * Our adapter function. Iterate over the fields and the form and adapt the data
@@ -47,6 +52,7 @@ const adaptSubmit = (values, { objectFields = [], objectArrayFields = [], binary
 
   for (const fileField of fileFields) {
     adaptedValues[fileField] = adaptFile(values[fileField]);
+    adaptedValues[`${fileField}${FILE_METADATA_MODIFIER}`] = adaptFileMetadata(values[fileField]);
   }
 
   for (const checkField of checkFields) {

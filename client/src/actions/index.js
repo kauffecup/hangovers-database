@@ -281,6 +281,16 @@ function submitArrangement(values) {
     });
 }
 
+function appendFormData(formData, key, value) {
+  if (value instanceof File) {
+    formData.append(key, value);
+  } else if (typeof value === 'object') {
+    formData.append(key, JSON.stringify(value));
+  } else {
+    formData.append(key, value);
+  }
+}
+
 function formatFormData(values) {
   const formData = new FormData();
   for (const key of Object.keys(values)) {
@@ -289,10 +299,10 @@ function formatFormData(values) {
         formData.append('_attachments', JSON.stringify(values._attachments));
       } else if (Array.isArray(values[key])) {
         for (let i = 0; i < values[key].length; i++) {
-          formData.append(key, values[key][i]);
+          appendFormData(formData, key, values[key][i]);
         }
       } else {
-        formData.append(key, values[key]);
+        appendFormData(formData, key, values[key]);
       }
     }
   }

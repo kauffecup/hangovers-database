@@ -103,9 +103,9 @@ app.get('/api/search/nonhangovers', ({ query: { nonHangover } }, res) => search(
 
 /** POST: Submit a new arrangement: handle file management and db management */
 app.post('/api/arrangementsubmit', upload.fields([
-  { name: 'pdf', maxCount: 1 },
-  { name: 'finale', maxCount: 1 },
-  { name: 'recording', maxCount: 1 },
+  { name: 'pdf' },
+  { name: 'finale' },
+  { name: 'recording' },
 ]), ({ body, files }, res) => {
   const { adaptedFiles, deletedFiles } = backblaze.adaptFiles(files, body);
   // to add/edit an arrangement need to update cloudant data and backblaze files
@@ -116,10 +116,14 @@ app.post('/api/arrangementsubmit', upload.fields([
     () => {}
   ).then(() => {
     // once everything is uploaded, remove the temporary files
-    for (const file of Object.keys(adaptedFiles)) {
-      if (adaptedFiles[file].path) {
-        console.log(`removing ${adaptedFiles[file].path}`);
-        fs.unlinkSync(adaptedFiles[file].path);
+    for (const type of Object.keys(adaptedFiles)) {
+      if (adaptedFiles[type].length) {
+        adaptedFiles[type].forEach(({ path }) => {
+          if (path) {
+            console.log(`removing temporary file ${adaptedFiles[type].path}`);
+            fs.unlinkSync(adaptedFiles[type].path);
+          }
+        })
       }
     }
   }).then(() => res.json({}))

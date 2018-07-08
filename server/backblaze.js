@@ -3,6 +3,7 @@ const backblaze = require('node-backblaze-b2');
 const mime = require('mime-types');
 const backblazeConfig = require('../config/backblazeConfig');
 const { normalizeString } = require('./cloudantHelpers/IDGenerators');
+const { FILE_METADATA_MODIFIER } = require('../shared/FormConstants');
 
 const REAUTH_INTERVAL = 60 * 60 * 1000;  // one hour
 
@@ -62,17 +63,28 @@ const downloadFile = (fileName, bucketName, cb) => b2.getFileStream({
 
 /** Given the return from adaptFiles, upload all of them */
 const uploadFiles = (adaptedFiles) => {
-  const { pdf, finale, recording } = adaptedFiles;
+  const types = [{
+    type: 'pdf',
+    uploadMethod: uploadPDF
+  }, {
+    type: 'finale',
+    uploadMethod: uploadArrangement
+  }, {
+    type: 'recording',
+    uploadMethod: uploadRecording
+  }];
+  
   const proms = [];
-  if (pdf && pdf.path) {
-    proms.push(uploadPDF(pdf.name, pdf.path, pdf.mimetype));
+  for (const { type, uploadMethod } of types) {
+    if (adaptedFiles[type].length) {
+      adaptedFiles[type].forEach((file) => {
+        if (file.path) {
+          proms.push(uploadMethod(file.name, file.path, file.mimetype));
+        }
+      })
+    }
   }
-  if (finale && finale.path) {
-    proms.push(uploadArrangement(finale.name, finale.path, finale.mimetype));
-  }
-  if (recording && recording.path) {
-    proms.push(uploadRecording(recording.name, recording.path, recording.mimetype));
-  }
+
   return Promise.all(proms);
 }
 
@@ -92,20 +104,11 @@ const _upload = (fileName, file, contentType, bucketId) => {
 };
 
 /** Given the return from adaptFiles, delete all of them */
-const deleteFiles = (deletedFiles) => {
-  const { pdf, finale, recording } = deletedFiles;
-  const proms = [];
-  if (pdf) {
-    proms.push(deleteFile(pdf.fileName, pdf.bucketName));
-  }
-  if (finale) {
-    proms.push(deleteFile(finale.fileName, finale.bucketName));
-  }
-  if (recording) {
-    proms.push(deleteFile(recording.fileName, recording.bucketName));
-  }
-  return Promise.all(proms);
-}
+const deleteFiles = (deletedFiles) => Promise.all(
+  deletedFiles.map(({ fileName, bucketName }) =>
+    deleteFile(fileName, bucketName)
+  )
+);
 
 /** Delete all versions of a file */
 const deleteFile = (fileName, bucketName) => b2.listFileVersionsAsync({
@@ -120,59 +123,62 @@ const deleteFile = (fileName, bucketName) => b2.listFileVersionsAsync({
   });
 }));
 
+const getFileName = (arrangementName, metadata, extension) => {
+  const { version } = metadata;
+  const name = normalizeString(arrangementName) + (version ? `_${normalizeString(version)}` : '');
+  return `${name}.${extension}`;
+}
+
 /** Adapt a file into a friendly file */
-const adaptFile = (path, mimetype, arrangementName, bucketName, dot) => ({
-  name: `${normalizeString(arrangementName)}.${dot || mime.extension(mimetype)}`,
-  mimetype,
-  path,
+const fileAdapt = (f, name, metadata, bucketName, dot) => ({
+  ...metadata,
+  name: getFileName(name, metadata, dot || mime.extension(f.mimetype)),
+  mimetype: f.mimetype,
+  path: f.path,
   bucketName,
 });
-const fileAdapt = (f, name, bucket, dot) => adaptFile(f.path, f.mimetype, name, bucket, dot);
 
 /** Adapt a files object with pdf/mus/recording keys into friendly files */
 const adaptFiles = (files, arrangement) => {
   const name = arrangement.name;
 
-  const deletedFiles = {};
+  const deletedFiles = [];
   const adaptedFiles = {};
 
-  if (files.pdf && files.pdf.length) {
-    adaptedFiles.pdf = fileAdapt(files.pdf[0], name, PDF_BUCKET);
-  } else if (arrangement.pdf) {
-    try {
-      const pdf = JSON.parse(arrangement.pdf);
-      if (pdf.deleted) {
-        deletedFiles.pdf = pdf;
-      } else {
-        adaptedFiles.pdf = pdf;
-      }
-    } catch(e) {}
-  }
+  const fields = [{
+    field: 'pdf',
+    bucket: PDF_BUCKET
+  }, {
+    field: 'finale',
+    bucket: ARRANGEMENT_BUCKET,
+    dot: 'mus'
+  }, {
+    field: 'recording',
+    bucket: RECORDING_BUCKET
+  }];
 
-  if (files.finale && files.finale.length) {
-    adaptedFiles.finale = fileAdapt(files.finale[0], name, ARRANGEMENT_BUCKET, 'mus');
-  } else if (arrangement.finale) {
-    try {
-      const finale = JSON.parse(arrangement.finale);
-      if (finale.deleted) {
-        deletedFiles.finale = finale;
-      } else {
-        adaptedFiles.finale = finale;
-      }
-    } catch(e) {}
-  }
+  for (const { field, bucket, dot } of fields) {
+    const metadataField = `${field}${FILE_METADATA_MODIFIER}`;
 
-  if (files.recording && files.recording.length) {
-    adaptedFiles.recording = fileAdapt(files.recording[0], name, RECORDING_BUCKET);
-  } else if (arrangement.recording) {
-    try {
-      const recording = JSON.parse(arrangement.recording);
-      if (recording.deleted) {
-        deletedFiles.recording = recording;
-      } else {
-        adaptedFiles.recording = recording;
-      }
-    } catch(e) {}
+    // make sure field and metadataField are arrays;
+    const arrangementFileField = [].concat(arrangement[field]).filter(file => file);
+    const arrangementMetadata = [].concat(arrangement[metadataField]).filter(file => file).map(JSON.parse);
+
+    adaptedFiles[field] = (files[field] || [])
+      .map((file, i) => fileAdapt(file, name, arrangementMetadata[i], bucket, dot));
+
+    if (arrangementFileField && arrangementFileField.length) {
+      arrangementFileField.forEach((file) => {
+        try {
+          const fileMetadata = JSON.parse(arrangement[field]);
+          if (fileMetadata.deleted) {
+            deletedFiles.push(fileMetadata);
+          } else {
+            adaptedFiles[field].push(fileMetadata);
+          }
+        } catch (e) {}
+      })
+    }
   }
 
   return { adaptedFiles, deletedFiles };

@@ -4,6 +4,8 @@ const {
   binaryFields,
   checkFields,
   objectArrayFields,
+  fileFields,
+  FILE_METADATA_MODIFIER,
   NEW_IDENTIFIER,
 } = require('../../shared/FormConstants');
 
@@ -84,6 +86,7 @@ const adaptArrangement = (arrangement, adaptedFiles = {}, deletedFiles = {}) => 
   for (const field of [...binaryFields, ...checkFields]) {
     toUpload[field] = typeof toUpload[field] === 'string' ? toUpload[field] === '1' : null;
   }
+
   // make sure array fields are actually arrays - if there's only a single key
   // it'll be treated as a string
   for (const arrayField of objectArrayFields) {
@@ -91,16 +94,22 @@ const adaptArrangement = (arrangement, adaptedFiles = {}, deletedFiles = {}) => 
       toUpload[arrayField] = [].concat(toUpload[arrayField]);
     }
   }
+
   // file time!
-  for (const file of Object.keys(adaptedFiles)) {
-    toUpload[file] = {
-      fileName: adaptedFiles[file].name || adaptedFiles[file].fileName,
-      bucketName: adaptedFiles[file].bucketName,
-    };
+  const deletedFileMap = deletedFiles.reduce((map, deletedFile) => ({
+    ...map,
+    [`${deletedFile.fileName}${deletedFile.bucketName}`]: true
+  }), {});
+  for (const type of Object.keys(adaptedFiles)) {
+    toUpload[type] = (adaptedFiles[type] || [])
+      .filter((file) => !deletedFileMap[`${file.name || file.fileName}${file.bucketName}`])
   }
-  for (const file of Object.keys(deletedFiles)) {
-    delete toUpload[file];
+
+  // remove file metadata fields
+  for (const field of fileFields) {
+    delete toUpload[`${field}${FILE_METADATA_MODIFIER}`];
   }
+
   // in these fields we allow the user to define new objects. if that's what's
   // going down, strip the new identifier and return a new object with a name field
   const [ newArtists, newTags, newNonHangovers ] = [

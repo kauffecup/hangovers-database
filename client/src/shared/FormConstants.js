@@ -27,6 +27,12 @@ module.exports.newArrayFields = ['artists', 'tags', 'nonHangoverArrangers'];
  /** Fields that are files */
 module.exports.fileFields = ['finale', 'recording', 'pdf'];
 
+/** Custom metadata the client appends to file objects */
+module.exports.fileMetadata = ['version'];
+
+/** Appended to the end of file fields. Contains metadata to mix into file values. */
+module.exports.FILE_METADATA_MODIFIER = 'Metadata';
+
 /** String appended to form objects to let the server know it should create a new object */
 module.exports.NEW_IDENTIFIER = 'new:';
 

@@ -110,9 +110,9 @@ app.post('/api/arrangementsubmit', upload.fields([
   const { adaptedFiles, deletedFiles } = backblaze.adaptFiles(files, body);
   // to add/edit an arrangement need to update cloudant data and backblaze files
   Promise.join(
-    sageDB.upsertArrangement(body, adaptedFiles, deletedFiles),
     backblaze.uploadFiles(adaptedFiles),
     backblaze.deleteFiles(deletedFiles),
+    sageDB.upsertArrangement(body, adaptedFiles, deletedFiles),
     () => {}
   ).then(() => {
     // once everything is uploaded, remove the temporary files

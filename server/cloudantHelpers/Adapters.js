@@ -103,6 +103,11 @@ const adaptArrangement = (arrangement, adaptedFiles = {}, deletedFiles = {}) => 
   for (const type of Object.keys(adaptedFiles)) {
     toUpload[type] = (adaptedFiles[type] || [])
       .filter((file) => !deletedFileMap[`${file.name || file.fileName}${file.bucketName}`])
+      .map((file) => {
+        const newFile = { ...file };
+        delete newFile.path;
+        return newFile
+      });
   }
 
   // remove file metadata fields

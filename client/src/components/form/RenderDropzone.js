@@ -15,13 +15,13 @@ const handleVersionUpdate = (currentValue, index, newVersion) => currentValue.ma
   return file;
 });
 
-const handleFileRemove = (currentValue, index, bucketName) => currentValue.map((file, i) => {
+const handleFileRemove = (currentValue, index) => currentValue.map((file, i) => {
   if (i !== index) { return file; }
-  return bucketName ? { deleted: true, fileName: file.name, bucketName } : undefined;
+  return file.bucketName ? { ...file, deleted: true } : undefined;
 }).filter(file => file);
 
 const _RenderDropzone = (props) => {
-  const hasFiles = props.input.value && props.input.value.length && !props.input.value.deleted;
+  const files = (props.input.value || []).filter(file => !file.deleted);
   return (
     <div className={css(styles.dropContainer)}>
       <Dropzone
@@ -34,26 +34,26 @@ const _RenderDropzone = (props) => {
       >
         <div>Drop a file here, or click to select one to upload.</div>
       </Dropzone>
-      {hasFiles ? props.input.value.map(({ name, version }, i) => (
+      {files.map(({ name, version, bucketName }, i) => (
         <div>
           {name}
           <button
             type="button"
             className={css(styles.removeButton)}
-            onClick={() => props.input.onChange(handleFileRemove(props.input.value, i, props.input.value.bucketName))}
+            onClick={() => props.input.onChange(handleFileRemove(props.input.value, i))}
           >
             x
           </button>
-          <div className={css(styles.inputWrapper)}>
+          {bucketName ? null : <div className={css(styles.inputWrapper)}>
             <input
               className={css(styles.input)}
               value={version}
               onChange={(event) => props.input.onChange(handleVersionUpdate(props.input.value, i, event.target.value))}
               type="text"
             />
-          </div>
+          </div>}
         </div>
-      )) : null}
+      ))}
     </div>
   );
 };

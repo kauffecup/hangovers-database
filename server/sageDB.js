@@ -183,7 +183,7 @@ const upsertHangover = (h) => _upsertWithRelationships(h, adaptHangover, types.H
 const upsertSemester = (s) => _upsertWithRelationships(s, adaptSemester, types.SEMESTER_TYPE, 'semester');
 const upsertTag = (t) => _upsertWithRelationships(t, adaptTag, types.TAG_TYPE, 'tag');
 const upsertNonHangover = (t) => _upsertWithRelationships(t, adaptNonHangover, types.NON_HANGOVER_TYPE, 'nonHangover');
-const upsertArrangement = (arrangement, adaptedFiles = {}, deletedFiles = {}) => {
+const upsertArrangement = (arrangement, adaptedFiles = {}, deletedFiles = []) => {
   const { arrID, toUpload, newArtists = [], newTags = [], newNonHangovers = [], relationships = [] } = adaptArrangement(arrangement, adaptedFiles, deletedFiles);
   console.log('creating new artists, tags, and nonHangovers');
   return Promise.join(

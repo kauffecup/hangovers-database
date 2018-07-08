@@ -105,9 +105,10 @@ const _upload = (fileName, file, contentType, bucketId) => {
 
 /** Given the return from adaptFiles, delete all of them */
 const deleteFiles = (deletedFiles) => Promise.all(
-  deletedFiles.map(({ fileName, bucketName }) =>
-    deleteFile(fileName, bucketName)
-  )
+  deletedFiles.map(({ name, bucketName }) => {
+    console.log(`deleting ${name} in bucket ${bucketName}`);
+    return deleteFile(name, bucketName)
+  })
 );
 
 /** Delete all versions of a file */

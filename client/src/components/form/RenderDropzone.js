@@ -5,29 +5,55 @@ import Dropzone from 'react-dropzone';
 import _Render from './_Render';
 import { REGENT_GRAY } from '../../StyleConstants';
 
+const handleFileDrop = (currentValue, newFiles) => {
+  return currentValue ? [...currentValue, ...newFiles] : [...newFiles];
+};
+
+const handleVersionUpdate = (currentValue, index, newVersion) => currentValue.map((file, i) => {
+  if (i !== index) { return file; }
+  file.version = newVersion;
+  return file;
+});
+
+const handleFileRemove = (currentValue, index, bucketName) => currentValue.map((file, i) => {
+  if (i !== index) { return file; }
+  return bucketName ? { deleted: true, fileName: file.name, bucketName } : undefined;
+}).filter(file => file);
+
 const _RenderDropzone = (props) => {
-  const hasFile = props.input.value && !props.input.value.deleted;
-  const fileName = hasFile ? (props.input.value.name || props.input.value.fileName) : null;
-  const text = hasFile ? `To replace ${fileName}, drop a file here, or click to select one to upload.`
-    : 'Drop a file here, or click to select one to upload.';
+  const hasFiles = props.input.value && props.input.value.length && !props.input.value.deleted;
   return (
     <div className={css(styles.dropContainer)}>
       <Dropzone
         name={props.name}
-        onDrop={props.input.onChange}
+        onDrop={newFile => props.input.onChange(handleFileDrop(props.input.value, newFile))}
         onBlur={() => props.input.onBlur(props.input.value)}
-        multiple={false}
+        multiple={true}
         className={css(styles.dropzone)}
         activeClassName={css(styles.activeDropzone)}
       >
-        <div>{text}</div>
+        <div>Drop a file here, or click to select one to upload.</div>
       </Dropzone>
-      {hasFile ?
+      {hasFiles ? props.input.value.map(({ name, version }, i) => (
         <div>
-          {fileName}
-          <button type="button" className={css(styles.removeButton)} onClick={() => props.handleFileRemove(fileName, props.input.value.bucketName)}>x</button>
+          {name}
+          <button
+            type="button"
+            className={css(styles.removeButton)}
+            onClick={() => props.input.onChange(handleFileRemove(props.input.value, i, props.input.value.bucketName))}
+          >
+            x
+          </button>
+          <div className={css(styles.inputWrapper)}>
+            <input
+              className={css(styles.input)}
+              value={version}
+              onChange={(event) => props.input.onChange(handleVersionUpdate(props.input.value, i, event.target.value))}
+              type="text"
+            />
+          </div>
         </div>
-      : null}
+      )) : null}
     </div>
   );
 };
@@ -59,12 +85,26 @@ const styles = StyleSheet.create({
     'line-height': '20px',
     'margin-left': '6px',
   },
+  inputWrapper: {
+    display: 'flex',
+    height: '36px',
+    border: '1px solid #d9d9d9',
+    'border-radius': '4px',
+  },
+  input: {
+    flex: 1,
+    height: '100%',
+    border: 'none',
+    padding: '0px 10px',
+    'font-family': '\'Lato\', sans-serif',
+    'font-weight': 'lighter',
+    'font-size': '1em',
+  },
 });
 
 _RenderDropzone.propTypes = {
   input: PropTypes.object.isRequired,
   name: PropTypes.string.isRequired,
-  handleFileRemove: PropTypes.func,
 };
 
 export default _Render(_RenderDropzone);

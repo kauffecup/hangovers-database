@@ -1,7 +1,5 @@
 import { reducer as formReducer } from 'redux-form';
 import {
-  // actions
-  DELETE_ATTACHMENT,
   // form constants
   ADD_ARRANGEMENT_FORM, EDIT_ALBUM_FORM, EDIT_ARTIST_FORM, EDIT_CONCERT_FORM, EDIT_ARRANGEMENT_FORM, EDIT_HANGOVER_FORM, EDIT_SEMESTER_FORM, EDIT_TAG_FORM, EDIT_NON_HANGOVER_FORM,
   // load action begin constants
@@ -11,17 +9,6 @@ import {
   // load action error constants
   GET_EDIT_ALBUM_FAILURE, GET_EDIT_ARRANGEMENT_FAILURE, GET_EDIT_ARTIST_FAILURE, GET_EDIT_CONCERT_FAILURE, GET_EDIT_HANGOVER_FAILURE, GET_EDIT_SEMESTER_FAILURE, GET_EDIT_TAG_FAILURE, GET_EDIT_NON_HANGOVER_FAILURE,
 } from '../actions';
-
-const handleDelete = (state, action, form) => {
-  if (action.form === form) {
-    return Object.assign({}, state, {
-      values: Object.assign({}, state.values, {
-        [action.fileField]: action.bucketName ? { deleted: true, fileName: action.fileName, bucketName: action.bucketName } : undefined,
-      }),
-    });
-  }
-  return state;
-};
 
 /** When the form data loads, set the data in our form */
 const formReduce = (form, formStart, formSuccess, formFailure) => (state, action) => {
@@ -42,9 +29,6 @@ const formReduce = (form, formStart, formSuccess, formFailure) => (state, action
         loading: false,
       });
 
-    case DELETE_ATTACHMENT:
-      return handleDelete(state, action, form);
-
     default:
       return state;
   }
@@ -59,12 +43,4 @@ export default formReducer.plugin({
   [EDIT_SEMESTER_FORM]: formReduce(EDIT_SEMESTER_FORM, GET_EDIT_SEMESTER, GET_EDIT_SEMESTER_SUCCESS, GET_EDIT_SEMESTER_FAILURE),
   [EDIT_TAG_FORM]: formReduce(EDIT_TAG_FORM, GET_EDIT_TAG, GET_EDIT_TAG_SUCCESS, GET_EDIT_TAG_FAILURE),
   [EDIT_NON_HANGOVER_FORM]: formReduce(EDIT_NON_HANGOVER_FORM, GET_EDIT_NON_HANGOVER, GET_EDIT_NON_HANGOVER_SUCCESS, GET_EDIT_NON_HANGOVER_FAILURE),
-  [ADD_ARRANGEMENT_FORM]: (state, action) => {
-    switch (action.type) {
-      case DELETE_ATTACHMENT:
-        return handleDelete(state, action, ADD_ARRANGEMENT_FORM);
-      default:
-        return state;
-    }
-  },
 });

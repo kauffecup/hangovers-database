@@ -53,11 +53,15 @@ export default (values) => {
 
   if (!values.pdf || values.pdf.deleted) {
     errors.pdf = REQUIRED_ERROR;
-  } else if (!values.pdf.bucketName && values.pdf.type !== 'application/pdf') {
+  } else if (
+    !(values.pdf  || []).every(file => file.bucketName || file.type === 'application/pdf')
+  ) {
     errors.pdf = 'PDF must be a... pdf';
   }
 
-  if (values.recording && !values.recording.bucketName && values.recording.type.indexOf('audio') === -1) {
+  if (
+    !(values.recording || []).every(file => file.bucketName || file.type.indexOf('audio') === -1)
+  ) {
     errors.recording = 'Recording must be a... recording.';
   }
 

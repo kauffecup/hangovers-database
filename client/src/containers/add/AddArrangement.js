@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
-import { addArrangement, deleteAttachment, ADD_ARRANGEMENT_FORM } from '../../actions';
+import { addArrangement, ADD_ARRANGEMENT_FORM } from '../../actions';
 import validate, { asyncValidate } from '../../normalizers/validate';
 import { adaptArrangementSubmit } from '../../normalizers/adaptSubmit';
 import Add from '../../components/pages/Add';
@@ -17,7 +17,6 @@ const AddArrangement = ({ app, handleSubmit, dispatch, arrangerNotAHangover }) =
       app={app}
       editName
       arrangerNotAHangover={arrangerNotAHangover}
-      handleFileRemove={(fileField, fileName) => dispatch(deleteAttachment(ADD_ARRANGEMENT_FORM, fileField, fileName))}
     />
   </Add>;
 

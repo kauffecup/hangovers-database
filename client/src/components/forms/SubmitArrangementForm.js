@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Field } from 'redux-form';
 import { StyleSheet, css } from 'aphrodite';
-import normalizeFileList from '../../normalizers/normalizeFileList';
 import RenderCreatableAsync from '../form/RenderCreatableAsync';
 import RenderField from '../form/RenderField';
 import RenderTextArea from '../form/RenderTextArea';
@@ -26,7 +25,7 @@ import {
   keyAdapter,
 } from '../../normalizers/adaptFormData';
 
-const SubmitArrangementForm = ({ app, editName, name, handleFileRemove, arrangerNotAHangover }) => {
+const SubmitArrangementForm = ({ app, editName, name, arrangerNotAHangover }) => {
   const { arrangementTypes: at, semesters: s, albums: al, concerts: co, keys: k } = app;
   const arrangementTypes = at.map(arrangementTypeAdapter);
   const semesters = s.map(semesterAdapter);
@@ -70,9 +69,24 @@ const SubmitArrangementForm = ({ app, editName, name, handleFileRemove, arranger
       <Field label="Soloist(s)" name="soloists" component={RenderAsync} loadOptions={searchHangovers} multi />
       <h3 className={css(styles.categoryLabel)}>Files and Such</h3>
       <div className={css(styles.row)}>
-        <Field label="PDF" name="pdf" component={RenderDropzone} normalize={normalizeFileList} styles={styles.rowChild} handleFileRemove={(fileName, bucketName) => handleFileRemove('pdf', fileName, bucketName)} />
-        <Field label="Finale" name="finale" component={RenderDropzone} normalize={normalizeFileList} styles={styles.rowChild} handleFileRemove={(fileName, bucketName) => handleFileRemove('finale', fileName, bucketName)} />
-        <Field label="Recording" name="recording" component={RenderDropzone} normalize={normalizeFileList} styles={styles.rowChild} handleFileRemove={(fileName, bucketName) => handleFileRemove('recording', fileName, bucketName)} />
+        <Field
+          label="PDF"
+          name="pdf"
+          component={RenderDropzone}
+          styles={styles.rowChild}
+        />
+        <Field
+          label="Finale"
+          name="finale"
+          component={RenderDropzone}
+          styles={styles.rowChild}
+        />
+        <Field
+          label="Recording"
+          name="recording"
+          component={RenderDropzone}
+          styles={styles.rowChild}
+        />
       </div>
       <Field label="Youtube Link (Hangovers Performance)" name="youtube" component={RenderField} type="text" autoComplete="off" />
       <div className={css(styles.row)}>
@@ -108,7 +122,6 @@ const styles = StyleSheet.create({
 SubmitArrangementForm.propTypes = {
   app: PropTypes.object.isRequired,
   editName: PropTypes.bool,
-  handleFileRemove: PropTypes.func.isRequired,
   name: PropTypes.string,
   notAHangover: PropTypes.bool,
 };

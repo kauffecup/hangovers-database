@@ -9,7 +9,6 @@ import SubmitArrangementForm from '../../components/forms/SubmitArrangementForm'
 import Edit from '../../components/pages/Edit';
 import {
   destroyArrangement,
-  deleteAttachment,
   editArrangement,
   EDIT_ARRANGEMENT_FORM,
   getEditArrangementData,
@@ -26,7 +25,6 @@ const EditArrangement = ({ app, dispatch, handleSubmit, name, id, rev, loading, 
     <SubmitArrangementForm
       app={app}
       arrangerNotAHangover={arrangerNotAHangover}
-      handleFileRemove={(fileField, fileName, bucketName) => dispatch(deleteAttachment(EDIT_ARRANGEMENT_FORM, fileField, fileName, bucketName))}
     />
   </Edit>;
 

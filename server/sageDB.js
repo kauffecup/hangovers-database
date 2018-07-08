@@ -53,7 +53,7 @@ const getFullArtist = artistID => _getFullArrayRollup(artistID, 'artist');
 const getFullTag = tagID => _getFullArrayRollup(tagID, 'tag');
 const getFullNonHangover = nonHangoverID => _getFullArrayRollup(nonHangoverID, 'non_hangover');
 const getArrangementFiles = arrangementID =>
-  _sageDB.getAsync(arrangementID).then(({ pdf, recording, finale }) => ({ pdf, recording, finale }));
+  _sageDB.getAsync(arrangementID).then(({ pdf, recording, finale }) => [ ...pdf, ...recording, ...finale ]);
 
 /**
  * Here we get a document's metadata along with the original docs for any ids

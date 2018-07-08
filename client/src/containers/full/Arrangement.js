@@ -6,6 +6,7 @@ import { getArrangement } from '../../actions';
 import AlbumList from '../../components/lists/AlbumList';
 import ArtistList from '../../components/lists/ArtistList';
 import ConcertList from '../../components/lists/ConcertList';
+import DownloadList from '../../components/lists/DownloadList';
 import HangoverList from '../../components/lists/HangoverList';
 import NonHangoversList from '../../components/lists/NonHangoversList';
 import SemesterList from '../../components/lists/SemesterList';
@@ -50,29 +51,23 @@ const Arrangement = ({ dispatch, id, arrangement, loading }) =>
       <HangoverList title="soloist(s)" hangovers={arrangement.soloists} />
     </Card>
     <Card title="Files and Such">
-      <DisplayField
-        title={`download ${arrangement.pdf && arrangement.pdf.fileName}`}
-        download
-        link={arrangement.pdf ? `/api/file?${stringify({
-          fileName: arrangement.pdf.fileName,
-          bucketName: arrangement.pdf.bucketName,
-        })}` : null}
+      <DownloadList
+        title="PDFs"
+        type="PDF"
+        arrangementName={arrangementFormatter(arrangement)}
+        downloads={arrangement.pdf}
       />
-      <DisplayField
-        title={`download ${arrangement.finale && arrangement.finale.fileName}`}
-        download
-        link={arrangement.finale ? `/api/file?${stringify({
-          fileName: arrangement.finale.fileName,
-          bucketName: arrangement.finale.bucketName,
-        })}` : null}
+      <DownloadList
+        title="Finales"
+        type="Finale"
+        arrangementName={arrangementFormatter(arrangement)}
+        downloads={arrangement.finale}
       />
-      <DisplayField
-        title={`download ${arrangement.recording && arrangement.recording.fileName}`}
-        download
-        link={arrangement.recording ? `/api/file?${stringify({
-          fileName: arrangement.recording.fileName,
-          bucketName: arrangement.recording.bucketName,
-        })}` : null}
+      <DownloadList
+        title="Recordings"
+        type="Recording"
+        arrangementName={arrangementFormatter(arrangement)}
+        downloads={arrangement.recording}
       />
       <DisplayField title="Youtube Link" link={arrangement.youtube} />
       <DisplayField title="Spotify Link (Original Song)" link={arrangement.spotifyOriginalLink} />

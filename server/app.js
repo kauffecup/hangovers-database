@@ -120,8 +120,8 @@ app.post('/api/arrangementsubmit', upload.fields([
       if (adaptedFiles[type].length) {
         adaptedFiles[type].forEach(({ path }) => {
           if (path) {
-            console.log(`removing temporary file ${adaptedFiles[type].path}`);
-            fs.unlinkSync(adaptedFiles[type].path);
+            console.log(`removing temporary file ${path}`);
+            fs.unlinkSync(path);
           }
         })
       }

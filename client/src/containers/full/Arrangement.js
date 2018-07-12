@@ -6,6 +6,7 @@ import AlbumList from '../../components/lists/AlbumList';
 import ArtistList from '../../components/lists/ArtistList';
 import ConcertList from '../../components/lists/ConcertList';
 import DownloadList from '../../components/lists/DownloadList';
+import LinkList from '../../components/lists/LinkList';
 import HangoverList from '../../components/lists/HangoverList';
 import NonHangoversList from '../../components/lists/NonHangoversList';
 import SemesterList from '../../components/lists/SemesterList';
@@ -68,9 +69,9 @@ const Arrangement = ({ dispatch, id, arrangement, loading }) =>
         arrangementName={arrangementFormatter(arrangement)}
         downloads={arrangement.recording}
       />
-      <DisplayField title="Youtube Link" link={arrangement.youtube} />
-      <DisplayField title="Spotify Link (Original Song)" link={arrangement.spotifyOriginalLink} />
-      <DisplayField title="Spotify Link (Hangovers Version)" link={arrangement.spotifyHangoverLink} />
+      <LinkList title="Youtube Links" links={arrangement.youtube} />
+      <LinkList title="Spotify Links (Original Song)" links={arrangement.spotifyOriginalLink} />
+      <LinkList title="Spotify Links (Hangovers Version)" links={arrangement.spotifyHangoverLink} />
     </Card>
     <Card title="Odds and Ends">
       <TagList title="Tags" tags={arrangement.tags} />

@@ -4,6 +4,7 @@ const {
   binaryFields,
   checkFields,
   objectArrayFields,
+  textArrayFields,
   fileFields,
   FILE_METADATA_MODIFIER,
   NEW_IDENTIFIER,
@@ -89,7 +90,7 @@ const adaptArrangement = (arrangement, adaptedFiles = {}, deletedFiles = {}) => 
 
   // make sure array fields are actually arrays - if there's only a single key
   // it'll be treated as a string
-  for (const arrayField of objectArrayFields) {
+  for (const arrayField of [...textArrayFields, ...objectArrayFields]) {
     if (toUpload[arrayField]) {
       toUpload[arrayField] = [].concat(toUpload[arrayField]);
     }

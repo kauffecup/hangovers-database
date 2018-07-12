@@ -48,8 +48,8 @@ export default (values) => {
     errors.syllables = REQUIRED_ERROR;
   }
 
-  if (values.youtube && !youtubeRegex().test(values.youtube)) {
-    errors.youtube = 'Enter a valid YouTube url';
+  if (!(values.youtube || []).every(link => youtubeRegex().test(link))) {
+    errors.youtube = 'Enter valid YouTube urls';
   }
 
   for (const field of fileFields) {

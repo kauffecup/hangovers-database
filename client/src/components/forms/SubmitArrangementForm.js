@@ -9,6 +9,7 @@ import RenderBinary from '../form/RenderBinary';
 import RenderSelect from '../form/RenderSelect';
 import RenderAsync from '../form/RenderAsync';
 import RenderDropzone from '../form/RenderDropzone';
+import RenderMultiField from '../form/RenderMultiField';
 import { REGENT_GRAY, PADDING_UNIT, mobilize } from '../../StyleConstants';
 import {
   searchHangovers,
@@ -70,28 +71,28 @@ const SubmitArrangementForm = ({ app, editName, name, arrangerNotAHangover }) =>
       <h3 className={css(styles.categoryLabel)}>Files and Such</h3>
       <div className={css(styles.row)}>
         <Field
-          label="PDF"
-          name="pdf"
-          component={RenderDropzone}
-          styles={styles.rowChild}
-        />
-        <Field
-          label="Finale"
+          label="Finale(s)"
           name="finale"
           component={RenderDropzone}
           styles={styles.rowChild}
         />
         <Field
-          label="Recording"
+          label="Recording(s)"
           name="recording"
           component={RenderDropzone}
           styles={styles.rowChild}
         />
+        <Field
+          label="PDF(s)"
+          name="pdf"
+          component={RenderDropzone}
+          styles={styles.rowChild}
+        />
       </div>
-      <Field label="Youtube Link (Hangovers Performance)" name="youtube" component={RenderField} type="text" autoComplete="off" />
+      <Field label="Youtube Link(s) (Hangovers Performance)" name="youtube" component={RenderMultiField} type="text" autoComplete="off" />
       <div className={css(styles.row)}>
-        <Field label="Spotify Link (Original Song)" name="spotifyOriginalLink" component={RenderField} type="text" autoComplete="off" styles={styles.rowChild} />
-        <Field label="Spotify Link (Hangovers Version)" name="spotifyHangoverLink" component={RenderField} type="text" autoComplete="off" styles={styles.rowChild} />
+        <Field label="Spotify Link (Original Song)" name="spotifyOriginalLink" component={RenderMultiField} type="text" autoComplete="off" styles={styles.rowChild} />
+        <Field label="Spotify Link (Hangovers Version)" name="spotifyHangoverLink" component={RenderMultiField} type="text" autoComplete="off" styles={styles.rowChild} />
       </div>
       <h3 className={css(styles.categoryLabel)}>Odds and Ends</h3>
       <Field label="Tags" name="tags" component={RenderCreatableAsync} loadOptions={searchTags} multi />

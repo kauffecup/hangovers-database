@@ -1,7 +1,7 @@
 import { reducer as formReducer } from 'redux-form';
 import {
   // form constants
-  ADD_ARRANGEMENT_FORM, EDIT_ALBUM_FORM, EDIT_ARTIST_FORM, EDIT_CONCERT_FORM, EDIT_ARRANGEMENT_FORM, EDIT_HANGOVER_FORM, EDIT_SEMESTER_FORM, EDIT_TAG_FORM, EDIT_NON_HANGOVER_FORM,
+  EDIT_ALBUM_FORM, EDIT_ARTIST_FORM, EDIT_CONCERT_FORM, EDIT_ARRANGEMENT_FORM, EDIT_HANGOVER_FORM, EDIT_SEMESTER_FORM, EDIT_TAG_FORM, EDIT_NON_HANGOVER_FORM,
   // load action begin constants
   GET_EDIT_ALBUM, GET_EDIT_ARRANGEMENT, GET_EDIT_ARTIST, GET_EDIT_CONCERT, GET_EDIT_HANGOVER, GET_EDIT_SEMESTER, GET_EDIT_TAG, GET_EDIT_NON_HANGOVER,
   // load actions success constants
@@ -14,20 +14,23 @@ import {
 const formReduce = (form, formStart, formSuccess, formFailure) => (state, action) => {
   switch (action.type) {
     case formStart:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         loading: true,
-      });
+      };
 
     case formSuccess:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         values: action.data,
         loading: false,
-      });
+      };
 
     case formFailure:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         loading: false,
-      });
+      };
 
     default:
       return state;

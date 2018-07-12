@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { stringify } from 'query-string';
 import { getArrangement } from '../../actions';
 import AlbumList from '../../components/lists/AlbumList';
 import ArtistList from '../../components/lists/ArtistList';

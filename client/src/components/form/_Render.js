@@ -20,19 +20,21 @@ const styles = StyleSheet.create({
     padding: '5px',
     'flex-wrap': 'wrap',
   },
-  label: Object.assign({
+  label: {
     width: '200px',
     'text-align': 'right',
     'margin-right': '10px',
     color: REGENT_GRAY,
-  }, mobilize({
-    'text-align': 'left',
-  })),
-  component: Object.assign({
+    ...mobilize({
+      'text-align': 'left',
+    })
+  },
+  component: {
     flex: '1 1px',
-  }, mobilize({
-    flex: '1 100%',
-  })),
+    ...mobilize({
+      flex: '1 100%',
+    })
+  },
   error: {
     flex: '1 100%',
     color: FROLY,

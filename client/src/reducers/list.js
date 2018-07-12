@@ -24,23 +24,26 @@ const listReducer = (getConstant, successConstant, failureConstant) =>
   (state = initialState, action) => {
     switch (action.type) {
       case getConstant:
-        return Object.assign({}, state, {
+        return {
+          ...state,
           loading: true,
-        });
+        };
 
       case successConstant: {
-        return Object.assign({}, state, {
+        return {
+          ...state,
           loading: false,
           list: action.data.offset ? [...state.list, ...action.data.rows] : action.data.rows,
           currentOffset: action.data.offset,
           totalRows: action.data.total_rows,
-        });
+        };
       }
 
       case failureConstant:
-        return Object.assign({}, state, {
+        return {
+          ...state,
           loading: false,
-        });
+        };
 
       default:
         return state;

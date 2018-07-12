@@ -21,13 +21,14 @@ const handleFileRemove = (currentValue, index) => currentValue.map((file, i) => 
 }).filter(file => file);
 
 const _RenderDropzone = (props) => {
-  const files = (props.input.value || []).filter(file => !file.deleted);
+  const { name, input: { value, onChange, onBlur } } = props;
+  const files = (value || []).filter(file => !file.deleted);
   return (
     <div className={css(styles.dropContainer)}>
       <Dropzone
-        name={props.name}
-        onDrop={newFile => props.input.onChange(handleFileDrop(props.input.value, newFile))}
-        onBlur={() => props.input.onBlur(props.input.value)}
+        name={name}
+        onDrop={newFile => onChange(handleFileDrop(value, newFile))}
+        onBlur={() => onBlur(value)}
         multiple={true}
         className={css(styles.dropzone)}
         activeClassName={css(styles.activeDropzone)}
@@ -40,7 +41,7 @@ const _RenderDropzone = (props) => {
           <button
             type="button"
             className={css(styles.removeButton)}
-            onClick={() => props.input.onChange(handleFileRemove(props.input.value, i))}
+            onClick={() => onChange(handleFileRemove(value, i))}
           >
             x
           </button>
@@ -48,7 +49,8 @@ const _RenderDropzone = (props) => {
             <input
               className={css(styles.input)}
               value={version}
-              onChange={(event) => props.input.onChange(handleVersionUpdate(props.input.value, i, event.target.value))}
+              onChange={(event) => onChange(handleVersionUpdate(value, i, event.target.value))}
+              onBlur={() => onBlur(value)}
               type="text"
             />
           </div>}

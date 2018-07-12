@@ -9,9 +9,10 @@ const initialState = {
 export default function reduce(state = initialState, action) {
   switch (action.type) {
     case TOGGLE_NAVBAR:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         navBarOpen: !state.navBarOpen,
-      });
+      };
 
     default:
       return state;

@@ -28,12 +28,14 @@ const fieldSemesterSort = field => (a, b) => semesterSort(a[field], b[field]);
 export default function reduce(state = initialState, action) {
   switch (action.type) {
     case INITIALIZE_FORMS:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         initialLoading: true,
-      });
+      };
 
-    case INITIALIZE_FORMS_SUCCESS: {
-      return Object.assign({}, state, {
+    case INITIALIZE_FORMS_SUCCESS:
+      return {
+        ...state,
         initialLoading: false,
         arrangementTypes: action.data.arrangementTypes.rows,
         albumFormats: action.data.albumFormats.rows,
@@ -42,13 +44,13 @@ export default function reduce(state = initialState, action) {
         albums: action.data.albums.rows.sort(fieldSemesterSort('semester')),
         concerts: action.data.concerts.rows.sort(fieldSemesterSort('semester')),
         keys: action.data.keys.rows,
-      });
-    }
+      }
 
     case INITIALIZE_FORMS_FAILURE:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         initialLoading: false,
-      });
+      };
 
     default:
       return state;

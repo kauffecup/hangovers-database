@@ -13,14 +13,18 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case SET_BANNER:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         open: true,
         text: action.text,
         type: action.bannerType,
-      });
+      };
 
     case CLOSE_BANNER:
-      return Object.assign({}, state, initialState);
+      return {
+        ...state,
+        ...initialState
+      };
 
     default:
       return state;

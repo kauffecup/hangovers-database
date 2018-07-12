@@ -81,13 +81,15 @@ export const nonHangoverAdapter = (nh = {}) => ({
   value: nh._id, label: nonHangoverFormatter(nh),
 });
 
-export const fullAlbumAdapter = (a = {}) => Object.assign({}, a, {
+export const fullAlbumAdapter = (a = {}) => ({
+  ...a,
   format: (a.format || []).map(albumFormatAdapter),
   semester: (typeof a.semester !== 'undefined') && semesterAdapter(a.semester),
   trackList: (a.trackList || []).map(arrangementAdapter),
 });
 
-export const fullArrangementAdapter = (a = {}) => Object.assign({}, a, {
+export const fullArrangementAdapter = (a = {}) => ({
+  ...a,
   active: activeAdapter(a.active),
   albums: (a.albums || []).map(albumAdapter),
   arrangers: (a.arrangers || []).map(hangoverAdapter),
@@ -105,18 +107,21 @@ export const fullArrangementAdapter = (a = {}) => Object.assign({}, a, {
   tags: (a.tags || []).map(tagAdapter),
 });
 
-export const fullArtistAdapter = (a = {}) => Object.assign({}, a, {
+export const fullArtistAdapter = (a = {}) => ({
+  ...a,
   arrangements: (a.arrangements || []).map(arrangementAdapter),
 });
 
-export const fullConcertAdapter = (c = {}) => Object.assign({}, c, {
+export const fullConcertAdapter = (c = {}) => ({
+  ...c,
   concertType: (typeof c.concertType !== 'undefined') && concertTypeAdapter(c.concertType),
   md: (c.md || []).map(hangoverAdapter),
   semester: (typeof c.semester !== 'undefined') && semesterAdapter(c.semester),
   setList: (c.setList || []).map(arrangementAdapter),
 });
 
-export const fullHangoverAdapter = (h = {}) => Object.assign({}, h, {
+export const fullHangoverAdapter = (h = {}) => ({
+  ...h,
   arranged: (h.arranged || []).map(arrangementAdapter),
   concertsMDed: (h.concertsMDed || []).map(concertAdapter),
   graduationSemester: (h.graduationSemester || []).map(semesterAdapter),
@@ -126,7 +131,8 @@ export const fullHangoverAdapter = (h = {}) => Object.assign({}, h, {
   soloed: (h.soloed || []).map(arrangementAdapter),
 });
 
-export const fullSemesterAdapter = (s = {}) => Object.assign({}, s, {
+export const fullSemesterAdapter = (s = {}) => ({
+  ...s,
   albums: (s.albums || []).map(albumAdapter),
   arrangements: (s.arrangements || []).map(arrangementAdapter),
   bm: (s.bm || []).map(hangoverAdapter),
@@ -137,10 +143,12 @@ export const fullSemesterAdapter = (s = {}) => Object.assign({}, s, {
   graduatingHangs: (s.graduatingHangs || []).map(hangoverAdapter),
 });
 
-export const fullTagAdapter = (t = {}) => Object.assign({}, t, {
+export const fullTagAdapter = (t = {}) => ({
+  ...t,
   arrangements: (t.arrangements || []).map(arrangementAdapter),
 });
 
-export const fullNonHangoverAdapter = (nh = {}) => Object.assign({}, nh, {
+export const fullNonHangoverAdapter = (nh = {}) => ({
+  ...nh,
   arrangements: (nh.arrangements || []).map(arrangementAdapter),
 });

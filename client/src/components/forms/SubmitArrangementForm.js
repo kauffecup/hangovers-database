@@ -101,22 +101,25 @@ const SubmitArrangementForm = ({ app, editName, name, arrangerNotAHangover }) =>
 };
 
 const styles = StyleSheet.create({
-  categoryLabel: Object.assign({
+  categoryLabel: {
     color: REGENT_GRAY,
     'margin-left': `${PADDING_UNIT}px`,
-  }, mobilize({
-    'margin-left': 0,
-  })),
-  row: Object.assign({
+    ...mobilize({
+      'margin-left': 0,
+    })
+  },
+  row: {
     display: 'flex',
-  }, mobilize({
-    'flex-wrap': 'wrap',
-  })),
-  rowChild: Object.assign({
+    ...mobilize({
+      'flex-wrap': 'wrap',
+    })
+  },
+  rowChild: {
     flex: 1,
-  }, mobilize({
-    flex: '1 100%',
-  })),
+    ...mobilize({
+      flex: '1 100%',
+    })
+  },
 });
 
 SubmitArrangementForm.propTypes = {

@@ -10,21 +10,24 @@ const fullReduce = (docField, getConstant, successConstant, failureConstant) => 
   return (state = initialState, action) => {
     switch (action.type) {
       case getConstant:
-        return Object.assign({}, state, {
+        return {
+          ...state,
           loading: true,
-        });
+        };
 
       case successConstant: {
-        return Object.assign({}, state, {
+        return {
+          ...state,
           loading: false,
           [docField]: action.data,
-        });
+        };
       }
 
       case failureConstant:
-        return Object.assign({}, state, {
+        return {
+          ...state,
           loading: false,
-        });
+        };
 
       default:
         return state;

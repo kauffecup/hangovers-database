@@ -1,5 +1,6 @@
 import youtubeRegex from 'youtube-regex';
 import { arrangementExists } from '../actions/search';
+import { fileFields } from '../shared/FormConstants';
 
 /**
  * Fields are:
@@ -51,17 +52,24 @@ export default (values) => {
     errors.youtube = 'Enter a valid YouTube url';
   }
 
-  if (!values.pdf || values.pdf.deleted) {
-    errors.pdf = REQUIRED_ERROR;
-  } else if (
-    !(values.pdf  || []).every(file => file.bucketName || file.type === 'application/pdf')
-  ) {
-    errors.pdf = 'PDF must be a... pdf';
+  for (const field of fileFields) {
+    if (values[field] && values[field].length) {
+      const versionMap = {};
+      for (const { version = '' } of values[field]) {
+        const casedVersion = version.toLowerCase();
+        if (versionMap[casedVersion]) {
+          errors[field] = 'Cannot have two files with the same version name';
+        }
+        versionMap[casedVersion] = true;
+      }
+    }
   }
 
-  if (
-    !(values.recording || []).every(file => file.bucketName || file.type.indexOf('audio') === -1)
-  ) {
+  if (!(values.pdf  || []).every(file => file.bucketName || file.type === 'application/pdf')) {
+    errors.pdf = `PDF${values.pdf.length ? '(s)' : ''} must be a... pdf`;
+  }
+
+  if (!(values.recording || []).every(file => file.bucketName || file.type.indexOf('audio') > -1)) {
     errors.recording = 'Recording must be a... recording.';
   }
 

@@ -5,14 +5,14 @@ import Dropzone from 'react-dropzone';
 import _Render from './_Render';
 import { REGENT_GRAY } from '../../StyleConstants';
 
-const handleFileDrop = (currentValue, newFiles) => {
-  return currentValue ? [...currentValue, ...newFiles] : [...newFiles];
-};
+const handleFileDrop = (currentValue, newFiles) =>
+  currentValue ? [...currentValue, ...newFiles] : [...newFiles];
 
 const handleVersionUpdate = (currentValue, index, newVersion) => currentValue.map((file, i) => {
   if (i !== index) { return file; }
-  file.version = newVersion;
-  return file;
+  const newFile = new File([file], file.name, { type: file.type });
+  newFile.version = newVersion;
+  return newFile;
 });
 
 const handleFileRemove = (currentValue, index) => currentValue.map((file, i) => {
@@ -33,11 +33,23 @@ const _RenderDropzone = (props) => {
         className={css(styles.dropzone)}
         activeClassName={css(styles.activeDropzone)}
       >
-        <div>Drop a file here, or click to select one to upload.</div>
+        <div>Drop files here, or click to select files to upload.</div>
       </Dropzone>
       {files.map(({ name, version, bucketName }, i) => (
-        <div>
-          {name}
+        <div className={css(styles.fileChiclet)}>
+          <div className={css(styles.titleAndText)}>
+            {name}
+            {bucketName ? null : <div className={css(styles.inputWrapper)}>
+              <input
+                className={css(styles.input)}
+                value={version}
+                onChange={(event) => onChange(handleVersionUpdate(value, i, event.target.value))}
+                onBlur={() => onBlur(value)}
+                placeholder="Version (if more than one)"
+                type="text"
+              />
+            </div>}
+          </div>
           <button
             type="button"
             className={css(styles.removeButton)}
@@ -45,19 +57,15 @@ const _RenderDropzone = (props) => {
           >
             x
           </button>
-          {bucketName ? null : <div className={css(styles.inputWrapper)}>
-            <input
-              className={css(styles.input)}
-              value={version}
-              onChange={(event) => onChange(handleVersionUpdate(value, i, event.target.value))}
-              onBlur={() => onBlur(value)}
-              type="text"
-            />
-          </div>}
         </div>
       ))}
     </div>
   );
+};
+
+const bordered = {
+  border: '1px dashed #d9d9d9',
+  borderRadius: '4px',
 };
 
 const styles = StyleSheet.create({
@@ -65,9 +73,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   dropzone: {
+    ...bordered,
     height: '100px',
-    border: '1px dashed #d9d9d9',
-    borderRadius: '4px',
     color: '#aaa',
     display: 'flex',
     'justify-content': 'center',
@@ -86,8 +93,21 @@ const styles = StyleSheet.create({
     height: '20px',
     'line-height': '20px',
     'margin-left': '6px',
+    'font-size': '14px',
+  },
+  fileChiclet: {
+    ...bordered,
+    display: 'flex',
+    margin: '11px 0',
+    padding: '11px',
+    'align-items': 'center',
+  },
+  titleAndText: {
+    flex: 1,
+    'margin-right': '11px',
   },
   inputWrapper: {
+    'margin-top': '11px',
     display: 'flex',
     height: '36px',
     border: '1px solid #d9d9d9',

@@ -110,14 +110,12 @@ const styles = StyleSheet.create({
   },
   row: {
     display: 'flex',
-    ...mobilize({
-      'flex-wrap': 'wrap',
-    })
+    'flex-wrap': 'wrap',
   },
   rowChild: {
-    flex: 1,
+    width: '50%',
     ...mobilize({
-      flex: '1 100%',
+      width: '50%',
     })
   },
 });

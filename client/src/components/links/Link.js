@@ -1,21 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Link = ({ link }) => {
-  const { url, displayName } = link;
+const Link = ({ url, displayName }) => {
   return (
-    <a href={url || link} target={"_blank"} rel="noopener noreferrer">{displayName || link}</a>
+    <a href={url} target={"_blank"} rel="noopener noreferrer">{displayName || url}</a>
   );
 };
 
 Link.propTypes = {
-  link: PropTypes.oneOf([
-    PropTypes.string,
-    PropTypes.objectOf({
-      url: PropTypes.string,
-      displayName: PropTypes.string,
-    }),
-  ]),
+  url: PropTypes.string.isRequired,
+  displayName: PropTypes.string,
 };
 
 export default Link;

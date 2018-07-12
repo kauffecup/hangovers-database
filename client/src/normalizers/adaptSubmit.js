@@ -69,6 +69,7 @@ const adaptSubmit = (values, { objectFields = [], objectArrayFields = [], binary
 export const adaptArrangementSubmit = values => adaptSubmit({
   ...values,
   nonHangoverArrangers: values.arrangerNotAHangover ? values.nonHangoverArrangers : [],
+}, {
   objectFields: ofs,
   objectArrayFields: oafs,
   binaryFields: bs,

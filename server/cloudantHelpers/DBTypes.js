@@ -1,3 +1,6 @@
+// users!
+module.exports.USER_TYPE = 'user';
+
 // top level objects
 module.exports.ARRANGEMENT_TYPE = 'arrangement';
 module.exports.HANGOVER_TYPE = 'hangover';

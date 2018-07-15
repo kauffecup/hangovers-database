@@ -63,7 +63,6 @@ const nonHangoverIndexer = function (doc) {
   }
 };
 
-
 const relationshipIndexer = function (doc) {
   if (typeof doc.type === 'string' && (
     doc.type === 'album_semester_relationship' ||

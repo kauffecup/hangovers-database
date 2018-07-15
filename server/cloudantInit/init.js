@@ -17,6 +17,7 @@ const designFull = require('./_designFull');
 const designTypes = require('./_designTypes');
 const designRelationships = require('./_designRelationships');
 const designSearch = require('./_designSearch');
+const designUsers = require('./_designUsers');
 const albumSemesters = require('./relationships/albumSemesters.json');
 const bms = require('./relationships/BMs.json');
 const concertSemesters = require('./relationships/concertSemesters.json');
@@ -43,6 +44,7 @@ sageDB.initialize()
   .then(() => sageDB._upsert(designTypes))
   .then(() => sageDB._upsert(designRelationships))
   .then(() => sageDB._upsert(designSearch))
+  .then(() => sageDB._upsert(designUsers))
   // some semesters
   .then(() => console.log('inserting/updating semesters'))
   .then(() => Promise.map(semesters, s => sageDB.upsertSemester(s), opts))

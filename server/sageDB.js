@@ -170,6 +170,7 @@ const _search = (index, q, limit = LIMIT) => _sageDB.searchAsync('search', index
 }).then(response => (response.rows || []).map(r => r.doc));
 
 /** Upserts for given doc types without relationships */
+const upsertUser = (u) => _upsertType(u, types.USER_TYPE, idgen.getUserId(u));
 const upsertArrangementType = (at) => _upsertType(at, types.ARRANGEMENT_TYPE_TYPE, idgen.getArrangementTypeID(at));
 const upsertAlbumFormat = (af) => _upsertType(af, types.ALBUM_FORMAT_TYPE, idgen.getAlbumFormatID(af));
 const upsertConcertType = (ct) => _upsertType(ct, types.CONCERT_TYPE_TYPE, idgen.getConcertTypeID(ct));
@@ -222,6 +223,7 @@ const _upsert = (doc) => _sageDB.getAsync(doc._id)
   );
 
 /** Destroy docs! And their relationships! */
+const destroyUser = (_id, _rev) => _destroy(_id, _rev);
 const destroyAlbum = (_id, _rev) => _destroyWithRelationships(_id, _rev, 'album');
 const destroyArrangement = (_id, _rev) => _destroyWithRelationships(_id, _rev, 'arrangement');
 const destroyArtist = (_id, _rev) => _destroyWithRelationships(_id, _rev, 'artist');
@@ -280,7 +282,7 @@ module.exports = {
   // search town
   searchArtists, searchArrangements, searchGenres, searchHangovers, searchRelationships, searchTags, searchNonHangovers,
   // upsert time
-  upsertArrangementType, upsertAlbumFormat, upsertConcertType, upsertGenre, upsertKey, upsertAlbum, upsertArtist, upsertConcert, upsertHangover, upsertSemester, upsertTag, upsertNonHangover, upsertArrangement,
+  upsertUser, upsertArrangementType, upsertAlbumFormat, upsertConcertType, upsertGenre, upsertKey, upsertAlbum, upsertArtist, upsertConcert, upsertHangover, upsertSemester, upsertTag, upsertNonHangover, upsertArrangement,
   // destroyers
-  destroyAlbum, destroyArrangement, destroyArtist, destroyConcert, destroyHangover, destroySemester, destroyTag, destroyNonHangover,
+  destroyUser, destroyAlbum, destroyArrangement, destroyArtist, destroyConcert, destroyHangover, destroySemester, destroyTag, destroyNonHangover,
 };

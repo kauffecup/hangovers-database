@@ -5,6 +5,9 @@ const normalizeString = string =>
   string.toLowerCase().replace(/\s|\//g, '_').replace(/[^_a-z0-9+]/g, '');
 module.exports.normalizeString = normalizeString;
 
+module.exports.getUserId = user =>
+  `${types.USER_TYPE}_${normalizeString(user.username)}`;
+
 module.exports.getArrangementID = arrangement =>
   `${types.ARRANGEMENT_TYPE}_${normalizeString(arrangement.name)}`;
 

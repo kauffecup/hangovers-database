@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Router, Route, IndexRoute } from 'react-router';
 import Sage from './Sage';
+// auth
+import Login from './Login';
 // lists
 import Albums from './lists/Albums';
 import Arrangements from './lists/Arrangements';
@@ -39,8 +41,10 @@ import AddTag from './add/AddTag';
 
 const App = ({ history }) =>
   <Router history={history}>
+    <Route path="login" component={Login} />
     <Route path="/" component={Sage}>
       <IndexRoute component={Arrangements} />
+
       <Route path="arrangements" component={Arrangements} />
       <Route path="arrangements/submit" component={AddArrangement} />
       <Route path="arrangements/edit/:id" component={EditArrangement} />

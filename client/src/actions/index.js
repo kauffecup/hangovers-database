@@ -13,6 +13,8 @@ import {
   fullNonHangoverAdapter,
 } from '../normalizers/adaptFormData';
 
+// auth forms
+export const LOG_IN_FORM = 'login';
 // add forms
 export const ADD_ALBUM_FORM = 'addAlbum';
 export const ADD_ARRANGEMENT_FORM = 'addArrangement';
@@ -127,6 +129,19 @@ const actionFetch = (endpoint, START, SUCCESS, FAILURE, params) => (dispatch) =>
 };
 
 export const initializeForms = () => actionFetch('/api/initializeforms', INITIALIZE_FORMS, INITIALIZE_FORMS_SUCCESS, INITIALIZE_FORMS_FAILURE);
+
+/** Auth actions */
+export const createAccount = (user) => myFetch('/api/user', {
+  method: 'POST',
+  body: JSON.stringify(user),
+  headers: { 'Content-Type': 'application/json' },
+});
+
+export const login = (user) => myFetch('/api/login', {
+  method: 'POST',
+  body: JSON.stringify(user),
+  headers: { 'Content-Type': 'application/json' },
+});
 
 /** Actions for getting full top level objects */
 export const getArrangement = arrangementID => actionFetch('/api/full/arrangement', GET_ARRANGEMENT, GET_ARRANGEMENT_SUCCESS, GET_ARRANGEMENT_FAILURE, { arrangementID });

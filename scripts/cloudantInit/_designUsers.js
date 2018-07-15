@@ -10,7 +10,7 @@ const ddoc = {
   _id: '_design/users',
   language: 'javascript',
   views: {
-    albums: { map: userMapper },
+    users: { map: userMapper },
   },
 };
 

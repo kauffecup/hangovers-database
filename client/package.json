@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "aphrodite": "^1.1.0",
+    "lodash": "^4.17.10",
     "prop-types": "15.6.2",
     "query-string": "^4.3.1",
     "react": "15.4.2",

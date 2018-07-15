@@ -2,13 +2,54 @@ const express = require('express');
 const fs = require('fs');
 const path = require('path');
 const multer = require('multer');
+const bcrypt = require('bcrypt');
 const sageDB = require('../modules/sageDB');
 const backblaze = require('../modules/backblaze');
+const passport = require('../modules/passport');
+
+const SALT_ROUNDS = 10;
 
 // configure router
 const router = express.Router();
 // configure file uploader
 const upload = multer({ dest: 'tmp' });
+
+/** Auth! Log in */
+router.post('/api/login', passport.authenticate('local'), (req, res) => {
+  res.status(200).json({});
+});
+
+/** Auth! Log out */
+router.get('/api/logout', (req, res) => {
+  req.logout();
+  res.redirect('/login');
+});
+
+/** Auth! Create a user */
+router.post('/api/user', async (req, res, next) => {
+  if (!req.body.username || !req.body.password) {
+    return res.status(400).json({ error: 'Must have a username and password.' });
+  }
+  try {
+    const user = await sageDB.getUser(req.body);
+    if (user) {
+      return res.status(400).json({ error : 'User with that username already exists.' });
+    }
+  } catch (e) {
+    if (e.statusCode === 404) {
+      const hash = await bcrypt.hash(req.body.password, SALT_ROUNDS);
+      await sageDB.upsertUser({
+        ...req.body,
+        password: hash,
+      });
+      passport.authenticate('local')(req, res, () => {
+        res.status(200).json({});
+      });
+    } else {
+      return res.status(e.statusCode).json({ error: e.description });
+    }
+  }
+});
 
 /** GET: get the initial data necessary for form stuff */
 router.get('/api/initializeforms', async (req, res) => {
@@ -160,8 +201,14 @@ router.delete('/api/destroy/arrangement', ({ query: { _id, _rev } }, res) => {
 });
 
 /** For everything else, serve the index */
-router.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '../client/build/index.html'));
+router.get('*', (req, res, next) => {
+  if (req.path.startsWith('/static')) {
+    next();
+  } else if (req.user || req.path === '/login') {
+    res.sendFile(path.resolve(__dirname, '../../client/build/index.html'));
+  } else {
+    res.redirect('/login');
+  }
 });
 
 module.exports = router;

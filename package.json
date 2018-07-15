@@ -22,10 +22,12 @@
   },
   "dependencies": {
     "@cloudant/cloudant": "^2.3.0",
+    "bcrypt": "^3.0.0",
     "bluebird": "^3.5.1",
     "body-parser": "^1.15.2",
     "dotenv": "^4.0.0",
     "express": "^4.16.3",
+    "express-session": "^1.15.6",
     "mime-types": "^2.1.14",
     "morgan": "^1.7.0",
     "multer": "^1.2.0",

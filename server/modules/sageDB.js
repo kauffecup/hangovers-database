@@ -100,6 +100,7 @@ const arrangementExists = (name = '') => new Promise((resolve, reject) =>
 
 /** Get a user given the user object that contains a username and pw */
 const getUser = (user) => _sageDB.getAsync(idgen.getUserId(user));
+const getUserById = (_id) => _sageDB.getAsync(_id);
 
 /**
  * Getters for all the types defined above. Each method returns a promise that
@@ -277,7 +278,7 @@ module.exports = {
   // initializers
   initialize, addIndex, _upsert,
   // database gets
-  getUser,
+  getUser, getUserById,
   // get full objects
   getFullArrangement,  getFullHangover, getFullSemester, getFullConcert, getFullAlbum, getFullArtist, getFullTag, getFullNonHangover,
   // async checkers

@@ -2,8 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { syncHistoryWithStore } from 'react-router-redux';
-import store from './bootstrap/store';
-import history from './bootstrap/history';
+import store, { history } from './store';
 import App from './containers/Routes';
 
 // load our css. there probably is a better way to do this

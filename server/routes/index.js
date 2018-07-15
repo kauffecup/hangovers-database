@@ -28,12 +28,12 @@ router.get('/api/logout', (req, res) => {
 /** Auth! Create a user */
 router.post('/api/user', async (req, res, next) => {
   if (!req.body.username || !req.body.password) {
-    return res.status(400).json({ error: 'Must have a username and password.' });
+    return res.status(400).json({ errorMessage: 'Must have a username and password.' });
   }
   try {
     const user = await sageDB.getUser(req.body);
     if (user) {
-      return res.status(400).json({ error : 'User with that username already exists.' });
+      return res.status(400).json({ errorMessage: 'User with that username already exists.' });
     }
   } catch (e) {
     if (e.statusCode === 404) {
@@ -46,7 +46,7 @@ router.post('/api/user', async (req, res, next) => {
         res.status(200).json({});
       });
     } else {
-      return res.status(e.statusCode).json({ error: e.description });
+      return res.status(e.statusCode).json({ errorMessage: e.description });
     }
   }
 });

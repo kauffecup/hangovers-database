@@ -3,10 +3,10 @@ import { StyleSheet, css } from 'aphrodite';
 import { FROLY, REGENT_GRAY, mobilize } from '../../StyleConstants';
 
 const _Render = Component => (props) => {
-  const { label, name, styles: propStyles, meta: { touched, error } } = props; // eslint-disable-line
+  const { label, noLabel, name, styles: propStyles, meta: { touched, error } } = props; // eslint-disable-line
   return (
     <div className={css(styles.row, propStyles)}>
-      <label htmlFor={name} className={css(styles.label)}>{label}</label>
+      {noLabel ? null : <label htmlFor={name} className={css(styles.label)}>{label}</label>}
       <Component {...props} className={css(styles.component)} />
       {touched && error && <div className={css(styles.error)}>{error}</div>}
     </div>

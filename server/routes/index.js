@@ -2,8 +2,8 @@ const express = require('express');
 const fs = require('fs');
 const path = require('path');
 const multer = require('multer');
-const sageDB = require('../sageDB');
-const backblaze = require('../backblaze');
+const sageDB = require('../modules/sageDB');
+const backblaze = require('../modules/backblaze');
 
 // configure router
 const router = express.Router();

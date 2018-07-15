@@ -8,7 +8,7 @@ const {
   fileFields,
   FILE_METADATA_MODIFIER,
   NEW_IDENTIFIER,
-} = require('../../shared/FormConstants');
+} = require('../../../shared/FormConstants');
 
 const multiRelationshipArrangementFields = [
   { field: 'albums', relationshipField: 'album', type: types.ARRANGEMENT_ALBUMS_RELATIONSHIP_TYPE, idGenerator: idgen.getArrangementAlbumID },

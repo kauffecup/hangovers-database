@@ -1,9 +1,10 @@
 // configure environment variables first
 const path = require('path');
 require('dotenv').config({ path: path.resolve(__dirname, '../../config/.env') });
+
 // module imports
 const Promise = require('bluebird');
-const sageDB = require('../sageDB');
+const sageDB = require('../../server/modules/sageDB');
 const semesters = require('./semesters.json');
 const hangovers = require('./hangovers.json');
 const arrangementTypes = require('./arrangementTypes.json');

@@ -2,7 +2,7 @@ const Promise = require('bluebird');
 const cloudant = require('@cloudant/cloudant');
 const types = require('./cloudantHelpers/DBTypes');
 const idgen = require('./cloudantHelpers/IDGenerators');
-const cloudantConfig = require('../config/cloudantConfig');
+const cloudantConfig = require('../../config/cloudantConfig');
 const {
   adaptAlbum,
   adaptArrangement,
@@ -97,6 +97,9 @@ const arrangementExists = (name = '') => new Promise((resolve, reject) =>
     .then(() => resolve(true))
     .catch(e => e.error === 'not_found' ? resolve(false) : reject(e))
 );
+
+/** Get a user given the user object that contains a username and pw */
+const getUser = (user) => _sageDB.getAsync(idgen.getUserId(user));
 
 /**
  * Getters for all the types defined above. Each method returns a promise that
@@ -273,6 +276,8 @@ const manageRelationships = (relationships, oldRelationships) => {
 module.exports = {
   // initializers
   initialize, addIndex, _upsert,
+  // database gets
+  getUser,
   // get full objects
   getFullArrangement,  getFullHangover, getFullSemester, getFullConcert, getFullAlbum, getFullArtist, getFullTag, getFullNonHangover,
   // async checkers

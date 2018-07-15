@@ -1,9 +1,9 @@
 const Promise = require('bluebird');
 const backblaze = require('node-backblaze-b2');
 const mime = require('mime-types');
-const backblazeConfig = require('../config/backblazeConfig');
+const backblazeConfig = require('../../config/backblazeConfig');
 const { normalizeString } = require('./cloudantHelpers/IDGenerators');
-const { FILE_METADATA_MODIFIER } = require('../shared/FormConstants');
+const { FILE_METADATA_MODIFIER } = require('../../shared/FormConstants');
 
 const REAUTH_INTERVAL = 60 * 60 * 1000;  // one hour
 

@@ -143,6 +143,8 @@ export const login = (user) => myFetch('/api/login', {
   headers: { 'Content-Type': 'application/json' },
 });
 
+export const logout = () => myFetch('/api/logout');
+
 /** Actions for getting full top level objects */
 export const getArrangement = arrangementID => actionFetch('/api/full/arrangement', GET_ARRANGEMENT, GET_ARRANGEMENT_SUCCESS, GET_ARRANGEMENT_FAILURE, { arrangementID });
 export const getHangover = hangoverID => actionFetch('/api/full/hangover', GET_HANGOVER, GET_HANGOVER_SUCCESS, GET_HANGOVER_FAILURE, { hangoverID });

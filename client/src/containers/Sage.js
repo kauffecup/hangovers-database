@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { StyleSheet, css } from 'aphrodite';
-import { closeBanner, initializeForms, toggleNavBar } from '../actions';
+import { closeBanner, initializeForms, toggleNavBar, logout } from '../actions';
 import { BLACK_SQUEEZE, NAVBAR_WIDTH } from '../StyleConstants';
 import Header from '../components/Header';
 import NavBar from '../components/NavBar';
@@ -14,6 +14,12 @@ class Sage extends Component {
     dispatch(initializeForms());
   }
 
+  handleLogout = async () => {
+    const { router } = this.props;
+    await logout();
+    router.push('login');
+  }
+
   render() {
     const { banner, children, dispatch, view } = this.props;
     const { open: bannerOpen, text: bannerText, type: bannerType } = banner;
@@ -21,11 +27,15 @@ class Sage extends Component {
     return (
       <div className={css(styles.sage)}>
         <div className={css(styles.notNavBar, !navBarOpen && styles.navBarClosed)}>
-          <Header navBarOpen={navBarOpen} handleHamburger={() => dispatch(toggleNavBar())} />
+          <Header
+            navBarOpen={navBarOpen}
+            handleHamburger={() => dispatch(toggleNavBar())}
+            onLogout={this.handleLogout}
+          />
           { bannerOpen ? <Banner text={bannerText} type={bannerType} handleClose={() => dispatch(closeBanner())} /> : null }
           { children }
         </div>
-        { navBarOpen ? <NavBar handleHamburger={() => dispatch(toggleNavBar())} /> : null }
+        { navBarOpen ? <NavBar onLogout={this.handleLogout} /> : null }
       </div>
     );
   }

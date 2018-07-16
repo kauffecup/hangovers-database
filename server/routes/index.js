@@ -22,7 +22,7 @@ router.post('/api/login', passport.authenticate('local'), (req, res) => {
 /** Auth! Log out */
 router.get('/api/logout', (req, res) => {
   req.logout();
-  res.redirect('/login');
+  res.status(200).json({});
 });
 
 /** Auth! Create a user */

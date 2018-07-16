@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { StyleSheet, css } from 'aphrodite';
-import { NAVBAR_WIDTH, OXFORD_GRAY, REGENT_GRAY } from '../StyleConstants';
 import Music from '../icons/music';
 import Calendar from '../icons/calendar';
 import Man from '../icons/man';
@@ -9,13 +8,20 @@ import Loudspeaker from '../icons/loudspeaker';
 import Cd from '../icons/cd';
 import Headphones from '../icons/headphones';
 import Tag from '../icons/tag';
+import {
+  NAVBAR_WIDTH,
+  OXFORD_GRAY,
+  REGENT_GRAY,
+  BLACK_SQUEEZE,
+  SHAKESPEARE,
+} from '../StyleConstants';
 
 const NavLink = props =>
   <li className={css(styles.link)}><Link {...props} className={css(styles.svgLink)} activeClassName={css(styles.active)} /></li>
 
-const NavBar = () =>
+const NavBar = ({ onLogout }) =>
   <nav className={css(styles.nav)}>
-    <ul>
+    <ul className={css(styles.list)}>
       <NavLink to="/arrangements"><Music className={css(styles.svgButton)} /></NavLink>
       <NavLink to="/hangovers"><Man className={css(styles.svgButton)} /></NavLink>
       <NavLink to="/semesters"><Calendar className={css(styles.svgButton)} /></NavLink>
@@ -23,6 +29,7 @@ const NavBar = () =>
       <NavLink to="/albums"><Cd className={css(styles.svgButton)} /></NavLink>
       <NavLink to="/artists"><Headphones className={css(styles.svgButton)} /></NavLink>
       <NavLink to="/tags"><Tag className={css(styles.svgButton)} /></NavLink>
+      <a onClick={onLogout} className={css(styles.link) + ' ' + css(styles.logout)}>Log Out</a>
     </ul>
   </nav>;
 
@@ -38,9 +45,21 @@ const styles = StyleSheet.create({
     'padding-top': `${NAVBAR_WIDTH}px`,
     '-webkit-overflow-scrolling': 'touch',
   },
+  list: {
+    display: 'flex',
+    'flex-direction': 'column',
+  },
   link: {
     cursor: 'pointer',
     padding: `${(NAVBAR_WIDTH - 24) / 2}px`,
+  },
+  logout: {
+    color: BLACK_SQUEEZE,
+    padding: '0 0 22px 0',
+    margin: 'auto',
+    ':hover': {
+      color: SHAKESPEARE,
+    },
   },
   active: {
     fill: '#fff',

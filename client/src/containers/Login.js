@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { push } from 'connected-react-router'
 import { StyleSheet, css } from 'aphrodite';
 import { reduxForm, Field, SubmissionError } from 'redux-form';
 import get from 'lodash/get';
@@ -11,19 +12,20 @@ import { FROLY } from '../StyleConstants';
 
 class Login extends Component {
   handleSubmit = async (values) => {
+    const { dispatch } = this.props;
     try {
       await login(values);
-      this.props.router.push('/');
+      dispatch(push('/'));
     } catch (e) {
       throw new SubmissionError({ _error: 'Incorrect username or password' });
     }
   }
 
   handleSignUp = async () => {
-    const { user } = this.props;
+    const { dispatch, user } = this.props;
     try {
       await createAccount(user);
-      this.props.router.push('/');
+      dispatch(push('/'));
     } catch (e) {
       const error = await e.json();
       throw new SubmissionError({ _error: error.errorMessage });

@@ -8,7 +8,7 @@ import Edit from '../../components/pages/Edit';
 import SubmitConcertForm from '../../components/forms/SubmitConcertForm';
 import { concertFormatter } from '../../normalizers/adaptFormData';
 
-const EditConcert = ({ app, dispatch, handleSubmit, name, id, rev, loading }) =>
+const EditConcert = ({ app, dispatch, handleSubmit, name, rev, loading, match: { params: { id } } }) => (
   <Edit
     title={name}
     getEditData={() => dispatch(getEditConcertData(id))}
@@ -17,7 +17,8 @@ const EditConcert = ({ app, dispatch, handleSubmit, name, id, rev, loading }) =>
     loading={loading}
   >
     <SubmitConcertForm app={app} />
-  </Edit>;
+  </Edit>
+);
 
 EditConcert.propTypes = {
   app: PropTypes.object.isRequired,
@@ -29,10 +30,9 @@ EditConcert.propTypes = {
   rev: PropTypes.string,
 };
 
-const mapStateToProps = (state, routerProps) => ({
+const mapStateToProps = (state) => ({
   app: state.app,
   loading: state.form[EDIT_CONCERT_FORM] && state.form[EDIT_CONCERT_FORM].loading,
-  id: routerProps.params.id,
   name: concertFormatter(state.form[EDIT_CONCERT_FORM] && state.form[EDIT_CONCERT_FORM].values),
   rev: state.form && state.form[EDIT_CONCERT_FORM] && state.form[EDIT_CONCERT_FORM].values && state.form[EDIT_CONCERT_FORM].values._rev,
 });

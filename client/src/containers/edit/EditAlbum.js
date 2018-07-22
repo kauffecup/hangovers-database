@@ -8,7 +8,7 @@ import Edit from '../../components/pages/Edit';
 import { albumFormatter } from '../../normalizers/adaptFormData';
 import SubmitAlbumForm from '../../components/forms/SubmitAlbumForm';
 
-const EditAlbum = ({ app, dispatch, handleSubmit, name, id, rev, loading }) =>
+const EditAlbum = ({ app, dispatch, handleSubmit, name, rev, loading, match: { params: { id } } }) => (
   <Edit
     title={name}
     getEditData={() => dispatch(getEditAlbumData(id))}
@@ -17,7 +17,8 @@ const EditAlbum = ({ app, dispatch, handleSubmit, name, id, rev, loading }) =>
     loading={loading}
   >
     <SubmitAlbumForm app={app} />
-  </Edit>;
+  </Edit>
+);
 
 EditAlbum.propTypes = {
   app: PropTypes.object.isRequired,
@@ -29,10 +30,9 @@ EditAlbum.propTypes = {
   rev: PropTypes.string,
 };
 
-const mapStateToProps = (state, routerProps) => ({
+const mapStateToProps = (state) => ({
   app: state.app,
   loading: state.form[EDIT_ALBUM_FORM] && state.form[EDIT_ALBUM_FORM].loading,
-  id: routerProps.params.id,
   name: albumFormatter(state.form[EDIT_ALBUM_FORM] && state.form[EDIT_ALBUM_FORM].values),
   rev: state.form && state.form[EDIT_ALBUM_FORM] && state.form[EDIT_ALBUM_FORM].values && state.form[EDIT_ALBUM_FORM].values._rev,
 });

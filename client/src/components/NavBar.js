@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { StyleSheet, css } from 'aphrodite';
 import Music from '../icons/music';
 import Calendar from '../icons/calendar';
@@ -16,19 +16,19 @@ import {
   SHAKESPEARE,
 } from '../StyleConstants';
 
-const NavLink = props =>
-  <li className={css(styles.link)}><Link {...props} className={css(styles.svgLink)} activeClassName={css(styles.active)} /></li>
+const MyNav = props =>
+  <li className={css(styles.link)}><NavLink {...props} className={css(styles.svgLink)} activeClassName={css(styles.active)} /></li>
 
 const NavBar = ({ onLogout }) =>
   <nav className={css(styles.nav)}>
     <ul className={css(styles.list)}>
-      <NavLink to="/arrangements"><Music className={css(styles.svgButton)} /></NavLink>
-      <NavLink to="/hangovers"><Man className={css(styles.svgButton)} /></NavLink>
-      <NavLink to="/semesters"><Calendar className={css(styles.svgButton)} /></NavLink>
-      <NavLink to="/concerts"><Loudspeaker className={css(styles.svgButton)} /></NavLink>
-      <NavLink to="/albums"><Cd className={css(styles.svgButton)} /></NavLink>
-      <NavLink to="/artists"><Headphones className={css(styles.svgButton)} /></NavLink>
-      <NavLink to="/tags"><Tag className={css(styles.svgButton)} /></NavLink>
+      <MyNav to="/arrangements"><Music className={css(styles.svgButton)} /></MyNav>
+      <MyNav to="/hangovers"><Man className={css(styles.svgButton)} /></MyNav>
+      <MyNav to="/semesters"><Calendar className={css(styles.svgButton)} /></MyNav>
+      <MyNav to="/concerts"><Loudspeaker className={css(styles.svgButton)} /></MyNav>
+      <MyNav to="/albums"><Cd className={css(styles.svgButton)} /></MyNav>
+      <MyNav to="/artists"><Headphones className={css(styles.svgButton)} /></MyNav>
+      <MyNav to="/tags"><Tag className={css(styles.svgButton)} /></MyNav>
       <a onClick={onLogout} className={css(styles.link) + ' ' + css(styles.logout)}>Log Out</a>
     </ul>
   </nav>;

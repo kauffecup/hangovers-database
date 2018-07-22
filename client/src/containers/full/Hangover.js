@@ -9,7 +9,7 @@ import { hangoverFormatter } from '../../normalizers/adaptFormData';
 import Full from '../../components/pages/Full';
 import Card from '../../components/Card';
 
-const Hangover = ({ dispatch, id, hangover, loading }) =>
+const Hangover = ({ dispatch, hangover, loading, match: { params: { id } } }) => (
   <Full
     title={hangoverFormatter(hangover)}
     load={() => dispatch(getHangover(id))}
@@ -27,7 +27,8 @@ const Hangover = ({ dispatch, id, hangover, loading }) =>
     <Card title="Soloed">
       <ArrangementList arrangements={hangover.soloed} />
     </Card>
-  </Full>;
+  </Full>
+);
 
 Hangover.propTypes = {
   dispatch: PropTypes.func.isRequired,
@@ -37,10 +38,9 @@ Hangover.propTypes = {
 };
 
 // for now, we want the hangover state
-const mapStateToProps = (state, routerProps) => ({
+const mapStateToProps = (state) => ({
   loading: state.hangover.loading,
   hangover: state.hangover.hangover,
-  id: routerProps.params.id,
 });
 
 // Wrap the component to inject dispatch and state into it

@@ -8,7 +8,7 @@ import Edit from '../../components/pages/Edit';
 import SubmitSemesterForm from '../../components/forms/SubmitSemesterForm';
 import { semesterFormatter } from '../../normalizers/adaptFormData';
 
-const EditSemester = ({ app, dispatch, handleSubmit, name, id, rev, loading }) =>
+const EditSemester = ({ app, dispatch, handleSubmit, name, rev, loading, match: { params: { id } } }) =>
   <Edit
     title={name}
     getEditData={() => dispatch(getEditSemesterData(id))}
@@ -29,10 +29,9 @@ EditSemester.propTypes = {
   rev: PropTypes.string,
 };
 
-const mapStateToProps = (state, routerProps) => ({
+const mapStateToProps = (state) => ({
   app: state.app,
   loading: state.form[EDIT_SEMESTER_FORM] && state.form[EDIT_SEMESTER_FORM].loading,
-  id: routerProps.params.id,
   name: semesterFormatter(state.form[EDIT_SEMESTER_FORM] && state.form[EDIT_SEMESTER_FORM].values),
   rev: state.form && state.form[EDIT_SEMESTER_FORM] && state.form[EDIT_SEMESTER_FORM].values && state.form[EDIT_SEMESTER_FORM].values._rev,
 });

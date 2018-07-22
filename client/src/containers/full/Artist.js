@@ -7,7 +7,7 @@ import { artistFormatter } from '../../normalizers/adaptFormData';
 import Full from '../../components/pages/Full';
 import Card from '../../components/Card';
 
-const Artist = ({ dispatch, id, artist, loading }) =>
+const Artist = ({ dispatch, artist, loading, match: { params: { id } } }) =>
   <Full
     title={artistFormatter(artist)}
     load={() => dispatch(getArtist(id))}
@@ -27,10 +27,9 @@ Artist.propTypes = {
 };
 
 // for now, we want the artist state
-const mapStateToProps = (state, routerProps) => ({
+const mapStateToProps = (state) => ({
   loading: state.artist.loading,
   artist: state.artist.artist,
-  id: routerProps.params.id,
 });
 
 // Wrap the component to inject dispatch and state into it

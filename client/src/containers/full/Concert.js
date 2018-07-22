@@ -9,7 +9,7 @@ import { concertFormatter } from '../../normalizers/adaptFormData';
 import Full from '../../components/pages/Full';
 import Card from '../../components/Card';
 
-const Concert = ({ dispatch, id, concert, loading }) =>
+const Concert = ({ dispatch, concert, loading, match: { params: { id } } }) =>
   <Full
     title={concertFormatter(concert)}
     load={() => dispatch(getConcert(id))}
@@ -31,10 +31,9 @@ Concert.propTypes = {
 };
 
 // for now, we want the concert state
-const mapStateToProps = (state, routerProps) => ({
+const mapStateToProps = (state) => ({
   loading: state.concert.loading,
   concert: state.concert.concert,
-  id: routerProps.params.id,
 });
 
 // Wrap the component to inject dispatch and state into it

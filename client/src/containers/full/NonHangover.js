@@ -7,7 +7,7 @@ import { nonHangoverFormatter } from '../../normalizers/adaptFormData';
 import Full from '../../components/pages/Full';
 import Card from '../../components/Card';
 
-const NonHangover = ({ dispatch, id, nonHangover, loading }) =>
+const NonHangover = ({ dispatch, nonHangover, loading, match: { params: { id } } }) =>
   <Full
     title={nonHangoverFormatter(nonHangover)}
     load={() => dispatch(getNonHangover(id))}
@@ -27,10 +27,9 @@ NonHangover.propTypes = {
 };
 
 // for now, we want the nonHangover state
-const mapStateToProps = (state, routerProps) => ({
+const mapStateToProps = (state) => ({
   loading: state.nonHangover.loading,
   nonHangover: state.nonHangover.nonHangover,
-  id: routerProps.params.id,
 });
 
 // Wrap the component to inject dispatch and state into it

@@ -8,7 +8,7 @@ import { nonHangoverFormatter } from '../../normalizers/adaptFormData';
 import Edit from '../../components/pages/Edit';
 import SubmitNonHangoverForm from '../../components/forms/SubmitNonHangoverForm';
 
-const EditNonHangover = ({ dispatch, handleSubmit, name, id, rev, loading }) =>
+const EditNonHangover = ({ dispatch, handleSubmit, name, rev, loading, match: { params: { id } } }) =>
   <Edit
     title={name}
     getEditData={() => dispatch(getEditNonHangoverData(id))}
@@ -28,9 +28,8 @@ EditNonHangover.propTypes = {
   rev: PropTypes.string,
 };
 
-const mapStateToProps = (state, routerProps) => ({
+const mapStateToProps = (state) => ({
   app: state.app,
-  id: routerProps.params.id,
   loading: state.form[EDIT_NON_HANGOVER_FORM] && state.form[EDIT_NON_HANGOVER_FORM].loading,
   name: nonHangoverFormatter(state.form[EDIT_NON_HANGOVER_FORM] && state.form[EDIT_NON_HANGOVER_FORM].values),
   rev: state.form && state.form[EDIT_NON_HANGOVER_FORM] && state.form[EDIT_NON_HANGOVER_FORM].values && state.form[EDIT_NON_HANGOVER_FORM].values._rev,

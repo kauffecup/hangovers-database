@@ -10,7 +10,7 @@ import { semesterFormatter } from '../../normalizers/adaptFormData';
 import Full from '../../components/pages/Full';
 import Card from '../../components/Card';
 
-const Semester = ({ dispatch, id, semester, loading }) =>
+const Semester = ({ dispatch, semester, loading, match: { params: { id } } }) =>
   <Full
     title={semesterFormatter(semester)}
     load={() => dispatch(getSemester(id))}
@@ -45,10 +45,9 @@ Semester.propTypes = {
 };
 
 // for now, we want the semester state
-const mapStateToProps = (state, routerProps) => ({
+const mapStateToProps = (state) => ({
   loading: state.semester.loading,
   semester: state.semester.semester,
-  id: routerProps.params.id,
 });
 
 // Wrap the component to inject dispatch and state into it

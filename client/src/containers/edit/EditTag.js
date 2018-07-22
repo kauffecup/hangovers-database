@@ -8,7 +8,7 @@ import { tagFormatter } from '../../normalizers/adaptFormData';
 import Edit from '../../components/pages/Edit';
 import SubmitTagForm from '../../components/forms/SubmitTagForm';
 
-const EditTag = ({ dispatch, handleSubmit, name, id, rev, loading }) =>
+const EditTag = ({ dispatch, handleSubmit, name, rev, loading, match: { params: { id } } }) =>
   <Edit
     title={name}
     getEditData={() => dispatch(getEditTagData(id))}
@@ -28,9 +28,8 @@ EditTag.propTypes = {
   rev: PropTypes.string,
 };
 
-const mapStateToProps = (state, routerProps) => ({
+const mapStateToProps = (state) => ({
   app: state.app,
-  id: routerProps.params.id,
   loading: state.form[EDIT_TAG_FORM] && state.form[EDIT_TAG_FORM].loading,
   name: tagFormatter(state.form[EDIT_TAG_FORM] && state.form[EDIT_TAG_FORM].values),
   rev: state.form && state.form[EDIT_TAG_FORM] && state.form[EDIT_TAG_FORM].values && state.form[EDIT_TAG_FORM].values._rev,

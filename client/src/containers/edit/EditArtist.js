@@ -8,7 +8,7 @@ import { artistFormatter } from '../../normalizers/adaptFormData';
 import Edit from '../../components/pages/Edit';
 import SubmitArtistForm from '../../components/forms/SubmitArtistForm';
 
-const EditArtist = ({ dispatch, handleSubmit, name, id, rev, loading }) =>
+const EditArtist = ({ dispatch, handleSubmit, name, rev, loading, match: { params: { id } } }) => (
   <Edit
     title={name}
     getEditData={() => dispatch(getEditArtistData(id))}
@@ -17,7 +17,8 @@ const EditArtist = ({ dispatch, handleSubmit, name, id, rev, loading }) =>
     loading={loading}
   >
     <SubmitArtistForm />
-  </Edit>;
+  </Edit>
+);
 
 EditArtist.propTypes = {
   dispatch: PropTypes.func.isRequired,
@@ -28,8 +29,7 @@ EditArtist.propTypes = {
   rev: PropTypes.string,
 };
 
-const mapStateToProps = (state, routerProps) => ({
-  id: routerProps.params.id,
+const mapStateToProps = (state) => ({
   name: artistFormatter(state.form[EDIT_ARTIST_FORM] && state.form[EDIT_ARTIST_FORM].values),
   rev: state.form && state.form[EDIT_ARTIST_FORM] && state.form[EDIT_ARTIST_FORM].values && state.form[EDIT_ARTIST_FORM].values._rev,
   loading: state.form[EDIT_ARTIST_FORM] && state.form[EDIT_ARTIST_FORM].loading,

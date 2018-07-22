@@ -7,7 +7,7 @@ import { tagFormatter } from '../../normalizers/adaptFormData';
 import Full from '../../components/pages/Full';
 import Card from '../../components/Card';
 
-const Tag = ({ dispatch, id, tag, loading }) =>
+const Tag = ({ dispatch, tag, loading, match: { params: { id } } }) =>
   <Full
     title={tagFormatter(tag)}
     load={() => dispatch(getTag(id))}
@@ -27,10 +27,9 @@ Tag.propTypes = {
 };
 
 // for now, we want the tag state
-const mapStateToProps = (state, routerProps) => ({
+const mapStateToProps = (state) => ({
   loading: state.tag.loading,
   tag: state.tag.tag,
-  id: routerProps.params.id,
 });
 
 // Wrap the component to inject dispatch and state into it

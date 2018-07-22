@@ -9,7 +9,7 @@ import Full from '../../components/pages/Full';
 import Card from '../../components/Card';
 import DisplayField from '../../components/DisplayField';
 
-const Album = ({ dispatch, id, album, loading }) =>
+const Album = ({ dispatch, album, loading, match: { params: { id } } }) =>
   <Full
     title={albumFormatter(album)}
     load={() => dispatch(getAlbum(id))}
@@ -31,10 +31,9 @@ Album.propTypes = {
 };
 
 // for now, we want the album state
-const mapStateToProps = (state, routerProps) => ({
+const mapStateToProps = (state) => ({
   loading: state.album.loading,
   album: state.album.album,
-  id: routerProps.params.id,
 });
 
 // Wrap the component to inject dispatch and state into it

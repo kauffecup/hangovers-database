@@ -20,7 +20,7 @@ import {
   arrangementTypeFormatter,
 } from '../../normalizers/adaptFormData';
 
-const Arrangement = ({ dispatch, id, arrangement, loading }) =>
+const Arrangement = ({ dispatch, arrangement, loading, match: { params: { id } } }) =>
   <Full
     title={arrangementFormatter(arrangement)}
     load={() => dispatch(getArrangement(id))}
@@ -87,10 +87,9 @@ Arrangement.propTypes = {
 };
 
 // for now, we want the arrangement state
-const mapStateToProps = (state, routerProps) => ({
+const mapStateToProps = (state) => ({
   loading: state.arrangement.loading,
   arrangement: state.arrangement.arrangement,
-  id: routerProps.params.id,
 });
 
 // Wrap the component to inject dispatch and state into it

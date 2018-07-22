@@ -8,7 +8,7 @@ import Edit from '../../components/pages/Edit';
 import SubmitHangoverForm from '../../components/forms/SubmitHangoverForm';
 import { hangoverFormatter } from '../../normalizers/adaptFormData';
 
-const EditHangover = ({ app, dispatch, handleSubmit, name, id, rev, loading }) =>
+const EditHangover = ({ app, dispatch, handleSubmit, name, rev, loading, match: { params: { id } } }) => (
   <Edit
     title={name}
     getEditData={() => dispatch(getEditHangoverData(id))}
@@ -17,7 +17,8 @@ const EditHangover = ({ app, dispatch, handleSubmit, name, id, rev, loading }) =
     loading={loading}
   >
     <SubmitHangoverForm app={app} />
-  </Edit>;
+  </Edit>
+);
 
 EditHangover.propTypes = {
   app: PropTypes.object.isRequired,
@@ -29,9 +30,8 @@ EditHangover.propTypes = {
   rev: PropTypes.string,
 };
 
-const mapStateToProps = (state, routerProps) => ({
+const mapStateToProps = (state) => ({
   app: state.app,
-  id: routerProps.params.id,
   loading: state.form[EDIT_HANGOVER_FORM] && state.form[EDIT_HANGOVER_FORM].loading,
   name: hangoverFormatter(state.form[EDIT_HANGOVER_FORM] && state.form[EDIT_HANGOVER_FORM].values),
   rev: state.form && state.form[EDIT_HANGOVER_FORM] && state.form[EDIT_HANGOVER_FORM].values && state.form[EDIT_HANGOVER_FORM].values._rev,

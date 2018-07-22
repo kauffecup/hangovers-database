@@ -14,7 +14,16 @@ import {
   getEditArrangementData,
 } from '../../actions';
 
-const EditArrangement = ({ app, dispatch, handleSubmit, name, id, rev, loading, arrangerNotAHangover }) =>
+const EditArrangement = ({
+  app,
+  dispatch,
+  handleSubmit,
+  name,
+  rev,
+  loading,
+  arrangerNotAHangover,
+  match: { params: { id } },
+}) =>
   <Edit
     title={name}
     getEditData={() => dispatch(getEditArrangementData(id))}
@@ -39,9 +48,8 @@ EditArrangement.propTypes = {
 };
 
 // we want the app state
-const mapStateToProps = (state, routerProps) => ({
+const mapStateToProps = (state) => ({
   app: state.app,
-  id: routerProps.params.id,
   name: arrangementFormatter(state.form[EDIT_ARRANGEMENT_FORM] && state.form[EDIT_ARRANGEMENT_FORM].values),
   arrangerNotAHangover: state.form[EDIT_ARRANGEMENT_FORM] && state.form[EDIT_ARRANGEMENT_FORM].values && state.form[EDIT_ARRANGEMENT_FORM].values.arrangerNotAHangover,
   rev: state.form && state.form[EDIT_ARRANGEMENT_FORM] && state.form[EDIT_ARRANGEMENT_FORM].values && state.form[EDIT_ARRANGEMENT_FORM].values._rev,

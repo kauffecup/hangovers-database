@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import { syncHistoryWithStore } from 'react-router-redux';
+import { ConnectedRouter } from 'connected-react-router'
 import store, { history } from './store';
 import App from './containers/Routes';
 
@@ -14,6 +14,8 @@ const rootElement = document.getElementById('root');
 
 render((
   <Provider store={store}>
-    <App history={syncHistoryWithStore(history, store)} />
+    <ConnectedRouter history={history}>
+      <App />
+    </ConnectedRouter>
   </Provider>
 ), rootElement);

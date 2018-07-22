@@ -9,8 +9,8 @@
   "dependencies": {
     "aphrodite": "^1.1.0",
     "connected-react-router": "^4.3.0",
-    "history": "^4.7.2",
-    "lodash": "^4.17.10",
+    "history": "4.7.2",
+    "lodash": "4.17.10",
     "prop-types": "15.6.2",
     "query-string": "^4.3.1",
     "react": "15.4.2",
@@ -18,16 +18,16 @@
     "react-dom": "^15.4.2",
     "react-dropzone": "^3.6.0",
     "react-progress": "0.0.12",
-    "react-redux": "^5.0.2",
+    "react-redux": "5.0.7",
     "react-router": "4.3.1",
-    "react-router-dom": "^4.3.1",
+    "react-router-dom": "4.3.1",
     "react-select": "git+https://github.com/kauffecup/react-select.git#keep-input-case-with-build-files",
     "react-virtualized": "^8.11.3",
-    "redux": "^3.6.0",
+    "redux": "4.0.0",
     "redux-form": "^6.4.3",
     "redux-logger": "3.0.6",
-    "redux-thunk": "^2.1.0",
-    "youtube-regex": "^1.0.5"
+    "redux-thunk": "2.3.0",
+    "youtube-regex": "1.0.5"
   },
   "devDependencies": {
     "react-scripts": "1.1.0"

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import { StyleSheet, css } from 'aphrodite';
 import { OXFORD_GRAY, PADDING_UNIT, REGENT_GRAY } from '../StyleConstants';
 import Menu from '../icons/menu';

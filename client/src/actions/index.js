@@ -1,6 +1,6 @@
 import { stringify } from 'query-string';
 import { reset, SubmissionError } from 'redux-form';
-import { push } from 'react-router-redux';
+import { push } from 'connected-react-router';
 import myFetch from './myFetch';
 import {
   fullAlbumAdapter,

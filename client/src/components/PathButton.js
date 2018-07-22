@@ -1,7 +1,7 @@
 import React from 'react'; 
 import PropTypes from 'prop-types';
 import { StyleSheet, css } from 'aphrodite';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import { SHAKESPEARE } from '../StyleConstants';
 
 const Button = ({ text, path, styles: propStyles }) =>

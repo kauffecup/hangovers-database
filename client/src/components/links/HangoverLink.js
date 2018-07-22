@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import { hangoverFormatter } from '../../normalizers/adaptFormData';
 
 const HangoverLink = ({ _id, firstName, lastName, hangsName }) =>

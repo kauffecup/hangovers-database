@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux';
-import { routerReducer } from 'react-router-redux';
 import app from './app';
 import banner from './banner';
 import form from './form';
@@ -40,7 +39,5 @@ export default combineReducers({
   hangovers,
   tags,
   // edit and submit forms
-  form,
-  // routing
-  routing: routerReducer,
+  form
 });

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import { StyleSheet, css } from 'aphrodite';
 import Music from '../icons/music';
 import Calendar from '../icons/calendar';
